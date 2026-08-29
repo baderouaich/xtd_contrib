@@ -56,8 +56,8 @@ auto stream_writer::close() -> void {
   flush();
   if (stream_ && dynamic_cast<std::ofstream*>(stream_)) static_cast<std::ofstream*>(stream_)->close();
   if (delete_when_destroy_) delete stream_;
-  stream_ = nullptr;
-}
+    stream_ = nullptr;
+  }
 
 auto stream_writer::flush() -> void {
   if (stream_) stream_->flush();
@@ -66,4 +66,4 @@ auto stream_writer::flush() -> void {
 auto stream_writer::write(const string& value) -> void {
   if (stream_) stream_->write(value.chars().c_str(), value.length());
   if (auto_flush_) flush();
-}
+  }

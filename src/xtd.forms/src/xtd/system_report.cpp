@@ -50,7 +50,7 @@ namespace {
   }
   
   string generate_operating_system_string_report(int32 indent) {
-    auto to_time_since_boot_string = [](const auto& time_since_boot) {
+    auto to_time_since_boot_string = [](const auto & time_since_boot) {
       return string::format("{}{}{}", time_since_boot.days() ? string::format("{} days, ", time_since_boot.days()) : string::empty_string, time_since_boot.days() || time_since_boot.hours()  % 24 ? string::format("{} hours, ", time_since_boot.hours() % 24) : string::empty_string, string::format("{} minutes", time_since_boot.minutes() % 60));
     };
     string report = string::format("{}Operating System{}", indent_string(indent), environment::new_line());
@@ -169,7 +169,7 @@ xtd::compiler system_report::compiler() noexcept {
 system_report::environment_variable_collection system_report::environment_variables() noexcept {
   environment_variable_collection environment_variables;
   auto envs = xtd::environment::get_environment_variables();
-  std::for_each(envs.begin(), envs.end(), [&](const auto& environment_variable) {environment_variables.add({environment_variable});});
+  std::for_each(envs.begin(), envs.end(), [&](const auto & environment_variable) {environment_variables.add({environment_variable});});
   return environment_variables;
 }
 
@@ -217,7 +217,7 @@ xtd::diagnostics::stack_trace system_report::stack_trace(xtd::usize skip_frames)
 const system_report::system_color_collection& system_report::system_colors() noexcept {
   static system_color_collection colors;
   if (colors.count() != 0) return colors;
-  std::for_each(system_colors::get_colors().begin(), system_colors::get_colors().end(), [&](const auto& color) {colors.add({color.name().replace("_", " ").to_title_case(), drawing::color::from_argb(color.to_argb())});});
+  std::for_each(system_colors::get_colors().begin(), system_colors::get_colors().end(), [&](const auto & color) {colors.add({color.name().replace("_", " ").to_title_case(), drawing::color::from_argb(color.to_argb())});});
   return colors;
 }
 

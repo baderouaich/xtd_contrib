@@ -412,7 +412,7 @@ namespace xtd {
     /// @param intercept Determines whether to display the pressed key in the console window. `true` to not display the pressed key; otherwise, `false`
     /// @return xtd::console_key_info A xtd::console_key_info object that describes the ConsoleKey constant and Unicode character, if any, that correspond to the pressed console key. The xtd::console_key_info object also describes, in a bitwise combination of ConsoleModifiers values, whether one or more SHIFT, ALT, or CTRL modifier keys was pressed simultaneously with the console key.
     static auto read_key(const string& text, bool intercept) -> console_key_info;
-
+    
     /// @brief Reads the next line of characters from the standard input stream.
     /// @return The next line of characters from the input stream, or "" if no more lines are available.
     static auto read_line() -> xtd::string;
@@ -429,12 +429,12 @@ namespace xtd {
     /// @param intercept Determines whether to display the pressed key in the console window. `true` to not display the pressed key; otherwise, `false`
     /// @return The next line of characters from the input stream, or "" if no more lines are available.
     static auto read_line(const string& text, bool intercept) -> xtd::string;
-
+    
     template<typename string_t>
     static auto read_line(string_t text) -> xtd::string {return read_line(xtd::string(text), false);}
     template<typename string_t>
     static auto read_line(string_t text, bool intercept) -> xtd::string {return read_line(xtd::string(text), intercept);}
-
+    
     /// @brief Sets the foreground and background console colors to their defaults.
     /// @remarks The foreground and background colors are restored to the colors that existed when the current process began. For more information, see the foreground_color and background_color properties.
     static auto reset_color() -> bool;
@@ -442,7 +442,7 @@ namespace xtd {
     /// @brief Resets terminale mode to default.
     /// @remarks This method must be used for example if you use xtd::console::key_availlableor xtd::console::read_key and you want to usud std::cin or scanf or other input than xtd.
     static auto reset_terminal_mode() -> void;
-
+    
     /// @brief Sets the position of the cursor.
     /// @param left The column position of the cursor. Columns are numbered from left to right starting at 0.
     /// @param top The row position of the cursor. Rows are numbered from top to bottom starting at 0.
@@ -520,7 +520,7 @@ namespace xtd {
     /// @param values Values to write,
     template<typename ...args_t>
     static auto write(const xtd::globalization::culture_info& culture, const xtd::string& fmt, args_t&& ... values) -> void {write_(xtd::string::format(culture, fmt, std::forward<args_t>(values)...));}
-
+    
     /// @brief Writes the current line terminator to the standard output stream using the specified format information.
     static auto write_line() -> void;
     

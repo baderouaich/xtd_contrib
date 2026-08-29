@@ -51,32 +51,32 @@ namespace xtd {
       template<typename type_t>
       static auto append_all_lines(const xtd::string& path, type_t contents) -> void {
         xtd::io::stream_writer sw(path, true);
-        for (const auto& line : contents)
-          sw.write_line(line);
+for (const auto& line : contents)
+        sw.write_line(line);
       }
       
-      /// @brief Appends lines to a file, and then closes the file. If the specified file does not exist, this method creates a file, writes the specified lines to the file, and then closes the file.
-      /// @param path The file to write to.
-      /// @param contents The lines to append to the file.
-      /// @return `true` if the text appended; otherwise, `false`.
-      /// @exception xtd::argument_exception path contains one or more of the invalid characters<br>-or-<br>The system could not retrieve the absolute path.
-      /// @exception xtd::io::io_exception the handle of the specified file cannot be opened.
-      /// @remarks If the target file already exists, it is overwritten.
-      template<typename type_t>
-      static auto append_all_lines(const xtd::string& path, const std::initializer_list<type_t>& contents) -> void {
+    /// @brief Appends lines to a file, and then closes the file. If the specified file does not exist, this method creates a file, writes the specified lines to the file, and then closes the file.
+    /// @param path The file to write to.
+    /// @param contents The lines to append to the file.
+    /// @return `true` if the text appended; otherwise, `false`.
+    /// @exception xtd::argument_exception path contains one or more of the invalid characters<br>-or-<br>The system could not retrieve the absolute path.
+    /// @exception xtd::io::io_exception the handle of the specified file cannot be opened.
+    /// @remarks If the target file already exists, it is overwritten.
+    template<typename type_t>
+    static auto append_all_lines(const xtd::string& path, const std::initializer_list<type_t>& contents) -> void {
         xtd::io::stream_writer sw(path, true);
-        for (const auto& line : contents)
-          sw.write_line(line);
+for (const auto& line : contents)
+        sw.write_line(line);
       }
       
-      /// @brief Appends text to a file, and then closes the file. If the specified file does not exist, this method creates a file, writes the specified lines to the file, and then closes the file.
-      /// @param path The file to write to.
-      /// @param contents The text to append to the file.
-      /// @return `true` if the text appended; otherwise, `false`.
-      /// @exception xtd::argument_exception path contains one or more of the invalid characters<br>-or-<br>The system could not retrieve the absolute path.
-      /// @exception xtd::io::io_exception the handle of the specified file cannot be opened.
-      template<typename type_t>
-      static auto append_all_text(const xtd::string& path, type_t text) -> void {
+    /// @brief Appends text to a file, and then closes the file. If the specified file does not exist, this method creates a file, writes the specified lines to the file, and then closes the file.
+    /// @param path The file to write to.
+    /// @param contents The text to append to the file.
+    /// @return `true` if the text appended; otherwise, `false`.
+    /// @exception xtd::argument_exception path contains one or more of the invalid characters<br>-or-<br>The system could not retrieve the absolute path.
+    /// @exception xtd::io::io_exception the handle of the specified file cannot be opened.
+    template<typename type_t>
+    static auto append_all_text(const xtd::string& path, type_t text) -> void {
         xtd::io::stream_writer sw(path, true);
         sw.write(text);
       }
@@ -331,32 +331,32 @@ namespace xtd {
       template<typename type_t>
       static auto write_all_lines(const xtd::string& path, type_t contents) -> void {
         xtd::io::stream_writer sw(path);
-        for (const auto& line : contents)
-          sw.write_line(line);
+for (const auto& line : contents)
+        sw.write_line(line);
       }
       
-      /// @brief Writes lines to a file, and then closes the file. If the specified file does not exist, this method creates a file, writes the specified lines to the file, and then closes the file.
-      /// @param path The file to write to.
-      /// @param contents The lines to write to the file.
-      /// @return `true` if the text written; otherwise, `false`.
-      /// @exception xtd::argument_exception path contains one or more of the invalid characters<br>-or-<br>The system could not retrieve the absolute path.
-      /// @exception xtd::io::io_exception the handle of the specified file cannot be opened.
-      /// @remarks If the target file already exists, it is overwritten.
-      template<typename type_t>
-      static auto write_all_lines(const xtd::string& path, const std::initializer_list<type_t>& contents) -> void {
+    /// @brief Writes lines to a file, and then closes the file. If the specified file does not exist, this method creates a file, writes the specified lines to the file, and then closes the file.
+    /// @param path The file to write to.
+    /// @param contents The lines to write to the file.
+    /// @return `true` if the text written; otherwise, `false`.
+    /// @exception xtd::argument_exception path contains one or more of the invalid characters<br>-or-<br>The system could not retrieve the absolute path.
+    /// @exception xtd::io::io_exception the handle of the specified file cannot be opened.
+    /// @remarks If the target file already exists, it is overwritten.
+    template<typename type_t>
+    static auto write_all_lines(const xtd::string& path, const std::initializer_list<type_t>& contents) -> void {
         xtd::io::stream_writer sw(path);
-        for (const auto& line : contents)
-          sw.write_line(line);
+for (const auto& line : contents)
+        sw.write_line(line);
       }
       
-      /// @brief Writes text to a file, and then closes the file. If the specified file does not exist, this method creates a file, writes the specified lines to the file, and then closes the file.
-      /// @param path The file to write to.
-      /// @param contents The text to write to the file.
-      /// @return `true` if the text written; otherwise, `false`.
-      /// @exception xtd::argument_exception path contains one or more of the invalid characters<br>-or-<br>The system could not retrieve the absolute path.
-      /// @exception xtd::io::io_exception the handle of the specified file cannot be opened.
-      template<typename type_t>
-      static auto write_all_text(const xtd::string& path, type_t text) -> void {
+    /// @brief Writes text to a file, and then closes the file. If the specified file does not exist, this method creates a file, writes the specified lines to the file, and then closes the file.
+    /// @param path The file to write to.
+    /// @param contents The text to write to the file.
+    /// @return `true` if the text written; otherwise, `false`.
+    /// @exception xtd::argument_exception path contains one or more of the invalid characters<br>-or-<br>The system could not retrieve the absolute path.
+    /// @exception xtd::io::io_exception the handle of the specified file cannot be opened.
+    template<typename type_t>
+    static auto write_all_text(const xtd::string& path, type_t text) -> void {
         xtd::io::stream_writer sw(path);
         sw.write(text);
       }

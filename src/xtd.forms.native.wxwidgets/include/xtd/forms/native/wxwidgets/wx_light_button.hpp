@@ -83,7 +83,7 @@ namespace xtd {
           control_handler::SetPosition(pt);
         }
         
-        wxSize GetClientSize() const override {
+      wxSize GetClientSize() const override {
           return control()->GetSize();
         }
         
@@ -98,8 +98,8 @@ namespace xtd {
           control_handler::SetSize(width, height);
         }
         
-        bool owner_draw_ = false;
-      };
-    }
+      bool owner_draw_ = false;
+    };
   }
+}
 }

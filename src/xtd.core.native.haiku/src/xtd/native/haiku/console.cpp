@@ -115,7 +115,7 @@ namespace {
     inline static std::shared_ptr<terminal_mode> terminal_mode_;
     inline static std::queue<std::int8_t> peek_characters_;
   };
-
+  
   class key_info {
   public:
     class input_list {

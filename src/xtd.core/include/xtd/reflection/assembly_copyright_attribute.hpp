@@ -32,7 +32,7 @@ namespace xtd {
       /// @param copyright The copyright information.
       explicit assembly_copyright_attribute(const xtd::string& copyright);
       /// @}
-            
+      
       /// @name Public Properties
       
       /// @{
@@ -82,7 +82,7 @@ namespace xtd {
 }
 
 /// @cond
-auto __assembly_copyright_attribute__() -> xtd::sptr<xtd::reflection::assembly_copyright_attribute>&;
+auto __assembly_copyright_attribute__() -> xtd::sptr<xtd::reflection::assembly_copyright_attribute>& ;
 /// @endcond
 
 /// @brief Creates the assembly copoyright information. Must be called once in your application.

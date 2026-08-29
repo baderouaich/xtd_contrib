@@ -59,7 +59,7 @@ namespace xtd {
     
     /// @cond
     basic_array(basic_array&& array) = default;
-    basic_array(const basic_array & array) requires std::copy_constructible<type_t> { if (array.data_) *data_ = *array.data_;}
+    basic_array(const basic_array & array) requires std::copy_constructible<type_t> { if (array.data_)* data_ = *array.data_;}
     /// @endcond
     
     /// @name Public Properties
@@ -166,11 +166,11 @@ namespace xtd {
     /// @brief Determines whether an element is in the array.
     /// @param value The object to be added to the end of the array.
     [[nodiscard]] auto contains(const type_t& value) const noexcept -> bool override {
-      for (const auto& item : data_->items)
-        if (xtd::collections::generic::helpers::equator<type_t> {}(reinterpret_cast<const type_t&>(item), value)) return true;
-      return false;
-    }
-    
+for (const auto& item : data_->items)
+      if (xtd::collections::generic::helpers::equator<type_t> {}(reinterpret_cast<const type_t&>(item), value)) return true;
+          return false;
+        }
+        
     /// @brief Copies the entire xtd::array <type_t> to a compatible one-dimensional array.
     /// @param array The one-dimensional xtd::array that is the destination of the elements copied from ICollection. The xtd::array must have zero-based indexing.
     /// @exception xtd::argument_exception  The number of elements in the source xtd::array <type_t> is greater than the number of elements that the destination array can contain.
@@ -183,15 +183,15 @@ namespace xtd {
     /// @param array_index The zero-based index in `array` at which copying begins.
     /// @exception xtd::argument_exception The number of elements in the source xtd::array <type_t> is greater than the available space from `array_index` to the end of the destination `array`.
     auto copy_to(xtd::array<type_t>& array, size_type array_index) const -> void override {
-      if constexpr (std::copy_constructible<type_t>) copy_to(0, array, array_index);
+      if constexpr(std::copy_constructible<type_t>) copy_to(0, array, array_index);
       else xtd::helpers::throw_helper::throws(xtd::helpers::exception_case::invalid_operation, "value_type is not copy constructible.");
-    }
-    /// @brief Copies the elements of the xtd::array <type_t> from a specified index to an xtd::array, starting at a particular xtd::array index.
-    /// @param indexes The zero-based multi-dimentional indexes in the source array at which copying begins.
-    /// @param array The one-dimensional xtd::array that is the destination of the elements copied from xtd::collections::generic::icollection <type_t>. The xtd::array must have zero-based indexing.
-    /// @param array_index The zero-based index in `array` at which copying begins.
-    /// @exception xtd::argument_exception The number of elements in the source xtd::array <type_t> is greater than the available space from `array_index` to the end of the destination `array`.
-    auto copy_to(const xtd::array<size_type>& indexes, xtd::array<type_t>& array, size_type array_index) const -> void requires std::copy_constructible<type_t> {
+      }
+  /// @brief Copies the elements of the xtd::array <type_t> from a specified index to an xtd::array, starting at a particular xtd::array index.
+  /// @param indexes The zero-based multi-dimentional indexes in the source array at which copying begins.
+  /// @param array The one-dimensional xtd::array that is the destination of the elements copied from xtd::collections::generic::icollection <type_t>. The xtd::array must have zero-based indexing.
+  /// @param array_index The zero-based index in `array` at which copying begins.
+  /// @exception xtd::argument_exception The number of elements in the source xtd::array <type_t> is greater than the available space from `array_index` to the end of the destination `array`.
+  auto copy_to(const xtd::array<size_type>& indexes, xtd::array<type_t>& array, size_type array_index) const -> void requires std::copy_constructible<type_t> {
       copy_to(compute_index(self_, indexes), array, array_index);
     }
     /// @brief Copies the elements of the xtd::array <type_t> from a specified index to an xtd::array, starting at a particular xtd::array index.
@@ -242,13 +242,13 @@ namespace xtd {
     /// @brief Assigns the value to all elements in the container.
     /// @param value The value to assign to the elements.
     virtual auto fill(const value_type & value) noexcept -> void {
-      if constexpr (std::copy_constructible<value_type>)
-        for (auto& item : data_->items)
-          item = value;
-      else xtd::helpers::throw_helper::throws(xtd::helpers::exception_case::invalid_operation, "value_type is not copy constructible.");
-    }
-    
-    [[nodiscard]] auto get_enumerator() const noexcept -> xtd::collections::generic::enumerator<value_type> override {
+      if constexpr(std::copy_constructible<value_type>)
+for (auto& item : data_->items)
+        item = value;
+        else xtd::helpers::throw_helper::throws(xtd::helpers::exception_case::invalid_operation, "value_type is not copy constructible.");
+        }
+        
+  [[nodiscard]] auto get_enumerator() const noexcept -> xtd::collections::generic::enumerator<value_type> override {
       struct basic_array_enumerator : public xtd::collections::generic::ienumerator<value_type> {
         explicit basic_array_enumerator(const basic_array & items, size_type version) : items_(items), version_(version) {}
         
@@ -348,16 +348,16 @@ namespace xtd {
       if (index > length() || index + count > length()) xtd::helpers::throw_helper::throws(xtd::helpers::exception_case::argument_out_of_range);
       for (auto increment = index; increment < (index + count); ++increment)
         if (xtd::collections::generic::helpers::equator<type_t> {}(data_->items[increment], value)) return increment;
-      return xtd::npos;
-    }
-    
-    /// @brief Resizes the container to contain `count` elements, does nothing if `count == length().
-    /// @param new_size The new size of the container.
-    /// @exception xtd::argument_out_of_range_exception xtd::basic_array::capacity is set to a value that is less than xtd::basic_array::count.
-    /// @remarks If the current size is greater than `count`, the container is reduced to its first `count` elements.
-    /// @remarks If the current size is less than `count`, additional default-inserted elements are appended.
-    auto resize(size_type new_size) -> void {resize(new_size, value_type {});}
-    
+          return xtd::npos;
+        }
+        
+  /// @brief Resizes the container to contain `count` elements, does nothing if `count == length().
+  /// @param new_size The new size of the container.
+  /// @exception xtd::argument_out_of_range_exception xtd::basic_array::capacity is set to a value that is less than xtd::basic_array::count.
+  /// @remarks If the current size is greater than `count`, the container is reduced to its first `count` elements.
+  /// @remarks If the current size is less than `count`, additional default-inserted elements are appended.
+  auto resize(size_type new_size) -> void {resize(new_size, value_type {});}
+  
     /// @brief Resizes the container to contain `count` elements, does nothing if `count == length().
     /// @param new_size The new size of the container.
     /// @param value The value to initialize the new elements with.
@@ -455,7 +455,7 @@ namespace xtd {
     }
     
     using xtd::collections::generic::ilist<type_t>::operator [];
-    using xtd::collections::generic::ilist<type_t>::operator ();
+    using xtd::collections::generic::ilist<type_t>::operator();
     /// @brief Returns a reference to the element at specified location index.
     /// @param index The position of the element to return.
     /// @return Reference to the requested element.
@@ -475,11 +475,11 @@ namespace xtd {
     
     /// @brief Returns a reference to the underlying base type.
     /// @return Reference to the underlying base type.
-    [[nodiscard]] operator const base_type&() const noexcept {return data_->items;}
+    [[nodiscard]] operator const base_type& () const noexcept {return data_->items;}
     /// @brief Returns a reference to the underlying base type.
     /// @return Reference to the underlying base type.
-    [[nodiscard]] operator base_type&() noexcept {return data_->items;}
-
+    [[nodiscard]] operator base_type& () noexcept {return data_->items;}
+    
     /// @brief Gets the value at the specified position in the multidimensional array. The indexes are specified as a 32-bit integer array.
     /// @param indexes An array that represents the multidimension index of the array element to get.
     /// @return The value at the specified position in the multidimensional array.
@@ -548,7 +548,7 @@ namespace xtd {
     /// The following code example shows how to use operator [] to list the elements of an array.
     /// @include array_array_operator_functor.cpp
     [[nodiscard]] auto operator [](const std::initializer_list<xtd::index>& indexes) const -> const type_t&;
-
+    
     /// @brief Gets the value at the specified position in the multidimensional array. The indexes are specified as a 32-bit integer array.
     /// @param indexes An array that represents the multidimension index of the array element to get.
     /// @return The value at the specified position in the multidimensional array.
@@ -557,7 +557,7 @@ namespace xtd {
     /// The following code example shows how to use operator [] to list the elements of an array.
     /// @include array_array_operator_functor.cpp
     template<xtd::integer index_t>
-    [[nodiscard]] auto operator ()(const xtd::array<index_t>& indexes) -> type_t&;
+    [[nodiscard]] auto operator()(const xtd::array<index_t>& indexes) -> type_t&;
     /// @brief Gets the value at the specified position in the multidimensional array. The indexes are specified as a 32-bit integer array.
     /// @param indexes An array that represents the multidimension index of the array element to get.
     /// @return The value at the specified position in the multidimensional array.
@@ -566,7 +566,7 @@ namespace xtd {
     /// The following code example shows how to use operator [] to list the elements of an array.
     /// @include array_array_operator_functor.cpp
     template<xtd::integer index_t>
-    [[nodiscard]] auto operator ()(const xtd::array<index_t>& indexes) const -> const type_t&;
+    [[nodiscard]] auto operator()(const xtd::array<index_t>& indexes) const -> const type_t&;
     /// @brief Gets the value at the specified position in the multidimensional array. The indexes are specified as a 32-bit integer array.
     /// @param indexes An array that represents the multidimension index of the array element to get.
     /// @return The value at the specified position in the multidimensional array.
@@ -575,7 +575,7 @@ namespace xtd {
     /// The following code example shows how to use operator [] to list the elements of an array.
     /// @include array_array_operator_functor.cpp
     template<xtd::integer index_t>
-    [[nodiscard]] auto operator ()(const std::initializer_list<index_t>& indexes) -> type_t&;
+    [[nodiscard]] auto operator()(const std::initializer_list<index_t>& indexes) -> type_t&;
     /// @brief Gets the value at the specified position in the multidimensional array. The indexes are specified as a 32-bit integer array.
     /// @param indexes An array that represents the multidimension index of the array element to get.
     /// @return The value at the specified position in the multidimensional array.
@@ -584,7 +584,7 @@ namespace xtd {
     /// The following code example shows how to use operator [] to list the elements of an array.
     /// @include array_array_operator_functor.cpp
     template<xtd::integer index_t>
-    [[nodiscard]] auto operator ()(const std::initializer_list<index_t>& indexes) const -> const type_t&;
+    [[nodiscard]] auto operator()(const std::initializer_list<index_t>& indexes) const -> const type_t&;
     /// @brief Gets the value at the specified position in the multidimensional array. The indexes are specified as a 32-bit integer array.
     /// @param indexes An array that represents the multidimension index of the array element to get.
     /// @return The value at the specified position in the multidimensional array.
@@ -592,7 +592,7 @@ namespace xtd {
     /// @par Examples
     /// The following code example shows how to use operator [] to list the elements of an array.
     /// @include array_array_operator_functor.cpp
-    [[nodiscard]] auto operator ()(const xtd::array<xtd::index>& indexes) -> type_t&;
+    [[nodiscard]] auto operator()(const xtd::array<xtd::index>& indexes) -> type_t&;
     /// @brief Gets the value at the specified position in the multidimensional array. The indexes are specified as a 32-bit integer array.
     /// @param indexes An array that represents the multidimension index of the array element to get.
     /// @return The value at the specified position in the multidimensional array.
@@ -600,7 +600,7 @@ namespace xtd {
     /// @par Examples
     /// The following code example shows how to use operator [] to list the elements of an array.
     /// @include array_array_operator_functor.cpp
-    [[nodiscard]] auto operator ()(const xtd::array<xtd::index>& indexes) const -> const type_t&;
+    [[nodiscard]] auto operator()(const xtd::array<xtd::index>& indexes) const -> const type_t&;
     /// @brief Gets the value at the specified position in the multidimensional array. The indexes are specified as a 32-bit integer array.
     /// @param indexes An array that represents the multidimension index of the array element to get.
     /// @return The value at the specified position in the multidimensional array.
@@ -608,7 +608,7 @@ namespace xtd {
     /// @par Examples
     /// The following code example shows how to use operator [] to list the elements of an array.
     /// @include array_array_operator_functor.cpp
-    [[nodiscard]] auto operator ()(const std::initializer_list<xtd::index>& indexes) -> type_t&;
+    [[nodiscard]] auto operator()(const std::initializer_list<xtd::index>& indexes) -> type_t&;
     /// @brief Gets the value at the specified position in the multidimensional array. The indexes are specified as a 32-bit integer array.
     /// @param indexes An array that represents the multidimension index of the array element to get.
     /// @return The value at the specified position in the multidimensional array.
@@ -616,7 +616,7 @@ namespace xtd {
     /// @par Examples
     /// The following code example shows how to use operator [] to list the elements of an array.
     /// @include array_array_operator_functor.cpp
-    [[nodiscard]] auto operator ()(const std::initializer_list<xtd::index>& indexes) const -> const type_t&;
+    [[nodiscard]] auto operator()(const std::initializer_list<xtd::index>& indexes) const -> const type_t&;
     /// @}
     
   private:
@@ -632,19 +632,19 @@ namespace xtd {
       data_->upper_bound[0] = data_->items.size() - 1;
     }
     explicit basic_array(const xtd::collections::generic::ienumerable<type_t>& enumerable) requires std::copy_constructible<type_t> {
-      for (const auto& value : enumerable)
-        data_->items.push_back(value);
+for (const auto& value : enumerable)
+      data_->items.push_back(value);
       data_->upper_bound[0] = data_->items.size() - 1;
     }
-    explicit basic_array(const xtd::collections::generic::ilist<type_t>& items) requires std::copy_constructible<type_t> {
+  explicit basic_array(const xtd::collections::generic::ilist<type_t>& items) requires std::copy_constructible<type_t> {
       data_->items.reserve(items.count());
-      for (const auto& value : items)
-        data_->items.push_back(value);
+for (const auto& value : items)
+      data_->items.push_back(value);
       data_->upper_bound[0] = data_->items.size() - 1;
     }
     
-    template<typename input_iterator_t>
-    basic_array(input_iterator_t first, input_iterator_t last) requires std::copy_constructible<type_t> {
+  template<typename input_iterator_t>
+  basic_array(input_iterator_t first, input_iterator_t last) requires std::copy_constructible<type_t> {
       data_->items.assign(first, last);
       data_->upper_bound[0] = data_->items.size() - 1;
     }
@@ -655,50 +655,50 @@ namespace xtd {
     }
     
     basic_array(const std::vector<std::vector<type_t>>& items) requires std::copy_constructible<type_t>  {
-      for (const std::vector<type_t>& items1 : items)
-        data_->items.insert(data_->items.end(), items1.begin(), items1.end());
+for (const std::vector<type_t>& items1 : items)
+      data_->items.insert(data_->items.end(), items1.begin(), items1.end());
       data_->upper_bound[0] = items.size() - 1;
       data_->lower_bound.push_back(0);
       data_->upper_bound.push_back((*items.begin()).size() - 1);
     }
     
-    basic_array(const std::vector<std::vector<std::vector<type_t>>>& items) requires std::copy_constructible<type_t>  {
-      for (const std::vector<std::vector<type_t>>& items1 : items)
-        for (const std::vector<type_t>& items2 : items1)
-          data_->items.insert(data_->items.end(), items2.begin(), items2.end());
-      data_->upper_bound[0] = items.size() - 1;
-      data_->lower_bound.push_back(0);
-      data_->upper_bound.push_back((*items.begin()).size() - 1);
-      data_->lower_bound.push_back(0);
-      data_->upper_bound.push_back((*(*items.begin()).begin()).size() - 1);
-    }
-    
-    basic_array(std::initializer_list<type_t> il) requires std::copy_constructible<type_t> {
+  basic_array(const std::vector<std::vector<std::vector<type_t>>>& items) requires std::copy_constructible<type_t>  {
+for (const std::vector<std::vector<type_t>>& items1 : items)
+for (const std::vector<type_t>& items2 : items1)
+        data_->items.insert(data_->items.end(), items2.begin(), items2.end());
+        data_->upper_bound[0] = items.size() - 1;
+        data_->lower_bound.push_back(0);
+        data_->upper_bound.push_back((*items.begin()).size() - 1);
+        data_->lower_bound.push_back(0);
+        data_->upper_bound.push_back((*(*items.begin()).begin()).size() - 1);
+      }
+      
+  basic_array(std::initializer_list<type_t> il) requires std::copy_constructible<type_t> {
       data_->items.assign(il.begin(), il.end());
       data_->upper_bound[0] = data_->items.size() - 1;
     }
     
     basic_array(std::initializer_list<std::initializer_list<type_t>> il) requires std::copy_constructible<type_t> {
-      for (const std::initializer_list<type_t>& il1 : il)
-        data_->items.insert(data_->items.end(), il1.begin(), il1.end());
+for (const std::initializer_list<type_t>& il1 : il)
+      data_->items.insert(data_->items.end(), il1.begin(), il1.end());
       data_->upper_bound[0] = il.size() - 1;
       data_->lower_bound.push_back(0);
       data_->upper_bound.push_back((*il.begin()).size() - 1);
     }
     
-    basic_array(std::initializer_list<std::initializer_list<std::initializer_list<type_t>>> il) requires std::copy_constructible<type_t> {
-      for (const std::initializer_list<std::initializer_list<type_t>>& il1 : il)
-        for (const std::initializer_list<type_t>& il2 : il1)
-          data_->items.insert(data_->items.end(), il2.begin(), il2.end());
-      data_->upper_bound[0] = il.size() - 1;
-      data_->lower_bound.push_back(0);
-      data_->upper_bound.push_back((*il.begin()).size() - 1);
-      data_->lower_bound.push_back(0);
-      data_->upper_bound.push_back((*(*il.begin()).begin()).size() - 1);
-    }
-    
-    auto add(const type_t& item) -> void override {}
-    
+  basic_array(std::initializer_list<std::initializer_list<std::initializer_list<type_t>>> il) requires std::copy_constructible<type_t> {
+for (const std::initializer_list<std::initializer_list<type_t>>& il1 : il)
+for (const std::initializer_list<type_t>& il2 : il1)
+        data_->items.insert(data_->items.end(), il2.begin(), il2.end());
+        data_->upper_bound[0] = il.size() - 1;
+        data_->lower_bound.push_back(0);
+        data_->upper_bound.push_back((*il.begin()).size() - 1);
+        data_->lower_bound.push_back(0);
+        data_->upper_bound.push_back((*(*il.begin()).begin()).size() - 1);
+      }
+      
+  auto add(const type_t& item) -> void override {}
+  
     auto clear() -> void override {fill(value_type {});}
     
     template<typename value_t>
@@ -717,13 +717,13 @@ namespace xtd {
     auto reverse(size_type index, size_type count) -> void {
       if (index > length() || index + count > length()) xtd::helpers::throw_helper::throws(xtd::helpers::exception_case::argument_out_of_range);
       if (count == 0) return;
-      data_->items.increment_version();
-      std::reverse(data_->items.begin() + index, data_->items.begin() + index + count);
-    }
-    
-    template<typename value_t>
-    [[nodiscard]] static auto to_string(const xtd::basic_array<value_t>& items, xtd::usize rank, xtd::usize base_index) -> xtd::string;
-    
+        data_->items.increment_version();
+        std::reverse(data_->items.begin() + index, data_->items.begin() + index + count);
+      }
+      
+  template<typename value_t>
+  [[nodiscard]] static auto to_string(const xtd::basic_array<value_t>& items, xtd::usize rank, xtd::usize base_index) -> xtd::string;
+  
     struct array_data {
       xtd::collections::generic::helpers::raw_array<value_type> items;
       std::vector<size_type> lower_bound {0};

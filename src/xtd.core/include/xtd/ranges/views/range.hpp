@@ -39,7 +39,7 @@ namespace xtd {
       [[nodiscard]] auto range(type_t count) {
         return xtd::linq::enumerable::range(count);
       }
-
+      
       /// @brief Generates a sequence of integral numbers within a specified range.
       /// @param start The value of the first integer in the sequence.
       /// @param count The number of sequential integers to generate.
@@ -62,7 +62,7 @@ namespace xtd {
       [[nodiscard]] auto range(type_t start, type_t count) {
         return xtd::linq::enumerable::range(start, count);
       }
-
+      
       /// @brief Generates a sequence of integral numbers within a specified range and step.
       /// @param start The value of the first integer in the sequence.
       /// @param count The number of sequential integers to generate.

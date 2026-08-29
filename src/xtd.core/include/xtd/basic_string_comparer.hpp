@@ -123,11 +123,11 @@ namespace xtd {
     [[nodiscard]] auto compare(const object_t& x, const object_t& y) const -> xtd::int32 {
       if (is<basic_string<char_t>>(x) && is<basic_string<char_t>>(y)) return compare(as<basic_string<char_t >> (x), as<basic_string<char_t >> (y));
       if (is<icomparable<object_t>>(x) && is<icomparable<object_t>>(y)) return as<icomparable<object_t >> (x).compare_to(y);
-      if (is<object>(x) && is<object>(y) && as<object>(x) == as<object>(y)) return 0;
-      xtd::helpers::throw_helper::throws(xtd::helpers::exception_case::argument);
-    }
-    /// @cond
-    [[nodiscard]] auto compare(const char_t* x, const char_t* y) const -> xtd::int32 {
+        if (is<object>(x) && is<object>(y) && as<object>(x) == as<object>(y)) return 0;
+          xtd::helpers::throw_helper::throws(xtd::helpers::exception_case::argument);
+        }
+  /// @cond
+  [[nodiscard]] auto compare(const char_t* x, const char_t* y) const -> xtd::int32 {
       if (x == y) return 0;
       return compare(basic_string<char_t> {x}, basic_string<char_t> {y});
     }
@@ -147,9 +147,9 @@ namespace xtd {
     [[nodiscard]] auto compare(const xtd::basic_string<char_t>& x, const xtd::basic_string<char_t>& y) const noexcept -> xtd::int32 override {
       /// @todo Uncomment following lines when xtd::globalization::culture_info and xtd::globalization::compare_options are developped.
       switch (comparison_) {
-        case string_comparison::current_culture:
-        case string_comparison::invariant_culture:
-        case string_comparison::ordinal: return x.compare_to(y);
+      case string_comparison::current_culture:
+      case string_comparison::invariant_culture:
+      case string_comparison::ordinal: return x.compare_to(y);
         case string_comparison::current_culture_ignore_case:
         case string_comparison::invariant_culture_ignore_case:
         case string_comparison::ordinal_ignore_case: return x.to_lower().compare_to(y.to_lower());
@@ -216,10 +216,10 @@ namespace xtd {
     [[nodiscard]] auto get_hash_code(const object_t& obj) const -> xtd::usize {
       if (is<basic_string<char_t>>(obj)) return get_hash_code(as<basic_string<char_t >> (obj));
       if (is<object>(obj)) return as<object>(obj).get_hash_code();
-      return xtd::hash_code::combine(obj);
-    }
-    /// @cond
-    [[nodiscard]] auto get_hash_code(const char_t* obj) const -> xtd::usize {return get_hash_code(basic_string<char_t> {obj});}
+        return xtd::hash_code::combine(obj);
+      }
+  /// @cond
+  [[nodiscard]] auto get_hash_code(const char_t* obj) const -> xtd::usize {return get_hash_code(basic_string<char_t> {obj});}
     /// @endcond
     /// @brief When overridden in a derived class, gets the hash code for the specified string.
     /// @param obj A string.
@@ -228,9 +228,9 @@ namespace xtd {
     [[nodiscard]] auto get_hash_code(const xtd::basic_string<char_t>& obj) const noexcept -> xtd::usize override {
       /// @todo Uncomment following lines when xtd::globalization::culture_info and xtd::globalization::compare_options are developped.
       switch (comparison_) {
-        case string_comparison::current_culture:
-        case string_comparison::invariant_culture:
-        case string_comparison::ordinal: return obj.get_hash_code();
+      case string_comparison::current_culture:
+      case string_comparison::invariant_culture:
+      case string_comparison::ordinal: return obj.get_hash_code();
         case string_comparison::current_culture_ignore_case:
         case string_comparison::invariant_culture_ignore_case:
         case string_comparison::ordinal_ignore_case: return obj.to_lower().get_hash_code();

@@ -71,7 +71,7 @@ namespace xtd {
         /// @return Pointer to the underlying element storage. For non-empty containers, the returned pointer compares equal to the address of the first element.
         /// @remarks The pointer is such that range [xtd::collections::generic::list::data(), xtd::collections::generic::list::data() + xtd::collections::generic::list::count()) is always a valid range, even if the container is empty (xtd::collections::generic::list::data() is not dereferenceable in that case).
         [[nodiscard]] virtual auto data() const noexcept -> const type_t* = 0;
-
+        
         /// @brief Gets a value indicating whether the xtd::collections::generic::ilist <type_t> has a fixed size.
         /// @return `true` if the xtd::collections::generic::ilist <type_t> has a fixed size; otherwise, `false`.
         /// @remarks A collection with a fixed size does not allow the addition or removal of elements after the collection is created, but it allows the modification of existing elements.
@@ -129,7 +129,7 @@ namespace xtd {
         /// @param item The object to add to the xtd::collections::generic::icollection <type_t>.
         /// @exception xtd::not_supported_exception The xtd::collections::generic::icollection <type_t> is read-only.
         virtual auto add(const type_t& item) -> void = 0;
-
+        
         /// @brief Removes all items from the xtd::collections::generic::icollection <type_t>.
         /// @exception xtd::not_supported_exception The xtd::collections::generic::icollection <type_t> is read-only.
         /// @remarks xtd::collections::generic::icollection::count must be set to 0, and references to other objects from elements of the collection must be released.
@@ -150,7 +150,7 @@ namespace xtd {
         /// @brief Returns an enumerator that iterates through a collection.
         /// @return An xtd::collections::generic::enumerator object that can be used to iterate through the collection.
         [[nodiscard]] virtual auto get_enumerator() const -> xtd::collections::generic::enumerator<type_t> = 0;
-
+        
         /// @brief Determines the index of a specific item in the xtd::collections::generic::ilist <type_t>.
         /// @param item The object to locate in the xtd::collections::generic::ilist <type_t>.
         /// @return The index of item if found in the list; otherwise, xtd::collections::generic::ilist::npos.
@@ -173,7 +173,7 @@ namespace xtd {
         /// @remarks Implementations can vary in how they determine equality of objects; for example, xtd::collections::generic::list <type_t> uses xtd::collections::generic::compoarer <type_t>::default_comparer, whereas, xtd::collections::generic::dictionary <key_t, value_t> allows the user to specify the xtd::collections::generic::icompoarer <type_t> implementation to use for comparing keys.
         /// @remarks In collections of contiguous elements, such as lists, the elements that follow the removed element move up to occupy the vacated spot. If the collection is indexed, the indexes of the elements that are moved are also updated. This behavior does not apply to collections where elements are conceptually grouped into buckets, such as a hash table.
         virtual auto remove(const type_t& item) -> bool = 0;
-
+        
         /// @brief Removes the xtd::collections::generic::ilist <type_t> item at the specified index.
         /// @param index The zero-based index of the item to remove.
         /// @exception xtd::argument_out_of_range_exception `index` is not a valid index in the xtd::collections::generic::ilist <type_t>.
@@ -186,7 +186,7 @@ namespace xtd {
         
         /// @{
         using xtd::collections::generic::extensions::list_common<type_t, ilist<type_t>>::operator [];
-        using xtd::collections::generic::extensions::list_common<type_t, ilist<type_t>>::operator ();
+        using xtd::collections::generic::extensions::list_common<type_t, ilist<type_t>>::operator();
         /// @brief Gets the element at the specified index.
         /// @param index The zero-based index of the element to get.
         /// @remarks This operator provides the ability to access a specific element in the collection by using the following syntax: `my_collection[index]`.

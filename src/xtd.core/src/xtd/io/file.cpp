@@ -68,7 +68,7 @@ auto file::create_text(const string& path) -> stream_writer {
   if (xtd::string::is_empty(path) || xtd::string::is_empty(path.trim(' '))) throw_helper::throws(exception_case::argument);
   if (native::file_system::is_path_too_long(path)) throw_helper::throws(exception_case::path_too_long);
   if (exists(path) && (get_attributes(path) & file_attributes::read_only) == file_attributes::read_only) throw_helper::throws(exception_case::unauthorized_access);
-
+  
   return stream_writer {path};
 }
 
@@ -179,7 +179,7 @@ auto file::open_text(const string& path) -> stream_reader {
   if (xtd::string::is_empty(path) || xtd::string::is_empty(path.trim(' '))) throw_helper::throws(exception_case::argument);
   if (native::file_system::is_path_too_long(path)) throw_helper::throws(exception_case::path_too_long);
   if (!exists(path)) throw_helper::throws(exception_case::file_not_found);
-
+  
   return stream_reader {path};
 }
 
@@ -239,8 +239,8 @@ auto file::remove(const string& path) -> void {
 auto file::replace(const string& source_file_name, const string& destination_file_name, const string& destination_backup_file_name) -> void {
   if (!exists(source_file_name) || !exists(destination_file_name)) throw_helper::throws(exception_case::file_not_found);
   if (destination_backup_file_name != "") copy(destination_file_name, destination_backup_file_name);
-  move(source_file_name, destination_file_name, true);
-}
+    move(source_file_name, destination_file_name, true);
+  }
 
 auto file::set_attributes(const xtd::string& path, xtd::io::file_attributes attributes) -> void {
   if (path.index_of_any(io::path::get_invalid_path_chars()) != path.npos) throw_helper::throws(exception_case::argument);

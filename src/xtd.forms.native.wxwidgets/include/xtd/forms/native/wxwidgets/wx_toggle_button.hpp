@@ -81,15 +81,15 @@ namespace xtd {
           control_handler::SetPosition(pt);
         }
         
-        void SetSize(xtd::int32 width, xtd::int32 height) override {
+      void SetSize(xtd::int32 width, xtd::int32 height) override {
           #if defined(__WXOSX__)
           if (!owner_draw_) __set_button_bezel_style__(reinterpret_cast<wxAnyButton*>(control()), height);
           #endif
           control_handler::SetSize(width, height);
         }
         
-        bool owner_draw_ = false;
-      };
-    }
+      bool owner_draw_ = false;
+    };
   }
+}
 }

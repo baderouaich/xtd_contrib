@@ -207,8 +207,8 @@ namespace xtd {
           if (!visible) static_cast<wxPopup*>(control())->Dismiss();
           else {
             SetPosition(location_);
-            static_cast<wxPopup*>(control())->Popup();
-          }
+              static_cast<wxPopup*>(control())->Popup();
+            }
         }
         
       private:

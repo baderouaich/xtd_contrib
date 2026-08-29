@@ -17,21 +17,21 @@ public:
     wxImage image(size.GetWidth(), size.GetHeight());
     image.InitAlpha();
     for (xtd::int32 y = 0; y < size.GetHeight(); y++)
-      for (xtd::int32 x = 0; x < size.GetWidth(); x++)
-        image.SetAlpha(x, y, 0);
-    wxBitmap bitmap(image);
-    auto dc = wxMemoryDC(bitmap);
-    auto graphics = wxGraphicsContext::Create(dc);
-    auto radius = static_cast<double>(std::max(size.GetWidth(), size.GetHeight())) * std::sqrt(2);
-    auto length = 2 * PI * radius;
-    SetColor(graphics, size, gradientStops, offset, length, center);
-    SetAlpha(bitmap, size, gradientStops, offset, length, center);
-    return bitmap;
-  }
-  
+    for (xtd::int32 x = 0; x < size.GetWidth(); x++)
+      image.SetAlpha(x, y, 0);
+      wxBitmap bitmap(image);
+      auto dc = wxMemoryDC(bitmap);
+      auto graphics = wxGraphicsContext::Create(dc);
+      auto radius = static_cast<double>(std::max(size.GetWidth(), size.GetHeight())) * std::sqrt(2);
+      auto length = 2 * PI * radius;
+      SetColor(graphics, size, gradientStops, offset, length, center);
+      SetAlpha(bitmap, size, gradientStops, offset, length, center);
+      return bitmap;
+    }
+    
 private:
-  wxConicalGradient() = delete;
-  
+wxConicalGradient() = delete;
+
   static constexpr double PI = 3.14159265358979323846;
   
   static double DegreesToRadians(double degrees) noexcept {

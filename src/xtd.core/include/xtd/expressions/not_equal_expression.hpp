@@ -57,7 +57,7 @@ namespace xtd {
       /// @cond
       friend inline auto operator <<(std::ostream& os, const not_equal_expression& e) -> std::ostream& {return os << expression_stream {e.left, e.precedence} << " != " << expression_stream {e.right, e.precedence};}
       /// @endcond
-
+      
     private:
       [[no_unique_address]] left_t left;
       [[no_unique_address]] right_t right;
@@ -72,7 +72,7 @@ namespace xtd {
       return not_equal_expression<std::decay_t<decltype(left_expression)>, std::decay_t<decltype(right_expression)>> {std::move(left_expression), std::move(right_expression)};
     }
     /// @endcond
-
+    
     /// @name Public Operators
     
     /// @{

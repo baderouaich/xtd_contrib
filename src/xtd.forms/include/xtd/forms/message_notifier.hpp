@@ -69,13 +69,13 @@ namespace xtd {
       /// @{
       using message_notifier_button_collection = xtd::forms::layout::arranged_element_collection<xtd::forms::message_notifier_button_ref>;
       /// @}
-
+      
       /// @name Public Constructors
       
       /// @{
       message_notifier() = default;
       /// @}
-
+      
       /// @name Public Properties
       
       /// @{
@@ -84,7 +84,7 @@ namespace xtd {
       
       [[nodiscard]] auto close_timeout_enabled() const noexcept -> bool {return close_timeout_enabled_;}
       auto close_timeout_enabled(bool value) noexcept -> message_notifier& {close_timeout_enabled_ = value; return *this;}
-
+      
       [[nodiscard]] auto close_timeout_interval() const noexcept -> std::chrono::milliseconds {return close_timeout_interval_;}
       auto close_timeout_interval(std::chrono::milliseconds value) noexcept -> message_notifier& {close_timeout_interval_ = value; return *this;}
       auto close_timeout_interval_milliseconds(xtd::int32 value) noexcept -> message_notifier& {close_timeout_interval_ = std::chrono::milliseconds(value); return *this;}
@@ -95,16 +95,16 @@ namespace xtd {
       
       [[nodiscard]] auto notifier_appearance() const noexcept -> xtd::forms::notifier_appearance {return notifier_appearance_;}
       auto notifier_appearance(xtd::forms::notifier_appearance value) noexcept -> message_notifier& {notifier_appearance_ = value; return *this;}
-
+      
       [[nodiscard]] auto message() const noexcept -> const xtd::string& {return message_;}
       auto message(const xtd::string& value) noexcept -> message_notifier& {message_ = value; return *this;}
-
+      
       [[nodiscard]] auto notifier_button_clicked() const noexcept -> std::optional<xtd::forms::message_notifier_button> {return notifier_button_clicked_;}
       
       [[nodiscard]] auto title() const noexcept -> const xtd::string& {return title_;}
       auto title(const xtd::string& value) noexcept -> message_notifier& {title_ = value; return *this;}
       /// @}
-
+      
       /// @name Public Methods
       
       /// @{
@@ -113,14 +113,14 @@ namespace xtd {
       auto show() -> void;
       auto show(const iwin32_window& owner) -> void;
       /// @}
-
+      
       /// @name Public Events
       
       /// @{
       xtd::event<message_notifier, xtd::forms::notifier_closed_event_handler> notifier_closed;
       xtd::event<message_notifier, xtd::forms::notifier_button_click_event_handler> button_click;
       /// @}
-
+      
     protected:
       /// @name Public Methods
       
@@ -128,7 +128,7 @@ namespace xtd {
       auto on_notifier_closed(const xtd::forms::notifier_closed_event_args& e) -> void {notifier_closed(*this, e);}
       auto on_button_click(const xtd::forms::notifier_button_click_event_args& e) -> void {button_click(*this, e);}
       /// @}
-
+      
     private:
       xtd::string title_;
       xtd::string message_;

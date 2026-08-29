@@ -47,18 +47,18 @@ namespace xtd::threading::tests {
         return result;
       }
       
-      bool wait(std::int32_t milliseconds_timeout) override {
+    bool wait(std::int32_t milliseconds_timeout) override {
         if (!mutex_) throw_helper::throws(exception_case::object_closed);
         if (milliseconds_timeout < -1) throw_helper::throws(exception_case::argument_out_of_range);
         
-        if (milliseconds_timeout != timeout::infinite) return (locked_ = mutex_->try_lock_for(std::chrono::milliseconds {milliseconds_timeout}));
-        mutex_->lock();
-        locked_ = true;
-        return locked_;
-      }
-      
-    private:
-      xtd::sptr<std::recursive_timed_mutex> mutex_ = xtd::new_sptr<std::recursive_timed_mutex>();
+          if (milliseconds_timeout != timeout::infinite) return (locked_ = mutex_->try_lock_for(std::chrono::milliseconds {milliseconds_timeout}));
+            mutex_->lock();
+            locked_ = true;
+            return locked_;
+          }
+          
+  private:
+    xtd::sptr<std::recursive_timed_mutex> mutex_ = xtd::new_sptr<std::recursive_timed_mutex>();
       bool locked_ = false;
     };
     

@@ -15,9 +15,9 @@ namespace xtd {
   // Since Doxygen does not work properly with the C++ concept, the documentation for this concept is declared in xtd/character_.hpp
   template<typename type_t>
   concept character =
-  std::same_as<xtd::raw_type<type_t>, xtd::char_> ||
-  std::same_as<xtd::raw_type<type_t>, xtd::char8> ||
-  std::same_as<xtd::raw_type<type_t>, xtd::char16> ||
-  std::same_as<xtd::raw_type<type_t>, xtd::char32> ||
-  std::same_as<xtd::raw_type<type_t>, xtd::wchar>;
+    std::same_as<xtd::raw_type<type_t>, xtd::char_> ||
+    std::same_as<xtd::raw_type<type_t>, xtd::char8> ||
+    std::same_as<xtd::raw_type<type_t>, xtd::char16> ||
+    std::same_as<xtd::raw_type<type_t>, xtd::char32> ||
+    std::same_as<xtd::raw_type<type_t>, xtd::wchar>;
 }

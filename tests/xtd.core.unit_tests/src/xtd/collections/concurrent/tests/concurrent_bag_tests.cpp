@@ -14,42 +14,42 @@ namespace xtd::collections::tests {
     auto test_method_(value_type) {
       assert::are_equal(type_of<int>(), type_of<concurrent_bag<int>::value_type>());
     }
-
+    
     auto test_method_(reference) {
       assert::are_equal(type_of<int&>(), type_of<concurrent_bag<int>::reference>());
     }
-
+    
     auto test_method_(const_reference) {
       assert::are_equal(type_of<const int&>(), type_of<concurrent_bag<int>::const_reference>());
     }
-
+    
     auto test_method_(collection_type) {
       assert::are_equal(type_of<xtd::collections::generic::queue<int>>(), type_of<concurrent_bag<int>::collection_type>());
     }
-
+    
     auto test_method_(local_storage_type) {
       assert::are_equal(type_of<xtd::collections::generic::queue<int>*>(), type_of<concurrent_bag<int>::local_storage_type>());
     }
-
+    
     auto test_method_(storage_type) {
       assert::are_equal(type_of<xtd::collections::generic::dictionary<xtd::intptr, xtd::ptr<xtd::collections::generic::queue<int>>>>(), type_of<concurrent_bag<int>::storage_type>());
     }
-
+    
     auto test_method_(default_constructor) {
       auto items = concurrent_bag<int> {};
       collection_assert::is_empty(items);
     }
-
+    
     auto test_method_(constructor_with_initializer_list) {
       auto items = concurrent_bag {1, 2, 3, 4, 5};
       collection_assert::are_equivalent({1, 2, 3, 4, 5}, items);
     }
-
+    
     auto test_method_(constructor_with_ienumerable) {
       auto items = concurrent_bag(array {1, 2, 3, 4, 5});
       collection_assert::are_equivalent({1, 2, 3, 4, 5}, items);
     }
-
+    
     auto test_method_(copy_constructor) {
       auto items1 = concurrent_bag<int> {};
       auto t1 = task_factory {}.start_new([&items1] {items1.add(1);});
@@ -60,7 +60,7 @@ namespace xtd::collections::tests {
       collection_assert::are_equal(items1, items2);
       collection_assert::are_equivalent({1, 2}, items2);
     }
-
+    
     auto test_method_(move_constructor) {
       auto items1 = concurrent_bag<int> {};
       auto t1 = task_factory {}.start_new([&items1] {items1.add(1);});
@@ -102,7 +102,7 @@ namespace xtd::collections::tests {
       items.add(5);
       assert::are_equal(5_z, items.size());
     }
-
+    
     auto test_method_(empty) {
       assert::is_false(concurrent_bag<int> {1, 2, 3, 4, 5}.empty());
       auto items = concurrent_bag<int> {};
@@ -141,7 +141,7 @@ namespace xtd::collections::tests {
         tasks.add(task_factory {}.start_new([&] {
           start_event.wait_one();
           for (auto count = 0; count < 100; ++count) {
-            items.add(task * 10 + count);
+          items.add(task * 10 + count);
             thread::yield();
           }
         }));
@@ -155,16 +155,16 @@ namespace xtd::collections::tests {
       auto a1 = array<int>(5_z);
       concurrent_bag<int> {}.copy_to(a1, 0);
       collection_assert::are_equal({0, 0, 0, 0, 0}, a1);
-
+      
       concurrent_bag<int> {1, 2, 3, 4, 5}.copy_to(a1, 0);
       collection_assert::are_equal({1, 2, 3, 4, 5}, a1);
-
+      
       assert::throws<argument_out_of_range_exception>([&] {concurrent_bag<int> {1, 2, 3, 4, 5}.copy_to(a1, 1);});
-
+      
       auto a2 = array<int>(9_z);
       concurrent_bag<int> {1, 2, 3, 4, 5}.copy_to(a2, 2);
       collection_assert::are_equal({0, 0, 1, 2, 3, 4, 5, 0, 0}, a2);
-
+      
       assert::throws<argument_out_of_range_exception>([&] {concurrent_bag<int> {1, 2, 3, 4, 5}.copy_to(a2, 5);});
     }
     
@@ -219,7 +219,7 @@ namespace xtd::collections::tests {
         tasks.add(task_factory {}.start_new([&] {
           start_event.wait_one();
           for (auto count = 0; count < 100; ++count) {
-            result_try = result_try && items.try_add(task * 10 + count);
+          result_try = result_try && items.try_add(task * 10 + count);
             thread::yield();
           }
         }));
@@ -238,7 +238,7 @@ namespace xtd::collections::tests {
       assert::are_equal(1, result);
       collection_assert::are_equivalent({1, 2, 3, 4, 5}, items);
     }
-  
+    
     auto test_method_(try_take) {
       auto result = 0;
       assert::is_false(concurrent_bag<int> {}.try_take(result));

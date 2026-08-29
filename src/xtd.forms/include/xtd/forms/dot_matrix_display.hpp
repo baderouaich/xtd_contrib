@@ -313,7 +313,7 @@ namespace xtd {
       
       /// @name Protected Methods
       
-      /// @{      
+      /// @{
       auto on_back_color_changed(const event_args& e) -> void override;
       
       auto on_fore_color_changed(const event_args& e) -> void override;

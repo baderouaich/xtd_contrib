@@ -780,7 +780,7 @@ namespace xtd {
       /// @{
       /// @brief Gets countries collection.
       /// @return Countries collection.
-      [[nodiscard]] static auto get_countries() -> const xtd::array<xtd::forms::country>&;
+      [[nodiscard]] static auto get_countries() -> const xtd::array<xtd::forms::country>& ;
       /// @}
     };
   }

@@ -87,12 +87,12 @@ namespace xtd {
         /// @return A Byte array that represents the data buffer to use with an asynchronous socket method.
         /// @remarks This property gets the data buffer currently associated with the xtd::net::sockets::socket_async_event_args instance. To set the buffer, the xtd::net::sockets::socket_async_event_args::set_buffer method must be used.
         /// @remarks This property is used with the xtd::net::sockets::socket::accept_async, xtd::net::sockets::socket::connect_async, xtd::net::sockets::socket::receive_async, xtd::net::sockets::socket::receive_from_async, xtd::net::sockets::socket::receive_message_from_async, xtd::net::sockets::socket::send_async, and xtd::net::sockets::socket::send_to_async methods.
-        [[nodiscard]] auto buffer() const noexcept -> const xtd::array<xtd::byte>&;
+        [[nodiscard]] auto buffer() const noexcept -> const xtd::array<xtd::byte>& ;
         /// @brief Gets the data buffer to use with an asynchronous socket method.
         /// @return A Byte array that represents the data buffer to use with an asynchronous socket method.
         /// @remarks This property gets the data buffer currently associated with the xtd::net::sockets::socket_async_event_args instance. To set the buffer, the xtd::net::sockets::socket_async_event_args::set_buffer method must be used.
         /// @remarks This property is used with the xtd::net::sockets::socket::accept_async, xtd::net::sockets::socket::connect_async, xtd::net::sockets::socket::receive_async, xtd::net::sockets::socket::receive_from_async, xtd::net::sockets::socket::receive_message_from_async, xtd::net::sockets::socket::send_async, and xtd::net::sockets::socket::send_to_async methods.
-        [[nodiscard]] auto buffer() noexcept -> xtd::array<xtd::byte>&;
+        [[nodiscard]] auto buffer() noexcept -> xtd::array<xtd::byte>& ;
         /// @}
         
         /// @name Public Methods

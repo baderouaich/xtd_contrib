@@ -42,7 +42,7 @@ namespace xtd {
     struct placeholders {
       template <size_t index>
       constexpr auto get() const noexcept {
-        return placeholder<index + 1> {};
+        return placeholder < index + 1 > {};
       }
     };
   }
@@ -55,7 +55,7 @@ namespace std {
   
   template <size_t index, size_t count>
   struct tuple_element<index, xtd::expressions::placeholders<count>> {
-    using type = placeholder<index + 1>;
+    using type = placeholder < index + 1 >;
   };
 }
 

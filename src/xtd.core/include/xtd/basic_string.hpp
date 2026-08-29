@@ -386,16 +386,16 @@ namespace xtd {
       if (!dynamic_cast<const basic_string*>(&value)) xtd::helpers::throw_helper::throws(xtd::helpers::exception_case::argument);
       return compare_to(static_cast<const basic_string&>(value));
     }
-    /// @brief Compares this instance with a specified xtd::basic_string object and indicates whether this instance precedes, follows, or appears in the same position in the sort order as the specified string.
-    /// @param value The string to compare with this instance.
-    /// @return A 32-bit signed integer that indicates whether this instance precedes, follows, or appears in the same position in the sort order as the `value` parameter.
-    /// | Value             | Condition                                                         |
-    /// | ----------------- | ----------------------------------------------------------------- |
-    /// | Less than zero    | This instance precedes `value`.                                   |
-    /// | Zero              | This instance has the same position in the sort order as `value`. |
-    /// | Greater than zero | This instance follows `value`.                                    |
-    [[nodiscard]] auto compare_to(const basic_string& value) const noexcept -> xtd::int32 override {return chars_.compare(value.chars_);}
-    
+  /// @brief Compares this instance with a specified xtd::basic_string object and indicates whether this instance precedes, follows, or appears in the same position in the sort order as the specified string.
+  /// @param value The string to compare with this instance.
+  /// @return A 32-bit signed integer that indicates whether this instance precedes, follows, or appears in the same position in the sort order as the `value` parameter.
+  /// | Value             | Condition                                                         |
+  /// | ----------------- | ----------------------------------------------------------------- |
+  /// | Less than zero    | This instance precedes `value`.                                   |
+  /// | Zero              | This instance has the same position in the sort order as `value`. |
+  /// | Greater than zero | This instance follows `value`.                                    |
+  [[nodiscard]] auto compare_to(const basic_string& value) const noexcept -> xtd::int32 override {return chars_.compare(value.chars_);}
+  
     /// @brief Returns a value indicating whether a specified char occurs within this basic_string.
     /// @param value The char to seek.
     /// @return `true` if the value parameter occurs within this basic_string; otherwise, `false`.
@@ -453,7 +453,7 @@ namespace xtd {
       if (comparison_type == xtd::string_comparison::ordinal_ignore_case) return to_lower().chars_.rfind(value.to_lower()) + value.to_lower().length() == length();
       return chars_.rfind(value) + value.length() == length();
     }
-       
+    
     /// @brief Returns the underlying base type.
     /// @return The underlying base type.
     [[nodiscard]] virtual auto get_base_type() const noexcept -> const base_type& {return chars_;}
@@ -499,10 +499,10 @@ namespace xtd {
       auto result = chars_.find(value, start_index);
       return result > start_index + count ? npos : result;
     }
-    /// @brief Reports the index of the first occurrence of the specified character in this basic_string.
-    /// @param value An unicode character to seek
-    /// @return The index position of value if that character is found, or std::basic_string<char_t>::npos if it is not.
-    [[nodiscard]] auto index_of(value_type value) const noexcept -> xtd::usize {return index_of(value, 0, length());}
+  /// @brief Reports the index of the first occurrence of the specified character in this basic_string.
+  /// @param value An unicode character to seek
+  /// @return The index position of value if that character is found, or std::basic_string<char_t>::npos if it is not.
+  [[nodiscard]] auto index_of(value_type value) const noexcept -> xtd::usize {return index_of(value, 0, length());}
     /// @brief Reports the index of the first occurrence of the specified character in this basic_string. The search starts at a specified character position.
     /// @param value An unicode character to seek
     /// @param start_index The search starting position
@@ -520,10 +520,10 @@ namespace xtd {
       return result > start_index + count ? npos : result;
     }
     
-    /// @brief Reports the index of the first occurrence in this instance of any character in a specified array of characters.
-    /// @param values An unicode character array containing one or more characters to seek
-    /// @return The index position of the first occurrence in this instance where any character in values was found; otherwise, std::basic_string<char_t>::npos if no character in values was found.
-    [[nodiscard]] auto index_of_any(const xtd::array<value_type>& values) const noexcept -> xtd::usize;
+  /// @brief Reports the index of the first occurrence in this instance of any character in a specified array of characters.
+  /// @param values An unicode character array containing one or more characters to seek
+  /// @return The index position of the first occurrence in this instance where any character in values was found; otherwise, std::basic_string<char_t>::npos if no character in values was found.
+  [[nodiscard]] auto index_of_any(const xtd::array<value_type>& values) const noexcept -> xtd::usize;
     /// @brief Reports the index of the first occurrence in this instance of any character in a specified array of characters. The search starts at a specified character position.
     /// @param values An unicode character array containing one or more characters to seek
     /// @param start_index The search starting position
@@ -556,10 +556,10 @@ namespace xtd {
       return result;
     }
     
-    /// @brief Reports the index of the last occurrence of the specified basic_string in this basic_string.
-    /// @param value An unicode character to seek
-    /// @return The index position of value if that character is found, or std::basic_string<char_t>::npos if it is not.
-    [[nodiscard]] auto last_index_of(const basic_string& value) const noexcept -> xtd::usize {return last_index_of(value, 0, length());}
+  /// @brief Reports the index of the last occurrence of the specified basic_string in this basic_string.
+  /// @param value An unicode character to seek
+  /// @return The index position of value if that character is found, or std::basic_string<char_t>::npos if it is not.
+  [[nodiscard]] auto last_index_of(const basic_string& value) const noexcept -> xtd::usize {return last_index_of(value, 0, length());}
     /// @brief Reports the index of the last occurrence of the specified character in this basic_string. The search starts at a specified character position.
     /// @param value An unicode character to seek
     /// @param start_index The search starting position
@@ -577,10 +577,10 @@ namespace xtd {
       auto result = chars_.rfind(value, start_index + count - value.length());
       return result < start_index ? npos : result;
     }
-    /// @brief Reports the index of the last occurrence of the specified character in this tring.
-    /// @param value An unicode character to seek
-    /// @return The index position of value if that character is found, or std::basic_string<char_t>::npos if it is not.
-    [[nodiscard]] auto last_index_of(value_type value) const noexcept -> xtd::usize {return last_index_of(value, 0, length());}
+  /// @brief Reports the index of the last occurrence of the specified character in this tring.
+  /// @param value An unicode character to seek
+  /// @return The index position of value if that character is found, or std::basic_string<char_t>::npos if it is not.
+  [[nodiscard]] auto last_index_of(value_type value) const noexcept -> xtd::usize {return last_index_of(value, 0, length());}
     /// @brief Reports the index of the last occurrence of the specified character in this basic_string. The search starts at a specified character position.
     /// @param value An unicode character to seek
     /// @param start_index The search starting position
@@ -600,10 +600,10 @@ namespace xtd {
       return result < start_index ? npos : result;
     }
     
-    /// @brief Reports the index of the last occurrence in this instance of any character in a specified array of characters.
-    /// @param values An unicode character array containing one or more characters to seek
-    /// @return The index position of the first occurrence in this instance where any character in values was found; otherwise, std::basic_string<char_t>::npos if no character in values was found.
-    [[nodiscard]] auto last_index_of_any(const xtd::array<value_type>& values) const noexcept -> xtd::usize;
+  /// @brief Reports the index of the last occurrence in this instance of any character in a specified array of characters.
+  /// @param values An unicode character array containing one or more characters to seek
+  /// @return The index position of the first occurrence in this instance where any character in values was found; otherwise, std::basic_string<char_t>::npos if no character in values was found.
+  [[nodiscard]] auto last_index_of_any(const xtd::array<value_type>& values) const noexcept -> xtd::usize;
     /// @brief Reports the index of the last occurrence in this instance of any character in a specified array of characters. The search starts at a specified character position.
     /// @param values An unicode character array containing one or more characters to seek
     /// @param start_index The search starting position
@@ -686,11 +686,11 @@ namespace xtd {
       return result;
     }
     
-    /// @brief Replaces all occurrences of a specified char_t in this basic_string with another specified char_t.
-    /// @param old_char A char_t to be replaced.
-    /// @param new_char A char_t to replace all occurrences of old_char.
-    /// @return A new basic_string equivalent to the specified basic_string but with all instances of old_char replaced with new_char.
-    [[nodiscard]] auto replace(value_type old_char, value_type new_char) const noexcept -> basic_string {return replace(string(old_char, 1), string(new_char, 1));}
+  /// @brief Replaces all occurrences of a specified char_t in this basic_string with another specified char_t.
+  /// @param old_char A char_t to be replaced.
+  /// @param new_char A char_t to replace all occurrences of old_char.
+  /// @return A new basic_string equivalent to the specified basic_string but with all instances of old_char replaced with new_char.
+  [[nodiscard]] auto replace(value_type old_char, value_type new_char) const noexcept -> basic_string {return replace(string(old_char, 1), string(new_char, 1));}
     /// @brief Replaces all occurrences of a specified basic_string in this basic_string with another specified basic_string.
     /// @param old_string A basic_string to be replaced.
     /// @param new_string A basic_string to replace all occurrences of old_string.
@@ -851,19 +851,19 @@ namespace xtd {
       if (start_index > length()) xtd::helpers::throw_helper::throws(xtd::helpers::exception_case::argument_out_of_range);
       return chars_.substr(start_index);
     }
-    /// @brief Retrieves a substring from this instance. The substring starts at a specified character position and has a specified length.
-    /// @param start_index The zero-based starting character position of a substring in this instance.
-    /// @param length The number of characters in the substring.
-    /// @return A basic_string equivalent to the substring of length length that begins at start_index in this instance, or Empty if start_index is equal to the length of this instance and length is zero.
-    /// @exception xtd::argument_out_of_range_exception `start_index` plus `length` is greater than the length() of this instance.
-    [[nodiscard]] auto substring(xtd::usize start_index, xtd::usize length) const -> basic_string {
+  /// @brief Retrieves a substring from this instance. The substring starts at a specified character position and has a specified length.
+  /// @param start_index The zero-based starting character position of a substring in this instance.
+  /// @param length The number of characters in the substring.
+  /// @return A basic_string equivalent to the substring of length length that begins at start_index in this instance, or Empty if start_index is equal to the length of this instance and length is zero.
+  /// @exception xtd::argument_out_of_range_exception `start_index` plus `length` is greater than the length() of this instance.
+  [[nodiscard]] auto substring(xtd::usize start_index, xtd::usize length) const -> basic_string {
       if (start_index > self_.length() || start_index + length > self_.length()) xtd::helpers::throw_helper::throws(xtd::helpers::exception_case::argument_out_of_range);
       return chars_.substr(start_index, length);
     }
     
-    /// @brief Copies the characters in this instance to a Unicode character array.
-    /// @return A character array whose elements are the individual characters of this instance. If this instance is an empty xtd::basic_string, the returned array is empty and has a zero length.
-    [[nodiscard]] auto to_array() const noexcept -> xtd::array<value_type>;
+  /// @brief Copies the characters in this instance to a Unicode character array.
+  /// @return A character array whose elements are the individual characters of this instance. If this instance is an empty xtd::basic_string, the returned array is empty and has a zero length.
+  [[nodiscard]] auto to_array() const noexcept -> xtd::array<value_type>;
     /// @brief Copies the characters in this instance to a Unicode character array starting at specified index.
     /// @param start_index The starting position of basic_string to convert.
     /// @return A character array whose elements are the individual characters of this instance. If this instance is an empty xtd::basic_string, the returned array is empty and has a zero length.
@@ -897,36 +897,36 @@ namespace xtd {
     [[nodiscard]] auto to_string() const noexcept -> basic_string<char> override {
       if constexpr(std::is_same_v<char, char_t>) return chars_;
       else return __xtd_convert_to_string<char>(chars_);
-    }
-    
-    /// @brief Converts the current basic_string to title case (except for words that are entirely in uppercase, which are considered to be acronyms).
-    /// @return A new basic_string in title case.
-    [[nodiscard]] auto to_title_case() const noexcept -> basic_string;
-    
+      }
+      
+  /// @brief Converts the current basic_string to title case (except for words that are entirely in uppercase, which are considered to be acronyms).
+  /// @return A new basic_string in title case.
+  [[nodiscard]] auto to_title_case() const noexcept -> basic_string;
+  
     /// @brief Converts the value of this instance to a xtd::basic_string <xtd::char16>.
     /// @return The current string.
     [[nodiscard]] auto to_u16string() const noexcept -> basic_string<xtd::char16> {
       if constexpr(std::is_same_v<xtd::char16, char_t>) return chars_;
       else return __xtd_convert_to_string<xtd::char16>(chars_);
-    }
-    
-    /// @brief Converts the value of this instance to a xtd::basic_string <xtd::char32>.
-    /// @return The current string.
-    [[nodiscard]] auto to_u32string() const noexcept -> basic_string<xtd::char32> {
+      }
+      
+  /// @brief Converts the value of this instance to a xtd::basic_string <xtd::char32>.
+  /// @return The current string.
+  [[nodiscard]] auto to_u32string() const noexcept -> basic_string<xtd::char32> {
       if constexpr(std::is_same_v<xtd::char32, char_t>) return chars_;
       else return __xtd_convert_to_string<xtd::char32>(chars_);
-    }
-    
-    /// @brief Converts the value of this instance to a xtd::basic_string <xtd::char8>.
-    /// @return The current string.
-    [[nodiscard]] auto to_u8string() const noexcept -> basic_string<xtd::char8> {
+      }
+      
+  /// @brief Converts the value of this instance to a xtd::basic_string <xtd::char8>.
+  /// @return The current string.
+  [[nodiscard]] auto to_u8string() const noexcept -> basic_string<xtd::char8> {
       if constexpr(std::is_same_v<xtd::char8, char_t>) return chars_;
       else return __xtd_convert_to_string<xtd::char8>(chars_);
-    }
-    
-    /// @brief Returns a copy of the current xtd::basic_string converted to uppercase.
-    /// @return A string in uppercase.
-    [[nodiscard]] auto to_upper() const noexcept -> basic_string {
+      }
+      
+  /// @brief Returns a copy of the current xtd::basic_string converted to uppercase.
+  /// @return A string in uppercase.
+  [[nodiscard]] auto to_upper() const noexcept -> basic_string {
       auto result = basic_string::empty_string;
       std::for_each(chars_.begin(), chars_.end(), [&](auto c) {result += static_cast<value_type>(std::toupper(c));});
       return result;
@@ -937,13 +937,13 @@ namespace xtd {
     [[nodiscard]] auto to_wstring() const noexcept -> basic_string<xtd::wchar> {
       if constexpr(std::is_same_v<xtd::wchar, char_t>) return chars_;
       else return __xtd_convert_to_string<xtd::wchar>(chars_);
-    }
-    
-    /// @brief Removes all leading and trailing occurrences of white-space characters from the specified xtd::basic_string.
-    /// @param str xtd::basic_string to trim end.
-    /// @param trim_char A character to remove.
-    /// @return The xtd::basic_string that remains after all occurrences of the character in the trim_char parameter are removed from the start and te and of the specified xtd::basic_string.
-    [[nodiscard]] auto trim() const noexcept -> basic_string {return trim(default_trim_chars);}
+      }
+      
+  /// @brief Removes all leading and trailing occurrences of white-space characters from the specified xtd::basic_string.
+  /// @param str xtd::basic_string to trim end.
+  /// @param trim_char A character to remove.
+  /// @return The xtd::basic_string that remains after all occurrences of the character in the trim_char parameter are removed from the start and te and of the specified xtd::basic_string.
+  [[nodiscard]] auto trim() const noexcept -> basic_string {return trim(default_trim_chars);}
     /// @brief Removes all leading and trailing occurrences of a character specified from the specified xtd::basic_string .
     /// @param str xtd::basic_string to trim start.
     /// @param trim_char A character to remove.
@@ -1114,18 +1114,18 @@ namespace xtd {
     [[nodiscard]] static auto concat(const xtd::array<const other_char_t*>& values) noexcept -> basic_string;
     [[nodiscard]] static auto concat(const std::initializer_list<basic_string>& values) noexcept -> basic_string {
       auto result = basic_string::empty_string;
-      std::for_each(values.begin(), values.end(), [&](const auto& item) {result += item;});
+      std::for_each(values.begin(), values.end(), [&](const auto & item) {result += item;});
       return result;
     }
     [[nodiscard]] static auto concat(const std::initializer_list<const_pointer>& values) noexcept -> basic_string {
       auto result = basic_string::empty_string;
-      std::for_each(values.begin(), values.end(), [&](const auto& item) {result += item;});
+      std::for_each(values.begin(), values.end(), [&](const auto & item) {result += item;});
       return result;
     }
     template<typename other_char_t>
     [[nodiscard]] static auto concat(const std::initializer_list<const other_char_t*>& values) noexcept -> basic_string {
       auto result = basic_string::empty_string;
-      std::for_each(values.begin(), values.end(), [&](const auto& item) {result += item;});
+      std::for_each(values.begin(), values.end(), [&](const auto & item) {result += item;});
       return result;
     }
     /// @endcond
@@ -1174,14 +1174,14 @@ namespace xtd {
     [[nodiscard]] static auto demangle(const basic_string& name) -> basic_string {
       if constexpr(std::is_same_v<char, char_t>) return __xtd_demangle(name.chars());
       else return __xtd_demangle(__xtd_convert_to_string<char>(name.chars()));
-    }
-    
-    /// @brief Determines whether two specified xtd::basic_string objects have the same value.
-    /// @param a The first basic_string to compare.
-    /// @param b The second basic_string to compare.
-    /// @return `true` if the value of `a` is the same as the value of `b`; otherwise, `false`.
-    /// @remarks This method performs an ordinal (case-sensitive) comparison.
-    [[nodiscard]] static auto equals(const basic_string& a, const basic_string& b) noexcept -> bool {return a.equals(b);}
+      }
+      
+  /// @brief Determines whether two specified xtd::basic_string objects have the same value.
+  /// @param a The first basic_string to compare.
+  /// @param b The second basic_string to compare.
+  /// @return `true` if the value of `a` is the same as the value of `b`; otherwise, `false`.
+  /// @remarks This method performs an ordinal (case-sensitive) comparison.
+  [[nodiscard]] static auto equals(const basic_string& a, const basic_string& b) noexcept -> bool {return a.equals(b);}
     /// @brief Determines whether two specified xtd::basic_string objects have the same value.
     /// @param a The first basic_string to compare.
     /// @param b The second basic_string to compare.
@@ -1266,10 +1266,10 @@ namespace xtd {
       if (index > values.size() || index + count > values.size()) xtd::helpers::throw_helper::throws(xtd::helpers::exception_case::argument_out_of_range);
       xtd::usize i = 0;
       basic_string result;
-      for (const auto& item : values) {
+for (const auto& item : values) {
         if (i >= index) result += format("{}{}", (i != index ? separator : basic_string {}), item);
-        if (++i >= index + count) break;
-      }
+          if (++i >= index + count) break;
+        }
       return result;
     }
     
@@ -1289,70 +1289,70 @@ namespace xtd {
     [[nodiscard]] static auto parse(const basic_string& str) -> value_t {
       if constexpr(std::is_same_v<char, char_t>) return xtd::parse<value_t>(str.chars());
       else return xtd::parse<value_t>(__xtd_convert_to_string<char>(str.chars()));
-    }
-    
-    /// @brief Writes the text representation of the specified arguments list, to basic_string using the specified format information.
-    /// @param fmt A composite format basic_string.
-    /// @param args arguments list to write using format.
-    /// @return basic_string formatted.
-    /// @ingroup format_parse
-    /// @remarks A format specifier follows this prototype:
-    /// @remarks %[flags][width][.precision][length]specifier
-    /// | specifier | Output                                                                                                                                                   | Example      |
-    /// | --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ |
-    /// | d or i    | Signed decimal integer                                                                                                                                   | 392          |
-    /// | u         | Unsigned decimal integer                                                                                                                                 | 7235         |
-    /// | o         | Unsigned octal                                                                                                                                           | 610          |
-    /// | x         | Unsigned hexadecimal integer                                                                                                                             | 7fa          |
-    /// | X         | Unsigned hexadecimal integer (uppercase)                                                                                                                 | 7FA          |
-    /// | f         | Decimal floating point, lowercase                                                                                                                        | 392.65       |
-    /// | F         | Decimal floating point, lowercase (uppercase)                                                                                                            | 392.65       |
-    /// | e         | Scientific notation (mantissa/exponent), lowercase                                                                                                       | 3.9265e+2    |
-    /// | E         | Scientific notation (mantissa/exponent), uppercase                                                                                                       | 3.9265E+2    |
-    /// | g         | Use the shortest representation: %e or %f                                                                                                                | 392.65       |
-    /// | G         | Use the shortest representation: %E or %F                                                                                                                | 392.65       |
-    /// | a         | Hexadecimal floating point, lowercase                                                                                                                    | -0xc.90fep-2 |
-    /// | A         | Hexadecimal floating point, uppercase                                                                                                                    | -0XC.90FEP-2 |
-    /// | c         | Character                                                                                                                                                | a            |
-    /// | s         | basic_string of characters                                                                                                                               | sample       |
-    /// | p         | Pointer address                                                                                                                                          | b8000000     |
-    /// | n         | Nothing printed. The corresponding argument must be a pointer to a signed int. The number of characters written so far is stored in the pointed location |              |
-    /// | %         | A % followed by another % character will write a single % to the stream.                                                                                 | %            |
-    /// @remarks The format specifier can also contain sub-specifiers: flags, width, .precision and modifiers (in that order), which are optional and follow these specifications:
-    /// | flags   | description                                                                                                                                                                                                                                                                                                 |
-    /// | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-    /// | -       | Left-justify within the given field width; Right justification is the default (see width sub-specifier).                                                                                                                                                                                                    |
-    /// | +       | Forces to prefix the result with a plus or minus sign (+ or -) even for positive numbers. By default, only negative numbers are preceded with a - sign.                                                                                                                                                     |
-    /// | (space) | If no sign is going to be written, a blank space is inserted before the value.                                                                                                                                                                                                                              |
-    /// | #       | Used with o, x or X specifiers the value is prefixed with 0, 0x or 0X respectively for values different than zero. Used with a, A, e, E, f, F, g or G it forces the written output to contain a decimal point even if no more digits follow. By default, if no digits follow, no decimal point is written.  |
-    /// | 0       | Left-pads the number with zeroes (0) instead of spaces when padding is specified (see width sub-specifier).                                                                                                                                                                                                 |
-    ///
-    /// | width    | description                                                                                                                                                                                          |
-    /// | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-    /// | (number) | Minimum number of characters to be printed. If the value to be printed is shorter than this number, the result is padded with blank spaces. The value is not truncated even if the result is larger. |
-    /// | *        | The width is not specified in the format basic_string, but as an additional integer value argument preceding the argument that has to be formatted.                                                  |
-    ///
-    /// | .precision | description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-    /// | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-    /// | .number    | For integer specifiers (d, i, o, u, x, X): precision specifies the minimum number of digits to be written. If the value to be written is shorter than this number, the result is padded with leading zeros. The value is not truncated even if the result is longer. A precision of 0 means that no character is written for the value 0. For a, A, e, E, f and F specifiers: this is the number of digits to be printed after the decimal point (by default, this is 6). For g and G specifiers: This is the maximum number of significant digits to be printed. For s: this is the maximum number of characters to be printed. By default all characters are printed until the ending null character is encountered. If the period is specified without an explicit value for precision, 0 is assumed. |
-    /// | .*         | The precision is not specified in the format basic_string, but as an additional integer value argument preceding the argument that has to be formatted.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-    /// @remarks The length sub-specifier modifies the length of the data type. This is a chart showing the types used to interpret the corresponding arguments with and without length specifier (if a different type is used, the proper type promotion or conversion is performed, if allowed):
-    /// | length | d i           | u o x X                | f F e E g G a A | c     | s        | p     | n               |
-    /// | ------ | ------------- | ---------------------- | --------------- | ----- | -------- | ----- | --------------- |
-    /// | (none) | int           | unsigned int           | double          | int   | char8*   | void* | int*            |
-    /// | hh     | signed char8  | unsigned char8         |                 |       |          |       | unsigned char8* |
-    /// | h      | short int     | unsigned short int     |                 |       |          |       | short int*      |
-    /// | l      | long int      | unsigned long int      |                 | win_t | wchar*   |       | long int*       |
-    /// | ll     | long long int | unsigned long long int |                 |       |          |       | long long int*  |
-    /// | j      | intmax_t      | uintmax_t              |                 |       |          |       | intmax_t*       |
-    /// | z      | size_t        | size_t                 |                 |       |          |       | size_t*         |
-    /// | t      | ptrdiff_t     | ptrdiff_t              |                 |       |          |       | ptrdiff_t*      |
-    /// | L      |               |                        | long double     |       |          |       |                 |
-    /// @remarks Note regarding the c specifier: it takes an int (or wint_t) as argument, but performs the proper conversion to a char8 value (or a wchar) before formatting it for output.
-    /// @remarks you can use std::basic_string or std::wstring with format param %%s.
-    template<typename ...args_t>
-    [[nodiscard]] static auto sprintf(const basic_string& fmt, args_t&& ... args) noexcept -> basic_string {return __sprintf(fmt.chars().c_str(), convert_param(std::forward<args_t>(args)) ...);}
-    
+      }
+      
+  /// @brief Writes the text representation of the specified arguments list, to basic_string using the specified format information.
+  /// @param fmt A composite format basic_string.
+  /// @param args arguments list to write using format.
+  /// @return basic_string formatted.
+  /// @ingroup format_parse
+  /// @remarks A format specifier follows this prototype:
+  /// @remarks %[flags][width][.precision][length]specifier
+  /// | specifier | Output                                                                                                                                                   | Example      |
+  /// | --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ |
+  /// | d or i    | Signed decimal integer                                                                                                                                   | 392          |
+  /// | u         | Unsigned decimal integer                                                                                                                                 | 7235         |
+  /// | o         | Unsigned octal                                                                                                                                           | 610          |
+  /// | x         | Unsigned hexadecimal integer                                                                                                                             | 7fa          |
+  /// | X         | Unsigned hexadecimal integer (uppercase)                                                                                                                 | 7FA          |
+  /// | f         | Decimal floating point, lowercase                                                                                                                        | 392.65       |
+  /// | F         | Decimal floating point, lowercase (uppercase)                                                                                                            | 392.65       |
+  /// | e         | Scientific notation (mantissa/exponent), lowercase                                                                                                       | 3.9265e+2    |
+  /// | E         | Scientific notation (mantissa/exponent), uppercase                                                                                                       | 3.9265E+2    |
+  /// | g         | Use the shortest representation: %e or %f                                                                                                                | 392.65       |
+  /// | G         | Use the shortest representation: %E or %F                                                                                                                | 392.65       |
+  /// | a         | Hexadecimal floating point, lowercase                                                                                                                    | -0xc.90fep-2 |
+  /// | A         | Hexadecimal floating point, uppercase                                                                                                                    | -0XC.90FEP-2 |
+  /// | c         | Character                                                                                                                                                | a            |
+  /// | s         | basic_string of characters                                                                                                                               | sample       |
+  /// | p         | Pointer address                                                                                                                                          | b8000000     |
+  /// | n         | Nothing printed. The corresponding argument must be a pointer to a signed int. The number of characters written so far is stored in the pointed location |              |
+  /// | %         | A % followed by another % character will write a single % to the stream.                                                                                 | %            |
+  /// @remarks The format specifier can also contain sub-specifiers: flags, width, .precision and modifiers (in that order), which are optional and follow these specifications:
+  /// | flags   | description                                                                                                                                                                                                                                                                                                 |
+  /// | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  /// | -       | Left-justify within the given field width; Right justification is the default (see width sub-specifier).                                                                                                                                                                                                    |
+  /// | +       | Forces to prefix the result with a plus or minus sign (+ or -) even for positive numbers. By default, only negative numbers are preceded with a - sign.                                                                                                                                                     |
+  /// | (space) | If no sign is going to be written, a blank space is inserted before the value.                                                                                                                                                                                                                              |
+  /// | #       | Used with o, x or X specifiers the value is prefixed with 0, 0x or 0X respectively for values different than zero. Used with a, A, e, E, f, F, g or G it forces the written output to contain a decimal point even if no more digits follow. By default, if no digits follow, no decimal point is written.  |
+  /// | 0       | Left-pads the number with zeroes (0) instead of spaces when padding is specified (see width sub-specifier).                                                                                                                                                                                                 |
+  ///
+  /// | width    | description                                                                                                                                                                                          |
+  /// | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  /// | (number) | Minimum number of characters to be printed. If the value to be printed is shorter than this number, the result is padded with blank spaces. The value is not truncated even if the result is larger. |
+  /// | *        | The width is not specified in the format basic_string, but as an additional integer value argument preceding the argument that has to be formatted.                                                  |
+  ///
+  /// | .precision | description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+  /// | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  /// | .number    | For integer specifiers (d, i, o, u, x, X): precision specifies the minimum number of digits to be written. If the value to be written is shorter than this number, the result is padded with leading zeros. The value is not truncated even if the result is longer. A precision of 0 means that no character is written for the value 0. For a, A, e, E, f and F specifiers: this is the number of digits to be printed after the decimal point (by default, this is 6). For g and G specifiers: This is the maximum number of significant digits to be printed. For s: this is the maximum number of characters to be printed. By default all characters are printed until the ending null character is encountered. If the period is specified without an explicit value for precision, 0 is assumed. |
+  /// | .*         | The precision is not specified in the format basic_string, but as an additional integer value argument preceding the argument that has to be formatted.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+  /// @remarks The length sub-specifier modifies the length of the data type. This is a chart showing the types used to interpret the corresponding arguments with and without length specifier (if a different type is used, the proper type promotion or conversion is performed, if allowed):
+  /// | length | d i           | u o x X                | f F e E g G a A | c     | s        | p     | n               |
+  /// | ------ | ------------- | ---------------------- | --------------- | ----- | -------- | ----- | --------------- |
+  /// | (none) | int           | unsigned int           | double          | int   | char8*   | void* | int*            |
+  /// | hh     | signed char8  | unsigned char8         |                 |       |          |       | unsigned char8* |
+  /// | h      | short int     | unsigned short int     |                 |       |          |       | short int*      |
+  /// | l      | long int      | unsigned long int      |                 | win_t | wchar*   |       | long int*       |
+  /// | ll     | long long int | unsigned long long int |                 |       |          |       | long long int*  |
+  /// | j      | intmax_t      | uintmax_t              |                 |       |          |       | intmax_t*       |
+  /// | z      | size_t        | size_t                 |                 |       |          |       | size_t*         |
+  /// | t      | ptrdiff_t     | ptrdiff_t              |                 |       |          |       | ptrdiff_t*      |
+  /// | L      |               |                        | long double     |       |          |       |                 |
+  /// @remarks Note regarding the c specifier: it takes an int (or wint_t) as argument, but performs the proper conversion to a char8 value (or a wchar) before formatting it for output.
+  /// @remarks you can use std::basic_string or std::wstring with format param %%s.
+  template<typename ...args_t>
+  [[nodiscard]] static auto sprintf(const basic_string& fmt, args_t&& ... args) noexcept -> basic_string {return __sprintf(fmt.chars().c_str(), convert_param(std::forward<args_t>(args)) ...);}
+  
     /// @brief Try to convert a basic_string into a value_t type.
     /// @param str An xtd::basic_string to convert to value_t
     /// @param value The value that will contain the parsed xtd::basic_string.
@@ -1388,24 +1388,24 @@ namespace xtd {
     /// @param range The range of the elements to get.
     /// @remarks This operator provides the ability to access a specific element in the collection by using the following syntax: `my_collection[index]`.
     auto operator [](const xtd::range& range) const -> xtd::basic_read_only_string_view<char_t>;
-
+    
     /// @brief Returns a reference to the character at specified location index.
     /// @param index The position of the character to return.
     /// @return Reference to the requested character.
     /// @exception xtd::index_out_of_range_exception If `index` is not within the range of the string.
-    auto operator ()(xtd::usize index) const -> const_reference {
+    auto operator()(xtd::usize index) const -> const_reference {
       return operator [](index);
     }
     /// @brief Returns a reference to the character at specified location index.
     /// @param index The position of the character to return.
     /// @return Reference to the requested character.
     /// @exception xtd::index_out_of_range_exception If `index` is not within the range of the string.
-    auto operator ()(const xtd::index& index) const -> const_reference;
+    auto operator()(const xtd::index& index) const -> const_reference;
     /// @brief Gets the elements at the specified range.
     /// @param range The range of the elements to get.
     /// @remarks This operator provides the ability to access a specific element in the collection by using the following syntax: `my_collection[index]`.
-    auto operator ()(const xtd::range& range) const -> xtd::basic_read_only_string_view<char_t>;
-
+    auto operator()(const xtd::range& range) const -> xtd::basic_read_only_string_view<char_t>;
+    
     /// @brief Returns a reference to the underlying base type.
     /// @return Reference to the underlying base type.
     operator const base_type& () const noexcept {return chars_;}
@@ -2657,14 +2657,14 @@ namespace xtd {
     [[nodiscard]] static auto convert_param(arg_t&& arg) noexcept {
       if constexpr(std::is_same<std::remove_cv_t<std::remove_reference_t<arg_t>>, std::string>::value) return std::forward<arg_t>(arg).c_str();
       else if constexpr(std::is_same<std::remove_cv_t<std::remove_reference_t<arg_t>>, std::u16string>::value) return std::forward<arg_t>(arg).c_str();
-      else if constexpr(std::is_same<std::remove_cv_t<std::remove_reference_t<arg_t>>, std::u32string>::value) return std::forward<arg_t>(arg).c_str();
-      else if constexpr(std::is_same<std::remove_cv_t<std::remove_reference_t<arg_t>>, std::u8string>::value) return std::forward<arg_t>(arg).c_str();
-      else if constexpr(std::is_same<std::remove_cv_t<std::remove_reference_t<arg_t>>, std::wstring>::value) return std::forward<arg_t>(arg).c_str();
-      else if constexpr(std::is_same<std::remove_cv_t<std::remove_reference_t<arg_t>>, basic_string>::value) return std::forward<arg_t>(arg).c_str();
-      else return std::forward<arg_t>(arg);
-    }
-    
-    [[nodiscard]] static auto get_class_name(const basic_string& full_name) -> basic_string {
+        else if constexpr(std::is_same<std::remove_cv_t<std::remove_reference_t<arg_t>>, std::u32string>::value) return std::forward<arg_t>(arg).c_str();
+          else if constexpr(std::is_same<std::remove_cv_t<std::remove_reference_t<arg_t>>, std::u8string>::value) return std::forward<arg_t>(arg).c_str();
+            else if constexpr(std::is_same<std::remove_cv_t<std::remove_reference_t<arg_t>>, std::wstring>::value) return std::forward<arg_t>(arg).c_str();
+              else if constexpr(std::is_same<std::remove_cv_t<std::remove_reference_t<arg_t>>, basic_string>::value) return std::forward<arg_t>(arg).c_str();
+                else return std::forward<arg_t>(arg);
+                }
+                
+  [[nodiscard]] static auto get_class_name(const basic_string& full_name) -> basic_string {
       auto length = full_name.last_index_of("<");
       if (length == npos) length = full_name.length();
       if (full_name.last_index_of("::", 0, length) == npos) return full_name;

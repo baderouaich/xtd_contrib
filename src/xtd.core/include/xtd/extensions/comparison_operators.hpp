@@ -43,13 +43,13 @@ namespace xtd {
       friend auto operator <=>(const type_t& lhs, const type_t& rhs) noexcept -> std::strong_ordering {
         if (lhs.compare_to(rhs) < 0) return std::strong_ordering::less;
         if (lhs.compare_to(rhs) > 0) return std::strong_ordering::greater;
-        return std::strong_ordering::equivalent;
-      }
-      /// @}
-      
-    private:
-      friend comparable_t;
-      comparison_operators() = default;
+          return std::strong_ordering::equivalent;
+        }
+    /// @}
+    
+  private:
+    friend comparable_t;
+    comparison_operators() = default;
     };
   }
 }

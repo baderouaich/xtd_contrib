@@ -231,7 +231,7 @@ void thread_pool::run() {
       if (static_data_.thread_pool_items.count() > max_threads_) static_data_.semaphore.release();
       static_data_.thread_pool_items.remove_at(static_data_.thread_pool_items.count() - 1);
     }
-
+    
     item.run();
   }
 }

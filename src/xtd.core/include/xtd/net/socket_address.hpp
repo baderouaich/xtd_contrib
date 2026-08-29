@@ -107,7 +107,7 @@ namespace xtd {
       /// @note Be sure to call xtd::net::socket_address::size before referring to elements in the underlying buffer. Referring to an index that does not exist will cause the xtd::net::socket_address to throw an xtd::argument_out_of_range_exception.
       auto operator [](xtd::usize index) const -> const xtd::byte&;
       /// @}
-
+      
     private:
       friend class xtd::net::ip_end_point;
       friend class xtd::net::sockets::socket;

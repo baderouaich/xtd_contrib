@@ -113,13 +113,13 @@ bool semaphore::try_open_existing(const string& name, semaphore& result) noexcep
   result.close();
   if (string::is_empty(name)) return false;
   if (name.length() > native::named_semaphore::max_name_size()) return false;
-  auto new_semaphore = semaphore {};
-  new_semaphore.data_->name = name;
-  new_semaphore.semaphore_ = xtd::new_sptr<semaphore::named_semaphore>();
-  if (!new_semaphore.semaphore_->open(new_semaphore.data_->name)) return false;
-  result = new_semaphore;
-  return true;
-}
+    auto new_semaphore = semaphore {};
+    new_semaphore.data_->name = name;
+    new_semaphore.semaphore_ = xtd::new_sptr<semaphore::named_semaphore>();
+    if (!new_semaphore.semaphore_->open(new_semaphore.data_->name)) return false;
+      result = new_semaphore;
+      return true;
+    }
 
 bool semaphore::signal() {
   release();

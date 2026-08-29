@@ -17,11 +17,11 @@ namespace xtd {
       class task_completion_source : public xtd::object {
       public:
         /// @name Public Constructors
-
+        
         /// @{
         task_completion_source() : data_ {xtd::new_ptr<data>([this] {
           //if (data_->task.token().is_cancellation_requested()) throw task_canceled_exception {};
-          if (data_->exception != null) throw *data_->exception;
+          if (data_->exception != null) throw * data_->exception;
           return data_->result;
         })} {}
         /// @}
@@ -39,14 +39,14 @@ namespace xtd {
           data_->cancellation.cancel();
           data_->task.start();
         }
-
+        
         template<typename exception_t>
         auto set_exception(const exception_t& exception) -> void {
           data_->exception = xtd::ptr<xtd::exception> {exception.template memberwise_clone<exception_t>().release()};
           *data_->exception = exception;
           data_->task.start();
         }
-
+        
         auto set_result(result_t&& result) -> void {
           data_->result = std::forward<result_t>(result);
           data_->task.start();

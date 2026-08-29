@@ -155,10 +155,10 @@ auto culture_info::use_user_override() const noexcept -> bool {
 
 auto culture_info::current_culture() noexcept -> culture_info {
   auto locale = std::locale {};
-   try {
-   if (!current_culture_.has_value()) locale = std::locale {xtd::native::culture_info::current_locale_name()};
-   } catch (...) {
-   }
+  try {
+    if (!current_culture_.has_value()) locale = std::locale {xtd::native::culture_info::current_locale_name()};
+  } catch (...) {
+  }
   if (!current_culture_.has_value()) current_culture_ = culture_info {locale};
   else if (locale.name() != "C") current_culture_ = culture_info {locale};
   return current_culture_.value();
@@ -231,19 +231,19 @@ auto culture_info::get_cultures(xtd::globalization::culture_types types) -> arra
   for (const auto& [name, culture] : cultures())
     if (enum_object<globalization::culture_types>(culture.culture_types()).has_flag(types) || types == xtd::globalization::culture_types::all_cultures)
       result.add(culture.clone());
-  result.sort({[](const auto& v1, const auto& v2) {return v1.name() < v2.name() ? -1 : v1.name() > v2.name() ? 1 : 0;}});
+  result.sort({[](const auto & v1, const auto & v2) {return v1.name() < v2.name() ? -1 : v1.name() > v2.name() ? 1 : 0;}});
   return array<culture_info>(result);
 }
 
 auto culture_info::get_system_locales() noexcept -> array<std::locale> {
   static auto result = list<std::locale> {};
   call_once_ {
-    for (const auto& system_locale_name : native::culture_info::system_locale_names())
-      try {
-        result.add(std::locale {system_locale_name});
+for (const auto& system_locale_name : native::culture_info::system_locale_names())
+    try {
+      result.add(std::locale {system_locale_name});
       } catch (...) {
       }
-    result.sort({[](const auto& v1, const auto& v2) {return v1.name() < v2.name() ? -1 : v1.name() > v2.name() ? 1 : 0;}});
+    result.sort({[](const auto & v1, const auto & v2) {return v1.name() < v2.name() ? -1 : v1.name() > v2.name() ? 1 : 0;}});
   };
   return array<std::locale>(result);
 }
@@ -276,7 +276,7 @@ culture_info::culture_info(globalization::culture_types culture_types, string&& 
   data_->lcid = lcid;
   try {
     data_->locale = std::locale {is_system_locale_available(to_locale_name(name)) ? to_locale_name(name) : "C"};
-  } catch(...) {
+  } catch (...) {
   }
   data_->name = std::move(name);
   data_->native_name = std::move(native_name);
@@ -323,9 +323,9 @@ auto culture_info::is_system_locale_available(const string& name) noexcept -> bo
 auto culture_info::to_cldr_name(const string& name) -> string {
   if (string::is_empty(name)) return "";
   if (name == "C" || name == "C.UTF-8" || name == "POSIX" || name == "POSIX.UTF-8") return "en-US";
-  static const dictionary<string, string> locale_to_cldr_fixups = {{"ar_ar", "ar"}, {"az_az", "az-Latn-AZ"}, {"bs_ba", "bs-Latn-BA"}, {"en_en", "en"}, {"eo_eo", "eo"}, {"ff_bf", "ff-Latn-BF"}, {"ff_cm", "ff-Latn-CM"}, {"ff_gh", "ff-Latn-GH"}, {"ff_gm", "ff-Latn-GM"}, {"ff_gn", "ff-Latn-GN"}, {"ff_gw", "ff-Latn-GW"}, {"ff_lr", "ff-Latn-LR"}, {"ff_mr", "ff-Latn-MR"}, {"ff_ne", "ff-Latn-NE"}, {"ff_ng", "ff-Latn-NG"}, {"ff_sl", "ff-Latn-SL"}, {"ff_sn", "ff-Latn-SN"}, {"ia_ia", "ia"}, {"id_id", "id"}, {"kok_in", "kok-Deva-IN"}, {"ks_in", "ks-Arab-IN"}, {"mni_in", "mni-Beng-IN"}, {"pa_pk", "pa-Arab-PK"}, {"pa_in", "pa-Guru-IN"}, {"sat_in", "sat-Deva-IN"}, {"sd_pk", "sd-Arab-PK"}, {"sd_in", "sd-Deva-IN"}, {"shi_ma", "shi-Latn-MA"}, {"sr_xk", "sr-Latn-XK"}, {"sr_rs", "sr-Cyrl-RS"}, {"sr_me", "sr-Latn-ME"}, {"sr_ba", "sr-Latn-BA"}, {"su_id", "su-Latn-ID"}, {"ur_in", "ur-Arab-IN"}, {"ur_pk", "ur-Arab-PK"}, {"uz_uz", "uz-Latn-UZ"}, {"uz_af", "uz-Arab-AF"}, {"vai_lr", "vai-Latn-LR"}, {"zh_cn", "zh-Hans-CN"}, {"zh_sg", "zh-Hans-SG"}, {"zh_hk", "zh-Hant-HK"}, {"zh_tw", "zh-Hant-TW"}, {"zh_mo", "zh-Hant-MO"}};
-  auto cldr_name = name.replace(".UTF-8", "");
-  return locale_to_cldr_fixups.contains_key(cldr_name.to_lower()) ? locale_to_cldr_fixups[cldr_name.to_lower()] : cldr_name.replace("_", "-");
+    static const dictionary<string, string> locale_to_cldr_fixups = {{"ar_ar", "ar"}, {"az_az", "az-Latn-AZ"}, {"bs_ba", "bs-Latn-BA"}, {"en_en", "en"}, {"eo_eo", "eo"}, {"ff_bf", "ff-Latn-BF"}, {"ff_cm", "ff-Latn-CM"}, {"ff_gh", "ff-Latn-GH"}, {"ff_gm", "ff-Latn-GM"}, {"ff_gn", "ff-Latn-GN"}, {"ff_gw", "ff-Latn-GW"}, {"ff_lr", "ff-Latn-LR"}, {"ff_mr", "ff-Latn-MR"}, {"ff_ne", "ff-Latn-NE"}, {"ff_ng", "ff-Latn-NG"}, {"ff_sl", "ff-Latn-SL"}, {"ff_sn", "ff-Latn-SN"}, {"ia_ia", "ia"}, {"id_id", "id"}, {"kok_in", "kok-Deva-IN"}, {"ks_in", "ks-Arab-IN"}, {"mni_in", "mni-Beng-IN"}, {"pa_pk", "pa-Arab-PK"}, {"pa_in", "pa-Guru-IN"}, {"sat_in", "sat-Deva-IN"}, {"sd_pk", "sd-Arab-PK"}, {"sd_in", "sd-Deva-IN"}, {"shi_ma", "shi-Latn-MA"}, {"sr_xk", "sr-Latn-XK"}, {"sr_rs", "sr-Cyrl-RS"}, {"sr_me", "sr-Latn-ME"}, {"sr_ba", "sr-Latn-BA"}, {"su_id", "su-Latn-ID"}, {"ur_in", "ur-Arab-IN"}, {"ur_pk", "ur-Arab-PK"}, {"uz_uz", "uz-Latn-UZ"}, {"uz_af", "uz-Arab-AF"}, {"vai_lr", "vai-Latn-LR"}, {"zh_cn", "zh-Hans-CN"}, {"zh_sg", "zh-Hans-SG"}, {"zh_hk", "zh-Hant-HK"}, {"zh_tw", "zh-Hant-TW"}, {"zh_mo", "zh-Hant-MO"}};
+auto cldr_name = name.replace(".UTF-8", "");
+return locale_to_cldr_fixups.contains_key(cldr_name.to_lower()) ? locale_to_cldr_fixups[cldr_name.to_lower()] : cldr_name.replace("_", "-");
 }
 
 auto culture_info::to_locale_name(const string& name) -> string {

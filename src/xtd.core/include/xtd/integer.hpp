@@ -10,6 +10,6 @@ namespace xtd {
   // Since Doxygen does not work properly with the C++ concept, the documentation for this concept is declared in xtd/integer_.hpp
   template<typename type_t>
   concept integer =
-  xtd::signed_integer<type_t> ||
-  xtd::unsigned_integer<type_t>;
+    xtd::signed_integer<type_t> ||
+    xtd::unsigned_integer<type_t>;
 }

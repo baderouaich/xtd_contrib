@@ -136,7 +136,7 @@ namespace xtd {
         /// @deprecated Replaced by xtd::forms::layout::tab_page_collection::insert - Will be removed in version 1.2.0.
         [[deprecated("Replaced by xtd::forms::layout::tab_page_collection::insert - Will be removed in version 1.2.0.")]]
         auto insert_at(xtd::usize index, const xtd::string& text, const xtd::string& name) -> void;
-
+        
         using xtd::forms::layout::arranged_element_collection<tab_page_ref>::push_back;
         /// @brief Adds an element to the end.
         /// @param text The text of element to add.

@@ -230,7 +230,7 @@ auto directory_info::enumerate_files() const -> file_iterator {
   return enumerate_files("*");
 }
 
-auto directory_info::enumerate_files(const string& pattern) const -> file_iterator{
+auto directory_info::enumerate_files(const string& pattern) const -> file_iterator {
   return file_iterator {full_path_, pattern};
 }
 
@@ -313,15 +313,15 @@ auto directory_info::remove(bool recursive) const -> void {
   
   if (recursive) {
     for (const auto& item : native::directory::enumerate_files(full_path_, "*")) {
-      file_info fi(path::combine(full_path_, item));
-      if ((fi.attributes() & file_attributes::read_only) == file_attributes::read_only) throw_helper::throws(exception_case::unauthorized_access);
-      file::remove(path::combine(full_path_, item));
+        file_info fi(path::combine(full_path_, item));
+        if ((fi.attributes() & file_attributes::read_only) == file_attributes::read_only) throw_helper::throws(exception_case::unauthorized_access);
+        file::remove(path::combine(full_path_, item));
+      }
+      for (const auto& item : native::directory::enumerate_directories(full_path_, "*"))
+        directory_info(path::combine(full_path_, item)).remove(true);
     }
-    for (const auto& item : native::directory::enumerate_directories(full_path_, "*"))
-      directory_info(path::combine(full_path_, item)).remove(true);
-  }
-  
+    
   if ((attributes() & file_attributes::read_only) == file_attributes::read_only) throw_helper::throws(exception_case::unauthorized_access);
   if (native::directory::remove(full_path_) != 0)
     throw_helper::throws(exception_case::io);
-}
+  }

@@ -17,7 +17,7 @@ namespace xtdc_command {
       create_xtd_console_source(name, create_solution ? xtd::io::path::combine(current_path(), name) : current_path());
     }
     
-    void generate(const xtd::string& name) const {
+  void generate(const xtd::string& name) const {
       generate_xtd_console_cmakelists_txt(name, current_path());
     }
     

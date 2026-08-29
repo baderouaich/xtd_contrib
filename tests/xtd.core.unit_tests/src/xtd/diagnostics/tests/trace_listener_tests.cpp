@@ -21,12 +21,12 @@ namespace xtd::diagnostics::tests {
       using trace_listener::write;
       void write(const xtd::string& message) override {
         if (need_indent())
-          write_indent();
+        write_indent();
         string_stream << message;
       }
       
-      using trace_listener::write_line;
-      void write_line(const xtd::string& message) override {
+    using trace_listener::write_line;
+    void write_line(const xtd::string& message) override {
         write(message);
         string_stream << std::endl;
         need_indent(true);

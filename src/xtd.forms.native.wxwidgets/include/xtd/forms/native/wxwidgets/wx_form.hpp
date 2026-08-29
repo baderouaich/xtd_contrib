@@ -395,10 +395,10 @@ namespace xtd {
           if (!visible) control_handler::Show(visible);
           else {
             control_handler::SetPosition(invalid_location);
-            control_handler::Show(visible);
-            control_handler::SetPosition(location_);
-            control_handler::Show(visible);
-          }
+              control_handler::Show(visible);
+              control_handler::SetPosition(location_);
+              control_handler::Show(visible);
+            }
         }
         #endif
         

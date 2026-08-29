@@ -60,25 +60,25 @@ struct checked_list_box::data {
   checked_list_box& control;
   object_collection items;
   item selected_item;
-
+  
   auto on_items_item_added(xtd::usize pos, const item& item) -> void {
     if (control.is_handle_created()) native::checked_list_box::insert_item(control.handle(), pos, item.value(), static_cast<int32>(item.check_state()));
     auto selected = checked_list_box::item {};
     if (control.selected_index() != npos && control.selected_index() < items.count()) selected = items[control.selected_index()];
-    control.selected_item(selected);
-  }
-  
-  auto on_items_item_removed(xtd::usize pos, const item& item) -> void {
+      control.selected_item(selected);
+    }
+    
+auto on_items_item_removed(xtd::usize pos, const item& item) -> void {
     if (control.is_handle_created()) native::checked_list_box::delete_item(control.handle(), pos);
     if (control.selected_index() == pos) control.selected_index(npos);
-  }
-  
-  auto on_items_item_updated(xtd::usize pos, const item& item) -> void {
+    }
+    
+auto on_items_item_updated(xtd::usize pos, const item& item) -> void {
     if (control.is_handle_created()) native::checked_list_box::update_item(control.handle(), pos, item.value(), static_cast<int32>(item.check_state()));
     auto selected = checked_list_box::item {};
     if (control.selected_index() != npos && control.selected_index() < items.count()) selected = items[control.selected_index()];
-    control.selected_item(selected);
-  }
+      control.selected_item(selected);
+    }
 };
 
 checked_list_box::checked_list_box() {

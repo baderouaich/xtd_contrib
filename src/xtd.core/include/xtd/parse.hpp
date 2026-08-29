@@ -36,15 +36,15 @@ namespace xtd {
     xtd::helpers::throw_helper::throws(xtd::helpers::exception_case::format, "Parse specialisation not found");
   }
   
-  /// @brief Convert a string into a type.
-  /// @par Namespace
-  /// xtd
-  /// @par Library
-  /// xtd.core
-  /// @ingroup xtd_core
-  template<typename value_t>
-  [[nodiscard]] inline auto parse(const std::string& str, const std::locale& locale) -> value_t {xtd::helpers::throw_helper::throws(xtd::helpers::exception_case::format, "Parse specialisation not found"); return {};}
-  
+/// @brief Convert a string into a type.
+/// @par Namespace
+/// xtd
+/// @par Library
+/// xtd.core
+/// @ingroup xtd_core
+template<typename value_t>
+[[nodiscard]] inline auto parse(const std::string& str, const std::locale& locale) -> value_t {xtd::helpers::throw_helper::throws(xtd::helpers::exception_case::format, "Parse specialisation not found"); return {};}
+
   /// @brief Convert a string into a type.
   /// @par Namespace
   /// xtd

@@ -119,13 +119,13 @@ bool event_wait_handle::try_open_existing(const string& name, event_wait_handle&
   result.close();
   if (string::is_empty(name)) return false;
   if (name.length() > native::named_event_wait_handle::max_name_size()) return false;
-  auto new_event_wait_handle = event_wait_handle {};
-  new_event_wait_handle.data_->name = name;
-  new_event_wait_handle.data_->event_wait_handle = xtd::new_uptr<event_wait_handle::named_event_wait_handle>();
-  if (!new_event_wait_handle.data_->event_wait_handle->open(new_event_wait_handle.data_->name)) return false;
-  result = new_event_wait_handle;
-  return true;
-}
+    auto new_event_wait_handle = event_wait_handle {};
+    new_event_wait_handle.data_->name = name;
+    new_event_wait_handle.data_->event_wait_handle = xtd::new_uptr<event_wait_handle::named_event_wait_handle>();
+    if (!new_event_wait_handle.data_->event_wait_handle->open(new_event_wait_handle.data_->name)) return false;
+      result = new_event_wait_handle;
+      return true;
+    }
 
 bool event_wait_handle::signal() {
   return set();

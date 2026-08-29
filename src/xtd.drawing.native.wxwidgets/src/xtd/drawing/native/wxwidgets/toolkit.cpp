@@ -51,7 +51,7 @@ namespace {
       if (func.Contains("DoGetSize") && cond.Contains("m_window") && msg.Contains("wxClientDCImpl without a window?")) return;
       // Workaround : wxWidgets generates an assert if wxPaintDC is not call with the window being repainted.
       if (func.Contains("wxPaintDC") && cond.Contains("paintStack.top().window == window") && msg.Contains("wxPaintDC must be associated with the window being repainted")) return;
-
+      
       if (xtd::diagnostics::debug::__should_aborted__(stack_frame {string {static_cast<const char*>(file.c_str())}, as<uint32>(line), string {static_cast<const char*>(func.c_str())}}, !show_wx_assert.enabled(), "wxAssert", string::format("cond={}, msg={}", string {static_cast<const char*>(cond.c_str())}, string {static_cast<const char*>(msg.c_str())}))) debug_break_();
     } catch (const xtd::exception& e) {
       if (xtd::diagnostics::debug::__should_aborted__(stack_frame {string {static_cast<const char*>(file.c_str())}, as<uint32>(line), string {static_cast<const char*>(func.c_str())}}, !show_wx_assert.enabled(), "xtd_assert_handler", string::format("Exception occured : {}", e.to_string()))) debug_break_();

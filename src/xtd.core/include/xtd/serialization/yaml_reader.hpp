@@ -10,7 +10,7 @@
 namespace xtd {
   /// @brief Contains classes that can be used for serializing and deserializing objects. Serialization is the process of converting an object or a graph of objects into a linear sequence of bytes for either storage or transmission to another location. Deserialization is the process of taking in stored information and recreating objects from it.
   namespace serialization {
-    /// @brief 
+    /// @brief
     class yaml_reader : public object {
     public:
       /// @name Public Constructors

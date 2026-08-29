@@ -30,22 +30,22 @@ struct combo_box::data {
     if (control.is_handle_created()) native::combo_box::insert_item(control.handle(), pos, item.value());
     auto selected_item = combo_box::item {};
     if (control.selected_index() != npos && control.selected_index() < items.count()) selected_item = items[control.selected_index()];
-    control.selected_item(selected_item);
-  }
-  
-  auto on_items_item_removed(xtd::usize pos, const item& item) -> void {
+      control.selected_item(selected_item);
+    }
+    
+auto on_items_item_removed(xtd::usize pos, const item& item) -> void {
     if (control.is_handle_created()) native::combo_box::delete_item(control.handle(), pos);
     auto selected_item = combo_box::item {};
     if (control.selected_index() != npos && control.selected_index() < items.count()) selected_item = items[control.selected_index()];
-    if (control.selected_index() == pos) control.selected_index(npos);
-  }
-  
-  auto on_items_item_updated(xtd::usize pos, const item& item) -> void {
+      if (control.selected_index() == pos) control.selected_index(npos);
+      }
+      
+auto on_items_item_updated(xtd::usize pos, const item& item) -> void {
     if (control.is_handle_created()) native::combo_box::update_item(control.handle(), pos, item.value());
     auto selected_item = combo_box::item {};
     if (control.selected_index() != npos && control.selected_index() < items.count()) selected_item = items[control.selected_index()];
-    control.selected_item(selected_item);
-  }
+      control.selected_item(selected_item);
+    }
 };
 
 combo_box::combo_box() {
@@ -392,7 +392,7 @@ void combo_box::on_handle_created(const event_args& e) {
   data_->drop_down_height = static_cast<int32>(font().get_height()) * 9;
   if (environment::os_version().is_windows_platform() && data_->drop_down_style == combo_box_style::simple && size().height == default_size().height && size().height < data_->drop_down_height)
     size({size().width, data_->drop_down_height});
-  
+    
   data_->items.sorted(data_->sorted);
   for (xtd::usize index = 0; index < data_->items.count(); ++index)
     native::combo_box::insert_item(handle(), index, data_->items[index].value());

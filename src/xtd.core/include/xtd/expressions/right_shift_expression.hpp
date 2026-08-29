@@ -55,7 +55,7 @@ namespace xtd {
       constexpr auto operator()(args_t&&... args) const {
         auto&& l = left(std::forward<args_t>(args)...);
         using result_t = std::decay_t<decltype(l)>;
-        if constexpr (xtd::numeric<result_t>) return static_cast<result_t>(l >> right(std::forward<args_t>(args)...));
+        if constexpr(xtd::numeric<result_t>) return static_cast<result_t>(l >> right(std::forward<args_t>(args)...));
         else return l >> right(std::forward<args_t>(args)...);
       }
       /// @}
@@ -63,7 +63,7 @@ namespace xtd {
       /// @cond
       friend inline auto operator <<(std::ostream& os, const right_shift_expression& e) -> std::ostream& {return os << expression_stream {e.left, e.precedence} << " >> " << expression_stream {e.right, e.precedence};}
       /// @endcond
-
+      
     private:
       [[no_unique_address]] left_t left;
       [[no_unique_address]] right_t right;
@@ -78,7 +78,7 @@ namespace xtd {
       return right_shift_expression<std::decay_t<decltype(left_expression)>, std::decay_t<decltype(right_expression)>> {std::move(left_expression), std::move(right_expression)};
     }
     /// @endcond
-
+    
     /// @name Public Operators
     
     /// @{

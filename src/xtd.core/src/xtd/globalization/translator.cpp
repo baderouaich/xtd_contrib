@@ -34,7 +34,7 @@ auto translator::language(xtd::null_ptr) -> void {
 auto translator::languages() -> array<string> {
   static auto languages = list<string> {};
   if (languages.count() != 0) return languages.to_array();
-  std::for_each(language_values_.begin(), language_values_.end(), [&](const auto& language_value) {languages.add(language_value.first);});
+  std::for_each(language_values_.begin(), language_values_.end(), [&](const auto & language_value) {languages.add(language_value.first);});
   return languages.to_array();
 }
 
@@ -48,11 +48,11 @@ auto translator::parse_locale(const string& locale_path) -> bool {
 
 auto translator::parse_locale(const string& locale_path, const string& language) -> bool {
   if (!directory::exists(locale_path)) return false;
-  for (const auto& locale_item : directory::get_directories(locale_path)) {
+for (const auto& locale_item : directory::get_directories(locale_path)) {
     if (to_language_name(language) != path::get_file_name(locale_item)) continue;
-    for (const auto& language_item : directory::get_files(locale_item))
-      if (path::get_extension(language_item) == ".strings") parse_file(language_item, path::get_file_name(locale_item));
-  }
+      for (const auto& language_item : directory::get_files(locale_item))
+        if (path::get_extension(language_item) == ".strings") parse_file(language_item, path::get_file_name(locale_item));
+    }
   return true;
 }
 
@@ -66,19 +66,19 @@ auto translator::parse_file(const string& file, const string& language) -> bool 
   auto key = string::empty_string;
   auto value = string::empty_string;
   auto line_count = 0;
-  for (auto line : lines) {
+for (auto line : lines) {
     line_count++;
     line = line.trim();
-    if (string::is_empty(line)) continue;
-    if (line.starts_with("#")) continue;
-    if (xtd::string::is_empty(key) && line.starts_with("key ")) key = line.remove(0, 4).trim('"');
-    else if (!xtd::string::is_empty(key) && line.starts_with("value ")) value = line.remove(0, 6).trim('"');
-    else throw_helper::throws(exception_case::format, string::format("file {} has an invalid format at line {}", file, line_count).chars().c_str());
-    if (!xtd::string::is_empty(key) && !xtd::string::is_empty(value)) {
-      language_values_[language][key] = value;
-      key = value = "";
+      if (string::is_empty(line)) continue;
+      if (line.starts_with("#")) continue;
+      if (xtd::string::is_empty(key) && line.starts_with("key ")) key = line.remove(0, 4).trim('"');
+      else if (!xtd::string::is_empty(key) && line.starts_with("value ")) value = line.remove(0, 6).trim('"');
+      else throw_helper::throws(exception_case::format, string::format("file {} has an invalid format at line {}", file, line_count).chars().c_str());
+      if (!xtd::string::is_empty(key) && !xtd::string::is_empty(value)) {
+        language_values_[language][key] = value;
+        key = value = "";
+      }
     }
-  }
   return true;
 }
 

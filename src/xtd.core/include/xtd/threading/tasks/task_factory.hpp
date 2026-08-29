@@ -69,9 +69,9 @@ namespace xtd {
           t.start();
           return t;
         }
-
+        
         /// @}
-
+        
         /// @cond
         [[nodiscard]] auto start_new(const xtd::action<>& action) const -> xtd::threading::tasks::task<> {
           auto t = xtd::threading::tasks::task<> {action};
@@ -106,7 +106,7 @@ namespace xtd {
         void await_resume() {if (task_.is_faulted()) task_.rethrow_exception();}
         void await_suspend(std::coroutine_handle<> handle) {task_.continue_with([handle] {handle.resume();});}
       };
-
+      
       template<typename result_t>
       auto basic_task<result_t>::completed_task() -> xtd::threading::tasks::task<result_t> {
         auto task = xtd::threading::tasks::task<result_t> {};
@@ -114,13 +114,13 @@ namespace xtd {
         task.basic_task<result_t>::data_->end_event.set();
         return task;
       }
-
+      
       template<typename result_t>
       auto basic_task<result_t>::factory() noexcept -> const xtd::threading::tasks::task_factory& {
         static auto factory = xtd::threading::tasks::task_factory {};
         return factory;
       }
-
+      
       template<typename result_t>
       auto basic_task<result_t>::delay(const xtd::time_span& delay) -> xtd::threading::tasks::task<> {return basic_task<result_t>::delay(xtd::as<xtd::int32>(delay.total_milliseconds()));}
       
@@ -128,11 +128,11 @@ namespace xtd {
       auto basic_task<result_t>::delay(const xtd::time_span& delay, const xtd::threading::cancellation_token& cancellation_token) -> task<> {return basic_task<result_t>::delay(xtd::as<xtd::int32>(delay.total_milliseconds()), cancellation_token);}
       
       template<typename result_t>
-      auto basic_task<result_t>::delay(xtd::int32 milliseconds_delay) -> xtd::threading::tasks::task<> {return xtd::threading::tasks::task<>::run([milliseconds_delay]{xtd::threading::cancellation_token {}.wait_handle().wait_one(milliseconds_delay);});}
+      auto basic_task<result_t>::delay(xtd::int32 milliseconds_delay) -> xtd::threading::tasks::task<> {return xtd::threading::tasks::task<>::run([milliseconds_delay] {xtd::threading::cancellation_token {}.wait_handle().wait_one(milliseconds_delay);});}
       
       template<typename result_t>
       auto basic_task<result_t>::delay(xtd::int32 milliseconds_delay, const xtd::threading::cancellation_token& cancellation_token) -> task<> {
-        return xtd::threading::tasks::task<>::run([cancellation_token, milliseconds_delay]{xtd::threading::cancellation_token {cancellation_token}.wait_handle().wait_one(milliseconds_delay);}, cancellation_token);
+        return xtd::threading::tasks::task<>::run([cancellation_token, milliseconds_delay] {xtd::threading::cancellation_token {cancellation_token}.wait_handle().wait_one(milliseconds_delay);}, cancellation_token);
       }
       
       template<typename result_t>
@@ -145,9 +145,9 @@ namespace xtd {
         return task;
       }
       
-      template<typename result_t>
-      template<typename from_exception_t>
-      auto basic_task<result_t>::from_exception(from_exception_t exception) -> xtd::threading::tasks::task<result_t> {
+    template<typename result_t>
+    template<typename from_exception_t>
+    auto basic_task<result_t>::from_exception(from_exception_t exception) -> xtd::threading::tasks::task<result_t> {
         auto task = xtd::threading::tasks::task<result_t> {};
         task.basic_task<>::data_->exception = xtd::exception_services::exception_dispatch_info::capture(exception);
         task.basic_task<>::data_->status = xtd::threading::tasks::task_status::faulted;
@@ -179,12 +179,12 @@ namespace xtd {
           return task<>::wait_any(std::forward<items_t>(items)...);
         });
       }
-
+      
       template<typename result_t>
       auto xtd::threading::tasks::basic_task<result_t>::yield() -> task<result_t> {
         co_await yield_awaiter {};
       }
-
+      
       template<typename result1_t, typename result2_t>
       inline auto operator &&(const task<result1_t>& t1, const task<result2_t>& t2) -> task<> {
         return task_factory {}.start_new([t1, t2]() mutable {task<>::wait_all(t1, t2);});

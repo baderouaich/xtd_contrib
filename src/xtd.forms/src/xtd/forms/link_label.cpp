@@ -29,7 +29,7 @@ struct link_label::data {
   xtd::forms::cursor original_cursor;
   std::optional<xtd::forms::cursor> override_cursor;
   std::optional<xtd::drawing::color> visited_link_color;
-
+  
   auto on_links_link_added(xtd::usize pos, const link& link) -> void {
     if (links.count() == 2 && links[0].start() == 0 && links[0].length() == control.text().length())
       links.remove_at(0);
@@ -54,24 +54,24 @@ link_label::link_collection& link_label::link_collection::operator =(const link_
 }
 
 link_label::link_collection::const_reference link_label::link_collection::operator [](const string& name) const noexcept {
-  for (auto& item : *this)
-    if (item.name() == name) return item;
-  static auto link_empty = value_type {};
-  return link_empty;
-}
+for (auto& item : *this)
+  if (item.name() == name) return item;
+      static auto link_empty = value_type {};
+      return link_empty;
+    }
 
 link_label::link_collection::reference link_label::link_collection::operator [](const string& name) noexcept {
-  for (auto& item : *this)
-    if (item.name() == name) return item;
-  static auto link_empty = value_type {};
-  return link_empty;
-}
+for (auto& item : *this)
+  if (item.name() == name) return item;
+      static auto link_empty = value_type {};
+      return link_empty;
+    }
 
-link_label::link_collection::const_reference link_label::link_collection::operator ()(const string& name) const noexcept {
+link_label::link_collection::const_reference link_label::link_collection::operator()(const string& name) const noexcept {
   return operator [](name);
 }
 
-link_label::link_collection::reference link_label::link_collection::operator ()(const string& name) noexcept {
+link_label::link_collection::reference link_label::link_collection::operator()(const string& name) noexcept {
   return operator [](name);
 }
 
@@ -79,7 +79,7 @@ link_label::link_label() {
   data_ = xtd::new_sptr<data>(*this);
   double_buffered(true);
   set_style(control_styles::all_painting_in_wm_paint | control_styles::optimized_double_buffer | control_styles::opaque | control_styles::user_paint | control_styles::standard_click | control_styles::resize_redraw, true);
-
+  
   data_->links.item_added += {*data_, &link_label::data::on_links_link_added};
   data_->links.item_removed += {*data_, &link_label::data::on_links_link_removed};
   data_->links.item_updated += {*data_, &link_label::data::on_links_link_updated};

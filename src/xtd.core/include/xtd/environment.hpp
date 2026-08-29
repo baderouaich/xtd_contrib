@@ -657,7 +657,7 @@ namespace xtd {
     /// | MyApp \\\\\"alpha \"beta                     | MyApp, \\"alpha, "beta                     |
     /// @remarks To obtain the command line as a single string, use the xtd::environment::command_line method.
     static auto set_command_line_args(const xtd::argument_collection& args) -> void;
-
+    
     /// @brief Creates, modifies, or deletes an environment variable stored in the current process.
     /// @param variable The name of an environment variable.
     /// @param value A value to assign to variable.

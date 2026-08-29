@@ -36,7 +36,7 @@ struct loading_indicator::data {
   xtd::forms::loading_indicator_style loading_indicator_style = xtd::forms::loading_indicator_style::standard;
   bool running = false;
   xtd::forms::timer timer;
-
+  
   auto on_timer_tick(object& timer, const xtd::event_args& e) -> void {
     if (loading_indicator_style != xtd::forms::loading_indicator_style::system) loading_indicator_animation->on_timer();
     if (control.control_appearance() == forms::control_appearance::standard) control.invalidate();

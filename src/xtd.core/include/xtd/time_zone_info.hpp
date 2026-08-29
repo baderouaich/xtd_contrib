@@ -380,7 +380,7 @@ namespace xtd {
     
     /// @brief Returns a sorted collection of all the time zones about which information is available on the local system.
     /// @return An read-only Array of time_zone_info objects.
-    [[nodiscard]] static auto get_system_time_zones() noexcept -> const xtd::collections::generic::list<time_zone_info>&;
+    [[nodiscard]] static auto get_system_time_zones() noexcept -> const xtd::collections::generic::list<time_zone_info>& ;
     
     /// @brief Converts a time to the time in a particular time zone.
     /// @param date_time The date and time to convert.

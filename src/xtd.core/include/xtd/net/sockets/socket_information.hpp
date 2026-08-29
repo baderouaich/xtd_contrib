@@ -61,7 +61,7 @@ namespace xtd {
         
         /// @brief Gets the protocol information for a xtd::net::sockets::socket.
         /// @return An array of byte.
-        [[nodiscard]] auto protocol_information() const noexcept -> const xtd::array<xtd::byte>&;
+        [[nodiscard]] auto protocol_information() const noexcept -> const xtd::array<xtd::byte>& ;
         /// @brief Sets the protocol information for a xtd::net::sockets::socket.
         /// @param value An array of byte.
         /// @return This current instance.

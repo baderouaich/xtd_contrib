@@ -322,8 +322,8 @@ auto color::to_hsv() const noexcept -> hsv {
 auto color::to_string() const noexcept -> string {
   if (empty_) return "color [empty]";
   if (name() != string::format("{:x8}", argb_) && name() != "0") return string::format("color [{0}]", name());
-  return string::format("color [a={}, r={}, g={}, b={}]", a(), r(), g(), b());
-}
+      return string::format("color [a={}, r={}, g={}, b={}]", a(), r(), g(), b());
+    }
 
 auto color::to_uint32() const noexcept -> uint32 {
   if (handle_) return native::system_colors::to_argb(handle_);

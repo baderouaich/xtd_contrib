@@ -44,10 +44,10 @@ namespace xtd {
       /// @{
       /// @brief Gets List of IP addresses that are associated with a host.
       /// @return An xtd::net::ip_address array of IP addresses that are associated with a host.
-      [[nodiscard]] auto address_list() const noexcept -> const xtd::array<xtd::net::ip_address>&;
+      [[nodiscard]] auto address_list() const noexcept -> const xtd::array<xtd::net::ip_address>& ;
       /// @brief Gets List of IP addresses that are associated with a host.
       /// @return An xtd::net::ip_address array of IP addresses that are associated with a host.
-      [[nodiscard]] auto address_list() noexcept -> xtd::array<xtd::net::ip_address>&;
+      [[nodiscard]] auto address_list() noexcept -> xtd::array<xtd::net::ip_address>& ;
       /// @brief Sets List of IP addresses that are associated with a host.
       /// @param address_list An xtd::net::ip_address array of IP addresses that are associated with a host.
       /// @return The current instance.
@@ -55,10 +55,10 @@ namespace xtd {
       
       /// @brief Gets List of aliases that are associated with a host.
       /// @return A string array of aliases that are associated with a host.
-      [[nodiscard]] auto aliases() const noexcept -> const xtd::array<xtd::string>&;
+      [[nodiscard]] auto aliases() const noexcept -> const xtd::array<xtd::string>& ;
       /// @brief Gets List of aliases that are associated with a host.
       /// @return A string array of aliases that are associated with a host.
-      [[nodiscard]] auto aliases() noexcept -> xtd::array<xtd::string>&;
+      [[nodiscard]] auto aliases() noexcept -> xtd::array<xtd::string>& ;
       /// @brief Sets List of aliases that are associated with a host.
       /// @param aliases A string array of aliases that are associated with a host.
       /// @return The current instance.

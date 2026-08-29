@@ -490,7 +490,7 @@ namespace xtd {
     
     /// @brief Gets an array of HRESULT.
     /// @return An array of HRESULT.
-    [[nodiscard]] static auto get_h_results() noexcept -> const xtd::array<xtd::int32>&;
+    [[nodiscard]] static auto get_h_results() noexcept -> const xtd::array<xtd::int32>& ;
     
     /// @brief Gets the message of the specified HRESULT.
     /// @param h_result The HRESULT value.
@@ -499,7 +499,7 @@ namespace xtd {
     
     /// @brief Gets The HRESULT messages.
     /// @return The h_result messages.
-    [[nodiscard]] static auto get_messages() noexcept -> const xtd::collections::generic::dictionary<xtd::int32, xtd::string>&;
+    [[nodiscard]] static auto get_messages() noexcept -> const xtd::collections::generic::dictionary<xtd::int32, xtd::string>& ;
     
     /// @brief Gets the name of the specified HRESULT.
     /// @param h_result The HRESULT value.
@@ -508,7 +508,7 @@ namespace xtd {
     
     /// @brief Gets The HRESULT names.
     /// @return The h_result names.
-    [[nodiscard]] static auto get_names() noexcept -> const xtd::collections::generic::dictionary<xtd::int32, xtd::string>&;
+    [[nodiscard]] static auto get_names() noexcept -> const xtd::collections::generic::dictionary<xtd::int32, xtd::string>& ;
     
     /// @brief The severity of the specified HRESULT, which indicates what API or framework originated this error.
     /// @param h_result The HRESULT value.

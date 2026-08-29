@@ -13,7 +13,7 @@ ostream_event_listener::ostream_event_listener(std::ostream& os) noexcept : os_(
 
 void ostream_event_listener::on_class_end(const class_event_args& e) const {
   if (settings::default_settings().gtest_compatibility()) {
-    console::foreground_color(console_color::green);
+  console::foreground_color(console_color::green);
     os_ << "[----------] ";
     console::reset_color();
     os_ << e.test_class().test_count() - e.test_class().ignored_test_count() << " tests from " << e.test_class().name() << " (" << static_cast<int32>(e.test_class().elapsed_time().total_milliseconds()) << " ms total)" << std::endl << std::endl;
@@ -23,7 +23,7 @@ void ostream_event_listener::on_class_end(const class_event_args& e) const {
 
 void ostream_event_listener::on_class_start(const class_event_args& e) const {
   if (settings::default_settings().gtest_compatibility()) {
-    console::foreground_color(console_color::green);
+  console::foreground_color(console_color::green);
     os_ << "[----------] ";
     console::reset_color();
     os_ << e.test_class().test_count() - e.test_class().ignored_test_count() << " tests from " << e.test_class().name() << std::endl;
@@ -68,7 +68,7 @@ void ostream_event_listener::on_test_aborted(const test_event_args& e) const {
 
 void ostream_event_listener::on_unit_test_cleanup_start(const tunit_event_args& e) const {
   if (settings::default_settings().gtest_compatibility()) {
-    console::foreground_color(console_color::green);
+  console::foreground_color(console_color::green);
     os_ << "[----------] ";
     console::reset_color();
     os_ << "Global test environment tear-down" << std::endl;
@@ -78,7 +78,7 @@ void ostream_event_listener::on_unit_test_cleanup_start(const tunit_event_args& 
 
 void ostream_event_listener::on_unit_test_initialize_start(const tunit_event_args& e) const {
   if (settings::default_settings().gtest_compatibility()) {
-    console::foreground_color(console_color::green);
+  console::foreground_color(console_color::green);
     os_ << "[----------] ";
     console::reset_color();
     os_ << "Global test environment set-up." << std::endl;
@@ -180,7 +180,7 @@ void ostream_event_listener::on_test_succeed(const test_event_args& e) const {
 void ostream_event_listener::on_unit_test_end(const tunit_event_args& e) const {
   event_listener::on_unit_test_end(e);
   if (settings::default_settings().gtest_compatibility()) {
-    console::foreground_color(console_color::green);
+  console::foreground_color(console_color::green);
     os_ << "[==========] ";
     console::reset_color();
     os_ << e.unit_test().test_count() - e.unit_test().ignored_test_count() << " tests from " << e.unit_test().test_cases_count() << " test suite" << (e.unit_test().test_cases_count() > 1 ? "s" : "") << " ran. (" << static_cast<int32>(e.unit_test().elapsed_time().total_milliseconds()) << " ms total)" << std::endl;
@@ -246,17 +246,17 @@ void ostream_event_listener::on_unit_test_end(const tunit_event_args& e) const {
 
 void ostream_event_listener::on_unit_test_start(const tunit_event_args& e) const {
   if (settings::default_settings().brief()) {
-    os_ << "Run tests..." << std::endl;
-    return;
-  }
-  
-  if (e.unit_test().repeat_tests()) {
-    if (!settings::default_settings().gtest_compatibility()) console::foreground_color(console_color::cyan);
+  os_ << "Run tests..." << std::endl;
+  return;
+}
+
+if (e.unit_test().repeat_tests()) {
+  if (!settings::default_settings().gtest_compatibility()) console::foreground_color(console_color::cyan);
     os_ << "Repeating all tests (iteration " << e.unit_test().repeat_iteration() << ") . . ." << std::endl << std::endl;
     console::reset_color();
   }
   if (settings::default_settings().gtest_compatibility()) {
-    console::foreground_color(console_color::green);
+  console::foreground_color(console_color::green);
     os_ << "[==========] ";
     console::reset_color();
     os_ << "Running " << e.unit_test().test_count() - e.unit_test().ignored_test_count() << " tests from " << e.unit_test().test_cases_count() << " test suite" << (e.unit_test().test_cases_count() > 1 ? "s" : "") << "." << std::endl;

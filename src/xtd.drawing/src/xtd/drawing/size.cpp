@@ -33,10 +33,10 @@ drawing::size drawing::size::ceiling(const size_f& value) noexcept {
 int32 drawing::size::compare_to(const xtd::drawing::size& obj) const noexcept {
   if (width < obj.width) return -1;
   if (width > obj.width) return 1;
-  if (height < obj.height) return -1;
-  if (height > obj.height) return 1;
-  return 0;
-}
+    if (height < obj.height) return -1;
+      if (height > obj.height) return 1;
+        return 0;
+      }
 
 bool drawing::size::equals(const object& obj) const noexcept {
   return is<size>(obj) && equals(static_cast<const size&>(obj));

@@ -131,7 +131,7 @@ namespace xtd {
         /// @brief Returns an enumerator that iterates through a collection.
         /// @return An xtd::collections::generic::enumerator object that can be used to iterate through the collection.
         [[nodiscard]] virtual auto get_enumerator() const -> xtd::collections::generic::enumerator<type_t> = 0;
-
+        
         /// @brief Removes the first occurrence of a specific object from the xtd::collections::generic::icollection <type_t>.
         /// @param item The object to remove from the xtd::collections::generic::icollection <type_t>.
         /// @return `true` if item was successfully removed from the xtd::collections::generic::icollection <type_t>; otherwise, `false`. This method also returns `false` if item is not found in the original xtd::collections::generic::icollection <type_t>.

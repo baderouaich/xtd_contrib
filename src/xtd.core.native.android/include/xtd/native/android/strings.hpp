@@ -79,7 +79,7 @@ namespace xtd::native::android {
       return result.erase(start_index, count);
     }
     
-    static std::string replace(const std::string& str, const std::string& old_string, const std::string& new_string) noexcept {
+  static std::string replace(const std::string& str, const std::string& old_string, const std::string& new_string) noexcept {
       auto result = str;
       auto index = size_t {};
       while (true) {
@@ -93,10 +93,10 @@ namespace xtd::native::android {
     }
     
     /// @todo Remove it when the xtd::native::android::strings::split fixed.
-#if defined(__GNUC__)
+    #if defined(__GNUC__)
 #  pragma GCC diagnostic push
 #  pragma GCC diagnostic ignored "-Warray-bounds"
-#endif
+    #endif
     
     static std::vector<std::string> split(const std::string& str, const std::vector<char>& separators, size_t count = std::numeric_limits<size_t>::max(), bool remove_empty_entries = false) noexcept {
       if (count == 0) return {};
@@ -120,12 +120,12 @@ namespace xtd::native::android {
       
       return result;
     }
-
+    
     /// @todo Remove it when the xtd::native::android::strings::split fixed.
-#if defined(__GNUC__)
+    #if defined(__GNUC__)
 #  pragma GCC diagnostic pop
-#endif
-
+    #endif
+    
     static std::string substring(const std::string& str, size_t start_index, size_t length) noexcept {
       if (start_index >= str.size()) return "";
       return str.substr(start_index, length);
@@ -206,10 +206,10 @@ namespace xtd::native::android {
       if (!str.size()) return str;
       auto result = str;
       while (std::find(trim_chars.begin(), trim_chars.end(), result[result.size() - 1]) != trim_chars.end())
-        result.erase(result.size() - 1, 1);
-      return result;
-    }
-    
+          result.erase(result.size() - 1, 1);
+          return result;
+        }
+        
     static bool try_parse(const std::string& str, int32_t& value) noexcept {
       try {
         value = std::atoi(str.c_str());

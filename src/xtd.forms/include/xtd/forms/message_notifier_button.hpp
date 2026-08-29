@@ -27,7 +27,7 @@ namespace xtd {
         return *this;
       }
       /// @}
-
+      
       /// @name Public Methods
       
       /// @{
@@ -50,7 +50,7 @@ namespace xtd {
         return hash_code::combine(text_);
       }
       /// @}
-
+      
     private:
       xtd::string text_;
     };

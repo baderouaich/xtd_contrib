@@ -42,7 +42,7 @@ inline static void __print(std::ostream& os, const value_t& value) {
 }
 
 template<typename value_t>
-requires (!xtd::stream_insertable<value_t>)
+requires(!xtd::stream_insertable<value_t>)
 inline static void __print(std::ostream& os, const value_t& value) {
   auto size = std::min(sizeof(value), xtd::usize {32});
   os << size << "-byte object <";

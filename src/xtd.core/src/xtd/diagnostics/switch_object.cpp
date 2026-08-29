@@ -47,7 +47,7 @@ auto switch_object::value(const string& value) -> void {
     switches_ = switches;
   };
   
-  if (value_ == new_value) {
+if (value_ == new_value) {
     if (switches_.contains_key(display_name_)) new_value = switches_[display_name_];
     else return;
   }

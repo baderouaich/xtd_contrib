@@ -31,13 +31,13 @@ auto trace_source::source_switch(const class source_switch& source_switch) noexc
 }
 
 auto trace_source::close() -> void {
-  for (auto listener : listeners_)
-    listener->close();
+for (auto listener : listeners_)
+  listener->close();
 }
 
 auto trace_source::flush() -> void {
-  for (auto listener : listeners_)
-    listener->flush();
+for (auto listener : listeners_)
+  listener->flush();
 }
 
 auto trace_source::trace_information(const string& message) -> void {

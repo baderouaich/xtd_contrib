@@ -54,7 +54,7 @@ namespace xtd {
       constexpr auto operator()(args_t&&... args) const {
         auto&& v = value(std::forward<args_t>(args)...);
         using result_t = std::decay_t<decltype(v)>;
-        if constexpr (xtd::numeric<result_t>) return static_cast<result_t>(~v);
+        if constexpr(xtd::numeric<result_t>) return static_cast<result_t>(~v);
         else return ~v;
       }
       /// @}
@@ -62,7 +62,7 @@ namespace xtd {
       /// @cond
       friend inline auto operator <<(std::ostream& os, const not_expression& e) -> std::ostream& {return os << "~" << expression_stream {e.value, e.precedence};}
       /// @endcond
-
+      
     private:
       [[no_unique_address]] value_t value;
     };
@@ -75,7 +75,7 @@ namespace xtd {
       return not_expression<std::decay_t<decltype(expression)>> {std::move(expression)};
     }
     /// @endcond
-
+    
     /// @name Public Operators
     
     /// @{

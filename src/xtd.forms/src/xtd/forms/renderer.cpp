@@ -71,7 +71,7 @@ auto renderer::draw_button(graphics g, const rectangle& bounds, const string& te
   data_->button_renderer(g, bounds, text, font, flags, image, image_bounds, focused, state, back_color, fore_color);
 }
 
-auto renderer::draw_check_box(graphics g, const rectangle& bounds, const string& text, const font& font, text_format_flags flags, const image& image, const rectangle& image_bounds, bool focused,check_box_state state, const std::optional<color>& back_color, const std::optional<color>& fore_color) -> void {
+auto renderer::draw_check_box(graphics g, const rectangle& bounds, const string& text, const font& font, text_format_flags flags, const image& image, const rectangle& image_bounds, bool focused, check_box_state state, const std::optional<color>& back_color, const std::optional<color>& fore_color) -> void {
   data_->check_box_renderer(g, bounds, text, font, flags, image, image_bounds, focused, state, back_color, fore_color);
 }
 

@@ -108,65 +108,65 @@ namespace xtd {
         if (__should_aborted__(stack_frame, condition, string::empty_string)) __xtd_debugbreak();
         #endif
       }
-      /// @brief Checks for a condition; if the condition is `false`, displays a message box that shows the call stack.
-      /// @param condition The conditional expression to evaluate. If the condition is `true`, a failure message is not sent and the message box is not displayed.
-      /// @param message The message to send to the xtd::diagnostics::debug::listeners collection.
-      /// @param stack_frame The (optional) stack frame corresponding to the generated assert.
-      static auto assert(bool condition, const xtd::string& message, const xtd::diagnostics::stack_frame& stack_frame = xtd::diagnostics::stack_frame::current()) -> void {
+    /// @brief Checks for a condition; if the condition is `false`, displays a message box that shows the call stack.
+    /// @param condition The conditional expression to evaluate. If the condition is `true`, a failure message is not sent and the message box is not displayed.
+    /// @param message The message to send to the xtd::diagnostics::debug::listeners collection.
+    /// @param stack_frame The (optional) stack frame corresponding to the generated assert.
+    static auto assert(bool condition, const xtd::string& message, const xtd::diagnostics::stack_frame& stack_frame = xtd::diagnostics::stack_frame::current()) -> void {
         #if TRACE
         if (__should_aborted__(stack_frame, condition, message)) __xtd_debugbreak();
         #endif
       }
-      /// @brief Checks for a condition; if the condition is `false`, displays a message box that shows the call stack.
-      /// @param condition The conditional expression to evaluate. If the condition is `true`, a failure message is not sent and the message box is not displayed.
-      /// @param message The message to send to the xtd::diagnostics::debug::listeners collection.
-      /// @param detail_message The detailed message to send to the xtd::diagnostics::debug::listeners collection.
-      /// @param stack_frame The (optional) stack frame corresponding to the generated assert.
-      static auto assert(bool condition, const xtd::string& message, const xtd::string& detail_message, const xtd::diagnostics::stack_frame& stack_frame = xtd::diagnostics::stack_frame::current()) -> void {
+    /// @brief Checks for a condition; if the condition is `false`, displays a message box that shows the call stack.
+    /// @param condition The conditional expression to evaluate. If the condition is `true`, a failure message is not sent and the message box is not displayed.
+    /// @param message The message to send to the xtd::diagnostics::debug::listeners collection.
+    /// @param detail_message The detailed message to send to the xtd::diagnostics::debug::listeners collection.
+    /// @param stack_frame The (optional) stack frame corresponding to the generated assert.
+    static auto assert(bool condition, const xtd::string& message, const xtd::string& detail_message, const xtd::diagnostics::stack_frame& stack_frame = xtd::diagnostics::stack_frame::current()) -> void {
         #if TRACE
         if (__should_aborted__(stack_frame, condition, message, detail_message)) __xtd_debugbreak();
         #endif
       }
       
-      /// @brief Checks for a condition; if the condition is `false`, displays a message box that shows the call stack.
-      /// @param condition The conditional expression to evaluate. If the condition is `true`, a failure message is not sent and the message box is not displayed.
-      /// @param stack_frame The (optional) stack frame corresponding to the generated assert.
-      /// @deprecated Use xtd::diagnostics::trace::assert method - Will be removed in version 1.2.0.
-      [[deprecated("Use xtd::diagnostics::trace::assert method - Will be removed in version 1.2.0.)")]]
+    /// @brief Checks for a condition; if the condition is `false`, displays a message box that shows the call stack.
+    /// @param condition The conditional expression to evaluate. If the condition is `true`, a failure message is not sent and the message box is not displayed.
+    /// @param stack_frame The (optional) stack frame corresponding to the generated assert.
+    /// @deprecated Use xtd::diagnostics::trace::assert method - Will be removed in version 1.2.0.
+    [[deprecated("Use xtd::diagnostics::trace::assert method - Will be removed in version 1.2.0.)")]]
       static auto cassert(bool condition, const xtd::diagnostics::stack_frame& stack_frame = xtd::diagnostics::stack_frame::current()) -> void {
         #if TRACE
         if (__should_aborted__(stack_frame, condition, string::empty_string)) __xtd_debugbreak();
         #endif
       }
-      /// @brief Checks for a condition; if the condition is `false`, displays a message box that shows the call stack.
-      /// @param condition The conditional expression to evaluate. If the condition is `true`, a failure message is not sent and the message box is not displayed.
-      /// @param message The message to send to the xtd::diagnostics::debug::listeners collection.
-      /// @param stack_frame The (optional) stack frame corresponding to the generated assert.
-      /// @deprecated Use xtd::diagnostics::trace::assert method - Will be removed in version 1.2.0.
-      [[deprecated("Use xtd::diagnostics::trace::assert method - Will be removed in version 1.2.0.)")]]
+    /// @brief Checks for a condition; if the condition is `false`, displays a message box that shows the call stack.
+    /// @param condition The conditional expression to evaluate. If the condition is `true`, a failure message is not sent and the message box is not displayed.
+    /// @param message The message to send to the xtd::diagnostics::debug::listeners collection.
+    /// @param stack_frame The (optional) stack frame corresponding to the generated assert.
+    /// @deprecated Use xtd::diagnostics::trace::assert method - Will be removed in version 1.2.0.
+    [[deprecated("Use xtd::diagnostics::trace::assert method - Will be removed in version 1.2.0.)")]]
       static auto cassert(bool condition, const xtd::string& message, const xtd::diagnostics::stack_frame& stack_frame = xtd::diagnostics::stack_frame::current()) -> void {
         #if TRACE
         if (__should_aborted__(stack_frame, condition, message)) __xtd_debugbreak();
         #endif
       }
-      /// @brief Checks for a condition; if the condition is `false`, displays a message box that shows the call stack.
-      /// @param condition The conditional expression to evaluate. If the condition is `true`, a failure message is not sent and the message box is not displayed.
-      /// @param message The message to send to the xtd::diagnostics::debug::listeners collection.
-      /// @param detail_message The detailed message to send to the xtd::diagnostics::debug::listeners collection.
-      /// @param stack_frame The (optional) stack frame corresponding to the generated assert.
-      /// @deprecated Use xtd::diagnostics::trace::assert method - Will be removed in version 1.2.0.
-      [[deprecated("Use xtd::diagnostics::trace::assert method - Will be removed in version 1.2.0.)")]]
+    /// @brief Checks for a condition; if the condition is `false`, displays a message box that shows the call stack.
+    /// @param condition The conditional expression to evaluate. If the condition is `true`, a failure message is not sent and the message box is not displayed.
+    /// @param message The message to send to the xtd::diagnostics::debug::listeners collection.
+    /// @param detail_message The detailed message to send to the xtd::diagnostics::debug::listeners collection.
+    /// @param stack_frame The (optional) stack frame corresponding to the generated assert.
+    /// @deprecated Use xtd::diagnostics::trace::assert method - Will be removed in version 1.2.0.
+    [[deprecated("Use xtd::diagnostics::trace::assert method - Will be removed in version 1.2.0.)")]]
       static auto cassert(bool condition, const xtd::string& message, const xtd::string& detail_message, const xtd::diagnostics::stack_frame& stack_frame = xtd::diagnostics::stack_frame::current()) -> void {
         #if TRACE
         if (__should_aborted__(stack_frame, condition, message, detail_message)) __xtd_debugbreak();
         #endif
       }
       
-      /// @brief Emits the specified error message.
-      /// @param message A message to emit.
-      /// @remarks The default behavior is that the default_trace_listener outputs the message to a message box when the application is running in user interface mode and to the TraceListener instances in the Listeners collection.
-      /// @note The display of the message box is dependent on the presence of the default_trace_listener. If the default_trace_listener is not in the listeners collection, the message box is not displayed. The default_trace_listener can be removed by the <clear>, the <remove>, or by calling the clear method on the listeners property (xtd::diagnostics::trace::listeners().clear()).
-      static auto fail(const xtd::string& message) -> void {
+    /// @brief Emits the specified error message.
+    /// @param message A message to emit.
+    /// @remarks The default behavior is that the default_trace_listener outputs the message to a message box when the application is running in user interface mode and to the TraceListener instances in the Listeners collection.
+    /// @note The display of the message box is dependent on the presence of the default_trace_listener. If the default_trace_listener is not in the listeners collection, the message box is not displayed. The default_trace_listener can be removed by the <clear>, the <remove>, or by calling the clear method on the listeners property (xtd::diagnostics::trace::listeners().clear()).
+    static auto fail(const xtd::string& message) -> void {
         #if TRACE
         fail__(message);
         #endif
@@ -341,35 +341,35 @@ namespace xtd {
         if (condition) write_(message);
         #endif
       }
-      /// @brief Writes a message to the trace listeners in the Listeners collection if a condition is `true`.
-      /// @param condition `true` to cause a message to be written; otherwise, `false`.
-      /// @param message A message to write.
-      /// @remarks By default, the output is written to an instance of default_trace_listener.
-      /// @remarks This method calls the write method of the trace listener.
-      template<typename object_t>
-      static auto write_if(bool condition, const object_t& message) -> void {
+    /// @brief Writes a message to the trace listeners in the Listeners collection if a condition is `true`.
+    /// @param condition `true` to cause a message to be written; otherwise, `false`.
+    /// @param message A message to write.
+    /// @remarks By default, the output is written to an instance of default_trace_listener.
+    /// @remarks This method calls the write method of the trace listener.
+    template<typename object_t>
+    static auto write_if(bool condition, const object_t& message) -> void {
         #if TRACE
         if (condition) write_(xtd::string::format("{}", message));
         #endif
       }
-      /// @brief Writes a category name and message to the trace listeners in the Listeners collection if a condition is `true`.
-      /// @param condition `true` to cause a message to be written; otherwise, `false`.
-      /// @param message A message to write.
-      /// @param category A category name used to organize the output.
-      /// @remarks By default, the output is written to an instance of default_trace_listener.
-      /// @remarks This method calls the write method of the trace listener.
-      template<typename object_t>
-      static auto write_if(bool condition, const object_t& message, const xtd::string& category) -> void {
+    /// @brief Writes a category name and message to the trace listeners in the Listeners collection if a condition is `true`.
+    /// @param condition `true` to cause a message to be written; otherwise, `false`.
+    /// @param message A message to write.
+    /// @param category A category name used to organize the output.
+    /// @remarks By default, the output is written to an instance of default_trace_listener.
+    /// @remarks This method calls the write method of the trace listener.
+    template<typename object_t>
+    static auto write_if(bool condition, const object_t& message, const xtd::string& category) -> void {
         #if TRACE
         if (condition) write_(xtd::string::format("{}", message), category);
         #endif
       }
       
-      /// @brief Writes a line terminator to the trace listeners in the listeners collection.
-      /// @param message A message to write.
-      /// @remarks By default, the output is written to an instance of default_trace_listener.
-      /// @remarks This method calls the write method of the trace listener.
-      static auto write_line() -> void {
+    /// @brief Writes a line terminator to the trace listeners in the listeners collection.
+    /// @param message A message to write.
+    /// @remarks By default, the output is written to an instance of default_trace_listener.
+    /// @remarks This method calls the write method of the trace listener.
+    static auto write_line() -> void {
         #if TRACE
         write_line_("");
         #endif
@@ -434,33 +434,33 @@ namespace xtd {
         if (condition) write_line_(message);
         #endif
       }
-      /// @brief Writes a message followed by a line terminator to the trace listeners in the Listeners collection if a condition is `true`.
-      /// @param condition `true` to cause a message to be written; otherwise, `false`.
-      /// @param message A message to write.
-      /// @remarks By default, the output is written to an instance of default_trace_listener.
-      /// @remarks This method calls the write method of the trace listener.
-      template<typename object_t>
-      static auto write_line_if(bool condition, const object_t& message) -> void {
+    /// @brief Writes a message followed by a line terminator to the trace listeners in the Listeners collection if a condition is `true`.
+    /// @param condition `true` to cause a message to be written; otherwise, `false`.
+    /// @param message A message to write.
+    /// @remarks By default, the output is written to an instance of default_trace_listener.
+    /// @remarks This method calls the write method of the trace listener.
+    template<typename object_t>
+    static auto write_line_if(bool condition, const object_t& message) -> void {
         #if TRACE
         if (condition) write_line_(xtd::string::format("{}", message));
         #endif
       }
-      /// @brief Writes a category name and message followed by a line terminator to the trace listeners in the Listeners collection if a condition is `true`.
-      /// @param condition `true` to cause a message to be written; otherwise, `false`.
-      /// @param message A message to write.
-      /// @param category A category name used to organize the output.
-      /// @remarks By default, the output is written to an instance of default_trace_listener.
-      /// @remarks This method calls the write method of the trace listener.
-      template<typename object_t>
-      static auto write_line_if(bool condition, const object_t& message, const xtd::string& category) -> void {
+    /// @brief Writes a category name and message followed by a line terminator to the trace listeners in the Listeners collection if a condition is `true`.
+    /// @param condition `true` to cause a message to be written; otherwise, `false`.
+    /// @param message A message to write.
+    /// @param category A category name used to organize the output.
+    /// @remarks By default, the output is written to an instance of default_trace_listener.
+    /// @remarks This method calls the write method of the trace listener.
+    template<typename object_t>
+    static auto write_line_if(bool condition, const object_t& message, const xtd::string& category) -> void {
         #if TRACE
         if (condition) write_line_(xtd::string::format("{}", message), category);
         #endif
       }
-      /// @}
-      
-      /// @cond
-      [[nodiscard]] static auto __should_aborted__(const xtd::diagnostics::stack_frame& stack_frame, bool condition) -> bool {return __should_aborted__(stack_frame, condition, xtd::string::empty_string);}
+    /// @}
+    
+    /// @cond
+    [[nodiscard]] static auto __should_aborted__(const xtd::diagnostics::stack_frame& stack_frame, bool condition) -> bool {return __should_aborted__(stack_frame, condition, xtd::string::empty_string);}
       [[nodiscard]] static auto __should_aborted__(const xtd::diagnostics::stack_frame& stack_frame, bool condition, const xtd::string& message) -> bool {return __should_aborted__(stack_frame, condition, message, xtd::string::empty_string);}
       [[nodiscard]] static auto __should_aborted__(const xtd::diagnostics::stack_frame& stack_frame, bool condition, const xtd::string& message, const xtd::string& detail_message) -> bool {
         #if TRACE

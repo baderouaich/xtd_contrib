@@ -87,13 +87,13 @@ namespace {
         if (std::filesystem::exists(std::filesystem::current_path() / file_name_with_extension)) return (std::filesystem::current_path() / file_name_with_extension).string();
       } catch (...) {
       }
-
+      
       for (const auto& directory : splitter(path_directories, {':'}, std::numeric_limits<size_t>::max(), false))
         try {
           if (exists(std::filesystem::path(directory) / file_name_with_extension)) return (std::filesystem::path(directory) / file_name_with_extension).string();
         } catch (...) {
         }
-
+        
     }
     return file_name;
   }
@@ -109,7 +109,7 @@ namespace {
   
   bool is_valid_uri(const std::string& command_line) {
     static auto schemes = std::vector<std::string> {"file", "ftp", "gopher", "http", "https", "mailto", "net.pipe", "net.tcp", "news", "nntp"};
-    auto iterator = std::find_if(schemes.begin(), schemes.end(), [&](const auto& scheme) {return command_line.find(scheme + ":") == 0;});
+    auto iterator = std::find_if(schemes.begin(), schemes.end(), [&](const auto & scheme) {return command_line.find(scheme + ":") == 0;});
     return iterator != schemes.end();
   }
   

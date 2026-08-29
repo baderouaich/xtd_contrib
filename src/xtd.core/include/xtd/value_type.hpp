@@ -50,7 +50,7 @@ namespace xtd {
     requires std::is_same_v<xtd::raw_type<other_t>, native_type> && (!std::is_same_v<xtd::raw_type<other_t>, value_type>)
     constexpr value_type(other_t&& value) noexcept : __t__ {value} {}
     /// @}
-
+    
     /// @cond
     template<typename other_t>
     requires std::is_same_v<xtd::raw_type<other_t>, native_type> && (!std::is_same_v<xtd::raw_type<other_t>, value_type>)

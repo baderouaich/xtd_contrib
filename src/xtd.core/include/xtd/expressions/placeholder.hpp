@@ -62,13 +62,13 @@ namespace xtd {
       /// @brief The operator precedence. That contains one of xtd::expressions::operator_precedence values.
       static constexpr operator_precedence precedence = operator_precedence::placeholder;
       /// @}
-
+      
       /// @name Public Constructors
       
       /// @{
       placeholder() = default;
       /// @}
-
+      
       /// @name Public Operators
       
       /// @{
@@ -76,15 +76,15 @@ namespace xtd {
       /// @return The placeholder value.
       template<typename... args_t>
       constexpr decltype(auto) operator()(args_t&&... args) const {
-        return std::get<index - 1>(std::forward_as_tuple(std::forward<args_t>(args)...));
+        return std::get < index - 1 > (std::forward_as_tuple(std::forward<args_t>(args)...));
       }
       /// @}
     };
-
+    
     /// @cond
     template <size_t index>
     constexpr auto expression::placeholder() {return xtd::expressions::placeholder<index> {};}
-
+    
     template <size_t index>
     inline auto operator <<(std::ostream& os, const placeholder<index>&) -> std::ostream& {return os << "_" << index;}
     /// @endcond

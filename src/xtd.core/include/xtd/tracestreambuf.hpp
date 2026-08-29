@@ -23,7 +23,7 @@ namespace xtd {
     auto sync() -> xtd::int32 override {
       #if TRACE
       if (!str().empty()) {
-        if (str() == "\n") xtd::diagnostics::trace::write_line();
+      if (str() == "\n") xtd::diagnostics::trace::write_line();
         else if (string(str()).ends_with('\n')) xtd::diagnostics::trace::write_line(string(str()).trim_end('\n'));
         else xtd::diagnostics::trace::write(str());
         str("");

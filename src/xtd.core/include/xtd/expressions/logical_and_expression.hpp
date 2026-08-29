@@ -57,7 +57,7 @@ namespace xtd {
       /// @cond
       friend inline auto operator <<(std::ostream& os, const logical_and_expression& e) -> std::ostream& {return os << expression_stream {e.left, e.precedence} << " && " << expression_stream {e.right, e.precedence};}
       /// @endcond
-
+      
     private:
       [[no_unique_address]] left_t left;
       [[no_unique_address]] right_t right;

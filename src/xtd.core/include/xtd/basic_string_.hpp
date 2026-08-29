@@ -26,11 +26,11 @@ template<typename char_t, typename traits_t, typename allocator_t>
 inline auto xtd::basic_string<char_t, traits_t, allocator_t>::index_of_any(const xtd::array<value_type>& values, xtd::usize start_index, xtd::usize count) const -> xtd::usize {
   if (start_index > length() || start_index + count > length()) xtd::helpers::throw_helper::throws(xtd::helpers::exception_case::index_out_of_range);
   auto index = xtd::usize {0};
-  for (const auto& item : self_) {
+for (const auto& item : self_) {
     if (index++ < start_index) continue;
-    if (index - 1 > start_index + count) break;
-    if (std::find(values.items().begin(), values.items().end(), item) != values.items().end()) return index - 1;
-  }
+      if (index - 1 > start_index + count) break;
+      if (std::find(values.items().begin(), values.items().end(), item) != values.items().end()) return index - 1;
+    }
   return npos;
 }
 
@@ -65,9 +65,9 @@ inline auto xtd::basic_string<char_t, traits_t, allocator_t>::last_index_of_any(
   auto index = length() - 1;
   for (auto iterator = chars().crbegin(); iterator != chars().crend(); ++iterator) {
     if (index-- > start_index + count) continue;
-    if (index + 1 < start_index) break;
-    if (std::find(values.items().begin(), values.items().end(), *iterator) != values.items().end()) return index + 1;
-  }
+      if (index + 1 < start_index) break;
+      if (std::find(values.items().begin(), values.items().end(), *iterator) != values.items().end()) return index + 1;
+    }
   return npos;
 }
 
@@ -222,9 +222,9 @@ inline auto xtd::basic_string<char_t, traits_t, allocator_t>::trim_end(const xtd
   if (!length()) return self_;
   auto result = chars_;
   while (std::find(trim_chars.items().begin(), trim_chars.items().end(), result[result.size() - 1]) != trim_chars.items().end())
-    result.erase(result.size() - 1, 1);
-  return result;
-}
+      result.erase(result.size() - 1, 1);
+      return result;
+    }
 
 template<typename char_t, typename traits_t, typename allocator_t>
 inline auto xtd::basic_string<char_t, traits_t, allocator_t>::trim_start(value_type trim_char) const noexcept -> basic_string {return trim_start(xtd::array<value_type> {trim_char});}
@@ -234,9 +234,9 @@ inline xtd::basic_string<char_t, traits_t, allocator_t> xtd::basic_string<char_t
   if (!length()) return self_;
   auto result = chars_;
   while (std::find(trim_chars.items().begin(), trim_chars.items().end(), result[0]) != trim_chars.items().end())
-    result.erase(0, 1);
-  return result;
-}
+      result.erase(0, 1);
+      return result;
+    }
 
 template<typename char_t, typename traits_t, typename allocator_t>
 inline auto xtd::basic_string<char_t, traits_t, allocator_t>::concat(const xtd::array<basic_string>& values) noexcept -> basic_string {

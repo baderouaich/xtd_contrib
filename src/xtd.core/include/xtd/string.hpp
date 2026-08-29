@@ -88,7 +88,7 @@ namespace xtd {
   [[nodiscard]] inline auto to_ustring(type_t val) -> xtd::string {
     return to_string(val);
   }
-
+  
   /// @cond
   namespace collections {
     namespace generic {
@@ -109,7 +109,7 @@ template<typename char_t, typename traits_t, typename allocator_t>
 auto xtd::basic_string<char_t, traits_t, allocator_t>::operator [](const xtd::index& index) const -> const_reference {return operator [](index.get_offset(length()));}
 
 template<typename char_t, typename traits_t, typename allocator_t>
-auto xtd::basic_string<char_t, traits_t, allocator_t>::operator ()(const xtd::index& index) const -> const_reference {return operator [](index);}
+auto xtd::basic_string<char_t, traits_t, allocator_t>::operator()(const xtd::index& index) const -> const_reference {return operator [](index);}
 
 template<typename type_t>
 [[nodiscard]] inline auto __to_string_istringable_to_string(const xtd::istringable<type_t>* obj) -> std::string {

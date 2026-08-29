@@ -59,7 +59,7 @@ namespace xtd::serialization::tests {
       };
       assert::is_true(is<int64>(v["integer"]));
       assert::is_true(as<int64>(v["integer"]));
-
+      
       assert::is_false(is<int64>(v["not integer"]));
       assert::throws<invalid_cast_exception>([&] {[[maybe_unused]] auto __ = as<int64>(v["not integer"]);});
     }

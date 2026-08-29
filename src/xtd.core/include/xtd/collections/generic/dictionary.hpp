@@ -334,10 +334,10 @@ namespace xtd {
           if (!try_add(key, value)) xtd::helpers::throw_helper::throws(xtd::helpers::exception_case::argument);
         }
         
-        /// @brief Adds an item to the xtd::collections::generic::icollection <type_t>.
-        /// @param item The object to add to the xtd::collections::generic::icollection <type_t>.
-        /// @exception xtd::not_supported_exception The xtd::collections::generic::icollection <type_t> is read-only.
-        auto add(const value_type & item) -> void override {
+      /// @brief Adds an item to the xtd::collections::generic::icollection <type_t>.
+      /// @param item The object to add to the xtd::collections::generic::icollection <type_t>.
+      /// @exception xtd::not_supported_exception The xtd::collections::generic::icollection <type_t> is read-only.
+      auto add(const value_type & item) -> void override {
           add(item.key(), item.value());
         }
         
@@ -370,25 +370,25 @@ namespace xtd {
         /// @return `true` if the xtd::collections::generic::dictionary <key_t, value_t> contains an element with the specified `key` ; otherwise, `false`.
         /// @remarks This method performs a linear search; therefore, the average execution time is proportional to xtd::collections::generic::dictionary::count. That is, this method is an O(n) operation, where n is xtd::collections::generic::dictionary::count.
         [[nodiscard]] auto contains_value(const value_t& value) const noexcept -> bool {
-          for (const auto& [item_key, item_value] : self_)
+for (const auto& [item_key, item_value] : self_)
             if (item_value == value) return true;
-          return false;
-        }
-        
-        /// @brief Copies the elements of the xtd::collections::generic::icollection <type_t> to an xtd::array, starting at a particular xtd::array index.
-        /// @param array The one-dimensional xtd::array that is the destination of the elements copied from xtd::collections::generic::icollection <type_t>. The xtd::array must have zero-based indexing.
-        /// @param array_index The zero-based index in `array` at which copying begins.
-        /// @exception xtd::argument_exception The number of elements in the source xtd::collections::generic::icollection <type_t> is greater than the available space from `array_index` to the end of the destination `array`.
-        auto copy_to(xtd::array < value_type >& array, xtd::usize array_index) const -> void override {
+            return false;
+          }
+          
+      /// @brief Copies the elements of the xtd::collections::generic::icollection <type_t> to an xtd::array, starting at a particular xtd::array index.
+      /// @param array The one-dimensional xtd::array that is the destination of the elements copied from xtd::collections::generic::icollection <type_t>. The xtd::array must have zero-based indexing.
+      /// @param array_index The zero-based index in `array` at which copying begins.
+      /// @exception xtd::argument_exception The number of elements in the source xtd::collections::generic::icollection <type_t> is greater than the available space from `array_index` to the end of the destination `array`.
+      auto copy_to(xtd::array < value_type >& array, xtd::usize array_index) const -> void override {
           if (array_index + count() > array.length()) xtd::helpers::throw_helper::throws(xtd::helpers::exception_case::argument);
-          for (const auto& item : self_)
+for (const auto& item : self_)
             array[array_index++] = item;
-        }
-        
-        /// @brief Ensures that the dictionary can hold up to a specified number of entries without any further expansion of its backing storage.
-        /// @param capacity The number of entries.
-        /// @return The current capacity of the xtd::collections::generic::dictionary <key_t, value_t>.
-        auto ensure_capacity(xtd::usize capacity) noexcept -> size_type {
+          }
+          
+      /// @brief Ensures that the dictionary can hold up to a specified number of entries without any further expansion of its backing storage.
+      /// @param capacity The number of entries.
+      /// @return The current capacity of the xtd::collections::generic::dictionary <key_t, value_t>.
+      auto ensure_capacity(xtd::usize capacity) noexcept -> size_type {
           data_->items.reserve(capacity);
           return self_.capacity();
         }
@@ -444,10 +444,10 @@ namespace xtd {
           return items().erase(item.key()) == 1;
         }
         
-        /// @brief Removes the value with the specified key from the xtd::collections::generic::dictionary <key_t, value_t>, and copies the element to the `value` parameter.
-        /// @param key The key of the element to remove.
-        /// @param value The removed element.
-        auto remove(const key_t & key, value_t& value) noexcept -> bool {
+      /// @brief Removes the value with the specified key from the xtd::collections::generic::dictionary <key_t, value_t>, and copies the element to the `value` parameter.
+      /// @param key The key of the element to remove.
+      /// @param value The removed element.
+      auto remove(const key_t & key, value_t& value) noexcept -> bool {
           auto iterator = items().find(key);
           if (iterator == items().end()) return false;
           value = iterator->value();
@@ -467,13 +467,13 @@ namespace xtd {
           items().rehash(capacity);
         }
         
-        /// @brief Sets the capacity of this dictionary to what it would be if it had been originally initialized with all its entries.
-        /// @remarks This method can be used to minimize memory overhead once it is known that no new elements will be added to the dictionary. To allocate a minimum size storage array, execute the following statements:
-        /// ```
-        /// dictionary.clear();
-        /// dictionary.trim_excess();
-        /// ```
-        auto trim_excess() -> void {
+      /// @brief Sets the capacity of this dictionary to what it would be if it had been originally initialized with all its entries.
+      /// @remarks This method can be used to minimize memory overhead once it is known that no new elements will be added to the dictionary. To allocate a minimum size storage array, execute the following statements:
+      /// ```
+      /// dictionary.clear();
+      /// dictionary.trim_excess();
+      /// ```
+      auto trim_excess() -> void {
           rehash(count());
         }
         

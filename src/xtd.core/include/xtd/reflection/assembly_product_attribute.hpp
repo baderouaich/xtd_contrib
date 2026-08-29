@@ -82,7 +82,7 @@ namespace xtd {
 }
 
 /// @cond
-auto __assembly_product_attribute__() -> xtd::sptr<xtd::reflection::assembly_product_attribute>&;
+auto __assembly_product_attribute__() -> xtd::sptr<xtd::reflection::assembly_product_attribute>& ;
 /// @endcond
 
 /// @brief Creates the assembly product information. Must be called once in your application.

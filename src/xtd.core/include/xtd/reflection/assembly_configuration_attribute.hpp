@@ -82,7 +82,7 @@ namespace xtd {
 }
 
 /// @cond
-auto __assembly_configuration_attribute__() -> xtd::sptr<xtd::reflection::assembly_configuration_attribute>&;
+auto __assembly_configuration_attribute__() -> xtd::sptr<xtd::reflection::assembly_configuration_attribute>& ;
 /// @endcond
 
 /// @brief Creates the assembly configuration information. Must be called once in your application.

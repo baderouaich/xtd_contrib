@@ -52,7 +52,7 @@ namespace xtd {
   /// @see is_value_type_v
   template<typename value_t>
   struct is_value_type<xtd::value_type<value_t>> : std::true_type {};
-
+  
   /// @brief Convenience variable template equivalent to `is_value_type_v<value_t>::value`.
   /// @par Definition
   /// ```cpp

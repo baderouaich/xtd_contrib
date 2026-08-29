@@ -90,7 +90,7 @@ namespace xtd {
         /// @param width The width of the pen in pixels.
         /// @warning Internal use only
         static auto radial_gradient(xtd::intptr pen, xtd::intptr brush, float width) -> void;
-
+        
         /// @brief Sets solid color pen with specified color, width, dash offset and dash array.
         /// @param pen the pen handle.
         /// @param a The alpha component of the color.

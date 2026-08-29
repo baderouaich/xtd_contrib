@@ -30,7 +30,7 @@ public:
     handle_.reset();
   }
   
-  bool open(const string& name) override {
+bool open(const string& name) override {
     xtd::helpers::throw_helper::throws(xtd::helpers::exception_case::invalid_operation);
   }
   

@@ -171,11 +171,11 @@ namespace xtd {
     [[nodiscard]] auto to_string() const noexcept -> xtd::string override {
       init();
       if (attribute() == xtd::enum_attribute::flags) return to_string_flags();
-      auto iterator = std::find_if(entries().begin(), entries().end(), [&](auto value)->bool {return value.first == this->value;});
-      if (iterator == entries().end()) return string::format("{}", to_int(value));
-      return iterator->second;
-    }
-    
+        auto iterator = std::find_if(entries().begin(), entries().end(), [&](auto value)->bool {return value.first == this->value;});
+        if (iterator == entries().end()) return string::format("{}", to_int(value));
+          return iterator->second;
+        }
+        
     /// @brief Converts the value of this instance to its equivalent string representation using the specified format.
     /// @param format A format string.
     /// @return The string representation of the value of this instance as specified by format.
@@ -229,15 +229,15 @@ namespace xtd {
     [[nodiscard]] static auto parse(const xtd::string& str, bool ignore_case) -> enum_type {
       enum_object<enum_type>().init();
       if (enum_object<enum_type>().attribute() == xtd::enum_attribute::flags) return parse_flags(str, ignore_case);
-      for (auto item : enum_object<enum_type>().entries())
+for (auto item : enum_object<enum_type>().entries())
         if (xtd::string::compare(str, item.second, ignore_case) == 0) return static_cast<enum_type>(item.first);
-      return to_enum(xtd::parse<int64>(str));
-    }
-    /// @}
-    
-    
-    /// @cond
-    friend auto operator << (std::ostream& os, const enum_object& value) -> std::ostream& {return os << value.to_string();}
+          return to_enum(xtd::parse<int64>(str));
+        }
+  /// @}
+  
+  
+  /// @cond
+  friend auto operator << (std::ostream& os, const enum_object& value) -> std::ostream& {return os << value.to_string();}
     /// @endcond
     
   private:
@@ -310,7 +310,7 @@ namespace xtd {
       return attribute_.value();
     }
     
-    [[nodiscard]] static auto entries() noexcept -> enum_collection<enum_type>& {
+  [[nodiscard]] static auto entries() noexcept -> enum_collection<enum_type>& {
       if (entries_.has_value()) return entries_.value();
       entries_ = enum_collection<enum_type>(enum_register<enum_type>::values());
       return entries_.value();

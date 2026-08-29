@@ -26,10 +26,10 @@ namespace xtd::forms::tests {
       tab_control.dock(dock_style::fill);
       tab_control.selected_index_changed += [&] {
         if (this->tab_control.selected_index() < default_buttons.count())
-          accept_button(*default_buttons[tab_control.selected_index()]);
+        accept_button(*default_buttons[tab_control.selected_index()]);
       };
       
-      tab_page_system.parent(tab_control);
+    tab_page_system.parent(tab_control);
       tab_page_system.text("System");
       
       tab_page_standard.parent(tab_control);

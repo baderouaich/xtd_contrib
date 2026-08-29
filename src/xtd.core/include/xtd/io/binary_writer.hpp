@@ -94,7 +94,7 @@ namespace xtd {
       /// @brief Tell the current seek position of the readers stream;
       /// @return The current seek position
       [[nodiscard]] virtual auto tell() -> std::streampos;
-
+      
       /// @brief Writes a one-byte boolean value to the current stream, with 0 representing `false` and 1 representing `true`.
       /// @param value The boolean value to write (0 or 1).
       /// @exception xtd::io::io_exception An I/O error occurs.
@@ -119,26 +119,26 @@ namespace xtd {
       /// @remarks For a list of common I/O tasks, see [Common I/O Tasks](https://gammasoft71.github.io/xtd/docs/documentation/guides/xtd.core/Common%20I%3AO%20tasks).
       template<xtd::usize size>
       auto write(const std::array<xtd::byte, size>& buffer) -> void {
-        for (auto b : buffer)
-          write(b);
+for (auto b : buffer)
+        write(b);
       }
       
-      /// @brief Writes a character array to the underlying stream.
-      /// @param buffer A character array containing the data to write.
-      /// @exception xtd::io::io_exception An I/O error occurs.
-      /// @remarks For a list of common I/O tasks, see [Common I/O Tasks](https://gammasoft71.github.io/xtd/docs/documentation/guides/xtd.core/Common%20I%3AO%20tasks).
-      template<xtd::usize size>
-      auto write(const std::array<char, size>& buffer) -> void {
-        for (auto c : buffer)
-          write(c);
+    /// @brief Writes a character array to the underlying stream.
+    /// @param buffer A character array containing the data to write.
+    /// @exception xtd::io::io_exception An I/O error occurs.
+    /// @remarks For a list of common I/O tasks, see [Common I/O Tasks](https://gammasoft71.github.io/xtd/docs/documentation/guides/xtd.core/Common%20I%3AO%20tasks).
+    template<xtd::usize size>
+    auto write(const std::array<char, size>& buffer) -> void {
+for (auto c : buffer)
+        write(c);
       }
       
-      /// @brief Writes a byte array to the underlying stream.
-      /// @param buffer A byte array containing the data to write.
-      /// @exception xtd::io::io_exception An I/O error occurs.
-      /// @remarks For a list of common I/O tasks, see [Common I/O Tasks](https://gammasoft71.github.io/xtd/docs/documentation/guides/xtd.core/Common%20I%3AO%20tasks).
-      virtual auto write(const xtd::read_only_span<xtd::byte>& buffer) -> void;
-      
+    /// @brief Writes a byte array to the underlying stream.
+    /// @param buffer A byte array containing the data to write.
+    /// @exception xtd::io::io_exception An I/O error occurs.
+    /// @remarks For a list of common I/O tasks, see [Common I/O Tasks](https://gammasoft71.github.io/xtd/docs/documentation/guides/xtd.core/Common%20I%3AO%20tasks).
+    virtual auto write(const xtd::read_only_span<xtd::byte>& buffer) -> void;
+    
       /// @brief Writes a region of a byte array to the current stream.
       /// @param buffer A byte array containing the data to write.
       /// @param index The index of the first byte to read from buffer and to write to the stream.

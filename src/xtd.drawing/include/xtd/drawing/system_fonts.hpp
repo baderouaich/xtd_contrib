@@ -78,10 +78,10 @@ namespace xtd {
       
       /// @{
       /// @brief Gets an array of system fonts.
-      [[nodiscard]] static auto get_fonts() -> const xtd::array<xtd::drawing::font>&;
+      [[nodiscard]] static auto get_fonts() -> const xtd::array<xtd::drawing::font>& ;
       
       /// @brief Gets an array of system font names.
-      [[nodiscard]] static auto get_font_names() -> const xtd::array<xtd::string>&;
+      [[nodiscard]] static auto get_font_names() -> const xtd::array<xtd::string>& ;
       /// @}
     };
   }

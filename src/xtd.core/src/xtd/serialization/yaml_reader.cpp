@@ -13,29 +13,29 @@ using namespace xtd::serialization;
 namespace xtd::internal {
   auto parse_node(const fkyaml::node& node) -> any_object {
     if (node.is_mapping()) {
-      auto result = yaml::mapping_type {};
-      for (auto&& [key, value] : node.as_map())
+    auto result = yaml::mapping_type {};
+    for (auto&& [key, value] : node.as_map())
         result.nodes().add(key.as_str(), parse_node(value));
       return result;
     }
     
     if (node.is_sequence()) {
-      auto result = yaml::sequence_type {};
-      for (auto&& value : node.as_seq())
+    auto result = yaml::sequence_type {};
+    for (auto&& value : node.as_seq())
         result.add(parse_node(value));
       return result;
     }
     
     if (node.is_null()) return null;
     if (node.is_boolean()) return xtd::as<yaml::boolean_type>(node.as_bool());
-    if (node.is_integer()) return xtd::as<yaml::integer_type>(node.as_int());
-    if (node.is_float_number()) return xtd::as<yaml::floating_point_type>(node.as_float());
-    if (node.is_string()) {
-      auto result = uint64 {};
-      if (uint64_object::try_parse(node.as_str(), result) && result > as<uint64>(int64_object::max_value)) return result;
-      return xtd::as<yaml::string_type>(node.as_str());
-    }
-
+      if (node.is_integer()) return xtd::as<yaml::integer_type>(node.as_int());
+        if (node.is_float_number()) return xtd::as<yaml::floating_point_type>(node.as_float());
+          if (node.is_string()) {
+            auto result = uint64 {};
+            if (uint64_object::try_parse(node.as_str(), result) && result > as<uint64>(int64_object::max_value)) return result;
+              return xtd::as<yaml::string_type>(node.as_str());
+            }
+            
     throw_helper::throws(exception_case::format, "Unsupported YAML node type");
   }
   

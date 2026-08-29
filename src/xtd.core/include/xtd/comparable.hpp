@@ -10,6 +10,6 @@ namespace xtd {
   // Since Doxygen does not work properly with the C++ concept, the documentation for this concept is declared in xtd/comparable_.hpp
   template<typename value_t>
   concept comparable =
-  xtd::less_than_comparable<value_t> &&
-  xtd::greater_than_comparable<value_t>;
+    xtd::less_than_comparable<value_t> &&
+    xtd::greater_than_comparable<value_t>;
 }

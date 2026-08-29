@@ -12,8 +12,8 @@ namespace xtd {
   // Since Doxygen does not work properly with the C++ concept, the documentation for this concept is declared in xtd/arithmeticable_.hpp
   template<typename type_t>
   concept arithmeticable =
-  xtd::addable<type_t> &&
-  xtd::divisible<type_t> &&
-  xtd::multipliable<type_t> &&
-  xtd::subtractable<type_t>;
+    xtd::addable<type_t> &&
+    xtd::divisible<type_t> &&
+    xtd::multipliable<type_t> &&
+    xtd::subtractable<type_t>;
 }

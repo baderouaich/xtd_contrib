@@ -98,10 +98,10 @@ void tab_control::tab_page_collection::push_back(const wchar* text) {
 }
 
 std::optional<tab_control::tab_page_collection::value_type> tab_control::tab_page_collection::operator [](const string& name) const {
-  for (auto item : *this)
-    if (item.get().name() == name) return item;
-  return {};
-}
+for (auto item : *this)
+  if (item.get().name() == name) return item;
+      return {};
+    }
 
 std::optional<tab_control::tab_page_collection::value_type> tab_control::tab_page_collection::operator [](const string& name) {
   for (auto item : *this)

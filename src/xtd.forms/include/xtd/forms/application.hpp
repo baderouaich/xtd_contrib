@@ -186,7 +186,7 @@ namespace xtd {
       /// @param value The current xtd::forms::style_sheets::style_sheet style sheet.
       /// @remarks For more information, see [Style sheets overview](https://gammasoft71.github.io/xtd/docs/documentation/guides/xtd.forms/Style%20sheets/style_sheets_overview).
       static auto style_sheet(const xtd::forms::style_sheets::style_sheet& value) -> void;
-
+      
       /// @brief Gets the installed xtd::forms::style_sheets::style_sheet style sheets.
       /// @return The installed xtd::forms::style_sheets::style_sheet style sheets.
       /// @remarks For more information, see [Style sheets overview](https://gammasoft71.github.io/xtd/docs/documentation/guides/xtd.forms/Style%20sheets/style_sheets_overview).

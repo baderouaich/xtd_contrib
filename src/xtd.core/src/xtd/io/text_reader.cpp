@@ -37,9 +37,9 @@ auto text_reader::read(array<char>& buffer, usize index, usize count) -> usize {
   if (index + count > buffer.length()) throw_helper::throws(exception_case::argument);
   for (auto i = 0_z; i < count; i++) {
     auto current = read();
-    if (current == EOF) return i;
-    buffer[index + i] = static_cast<char>(current);
-  }
+      if (current == EOF) return i;
+      buffer[index + i] = static_cast<char>(current);
+    }
   return count;
 }
 

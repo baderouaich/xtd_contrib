@@ -14,15 +14,15 @@ namespace xtd {
   // Since Doxygen does not work properly with the C++ concept, the documentation for this concept is declared in xtd/textual_.hpp
   template<typename type_t>
   concept textual =
-  std::same_as<xtd::raw_type<type_t>, std::string> ||
-  std::same_as<xtd::raw_type<type_t>, std::u16string> ||
-  std::same_as<xtd::raw_type<type_t>, std::u32string> ||
-  std::same_as<xtd::raw_type<type_t>, std::u8string> ||
-  std::same_as<xtd::raw_type<type_t>, std::wstring> ||
-  std::same_as<xtd::raw_type<type_t>, xtd::string> ||
-  std::same_as<xtd::raw_type<type_t>, xtd::u16string> ||
-  std::same_as<xtd::raw_type<type_t>, xtd::u32string> ||
-  std::same_as<xtd::raw_type<type_t>, xtd::u8string> ||
-  std::same_as<xtd::raw_type<type_t>, xtd::wstring> ||
-  xtd::textual_literal<type_t>;
+    std::same_as<xtd::raw_type<type_t>, std::string> ||
+    std::same_as<xtd::raw_type<type_t>, std::u16string> ||
+    std::same_as<xtd::raw_type<type_t>, std::u32string> ||
+    std::same_as<xtd::raw_type<type_t>, std::u8string> ||
+    std::same_as<xtd::raw_type<type_t>, std::wstring> ||
+    std::same_as<xtd::raw_type<type_t>, xtd::string> ||
+    std::same_as<xtd::raw_type<type_t>, xtd::u16string> ||
+    std::same_as<xtd::raw_type<type_t>, xtd::u32string> ||
+    std::same_as<xtd::raw_type<type_t>, xtd::u8string> ||
+    std::same_as<xtd::raw_type<type_t>, xtd::wstring> ||
+    xtd::textual_literal<type_t>;
 }

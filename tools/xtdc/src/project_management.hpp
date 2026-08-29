@@ -146,27 +146,27 @@ namespace xtdc_command {
     operation_status build(const xtd::string& target, bool clean_first, bool release, bool verbose = true) const {
       if (!is_path_already_exist_and_not_empty(path_)) return operation_status::not_exist;
       if (clean_first) clean(release, verbose);
-      else generate_project(verbose);
-      if (last_exit_code() != EXIT_SUCCESS) return operation_status::clean_error;
-      change_current_directory current_directory {xtd::environment::os_version().is_unix_platform() && !xtd::environment::os_version().is_macos_platform() ? xtd::io::path::combine(build_path(), release ? "Release" : "Debug") : build_path()};
-      if (xtd::environment::os_version().is_windows_platform())
-        launch_and_wait_process("cmake", xtd::string::format("--build {} --parallel {} --config {}{}{}", build_path(), xtd::environment::processor_count(), (release ? "Release" : "Debug"), xtd::string::is_empty(target) ? "" : xtd::string::format(" --target {}", target), clean_first ? xtd::string::format(" --clean-first {}", target) : ""), false, verbose);
-      else if (xtd::environment::os_version().is_macos_platform())
-        launch_and_wait_process("cmake", xtd::string::format("--build {} --parallel {} --config {}{}{}", build_path(), xtd::environment::processor_count(), (release ? "Release" : "Debug"), xtd::string::is_empty(target) ? "" : xtd::string::format(" --target {}", target), clean_first ? xtd::string::format(" --clean-first {}", target) : ""), false, verbose);
-      else
-        launch_and_wait_process("cmake", xtd::string::format("--build {}{}{}", xtd::io::path::combine(build_path(), release ? "Release" : "Debug"), xtd::string::is_empty(target) ? "" : xtd::string::format(" --target {}", target), clean_first ? xtd::string::format(" --clean-first {}", target) : "", xtd::string::format(" -- -j {}", xtd::environment::processor_count())), false, verbose);
-      return last_exit_code() == EXIT_SUCCESS ? operation_status::success : operation_status::error;
-    }
-    
-    operation_status clean(bool release, bool verbose = true) const {
+        else generate_project(verbose);
+          if (last_exit_code() != EXIT_SUCCESS) return operation_status::clean_error;
+            change_current_directory current_directory {xtd::environment::os_version().is_unix_platform() && !xtd::environment::os_version().is_macos_platform() ? xtd::io::path::combine(build_path(), release ? "Release" : "Debug") : build_path()};
+            if (xtd::environment::os_version().is_windows_platform())
+              launch_and_wait_process("cmake", xtd::string::format("--build {} --parallel {} --config {}{}{}", build_path(), xtd::environment::processor_count(), (release ? "Release" : "Debug"), xtd::string::is_empty(target) ? "" : xtd::string::format(" --target {}", target), clean_first ? xtd::string::format(" --clean-first {}", target) : ""), false, verbose);
+              else if (xtd::environment::os_version().is_macos_platform())
+                launch_and_wait_process("cmake", xtd::string::format("--build {} --parallel {} --config {}{}{}", build_path(), xtd::environment::processor_count(), (release ? "Release" : "Debug"), xtd::string::is_empty(target) ? "" : xtd::string::format(" --target {}", target), clean_first ? xtd::string::format(" --clean-first {}", target) : ""), false, verbose);
+                else
+                  launch_and_wait_process("cmake", xtd::string::format("--build {}{}{}", xtd::io::path::combine(build_path(), release ? "Release" : "Debug"), xtd::string::is_empty(target) ? "" : xtd::string::format(" --target {}", target), clean_first ? xtd::string::format(" --clean-first {}", target) : "", xtd::string::format(" -- -j {}", xtd::environment::processor_count())), false, verbose);
+                  return last_exit_code() == EXIT_SUCCESS ? operation_status::success : operation_status::error;
+                }
+                
+  operation_status clean(bool release, bool verbose = true) const {
       if (!is_path_already_exist_and_not_empty(path_)) return operation_status::not_exist;
       auto build_path = xtd::environment::os_version().is_unix_platform() && !xtd::environment::os_version().is_macos_platform() ? xtd::io::path::combine(this->build_path(), release ? "Release" : "Debug") : this->build_path();
       if (xtd::io::directory::exists(build_path)) xtd::io::directory::remove(build_path, true);
-      generate_project(verbose);
-      return last_exit_code() == EXIT_SUCCESS ? operation_status::success : operation_status::error;
-    }
-    
-    operation_status create(const xtd::string& name, project_type type, project_sdk sdk, project_language language) const {
+        generate_project(verbose);
+        return last_exit_code() == EXIT_SUCCESS ? operation_status::success : operation_status::error;
+      }
+      
+  operation_status create(const xtd::string& name, project_type type, project_sdk sdk, project_language language) const {
       auto sdks = get_valid_sdks(type);
       if (std::find(sdks.begin(), sdks.end(), sdk) == sdks.end()) return operation_status::invalid_sdk;
       auto languages = get_valid_languages(sdk);
@@ -213,29 +213,29 @@ namespace xtdc_command {
     operation_status install(bool release) const {
       if (!is_path_already_exist_and_not_empty(path_)) return operation_status::not_exist;
       change_current_directory current_directory {xtd::environment::os_version().is_unix_platform() && !xtd::environment::os_version().is_macos_platform() ? xtd::io::path::combine(build_path(), release ? "Release" : "Debug") : build_path()};
-      build("install", false, release);
-      return last_exit_code() == EXIT_SUCCESS ? operation_status::success : operation_status::error;
-    }
-    
+        build("install", false, release);
+        return last_exit_code() == EXIT_SUCCESS ? operation_status::success : operation_status::error;
+      }
+      
     xtd::string open(bool release) const {
       if (!is_path_already_exist_and_not_empty(path_)) return xtd::string::format("Path {} does not exists or is empty! Open project aborted.", path_);
       change_current_directory current_directory {xtd::environment::os_version().is_unix_platform() && !xtd::environment::os_version().is_macos_platform() ? xtd::io::path::combine(build_path(), release ? "Release" : "Debug") : build_path()};
       generate_project();
       if (last_exit_code() != EXIT_SUCCESS) return "Generation error! Open project aborted.";
-      auto xtdc_default_ide = xtd::environment::get_environment_variable("XTDC_DEFAULT_IDE");
-      if (!xtd::string::is_empty(xtdc_default_ide)) {
-        if (xtdc_default_ide == "devenv") launch_and_wait_process(xtd::string::format("{}.sln{}", xtd::io::path::combine(build_path(), get_name()), xtd::io::file::exists(xtd::string::format("{}.slnx", xtd::io::path::combine(build_path(), get_name()))) ? "x" :""), true, false);
-        else launch_and_wait_process(xtdc_default_ide, path_, false, false);
-      } else if (xtd::environment::os_version().is_windows_platform()) launch_and_wait_process(xtd::string::format("{}.sln{}", xtd::io::path::combine(build_path(), get_name()), xtd::io::file::exists(xtd::string::format("{}.slnx", xtd::io::path::combine(build_path(), get_name()))) ? "x" :""), true, false);
-      else if (xtd::environment::os_version().is_macos_platform()) launch_and_wait_process(xtd::string::format("{}.xcodeproj", xtd::io::path::combine(build_path(), get_name())), true, false);
-      else {
-        if (xtd::io::file::exists("/usr/bin/code")) launch_and_wait_process("code", path_, false, false);
-        else if (xtd::io::file::exists("/usr/bin/gvim")) launch_and_wait_process("gvim", path_, false, false);
-        else if (xtd::io::file::exists("/usr/bin/vim")) launch_and_wait_process("vim", path_, false, false);
-        else if (xtd::io::file::exists("/usr/bin/kdevelop")) launch_and_wait_process("kdevelop", path_, false, false);
-        else if (xtd::io::file::exists("/usr/bin/qtcreator")) launch_and_wait_process("qtcreator", path_, false, false);
-        else return xtd::string::format("{0}The project {1} has not been opened bacause no IDE has been found!{0}", xtd::environment::new_line(), get_name());
-      }
+        auto xtdc_default_ide = xtd::environment::get_environment_variable("XTDC_DEFAULT_IDE");
+        if (!xtd::string::is_empty(xtdc_default_ide)) {
+          if (xtdc_default_ide == "devenv") launch_and_wait_process(xtd::string::format("{}.sln{}", xtd::io::path::combine(build_path(), get_name()), xtd::io::file::exists(xtd::string::format("{}.slnx", xtd::io::path::combine(build_path(), get_name()))) ? "x" : ""), true, false);
+            else launch_and_wait_process(xtdc_default_ide, path_, false, false);
+          } else if (xtd::environment::os_version().is_windows_platform()) launch_and_wait_process(xtd::string::format("{}.sln{}", xtd::io::path::combine(build_path(), get_name()), xtd::io::file::exists(xtd::string::format("{}.slnx", xtd::io::path::combine(build_path(), get_name()))) ? "x" : ""), true, false);
+            else if (xtd::environment::os_version().is_macos_platform()) launch_and_wait_process(xtd::string::format("{}.xcodeproj", xtd::io::path::combine(build_path(), get_name())), true, false);
+              else {
+                if (xtd::io::file::exists("/usr/bin/code")) launch_and_wait_process("code", path_, false, false);
+                else if (xtd::io::file::exists("/usr/bin/gvim")) launch_and_wait_process("gvim", path_, false, false);
+                else if (xtd::io::file::exists("/usr/bin/vim")) launch_and_wait_process("vim", path_, false, false);
+                else if (xtd::io::file::exists("/usr/bin/kdevelop")) launch_and_wait_process("kdevelop", path_, false, false);
+                else if (xtd::io::file::exists("/usr/bin/qtcreator")) launch_and_wait_process("qtcreator", path_, false, false);
+                else return xtd::string::format("{0}The project {1} has not been opened bacause no IDE has been found!{0}", xtd::environment::new_line(), get_name());
+              }
       return xtd::string::format("{0}The project {1} was opened successfully.{0}", xtd::environment::new_line(), get_name());
     }
     
@@ -244,29 +244,29 @@ namespace xtdc_command {
       change_current_directory current_directory {build_path()};
       generate_project(target);
       if (last_exit_code() != EXIT_SUCCESS) return "Generation error! Update project aborted.";
-      return xtd::string::format("{0}The roject {1} was updated sucessfully.{0}", xtd::environment::new_line(), get_name());
-    }
-    
-    xtd::string run(const xtd::string& target, bool release, bool no_wait) const {
+        return xtd::string::format("{0}The roject {1} was updated sucessfully.{0}", xtd::environment::new_line(), get_name());
+      }
+      
+  xtd::string run(const xtd::string& target, bool release, bool no_wait) const {
       if (!is_path_already_exist_and_not_empty(path_)) return xtd::string::format("Path {} does not exists or is empty! Run project aborted.", path_);
       build(target, false, release, false);
       if (last_exit_code() != EXIT_SUCCESS) return "Build error! Run project aborted.";
-      change_current_directory current_directory {xtd::environment::os_version().is_unix_platform() && !xtd::environment::os_version().is_macos_platform() ? xtd::io::path::combine(build_path(), release ? "Release" : "Debug") : build_path()};
-      auto target_path = xtd::string::is_empty(target) ? get_first_target_path(release) : get_target_path(target, release);
-      //if (xtd::string::is_empty(target_path)) return "The target does not exist! Run project aborted.";
-      if (!((xtd::environment::os_version().is_macos_platform() && is_gui(target_path) && xtd::io::directory::exists(target_path)) || xtd::io::file::exists(target_path))) return xtd::string::format("The target \"{}\" does not exist! Run project aborted.", target_path);
-      
-      xtd::diagnostics::process process;
-      process.start_info(xtd::diagnostics::process_start_info(target_path));
-      process.start_info().use_shell_execute(is_gui(target_path));
-      //xtd::console::write_line("execute : \"{}\" with arguments \"{}\"", process.start_info().file_name(), process.start_info().arguments());
-      process.start();
-      if (!no_wait) process.wait_for_exit();
-      xtd::threading::thread::sleep(250); // workaround : sometimes the terminal prompt is displayed before the end of the process.
-      return "";
-    }
-    
-    xtd::array<xtd::string> targets() const {
+        change_current_directory current_directory {xtd::environment::os_version().is_unix_platform() && !xtd::environment::os_version().is_macos_platform() ? xtd::io::path::combine(build_path(), release ? "Release" : "Debug") : build_path()};
+        auto target_path = xtd::string::is_empty(target) ? get_first_target_path(release) : get_target_path(target, release);
+        //if (xtd::string::is_empty(target_path)) return "The target does not exist! Run project aborted.";
+        if (!((xtd::environment::os_version().is_macos_platform() && is_gui(target_path) && xtd::io::directory::exists(target_path)) || xtd::io::file::exists(target_path))) return xtd::string::format("The target \"{}\" does not exist! Run project aborted.", target_path);
+        
+          xtd::diagnostics::process process;
+          process.start_info(xtd::diagnostics::process_start_info(target_path));
+          process.start_info().use_shell_execute(is_gui(target_path));
+          //xtd::console::write_line("execute : \"{}\" with arguments \"{}\"", process.start_info().file_name(), process.start_info().arguments());
+          process.start();
+          if (!no_wait) process.wait_for_exit();
+            xtd::threading::thread::sleep(250); // workaround : sometimes the terminal prompt is displayed before the end of the process.
+            return "";
+          }
+          
+  xtd::array<xtd::string> targets() const {
       static xtd::collections::generic::list<xtd::string> targets;
       if (targets.count() == 0)
         for (const auto& line : get_system_information())
@@ -280,23 +280,23 @@ namespace xtdc_command {
       change_current_directory current_directory {xtd::environment::os_version().is_unix_platform() && !xtd::environment::os_version().is_macos_platform() ? xtd::io::path::combine(build_path(), release ? "Release" : "Debug") : build_path()};
       build("", false, release);
       if (last_exit_code() != EXIT_SUCCESS) return "Build error! Test project aborted.";
-      launch_and_wait_process("ctest", xtd::string::format("--output-on-failure --build-config {}", release ? "release" : "debug"), false, false);
-      return xtd::string::format("{0}The project {1} was tested successfully.{0}", xtd::environment::new_line(), path_);
-    }
-    
-    xtd::string uninstall(bool release) const {
-      if (!is_path_already_exist_and_not_empty(path_)) return xtd::string::format("Path {} does not exists or is empty! Uninstall project aborted.", path_);
-      if (!xtd::io::file::exists(xtd::io::path::combine(xtd::environment::os_version().is_unix_platform() && !xtd::environment::os_version().is_macos_platform() ? xtd::io::path::combine(build_path(), release ? "Release" : "Debug") : build_path(), "install_manifest.txt"))) return xtd::string::format("File {} does not exists! Uninstall project aborted.", xtd::environment::os_version().is_unix_platform() && !xtd::environment::os_version().is_macos_platform() ? xtd::io::path::combine(build_path(), release ? "Release" : "Debug") : xtd::io::path::combine(build_path(), "install_manifest.txt"));
-      change_current_directory current_directory {xtd::environment::os_version().is_unix_platform() && !xtd::environment::os_version().is_macos_platform() ? xtd::io::path::combine(build_path(), release ? "Release" : "Debug") : build_path()};
-      
-      for (const auto& system_file : xtd::io::file::read_all_lines(xtd::io::path::combine((xtd::environment::os_version().is_unix_platform() && !xtd::environment::os_version().is_macos_platform() ? xtd::io::path::combine(build_path(), release ? "Release" : "Debug") : build_path()), "install_manifest.txt"))) {
-        if (xtd::io::directory::exists(system_file)) xtd::io::directory::remove(system_file, true);
-        else if (xtd::io::file::exists(system_file)) {
-          if (xtd::environment::os_version().is_macos_platform() && system_file.contains("Contents/MacOS")) xtd::io::directory::remove(system_file.remove(system_file.index_of("Contents/MacOS")), true);
-          else xtd::io::file::remove(system_file);
-        }
+        launch_and_wait_process("ctest", xtd::string::format("--output-on-failure --build-config {}", release ? "release" : "debug"), false, false);
+        return xtd::string::format("{0}The project {1} was tested successfully.{0}", xtd::environment::new_line(), path_);
       }
       
+  xtd::string uninstall(bool release) const {
+      if (!is_path_already_exist_and_not_empty(path_)) return xtd::string::format("Path {} does not exists or is empty! Uninstall project aborted.", path_);
+      if (!xtd::io::file::exists(xtd::io::path::combine(xtd::environment::os_version().is_unix_platform() && !xtd::environment::os_version().is_macos_platform() ? xtd::io::path::combine(build_path(), release ? "Release" : "Debug") : build_path(), "install_manifest.txt"))) return xtd::string::format("File {} does not exists! Uninstall project aborted.", xtd::environment::os_version().is_unix_platform() && !xtd::environment::os_version().is_macos_platform() ? xtd::io::path::combine(build_path(), release ? "Release" : "Debug") : xtd::io::path::combine(build_path(), "install_manifest.txt"));
+        change_current_directory current_directory {xtd::environment::os_version().is_unix_platform() && !xtd::environment::os_version().is_macos_platform() ? xtd::io::path::combine(build_path(), release ? "Release" : "Debug") : build_path()};
+        
+        for (const auto& system_file : xtd::io::file::read_all_lines(xtd::io::path::combine((xtd::environment::os_version().is_unix_platform() && !xtd::environment::os_version().is_macos_platform() ? xtd::io::path::combine(build_path(), release ? "Release" : "Debug") : build_path()), "install_manifest.txt"))) {
+          if (xtd::io::directory::exists(system_file)) xtd::io::directory::remove(system_file, true);
+            else if (xtd::io::file::exists(system_file)) {
+              if (xtd::environment::os_version().is_macos_platform() && system_file.contains("Contents/MacOS")) xtd::io::directory::remove(system_file.remove(system_file.index_of("Contents/MacOS")), true);
+              else xtd::io::file::remove(system_file);
+            }
+          }
+          
       xtd::io::file::remove(xtd::io::path::combine(xtd::environment::os_version().is_unix_platform() && !xtd::environment::os_version().is_macos_platform() ? xtd::io::path::combine(build_path(), release ? "Release" : "Debug") : build_path(), "install_manifest.txt"));
       return xtd::string::format("{0}The project {1} was uninstalled successfully.{0}", xtd::environment::new_line(), path_);
     }
@@ -317,58 +317,58 @@ namespace xtdc_command {
     }
     
     xtd::string get_target_path(const xtd::string& target, bool release) const {
-      for (const auto& line : get_system_information())
-        if (line.starts_with(xtd::string::format("{}_BINARY_DIR:STATIC=", target)))
+for (const auto& line : get_system_information())
+      if (line.starts_with(xtd::string::format("{}_BINARY_DIR:STATIC=", target)))
           return make_platform_target_path(line.replace(xtd::string::format("{}_BINARY_DIR:STATIC=", target), xtd::string::empty_string), target, release);
-      if (xtd::environment::os_version().is_linux()) return xtd::io::path::combine(build_path(), release ? "Release" : "Debug", target);
-      return xtd::io::path::combine(build_path(), release ? "Release" : "Debug", target, target);
-    }
-    
-    xtd::string get_first_target_path(bool release) const {
-      for (const auto& line : get_system_information())
-        if (line.index_of("_BINARY_DIR:STATIC=") != xtd::string::npos) return make_platform_target_path(line.replace(xtd::string::format("{}_BINARY_DIR:STATIC=", line.substring(0, line.index_of("_BINARY_DIR:STATIC="))), xtd::string::empty_string), line.substring(0, line.index_of("_BINARY_DIR:STATIC=")), release);
-      if (xtd::environment::os_version().is_windows_platform()) return xtd::io::path::combine(build_path(), xtd::io::path::get_file_name(path_), release ? "Release" : "Debug", xtd::io::path::get_file_name(path_));
-      if (xtd::environment::os_version().is_macos_platform()) return xtd::io::path::combine(build_path(), release ? "Release" : "Debug", xtd::io::path::get_file_name(path_), xtd::io::path::get_file_name(path_));
-      return xtd::io::path::combine(build_path(), release ? "Release" : "Debug", xtd::io::path::get_file_name(path_), xtd::io::path::get_file_name(path_));
-    }
-    
-    xtd::string make_platform_target_path(const xtd::string& path, const xtd::string& target, bool release) const {
+          if (xtd::environment::os_version().is_linux()) return xtd::io::path::combine(build_path(), release ? "Release" : "Debug", target);
+          return xtd::io::path::combine(build_path(), release ? "Release" : "Debug", target, target);
+        }
+        
+  xtd::string get_first_target_path(bool release) const {
+for (const auto& line : get_system_information())
+      if (line.index_of("_BINARY_DIR:STATIC=") != xtd::string::npos) return make_platform_target_path(line.replace(xtd::string::format("{}_BINARY_DIR:STATIC=", line.substring(0, line.index_of("_BINARY_DIR:STATIC="))), xtd::string::empty_string), line.substring(0, line.index_of("_BINARY_DIR:STATIC=")), release);
+          if (xtd::environment::os_version().is_windows_platform()) return xtd::io::path::combine(build_path(), xtd::io::path::get_file_name(path_), release ? "Release" : "Debug", xtd::io::path::get_file_name(path_));
+          if (xtd::environment::os_version().is_macos_platform()) return xtd::io::path::combine(build_path(), release ? "Release" : "Debug", xtd::io::path::get_file_name(path_), xtd::io::path::get_file_name(path_));
+            return xtd::io::path::combine(build_path(), release ? "Release" : "Debug", xtd::io::path::get_file_name(path_), xtd::io::path::get_file_name(path_));
+          }
+          
+  xtd::string make_platform_target_path(const xtd::string& path, const xtd::string& target, bool release) const {
       if (xtd::environment::os_version().is_windows_platform() && xtd::io::file::exists(xtd::io::path::combine(path, release ? "Release" : "Debug", xtd::string::format("{}.exe", target)))) return xtd::io::path::combine(path, release ? "Release" : "Debug", xtd::string::format("{}.exe", target));
       if (xtd::environment::os_version().is_macos_platform() && xtd::io::directory::exists(xtd::io::path::combine(path, release ? "Release" : "Debug", xtd::string::format("{}.app", target)))) return xtd::io::path::combine(path, release ? "Release" : "Debug", xtd::string::format("{}.app", target));
-      if (xtd::environment::os_version().is_macos_platform() && xtd::io::file::exists(xtd::io::path::combine(path, release ? "Release" : "Debug", target))) return xtd::io::path::combine(path, release ? "Release" : "Debug", target);
-      if (xtd::environment::os_version().is_unix_platform() && !xtd::environment::os_version().is_macos_platform() && xtd::io::file::exists(xtd::io::path::combine(path, target))) return xtd::io::path::combine(path, target);
-      return "";
-    }
-    
-    bool is_windows_gui_app(const xtd::string& path) const {
+        if (xtd::environment::os_version().is_macos_platform() && xtd::io::file::exists(xtd::io::path::combine(path, release ? "Release" : "Debug", target))) return xtd::io::path::combine(path, release ? "Release" : "Debug", target);
+          if (xtd::environment::os_version().is_unix_platform() && !xtd::environment::os_version().is_macos_platform() && xtd::io::file::exists(xtd::io::path::combine(path, target))) return xtd::io::path::combine(path, target);
+            return "";
+          }
+          
+  bool is_windows_gui_app(const xtd::string& path) const {
       if (!xtd::io::file::exists(path)) return false;
       auto bytes = xtd::io::file::read_all_bytes(path);
       // read PE Format : https://docs.microsoft.com/en-us/windows/win32/debug/pe-format
       if (bytes[0] != 'M' || bytes[1] != 'Z') return false;
-      return xtd::bit_converter::to_uint16(bytes, xtd::bit_converter::to_uint16(bytes, 0x3C) + 92) == 2;
-    }
-    
-    bool is_linux_gui_app(const xtd::string& path) const {
+        return xtd::bit_converter::to_uint16(bytes, xtd::bit_converter::to_uint16(bytes, 0x3C) + 92) == 2;
+      }
+      
+  bool is_linux_gui_app(const xtd::string& path) const {
       if (!xtd::io::file::exists(path)) return false;
       auto config_file = xtd::io::path::combine({xtd::environment::get_folder_path(xtd::environment::special_folder::home), ".local", "share", "applications", xtd::string::format("{}.desktop", xtd::io::path::get_file_name(path))});
-      if (!xtd::io::file::exists(config_file)) return false;
-      auto lines = xtd::io::file::read_all_lines(config_file);
-      for (const auto& line : lines)
-        if (line.to_lower() == "terminael=false") return true;
-      return false;
-    }
-    
-    bool is_macos_gui_app(const xtd::string& path) const {
+        if (!xtd::io::file::exists(config_file)) return false;
+        auto lines = xtd::io::file::read_all_lines(config_file);
+for (const auto& line : lines)
+          if (line.to_lower() == "terminael=false") return true;
+            return false;
+          }
+          
+  bool is_macos_gui_app(const xtd::string& path) const {
       return xtd::io::path::has_extension(path) && xtd::io::path::get_extension(path) == ".app";
     }
     
     bool is_gui(const xtd::string& path) const {
       if (xtd::environment::os_version().is_windows_platform()) return is_windows_gui_app(path);
       if (xtd::environment::os_version().is_macos_platform()) return is_macos_gui_app(path);
-      return is_linux_gui_app(path);
-    }
-    
-    xtd::array<xtd::string> get_system_information() const {
+        return is_linux_gui_app(path);
+      }
+      
+  xtd::array<xtd::string> get_system_information() const {
       static xtd::collections::generic::list<xtd::string> system_information;
       static bool exception_throwed = false;
       if (!exception_throwed && system_information.count() == 0) {
@@ -399,7 +399,7 @@ namespace xtdc_command {
     
     void create_console(const xtd::string& name, project_sdk sdk, project_language language, bool create_solution) const {
       switch (sdk) {
-        case project_sdk::xtd: xtd_console_project(path_).create(name, create_solution); break;
+      case project_sdk::xtd: xtd_console_project(path_).create(name, create_solution); break;
         case project_sdk::xtd_c: xtd_c_console_project(path_).create(name, create_solution); break;
         default: std::map<project_language, xtd::action<const xtd::string&, bool>> {
             {project_language::c, {c_console_project {path_}, &c_console_project::create}},
@@ -432,7 +432,7 @@ namespace xtdc_command {
     
     void create_shared_library(const xtd::string& name, project_sdk sdk, project_language language, bool create_solution) const {
       switch (sdk) {
-        case project_sdk::xtd: xtd_shared_library_project(path_).create(name, create_solution); break;
+      case project_sdk::xtd: xtd_shared_library_project(path_).create(name, create_solution); break;
         case project_sdk::xtd_c: xtd_c_shared_library_project(path_).create(name, create_solution); break;
         default: std::map<project_language, xtd::action<const xtd::string&, bool>> {
             {project_language::c, {c_shared_library_project {path_}, &c_shared_library_project::create}},
@@ -445,7 +445,7 @@ namespace xtdc_command {
     
     void create_static_library(const xtd::string& name, project_sdk sdk, project_language language, bool create_solution) const {
       switch (sdk) {
-        case project_sdk::xtd: xtd_static_library_project(path_).create(name, create_solution); break;
+      case project_sdk::xtd: xtd_static_library_project(path_).create(name, create_solution); break;
         case project_sdk::xtd_c: xtd_c_static_library_project(path_).create(name, create_solution); break;
         default: std::map<project_language, xtd::action<const xtd::string&, bool>> {
             {project_language::c, {c_static_library_project {path_}, &c_static_library_project::create}},
@@ -486,7 +486,7 @@ namespace xtdc_command {
     
     void generate_console(const xtd::string& name, project_sdk sdk, project_language language) const {
       switch (sdk) {
-        case project_sdk::xtd: xtd_console_project(path_).generate(name); break;
+      case project_sdk::xtd: xtd_console_project(path_).generate(name); break;
         case project_sdk::xtd_c: xtd_c_console_project(path_).generate(name); break;
         default: std::map<project_language, xtd::action<const xtd::string&>> {
             {project_language::c, {c_console_project {path_}, &c_console_project::generate}},
@@ -519,7 +519,7 @@ namespace xtdc_command {
     
     void generate_shared_library(const xtd::string& name, project_sdk sdk, project_language language) const {
       switch (sdk) {
-        case project_sdk::xtd: xtd_shared_library_project(path_).generate(name); break;
+      case project_sdk::xtd: xtd_shared_library_project(path_).generate(name); break;
         case project_sdk::xtd_c: xtd_c_shared_library_project(path_).generate(name); break;
         default: std::map<project_language, xtd::action<const xtd::string&>> {
             {project_language::c, {c_shared_library_project {path_}, &c_shared_library_project::generate}},
@@ -532,7 +532,7 @@ namespace xtdc_command {
     
     void generate_static_library(const xtd::string& name, project_sdk sdk, project_language language) const {
       switch (sdk) {
-        case project_sdk::xtd: xtd_static_library_project(path_).generate(name); break;
+      case project_sdk::xtd: xtd_static_library_project(path_).generate(name); break;
         case project_sdk::xtd_c: xtd_c_static_library_project(path_).generate(name); break;
         default: std::map<project_language, xtd::action<const xtd::string&>> {
             {project_language::c, {c_static_library_project {path_}, &c_static_library_project::generate}},
@@ -581,11 +581,11 @@ namespace xtdc_command {
     bool is_path_already_exist_and_not_empty(const xtd::string& path) const {
       if (!xtd::io::directory::exists(path_)) return false;
       if (xtd::io::directory::get_file_system_entries(path_).length() == 0) return false;
-      if (xtd::environment::os_version().is_macos_platform() && xtd::io::directory::get_file_system_entries(path_).length() == 1 && xtd::io::directory::get_file_system_entries(path_, ".DS_Store").length() == 1) return false;
-      return true;
-    }
-    
-    void launch_and_wait_process(const xtd::string& file_name) const {launch_and_wait_process(file_name, false);}
+        if (xtd::environment::os_version().is_macos_platform() && xtd::io::directory::get_file_system_entries(path_).length() == 1 && xtd::io::directory::get_file_system_entries(path_, ".DS_Store").length() == 1) return false;
+          return true;
+        }
+        
+  void launch_and_wait_process(const xtd::string& file_name) const {launch_and_wait_process(file_name, false);}
     void launch_and_wait_process(const xtd::string& file_name, bool shell_execute) const {launch_and_wait_process(file_name, shell_execute, false);}
     void launch_and_wait_process(const xtd::string& file_name, bool shell_execute, bool verbose) const {launch_and_wait_process(file_name, xtd::string::empty_string, shell_execute, verbose);}
     void launch_and_wait_process(const xtd::string& file_name, const xtd::string& arguments) const {launch_and_wait_process(file_name, arguments, false);}

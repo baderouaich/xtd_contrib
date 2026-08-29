@@ -490,14 +490,14 @@ namespace xtd {
       return false;
     }
   }
-
+  
   /// @cond
   template<>
   [[nodiscard]] inline auto is<xtd::null_ptr>(xtd::any value) -> bool {
     return !value.has_value();
   }
   /// @endcond
-
+  
   /// @brief Checks if the result of an expression is compatible with a given type.
   /// @par Header
   /// ```cpp
@@ -559,15 +559,15 @@ namespace xtd {
   /// xtd.core
   /// @ingroup xtd_core
   template<typename type_t, typename param_t>
-  requires (std::is_polymorphic_v<type_t> && std::is_polymorphic_v<param_t> && !std::is_null_pointer_v<type_t>)
+  requires(std::is_polymorphic_v<type_t> && std::is_polymorphic_v<param_t> && !std::is_null_pointer_v<type_t>)
   [[nodiscard]] auto is(param_t* value) -> bool {
     if (value == nullptr) return false;
     return dynamic_cast<type_t*>(value) != nullptr;
   }
-
+  
   /// @cond
   template<typename type_t, typename param_t>
-  requires ((!std::is_polymorphic_v<type_t> || !std::is_polymorphic_v<param_t>) && !std::is_null_pointer_v<type_t>)
+  requires((!std::is_polymorphic_v<type_t> || !std::is_polymorphic_v<param_t>) && !std::is_null_pointer_v<type_t>)
   [[nodiscard]] auto is(param_t* value) -> bool {
     if (value == nullptr) return false;
     return typeid(type_t).name() == typeid(param_t).name();
@@ -578,22 +578,22 @@ namespace xtd {
   [[nodiscard]] auto is(param_t* value) -> bool {
     return value == nullptr;
   }
-
+  
   template<typename type_t, typename ...args_t>
   [[nodiscard]] inline auto is(const std::variant<args_t...>& value) -> bool {
     auto result = false;
-    std::visit([&](auto&& arg) {if constexpr (std::is_same_v<std::remove_cvref_t<std::decay_t<decltype(arg)>>, std::remove_cvref_t<type_t>>) result = true;}, value);
+    std::visit([&](auto&& arg) {if constexpr(std::is_same_v<std::remove_cvref_t<std::decay_t<decltype(arg)>>, std::remove_cvref_t<type_t>>) result = true;}, value);
     return result;
   }
   
   template<typename type_t, typename ...args_t>
   [[nodiscard]] inline auto is(std::variant<args_t...>& value) -> bool {
     auto result = false;
-    std::visit([&](auto&& arg) {if constexpr (std::is_same_v<std::remove_cvref_t<std::decay_t<decltype(arg)>>, std::remove_cvref_t<type_t>>) result = true;}, value);
+    std::visit([&](auto&& arg) {if constexpr(std::is_same_v<std::remove_cvref_t<std::decay_t<decltype(arg)>>, std::remove_cvref_t<type_t>>) result = true;}, value);
     return result;
   }
   /// @endcond
-
+  
   /// @brief Checks if the result of an expression is compatible with a given type.
   /// @par Header
   /// ```cpp

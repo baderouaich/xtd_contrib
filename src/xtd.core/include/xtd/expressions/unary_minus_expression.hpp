@@ -56,7 +56,7 @@ namespace xtd {
       /// @cond
       friend inline auto operator <<(std::ostream& os, const unary_minus_expression& e) -> std::ostream& {return os << "-" << expression_stream {e.value, e.precedence};}
       /// @endcond
-
+      
     private:
       [[no_unique_address]] value_t value;
     };
@@ -65,7 +65,7 @@ namespace xtd {
     template<typename vakue_t>
     requires std::is_base_of_v<expression, std::decay_t<vakue_t>>
     constexpr auto expression::negate(vakue_t value) {return expression::unary_minus(std::move(value));}
-
+    
     template<typename vakue_t>
     requires std::is_base_of_v<expression, std::decay_t<vakue_t>>
     constexpr auto expression::unary_minus(vakue_t value) {
@@ -73,7 +73,7 @@ namespace xtd {
       return unary_minus_expression<std::decay_t<decltype(expression)>> {std::move(expression)};
     }
     /// @endcond
-
+    
     /// @name Public Operators
     
     /// @{

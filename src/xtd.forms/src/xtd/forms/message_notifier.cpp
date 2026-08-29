@@ -116,7 +116,7 @@ namespace {
           // TODO
           //mn.on_notifier_closed(notifier_closed_event_args(std::nullopt));
         };
-        buttons_.add(std::move(btn));
+      buttons_.add(std::move(btn));
       }
       
       // Buttons
@@ -132,7 +132,7 @@ namespace {
           // mn.on_button_click(notifier_button_click_event_args(_btn));
           form::close();
         };
-        buttons_.add(std::move(btn));
+      buttons_.add(std::move(btn));
       }
       
       // Auto close timeout if enabled

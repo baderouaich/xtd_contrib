@@ -116,7 +116,7 @@ namespace {
     inline static std::shared_ptr<terminal_mode> terminal_mode_;
     inline static std::queue<std::int8_t> peek_characters_;
   };
-
+  
   class key_info {
   public:
     class input_list {
@@ -572,15 +572,15 @@ namespace {
       if (snd_pcm_open(&pcm_handle, "default", SND_PCM_STREAM_PLAYBACK, 0)) return;
       if (snd_pcm_set_params(pcm_handle, SND_PCM_FORMAT_U8, SND_PCM_ACCESS_RW_INTERLEAVED, 1, sample_rate, 1, 20000) < 0) {
         snd_pcm_close(pcm_handle);
-        pcm_handle = nullptr;
-      }
+          pcm_handle = nullptr;
+        }
     }
     
     ~audio() noexcept {
       if (pcm_handle) snd_pcm_close(pcm_handle);
     }
     
-    static bool beep(uint32_t frequency, uint32_t duration) {
+  static bool beep(uint32_t frequency, uint32_t duration) {
       if (!pcm_handle || frequency < 37 || frequency > 32767) return false;
       
       unsigned int total_frames = (duration / 1000.0) * sample_rate;

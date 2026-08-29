@@ -65,18 +65,18 @@ array<byte> bit_converter::get_bytes(xtd::byte value) noexcept {
 
 array<byte> bit_converter::get_bytes(uint16 value) noexcept {
   if (is_little_endian) return {xtd::byte(value & 0x00FF), xtd::byte((value & 0xFF00) >> 8)};
-  return {xtd::byte((value & 0xFF00) >> 8), xtd::byte(value & 0x00FF)};
-}
+    return {xtd::byte((value & 0xFF00) >> 8), xtd::byte(value & 0x00FF)};
+  }
 
 array<byte> bit_converter::get_bytes(uint32 value) noexcept {
   if (is_little_endian) return {xtd::byte(value & 0x000000FF), xtd::byte((value & 0x0000FF00) >> 8), xtd::byte((value & 0x00FF0000) >> 16), xtd::byte((value & 0xFF000000) >> 24)};
-  return {xtd::byte((value & 0xFF000000) >> 24), xtd::byte((value & 0x00FF0000) >> 16), xtd::byte((value & 0x0000FF00) >> 8), xtd::byte(value & 0x000000FF)};
-}
+    return {xtd::byte((value & 0xFF000000) >> 24), xtd::byte((value & 0x00FF0000) >> 16), xtd::byte((value & 0x0000FF00) >> 8), xtd::byte(value & 0x000000FF)};
+  }
 
 array<byte> bit_converter::get_bytes(uint64 value) noexcept {
   if (is_little_endian) return {xtd::byte(value & 0x00000000000000FF), xtd::byte((value & 0x000000000000FF00) >> 8), xtd::byte((value & 0x0000000000FF0000) >> 16), xtd::byte((value & 0x00000000FF000000) >> 24), xtd::byte((value & 0x000000FF00000000) >> 32), xtd::byte((value & 0x0000FF0000000000) >> 40), xtd::byte((value & 0x00FF000000000000) >> 48), xtd::byte((value & 0xFF00000000000000) >> 56)};
-  return {xtd::byte((value & 0xFF00000000000000) >> 56), xtd::byte((value & 0x00FF000000000000) >> 48), xtd::byte((value & 0x0000FF0000000000) >> 40), xtd::byte((value & 0x000000FF00000000) >> 32), xtd::byte((value & 0x00000000FF000000) >> 24), xtd::byte((value & 0x0000000000FF0000) >> 16), xtd::byte((value & 0x000000000000FF00) >> 8), xtd::byte(value & 0x00000000000000FF)};
-}
+    return {xtd::byte((value & 0xFF00000000000000) >> 56), xtd::byte((value & 0x00FF000000000000) >> 48), xtd::byte((value & 0x0000FF0000000000) >> 40), xtd::byte((value & 0x000000FF00000000) >> 32), xtd::byte((value & 0x00000000FF000000) >> 24), xtd::byte((value & 0x0000000000FF0000) >> 16), xtd::byte((value & 0x000000000000FF00) >> 8), xtd::byte(value & 0x00000000000000FF)};
+  }
 
 array<byte> bit_converter::get_bytes(slong value) noexcept {
   return bit_converter::get_bytes(uint64(value));

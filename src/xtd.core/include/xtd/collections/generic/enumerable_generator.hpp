@@ -52,7 +52,7 @@ namespace xtd {
           
           /// @brief Represents the current exception if exception occured.
           std::exception_ptr exception;
-
+          
           
           /// @brief Creates and returns the public instance of the xtd::collections::generic::enumerable_generator linked to this promise state.
           /// @return A new xtd::collections::generic::enumerable_generator instance wrapping the underlying coroutine handle.
@@ -62,12 +62,12 @@ namespace xtd {
           /// @return An object that forces the coroutine to suspend immediately, ensuring **lazy evaluation** behavior.
           /// @remarks The generator will not execute any code until the very first call to xtd::collections::generic::ienumerator::move_next is triggered.
           std::suspend_always initial_suspend() noexcept {return {};}
-
+          
           /// @brief Defines the final suspension behavior of the coroutine upon completion.
           /// @return An object that forces the coroutine to suspend at its endpoint.
           /// @remarks Keeping the coroutine suspended at its end prevents the handle from destroying itself prematurely, allowing the parent generator to safely manage its cleanup.
           std::suspend_always final_suspend() noexcept {return {};}
-
+          
           /// @brief Handles the completion of a coroutine function that does not return a final value (using `co_return;` or reaching the end of the body).
           void return_void() noexcept {}
           
@@ -109,22 +109,22 @@ namespace xtd {
           handle_ = std::exchange(other.handle_, {});
           return *this;
         }
-        ~enumerable_generator() override {if (handle_) handle_.destroy();}
-        /// @endcond
-        
-        /// @name Public Methods
-        
-        /// @{
-        /// @brief Returns an enumerator that iterates through the xtd::collections::generic::enumerable_generator.
-        /// @return An xtd::collections::generic::enumerator object that can be used to iterate through the xtd::collections::generic::enumerable_generator <type_t>.
-        xtd::collections::generic::enumerator<type_t> get_enumerator() const override {
+      ~enumerable_generator() override {if (handle_) handle_.destroy();}
+      /// @endcond
+      
+      /// @name Public Methods
+      
+      /// @{
+      /// @brief Returns an enumerator that iterates through the xtd::collections::generic::enumerable_generator.
+      /// @return An xtd::collections::generic::enumerator object that can be used to iterate through the xtd::collections::generic::enumerable_generator <type_t>.
+      xtd::collections::generic::enumerator<type_t> get_enumerator() const override {
           struct generator_enumerator final : xtd::collections::generic::ienumerator<type_t> {
             explicit generator_enumerator(std::coroutine_handle<promise_type> handle) : handle_(handle) {}
             const type_t& current() const override {
               if (!started_) xtd::helpers::throw_helper::throws(xtd::helpers::exception_case::invalid_operation);
               return handle_.promise().current_value;
             }
-            bool move_next() override {
+          bool move_next() override {
               started_ = true;
               if (!handle_ || handle_.done()) return false;
               
@@ -132,7 +132,7 @@ namespace xtd {
               
               if (handle_.promise().exception)
                 std::rethrow_exception(handle_.promise().exception);
-              
+                
               return !handle_.done();
             }
             void reset() override {xtd::helpers::throw_helper::throws(xtd::helpers::exception_case::not_supported);}

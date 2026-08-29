@@ -313,14 +313,14 @@ const style_sheet::status_bar_panels_t& style_sheet::status_bar_panels() const n
 const style_sheet::style_sheets_t& style_sheet::style_sheets() noexcept {
   if (!style_sheets_.empty()) return style_sheets_;
   
-  for (const auto& theme_dir : directory::enumerate_directories(environment::get_folder_path(environment::special_folder::xtd_themes))) {
+for (const auto& theme_dir : directory::enumerate_directories(environment::get_folder_path(environment::special_folder::xtd_themes))) {
     auto theme_css = string::empty_string;
     for (const auto& theme_file : directory::enumerate_files(theme_dir, "*.css"))
-      theme_css += file::read_all_text(theme_file);
-    auto style = style_sheet {theme_css};
-    if (!xtd::string::is_empty(style.theme().name()))
-      style_sheets_[style.theme().name()] = style;
-  }
+        theme_css += file::read_all_text(theme_file);
+      auto style = style_sheet {theme_css};
+      if (!xtd::string::is_empty(style.theme().name()))
+        style_sheets_[style.theme().name()] = style;
+    }
   return style_sheets_;
 }
 
@@ -779,12 +779,12 @@ void style_sheet::on_system_colors_changed(const event_args& e) {
 array<string> style_sheet::split_values_from_text(const string& text) const noexcept {
   static auto color_keywords = list<string> {"rgb(", "rgba(", "argb(", "hsl(", "hsla(", "ahsl(", "hsv(", "hsva(", "ahsv(", "system-color("};
   auto string_starts_with_any = [](const string & text, const list<string>& values)->string {
-    for (const auto& value : values)
-      if (text.starts_with(value)) return value;
-    return "";
-  };
-  list<string> result;
-  auto value = text.trim();
+for (const auto& value : values)
+    if (text.starts_with(value)) return value;
+      return "";
+    };
+list<string> result;
+auto value = text.trim();
   while (!xtd::string::is_empty(value)) {
     auto color_keyword = string_starts_with_any(value, color_keywords);
     if (color_keyword != "") {
@@ -828,8 +828,8 @@ void style_sheet::control_reader(xtd::web::css::css_reader& reader) noexcept {
 }
 
 void style_sheet::fill_control(const xtd::web::css::selector_dictionary::const_iterator& selectors_iterator, xtd::forms::style_sheets::control& control) noexcept {
-  for (const auto& property : selectors_iterator->second.properties()) {
-    if (property.first == "margin") control.margin(margin_from_css(property.second.to_string(), margin(length(0))));
+for (const auto& property : selectors_iterator->second.properties()) {
+  if (property.first == "margin") control.margin(margin_from_css(property.second.to_string(), margin(length(0))));
     if (property.first == "margin-bottom") control.margin(margin_bottom_from_css(property.second.to_string(), control.margin()));
     if (property.first == "margin-left") control.margin(margin_left_from_css(property.second.to_string(), control.margin()));
     if (property.first == "margin-right") control.margin(margin_right_from_css(property.second.to_string(), control.margin()));
@@ -1084,15 +1084,15 @@ void style_sheet::theme_reader(xtd::web::css::css_reader& reader) noexcept {
 bool style_sheet::try_parse_color(const string& text, xtd::drawing::color& result) const noexcept {
   if (text.starts_with("#") && try_parse_hex_color(text, result)) return true;
   if (text.starts_with("rgb(") && text.ends_with(")") && try_parse_rgb_color(text, result)) return true;
-  if (text.starts_with("rgba(") && text.ends_with(")") && try_parse_rgba_color(text, result)) return true;
-  if (text.starts_with("hsv(") && text.ends_with(")") && try_parse_hsv_color(text, result)) return true;
-  if (text.starts_with("hsva(") && text.ends_with(")") && try_parse_hsva_color(text, result)) return true;
-  if (text.starts_with("hsl(") && text.ends_with(")") && try_parse_hsl_color(text, result)) return true;
-  if (text.starts_with("hsla(") && text.ends_with(")") && try_parse_hsla_color(text, result)) return true;
-  if (text.starts_with("system-color(") && text.ends_with(")") && try_parse_system_color(text, result)) return true;
-  if (try_parse_named_color(text, result)) return true;
-  return false;
-}
+    if (text.starts_with("rgba(") && text.ends_with(")") && try_parse_rgba_color(text, result)) return true;
+      if (text.starts_with("hsv(") && text.ends_with(")") && try_parse_hsv_color(text, result)) return true;
+        if (text.starts_with("hsva(") && text.ends_with(")") && try_parse_hsva_color(text, result)) return true;
+          if (text.starts_with("hsl(") && text.ends_with(")") && try_parse_hsl_color(text, result)) return true;
+            if (text.starts_with("hsla(") && text.ends_with(")") && try_parse_hsla_color(text, result)) return true;
+              if (text.starts_with("system-color(") && text.ends_with(")") && try_parse_system_color(text, result)) return true;
+                if (try_parse_named_color(text, result)) return true;
+                  return false;
+                }
 
 bool style_sheet::try_parse_hex_color(const string& text, color& result) const noexcept {
   if (text.starts_with("#") && text.length() == 4_z) {
@@ -1150,7 +1150,7 @@ bool style_sheet::try_parse_conic_gradient(const string& text, background_image&
     auto argument = args[1].replace("deg", string::empty_string);
     if (angle != -1 || string::try_parse<int32>(argument, angle) == false) return false;
   }
-
+  
   for (const auto& argument : arguments) {
     drawing::color gradient_color;
     if (try_parse_color(argument, gradient_color))

@@ -22,13 +22,13 @@ auto trace_listener_collection::equals(const trace_listener_collection& value) c
 }
 
 auto trace_listener_collection::operator [](const string& name) const -> const_reference {
-  for (auto& item : *this)
-    if (item->name() == name) return item;
-  return empty_;
-}
+for (auto& item : *this)
+  if (item->name() == name) return item;
+      return empty_;
+    }
 
 auto trace_listener_collection::operator [](const string& name) -> reference {
-  for (auto& item : *this)
-    if (item->name() == name) return item;
-  return empty_;
-}
+for (auto& item : *this)
+  if (item->name() == name) return item;
+      return empty_;
+    }

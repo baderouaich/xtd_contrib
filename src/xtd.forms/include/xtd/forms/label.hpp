@@ -283,7 +283,7 @@ namespace xtd {
       
       /// @name Protected Methods
       
-      /// @{      
+      /// @{
       [[nodiscard]] auto measure_control() const noexcept -> xtd::drawing::size override;
       
       auto on_font_changed(const xtd::event_args& e) -> void override;

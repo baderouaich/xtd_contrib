@@ -41,7 +41,7 @@ namespace xtd {
     /// @remarks The xtd::expressions::member mzthod is used by xtd::expressions::operator ^().
     template<typename member_t>
     constexpr auto member(member_t member) {
-      return member_type<member_t>{"<member>", member};
+      return member_type<member_t> {"<member>", member};
     }
     /// @brief The xtd::expressions::member is use to bind object member.
     /// @par Namespace
@@ -56,7 +56,7 @@ namespace xtd {
     /// @remarks The xtd::expressions::member mzthod is used by xtd::expressions::operator ^().
     template<typename member_t>
     constexpr auto member(const char* name, member_t member) {
-      return member_type<member_t>{name, member};
+      return member_type<member_t> {name, member};
     }
     
     /// @brief The xtd::expressions::as_expression method convert a type as xtd::expressions::expression or xtd::expressions::constant.
@@ -80,7 +80,7 @@ namespace xtd {
       /// @brief The operator precedence. That contains one of xtd::expressions::operator_precedence values.
       static constexpr operator_precedence precedence = operator_precedence::member_access;
       /// @}
-
+      
       /// @name Public Constructors
       
       /// @{
@@ -101,14 +101,14 @@ namespace xtd {
       /// @return The result of member.
       constexpr decltype(auto) operator()(auto&&... args) const {
         auto&& obj = expression(std::forward<decltype(args)>(args)...);
-        if constexpr (std::is_pointer_v<std::decay_t<decltype(obj)>>) return (obj->*member.member);
+        if constexpr(std::is_pointer_v<std::decay_t<decltype(obj)>>) return (obj->*member.member);
         else return (obj.*member.member);
       }
       
       /// @cond
       friend inline auto operator <<(std::ostream& os, const member_expression& e) -> std::ostream& {return os << expression_stream {e.expression, e.precedence} << "." << e.member.name;}
       /// @endcond
-
+      
     private:
       [[no_unique_address]] expression_t expression;
       [[no_unique_address]] member_t member;
@@ -154,7 +154,7 @@ namespace xtd {
       auto expr = as_expression(expression);
       return member_expression<std::decay_t<decltype(expr)>, member_type<member_t>> {std::move(expr), std::move(member)};
     }
-
+    
     /// @brief Bind member operator.
     /// @param expression The expression that associate to the  binded member.
     /// @param member The binded mehtod to execute.

@@ -25,13 +25,13 @@ namespace {
     xtd::usize OnSysRead(void* buffer, xtd::usize size) override {
       stream_.peek();
       if (stream_.fail() || stream_.bad()) m_lasterror = wxSTREAM_READ_ERROR;
-      else if (stream_.eof()) m_lasterror = wxSTREAM_EOF;
-      return stream_.readsome(static_cast<std::istream::char_type*>(buffer), size);
-    }
-    
+        else if (stream_.eof()) m_lasterror = wxSTREAM_EOF;
+          return stream_.readsome(static_cast<std::istream::char_type*>(buffer), size);
+        }
+        
     wxFileOffset OnSysSeek(wxFileOffset pos, wxSeekMode mode) override {
       switch (mode) {
-        case wxFromStart: stream_.seekg(pos, std::ios::beg); break;
+      case wxFromStart: stream_.seekg(pos, std::ios::beg); break;
         case wxFromEnd: stream_.seekg(pos, std::ios::end); break;
         case wxFromCurrent: stream_.seekg(pos, std::ios::cur); break;
       }

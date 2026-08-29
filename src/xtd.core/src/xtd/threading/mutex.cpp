@@ -111,13 +111,13 @@ bool mutex::try_open_existing(const string& name, mutex& result) noexcept {
   result.close();
   if (string::is_empty(name)) return false;
   if (name.length() > native::named_mutex::max_name_size()) return false;
-  auto new_mutex = mutex {};
-  new_mutex.name_ = name;
-  new_mutex.mutex_ = xtd::new_sptr<mutex::named_mutex>();
-  if (!new_mutex.mutex_->open(new_mutex.name_)) return false;
-  result = new_mutex;
-  return true;
-}
+    auto new_mutex = mutex {};
+    new_mutex.name_ = name;
+    new_mutex.mutex_ = xtd::new_sptr<mutex::named_mutex>();
+    if (!new_mutex.mutex_->open(new_mutex.name_)) return false;
+      result = new_mutex;
+      return true;
+    }
 
 void mutex::unlock() {
   release_mutex();

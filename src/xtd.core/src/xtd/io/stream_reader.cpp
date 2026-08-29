@@ -34,8 +34,8 @@ auto stream_reader::end_of_stream() const -> bool {
 auto stream_reader::close() -> void {
   if (stream_ && dynamic_cast<std::ifstream*>(stream_)) static_cast<std::ifstream*>(stream_)->close();
   if (delete_when_destroy_) delete stream_;
-  stream_ = nullptr;
-}
+    stream_ = nullptr;
+  }
 
 auto stream_reader::peek() const -> int32 {
   if (!stream_) return EOF;

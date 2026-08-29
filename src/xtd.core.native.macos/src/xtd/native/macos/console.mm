@@ -41,17 +41,17 @@ namespace {
       ::signal(signal, console_intercept_signals::signal_handler);
       if (treat_control_c_as_input) signal_couter_.push_back(signal_keys_[signal]);
       else if (user_cancel_callback && user_cancel_callback(signal_keys_[signal]) == false) exit(EXIT_FAILURE);
-    }
-    
-    // The SIGINT signal catcher conflicts with with xtd::environment::cancel_interrupt signal...
-    inline static std::map<int32_t, std::int32_t> signal_keys_ {{SIGQUIT, CONSOLE_SPECIAL_KEY_CTRL_BS}, {SIGTSTP, CONSOLE_SPECIAL_KEY_CTRL_Z}/*, {SIGINT, CONSOLE_SPECIAL_KEY_CTRL_C}*/};
-    static console_intercept_signals console_intercept_signals_;
-  };
-  
-  console_intercept_signals console_intercept_signals::console_intercept_signals_;
-  
-  struct terminal_mode {
-    terminal_mode() {
+      }
+      
+  // The SIGINT signal catcher conflicts with with xtd::environment::cancel_interrupt signal...
+  inline static std::map<int32_t, std::int32_t> signal_keys_ {{SIGQUIT, CONSOLE_SPECIAL_KEY_CTRL_BS}, {SIGTSTP, CONSOLE_SPECIAL_KEY_CTRL_Z}/*, {SIGINT, CONSOLE_SPECIAL_KEY_CTRL_C}*/};
+  static console_intercept_signals console_intercept_signals_;
+};
+
+console_intercept_signals console_intercept_signals::console_intercept_signals_;
+
+struct terminal_mode {
+  terminal_mode() {
       tcgetattr(0, &status_backup_);
       auto status = termios {};
       tcgetattr(0, &status);
@@ -64,11 +64,11 @@ namespace {
     ~terminal_mode() {
       tcsetattr(0, TCSANOW, &status_backup_);
     }
-
+    
   private:
     termios status_backup_;
   };
-
+  
   class terminal final {
   public:
     static auto getch() -> std::int32_t {
@@ -111,7 +111,7 @@ namespace {
     static auto reset_terminal_mode() -> void {
       terminal_mode_.reset();
     }
-
+    
   private:
     inline static std::shared_ptr<terminal_mode> terminal_mode_;
     inline static std::queue<std::int8_t> peek_characters_;
@@ -579,7 +579,7 @@ namespace {
           return;
         }
         close(dev_null);
-
+        
       }
       ~hide_log() {
         if (stderr_copy == -1) return;
@@ -614,10 +614,10 @@ namespace {
       dispatch_semaphore_signal(start_playing_semaphore);
       dispatch_semaphore_signal(end_playing_semaphore);
       if (AudioOutputUnitStop(audio_unit) != noErr) return;
-      if (AudioUnitUninitialize(audio_unit) != noErr) return;
-      AudioComponentInstanceDispose(audio_unit);
-    }
-    
+          if (AudioUnitUninitialize(audio_unit) != noErr) return;
+            AudioComponentInstanceDispose(audio_unit);
+          }
+          
     static bool beep(uint32_t frequency, std::uint32_t duration) {
       static auto audio_instance = audio {};
       

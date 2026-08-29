@@ -281,7 +281,7 @@ int32 image::flags() const noexcept {
 
 array<guid> image::frame_dimentions_list() const noexcept {
   auto result = list<guid> {};
-  std::for_each(data_->frame_dimensions.begin(), data_->frame_dimensions.end(), [&](const auto& frame) {result.add(frame.first);});
+  std::for_each(data_->frame_dimensions.begin(), data_->frame_dimensions.end(), [&](const auto & frame) {result.add(frame.first);});
   return result.to_array();
 }
 
@@ -408,7 +408,7 @@ encoder_parameters image::get_encoder_parameter_list(guid encoder) const noexcep
 }
 
 usize image::get_frame_count(const frame_dimension& dimension) const {
-  auto iterator = std::find_if(data_->frame_dimensions.begin(), data_->frame_dimensions.end(), [&](const auto& frame) {return frame.first == dimension.guid();});
+  auto iterator = std::find_if(data_->frame_dimensions.begin(), data_->frame_dimensions.end(), [&](const auto & frame) {return frame.first == dimension.guid();});
   if (iterator == data_->frame_dimensions.end()) throw_helper::throws(exception_case::argument);
   return iterator->second;
 }

@@ -67,10 +67,10 @@ auto debug::show_assert_dialog() noexcept -> bool {
 }
 
 auto debug::show_assert_dialog(bool show_assert_dialog) noexcept -> void {
-  for (auto listener : listeners())
-    if (is<default_trace_listener>(listener))
-      as<default_trace_listener>(listener)->assert_ui_enabled(show_assert_dialog);
-}
+for (auto listener : listeners())
+  if (is<default_trace_listener>(listener))
+    as<default_trace_listener>(listener)->assert_ui_enabled(show_assert_dialog);
+  }
 
 auto debug::use_global_lock() noexcept -> bool {
   return use_global_lock_;
@@ -89,8 +89,8 @@ auto debug::unindent() noexcept -> void {
 }
 
 auto debug::fail__(const string& message) -> void {
-  for (auto listener : listeners()) {
-    if (listener->indent_level() != indent_level_) listener->indent_level(indent_level_);
+for (auto listener : listeners()) {
+  if (listener->indent_level() != indent_level_) listener->indent_level(indent_level_);
     if (listener->indent_size() != indent_size_) listener->indent_size(indent_size_);
     if (!listener->is_thread_safe() && use_global_lock_) {
       std::lock_guard<std::recursive_mutex> lock {__debug_mutex__};
@@ -102,8 +102,8 @@ auto debug::fail__(const string& message) -> void {
 }
 
 auto debug::fail__(const string& message, const string& detail_message) -> void {
-  for (auto listener : listeners()) {
-    if (listener->indent_level() != indent_level_) listener->indent_level(indent_level_);
+for (auto listener : listeners()) {
+  if (listener->indent_level() != indent_level_) listener->indent_level(indent_level_);
     if (listener->indent_size() != indent_size_) listener->indent_size(indent_size_);
     if (!listener->is_thread_safe() && use_global_lock_) {
       std::lock_guard<std::recursive_mutex> lock {__debug_mutex__};
@@ -115,13 +115,13 @@ auto debug::fail__(const string& message, const string& detail_message) -> void 
 }
 
 auto debug::flush_() -> void {
-  for (auto listener : listeners())
-    listener->flush();
+for (auto listener : listeners())
+  listener->flush();
 }
 
 auto debug::trace_event_(trace_event_type trace_event_type, const string& message) -> void {
-  for (auto listener : listeners()) {
-    if (listener->indent_level() != indent_level_) listener->indent_level(indent_level_);
+for (auto listener : listeners()) {
+  if (listener->indent_level() != indent_level_) listener->indent_level(indent_level_);
     if (listener->indent_size() != indent_size_) listener->indent_size(indent_size_);
     if (!listener->is_thread_safe() && use_global_lock_) {
       std::lock_guard<std::recursive_mutex> lock {__debug_mutex__};
@@ -133,8 +133,8 @@ auto debug::trace_event_(trace_event_type trace_event_type, const string& messag
 }
 
 auto debug::write_(const string& message) -> void {
-  for (auto listener : listeners()) {
-    if (listener->indent_level() != indent_level_) listener->indent_level(indent_level_);
+for (auto listener : listeners()) {
+  if (listener->indent_level() != indent_level_) listener->indent_level(indent_level_);
     if (listener->indent_size() != indent_size_) listener->indent_size(indent_size_);
     if (!listener->is_thread_safe() && use_global_lock_) {
       std::lock_guard<std::recursive_mutex> lock {__debug_mutex__};
@@ -146,8 +146,8 @@ auto debug::write_(const string& message) -> void {
 }
 
 auto debug::write_(const string& message, const string& category) -> void {
-  for (auto listener : listeners()) {
-    if (listener->indent_level() != indent_level_) listener->indent_level(indent_level_);
+for (auto listener : listeners()) {
+  if (listener->indent_level() != indent_level_) listener->indent_level(indent_level_);
     if (listener->indent_size() != indent_size_) listener->indent_size(indent_size_);
     if (!listener->is_thread_safe() && use_global_lock_) {
       std::lock_guard<std::recursive_mutex> lock {__debug_mutex__};
@@ -159,8 +159,8 @@ auto debug::write_(const string& message, const string& category) -> void {
 }
 
 auto debug::write_line_(const string& message) -> void {
-  for (auto listener : listeners()) {
-    if (listener->indent_level() != indent_level_) listener->indent_level(indent_level_);
+for (auto listener : listeners()) {
+  if (listener->indent_level() != indent_level_) listener->indent_level(indent_level_);
     if (listener->indent_size() != indent_size_) listener->indent_size(indent_size_);
     if (!listener->is_thread_safe() && use_global_lock_) {
       std::lock_guard<std::recursive_mutex> lock {__debug_mutex__};
@@ -172,8 +172,8 @@ auto debug::write_line_(const string& message) -> void {
 }
 
 auto debug::write_line_(const string& message, const string& category) -> void {
-  for (auto listener : listeners()) {
-    if (listener->indent_level() != indent_level_) listener->indent_level(indent_level_);
+for (auto listener : listeners()) {
+  if (listener->indent_level() != indent_level_) listener->indent_level(indent_level_);
     if (listener->indent_size() != indent_size_) listener->indent_size(indent_size_);
     if (!listener->is_thread_safe() && use_global_lock_) {
       std::lock_guard<std::recursive_mutex> lock {__debug_mutex__};
@@ -201,8 +201,8 @@ auto debug::assert_dialog_caption() -> string  {
 }
 
 auto debug::internal_show_assert_dialog() noexcept -> bool {
-  for (auto listener : listeners())
-    if (is<default_trace_listener>(listener) && as<default_trace_listener>(listener)->assert_ui_enabled())
-      return true;
-  return false;
-}
+for (auto listener : listeners())
+  if (is<default_trace_listener>(listener) && as<default_trace_listener>(listener)->assert_ui_enabled())
+    return true;
+    return false;
+  }

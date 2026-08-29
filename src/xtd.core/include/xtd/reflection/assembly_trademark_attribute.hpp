@@ -80,7 +80,7 @@ namespace xtd {
 }
 
 /// @cond
-auto __assembly_trademark_attribute__() -> xtd::sptr<xtd::reflection::assembly_trademark_attribute>&;
+auto __assembly_trademark_attribute__() -> xtd::sptr<xtd::reflection::assembly_trademark_attribute>& ;
 /// @endcond
 
 /// @brief Creates the assembly trademark information. Must be called once in your application.

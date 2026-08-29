@@ -90,7 +90,7 @@ namespace xtd {
         /// @brief Sets he local IP address associated with a multicast group.
         /// @param value An xtd::net::ip_address that contains the local address associated with a multicast group.
         /// @return the current instance.
-         auto local_address(const xtd::net::ip_address& value) noexcept -> multicast_option&;
+        auto local_address(const xtd::net::ip_address& value) noexcept -> multicast_option&;
         /// @}
         
         /// @name Public Methods

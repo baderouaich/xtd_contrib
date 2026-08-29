@@ -190,10 +190,10 @@ xtd::usize wait_handle::wait_any(const array<wait_handle*>& wait_handles, int32 
   while (milliseconds_timeout == timeout::infinite || sw.elapsed_milliseconds() <= milliseconds_timeout) {
     for (auto index = 0_z; index < wait_handles.length(); ++index)
       if (wait_handles[index]->wait_one(0)) return index;
-    
+      
     thread::sleep(sleep_duration);
     sleep_duration = std::min(sleep_duration + 1, max_sleep);
   }
-
+  
   return wait_timeout;
 }

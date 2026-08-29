@@ -153,7 +153,7 @@ namespace xtd {
       template<typename path_t>
       [[nodiscard]] static auto combine(path_t paths) noexcept -> xtd::string {
         xtd::string result;
-        std::for_each(paths.begin(), paths.end(), [&](const auto& path) {result = combine(result, path);});
+        std::for_each(paths.begin(), paths.end(), [&](const auto & path) {result = combine(result, path);});
         return result;
       }
       

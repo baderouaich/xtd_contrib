@@ -37,7 +37,7 @@ namespace xtd {
       /// @{
       /// @brief Initialize a new xtd::expressions::add_expression object.
       constexpr add_expression() = default;
-
+      
       /// @brief Initialize a new xtd::expressions::add_expression object with specified left and right operands.
       /// @param left The left operand.
       /// @param right The right operand.
@@ -57,12 +57,12 @@ namespace xtd {
       /// @cond
       friend inline auto operator <<(std::ostream& os, const add_expression& e) -> std::ostream& {return os << expression_stream {e.left, e.precedence} << " + " << expression_stream {e.right, e.precedence};}
       /// @endcond
-
+      
     private:
       [[no_unique_address]] left_t left;
       [[no_unique_address]] right_t right;
     };
-
+    
     /// @cond
     template<typename left_t, typename right_t>
     requires std::is_base_of_v<expression, std::decay_t<left_t>> || std::is_base_of_v<expression, std::decay_t<right_t>>
@@ -72,7 +72,7 @@ namespace xtd {
       return add_expression<std::decay_t<decltype(left_expression)>, std::decay_t<decltype(right_expression)>> {std::move(left_expression), std::move(right_expression)};
     }
     /// @endcond
-
+    
     /// @name Public Operators
     
     /// @{

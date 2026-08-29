@@ -57,20 +57,20 @@ struct domain_up_down::data {
   xtd::usize selected_index = npos;
   item selected_item;
   bool wrap = false;
-
+  
   auto on_items_item_added(xtd::usize pos, const item& item) -> void {
     if (control.is_handle_created()) native::domain_up_down::insert_item(control.handle(), pos, item.value());
     auto selected = domain_up_down::item {};
     if (selected_index != npos && selected_index < items.count()) selected = items[selected_index];
-    control.selected_item(selected);
-  }
-  
-  auto on_items_item_removed(xtd::usize pos, const item& item) -> void {
+      control.selected_item(selected);
+    }
+    
+auto on_items_item_removed(xtd::usize pos, const item& item) -> void {
     if (control.is_handle_created()) native::domain_up_down::delete_item(control.handle(), pos);
     if (control.selected_index() == pos) control.selected_index(npos);
-  }
-  
-  auto on_items_item_updated(xtd::usize pos, const item& item) -> void {
+    }
+    
+auto on_items_item_updated(xtd::usize pos, const item& item) -> void {
     static auto update_disabled = false;
     if (update_disabled) return;
     if (control.is_handle_created()) native::domain_up_down::update_item(control.handle(), pos, item.value());

@@ -99,10 +99,10 @@ namespace xtd {
       
       /// @{
       /// @brief Gets an array of colors.
-      [[nodiscard]] static auto get_colors() noexcept -> const xtd::array<xtd::drawing::color>&;
+      [[nodiscard]] static auto get_colors() noexcept -> const xtd::array<xtd::drawing::color>& ;
       
       /// @brief Gets an array of color names.
-      [[nodiscard]] static auto get_color_names() noexcept -> const xtd::array<xtd::string>&;
+      [[nodiscard]] static auto get_color_names() noexcept -> const xtd::array<xtd::string>& ;
       /// @}
     };
   }

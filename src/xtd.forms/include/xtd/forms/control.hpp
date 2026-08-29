@@ -177,7 +177,7 @@ namespace xtd {
         
         /// @{
         using base::operator [];
-        using base::operator ();
+        using base::operator();
         /// @brief Gets the first xtd::forms::control::control_collection in the list with the specified name.
         /// @param name The name of the xtd::forms::control to get from the list.
         /// @return The first xtd::forms::control in the list with the given Name. This item returns optional with no value if no xtd::forms::control with the given name can be found.
@@ -192,12 +192,12 @@ namespace xtd {
         /// @param name The name of the xtd::forms::control to get from the list.
         /// @return The first xtd::forms::control in the list with the given Name. This item returns optional with no value if no xtd::forms::control with the given name can be found.
         /// @remarks The operator [] property is case-sensitive when searching for names. That is, if two controls exist with the names "Lname" and "lname", operator [] property will find only the xtd::forms::control with the xtd::forms::control::name() that you specify, not both.
-        [[nodiscard]] auto operator ()(const xtd::string& name) const -> value_type;
+        [[nodiscard]] auto operator()(const xtd::string& name) const -> value_type;
         /// @brief Gets the first xtd::forms::control::control_collection in the list with the specified name.
         /// @param name The name of the xtd::forms::control to get from the list.
         /// @return The first xtd::forms::control in the list with the given Name. This item returns optional with no value if no xtd::forms::control with the given name can be found.
         /// @remarks The operator [] property is case-sensitive when searching for names. That is, if two controls exist with the names "Lname" and "lname", operator [] property will find only the xtd::forms::control with the xtd::forms::control::name() that you specify, not both.
-        [[nodiscard]] auto operator ()(const xtd::string& name) -> value_type;
+        [[nodiscard]] auto operator()(const xtd::string& name) -> value_type;
         /// @}
         
         /// @name Public Methods
@@ -207,20 +207,20 @@ namespace xtd {
         
         template<typename control_t>
         auto add(control_t& value) -> void {
-          for (const auto& control : items())
-            if (control.get() == value) return;
-          base::add(value);
-        }
-        
-        /// @brief Creates and adds a control to the end.
-        /// @return A reference to the created control.
-        /// @remarks The control will be destroyed automatically when the control no longer has a parent.
-        /// @remarks For creation and insertion, this method uses the xtd::forms::control::create methods of the various controls.
-        /// @par Examples
-        /// The folowing example demonstartes the use of xtd::forms::control::control_collection::add_new, and xtd::forms::control::control_collection::insert_new methods.
-        /// @include emplace.cpp
-        template<typename control_t>
-        auto add_new() -> control_t& {return insert_new<control_t>(count());}
+for (const auto& control : items())
+          if (control.get() == value) return;
+            base::add(value);
+          }
+          
+      /// @brief Creates and adds a control to the end.
+      /// @return A reference to the created control.
+      /// @remarks The control will be destroyed automatically when the control no longer has a parent.
+      /// @remarks For creation and insertion, this method uses the xtd::forms::control::create methods of the various controls.
+      /// @par Examples
+      /// The folowing example demonstartes the use of xtd::forms::control::control_collection::add_new, and xtd::forms::control::control_collection::insert_new methods.
+      /// @include emplace.cpp
+      template<typename control_t>
+      auto add_new() -> control_t& {return insert_new<control_t>(count());}
         /// @brief Creates and adds a control to the end.
         /// @param args The arguments to forward to the create method of the control
         /// @return A reference to the created control.
@@ -231,27 +231,27 @@ namespace xtd {
         /// @include emplace.cpp
         template<typename control_t, typename ...args_t>
         auto add_new(args_t&& ...args) -> control_t& {return insert_new<control_t>(count(), std::forward<args_t>(args)...);}
-
+        
         auto insert(xtd::usize index, const xtd::forms::control_ref& value) -> void override;
         
         template<typename control_t>
         auto insert(xtd::usize index, control_t& value) -> void {
-          for (const auto& control : items())
-            if (control.get() == value) return;
-          base::insert(index, value);
-        }
-
-        /// @brief Creates and inserts specified control at specified position.
-        /// @param index The index before which the content will be inserted.
-        /// @param args The arguments to forward to the create method of the control
-        /// @return A reference to the created control.
-        /// @remarks The control will be destroyed automatically when the control no longer has a parent.
-        /// @remarks For creation and insertion, this method uses the xtd::forms::control::create methods of the various controls.
-        /// @par Examples
-        /// The folowing example demonstartes the use of xtd::forms::control::control_collection::add_new, and xtd::forms::control::control_collection::insert_new methods.
-        /// @include emplace.cpp
-        template<typename control_t>
-        auto insert_new(xtd::usize index) -> control_t& {
+for (const auto& control : items())
+          if (control.get() == value) return;
+            base::insert(index, value);
+          }
+          
+      /// @brief Creates and inserts specified control at specified position.
+      /// @param index The index before which the content will be inserted.
+      /// @param args The arguments to forward to the create method of the control
+      /// @return A reference to the created control.
+      /// @remarks The control will be destroyed automatically when the control no longer has a parent.
+      /// @remarks For creation and insertion, this method uses the xtd::forms::control::create methods of the various controls.
+      /// @par Examples
+      /// The folowing example demonstartes the use of xtd::forms::control::control_collection::add_new, and xtd::forms::control::control_collection::insert_new methods.
+      /// @include emplace.cpp
+      template<typename control_t>
+      auto insert_new(xtd::usize index) -> control_t& {
           auto control = xtd::new_sptr<control_t>();
           controls_.add(control);
           insert(index, *control);

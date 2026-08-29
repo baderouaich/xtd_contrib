@@ -302,28 +302,28 @@ namespace xtd {
       /// @return The element at the specified index.
       /// @exception xtd::argument_out_of_range_exception index is less than 0 or index is equal to or greater than count.
       auto operator [](const xtd::index& index) -> bool&;
-
+      
       /// @brief Gets the element at the specified index.
       /// @param index The zero-based index of the element to get.
       /// @return The element at the specified index.
       /// @exception xtd::argument_out_of_range_exception index is less than 0 or index is equal to or greater than count.
-      auto operator ()(xtd::usize index) const -> const bool&;
+      auto operator()(xtd::usize index) const -> const bool&;
       /// @brief Gets or Sets the element at the specified index.
       /// @param index The zero-based index of the element to get.
       /// @return The element at the specified index.
       /// @exception xtd::argument_out_of_range_exception index is less than 0 or index is equal to or greater than count.
-      auto operator ()(xtd::usize index) -> bool&;
+      auto operator()(xtd::usize index) -> bool&;
       /// @brief Gets the element at the specified index.
       /// @param index The zero-based index of the element to get.
       /// @return The element at the specified index.
       /// @exception xtd::argument_out_of_range_exception index is less than 0 or index is equal to or greater than count.
-      auto operator ()(const xtd::index& index) const -> const bool&;
+      auto operator()(const xtd::index& index) const -> const bool&;
       /// @brief Gets the element at the specified index.
       /// @param index The zero-based index of the element to get.
       /// @return The element at the specified index.
       /// @exception xtd::argument_out_of_range_exception index is less than 0 or index is equal to or greater than count.
-      auto operator ()(const xtd::index& index) -> bool&;
-
+      auto operator()(const xtd::index& index) -> bool&;
+      
       /// @brief Performs the bitwise AND operation on the elements in the current xtd::collections::bit_array against the corresponding elements in the specified xtd::collections::bit_array.
       /// @param value The xtd::collections::bit_array with which to perform the bitwise AND operation.
       /// @return The new instance containing the result of the bitwise AND operation on the elements in the current xtd::collections::bit_array against the corresponding elements in the specified xtd::collections::bit_array.
@@ -433,13 +433,13 @@ namespace xtd {
 /// @cond
 template<xtd::usize size_>
 inline auto xtd::linq::enumerable::as_enumerable(const std::bitset<size_>& source) noexcept -> xtd::collections::generic::enumerable_generator<bool> {
-  for (const auto& item : xtd::collections::bit_array {source})
-    co_yield item;
+for (const auto& item : xtd::collections::bit_array {source})
+  co_yield item;
 }
 template<xtd::usize size_>
 inline auto xtd::linq::enumerable::as_enumerable(std::bitset<size_>& source) noexcept -> xtd::collections::generic::enumerable_generator<bool> {
-  for (const auto& item : xtd::collections::bit_array {source})
-    co_yield item;
+for (const auto& item : xtd::collections::bit_array {source})
+  co_yield item;
 }
 
 template<xtd::usize size_>

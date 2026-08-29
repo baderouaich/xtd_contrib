@@ -81,7 +81,7 @@ namespace xtd::tests {
       assert::are_equal("property_dictionary", type.name());
       assert::are_equal("xtd::web::css", type.namespace_());
     }
-
+    
     auto test_method_(web_css_property_dictionary_value) {
       auto type = type_of(xtd::web::css::property_dictionary {});
       assert::are_equal(xtd::web::css::property_dictionary {}.get_type(), type);
@@ -89,7 +89,7 @@ namespace xtd::tests {
       assert::are_equal("property_dictionary", type.name());
       assert::are_equal("xtd::web::css", type.namespace_());
     }
-
+    
     auto test_method_(web_css_selector_dictionary_type) {
       auto type = type_of<xtd::web::css::selector_dictionary>();
       assert::are_equal("xtd::web::css::selector_dictionary", type.full_name());
@@ -105,7 +105,7 @@ namespace xtd::tests {
       assert::are_equal("xtd::web::css", type.namespace_());
     }
      */
-
+    
     auto test_method_(specialized_ordered_dictionary_type) {
       auto type = type_of<xtd::collections::specialized::ordered_dictionary>();
       assert::are_equal("xtd::collections::specialized::ordered_dictionary", type.full_name());
@@ -120,7 +120,7 @@ namespace xtd::tests {
       assert::are_equal("ordered_dictionary", type.name());
       assert::are_equal("xtd::collections::specialized", type.namespace_());
     }
-
+    
     auto test_method_(specialized_string_collection_type) {
       auto type = type_of<xtd::collections::specialized::string_collection>();
       assert::are_equal("xtd::collections::specialized::string_collection", type.full_name());
@@ -165,21 +165,21 @@ namespace xtd::tests {
       assert::are_equal("string_key_value_pair", type.name());
       assert::are_equal("xtd::collections::specialized", type.namespace_());
     }
-
+    
     auto test_method_(generic_comparer_with_any_object_type) {
       auto type = type_of<xtd::collections::generic::comparer<xtd::any_object>>();
       assert::are_equal("xtd::collections::comparer", type.full_name());
       assert::are_equal("comparer", type.name());
       assert::are_equal("xtd::collections", type.namespace_());
     }
-
+    
     auto test_method_(generic_comparer_type) {
       auto type = type_of<xtd::collections::generic::comparer<int>>();
       assert::are_equal("xtd::collections::generic::comparer<int>", type.full_name());
       assert::are_equal("comparer<int>", type.name());
       assert::are_equal("xtd::collections::generic", type.namespace_());
     }
-
+    
     auto test_method_(generic_dictionary_with_any_object_type) {
       auto type = type_of<xtd::collections::generic::dictionary<xtd::any_object, xtd::any_object>>();
       assert::are_equal("xtd::collections::hashtable", type.full_name());
@@ -194,7 +194,7 @@ namespace xtd::tests {
       assert::are_equal("hashtable", type.name());
       assert::are_equal("xtd::collections", type.namespace_());
     }
-
+    
     auto test_method_(generic_dictionary_with_string_type) {
       auto type = type_of<xtd::collections::generic::dictionary<xtd::string, xtd::string>>();
       assert::are_equal("xtd::collections::specialized::string_dictionary", type.full_name());
@@ -209,7 +209,7 @@ namespace xtd::tests {
       assert::are_equal("string_dictionary", type.name());
       assert::are_equal("xtd::collections::specialized", type.namespace_());
     }
-
+    
     auto test_method_(generic_dictionary_type) {
       auto type = type_of<xtd::collections::generic::dictionary<xtd::string, int>>();
       assert::are_equal("xtd::collections::generic::dictionary<xtd::string, int, xtd::collections::generic::helpers::hasher<xtd::string>, xtd::collections::generic::helpers::equator<xtd::string>, std::allocator<std::pair<xtd::string const, int>>>", type.full_name());
@@ -339,7 +339,7 @@ namespace xtd::tests {
       assert::are_equal("ilist<int>", type.name());
       assert::are_equal("xtd::collections::generic", type.namespace_());
     }
-
+    
     auto test_method_(generic_list_with_any_object_type) {
       auto type = type_of<xtd::collections::generic::list<xtd::any_object>>();
       assert::are_equal("xtd::collections::array_list", type.full_name());
@@ -354,7 +354,7 @@ namespace xtd::tests {
       assert::are_equal("array_list", type.name());
       assert::are_equal("xtd::collections", type.namespace_());
     }
-
+    
     auto test_method_(generic_list_with_string_type) {
       auto type = type_of<xtd::collections::generic::list<xtd::string>>();
       assert::are_equal("xtd::collections::specialized::string_collection", type.full_name());
@@ -369,7 +369,7 @@ namespace xtd::tests {
       assert::are_equal("string_collection", type.name());
       assert::are_equal("xtd::collections::specialized", type.namespace_());
     }
-
+    
     auto test_method_(generic_list_type) {
       auto type = type_of<xtd::collections::generic::list<int>>();
       assert::are_equal("xtd::collections::generic::list<int, std::allocator<int>>", type.full_name());
@@ -384,7 +384,7 @@ namespace xtd::tests {
       assert::are_equal("list<int, std::allocator<int>>", type.name());
       assert::are_equal("xtd::collections::generic", type.namespace_());
     }
-
+    
     auto test_method_(generic_ordered_dictionary_with_any_object_type) {
       auto type = type_of<xtd::collections::generic::ordered_dictionary<xtd::any_object, xtd::any_object>>();
       assert::are_equal("xtd::collections::specialized::ordered_dictionary", type.full_name());
@@ -399,7 +399,7 @@ namespace xtd::tests {
       assert::are_equal("ordered_dictionary", type.name());
       assert::are_equal("xtd::collections::specialized", type.namespace_());
     }
-
+    
     auto test_method_(generic_ordered_dictionary_type) {
       auto type = type_of<xtd::collections::generic::ordered_dictionary<xtd::string, int>>();
       assert::are_equal("xtd::collections::generic::ordered_dictionary<xtd::string, int, std::allocator<std::pair<xtd::string const, int>>>", type.full_name());
@@ -414,7 +414,7 @@ namespace xtd::tests {
       assert::are_equal("ordered_dictionary<xtd::string, int, std::allocator<std::pair<xtd::string const, int>>>", type.name());
       assert::are_equal("xtd::collections::generic", type.namespace_());
     }
-
+    
     auto test_method_(generic_queue_with_any_object_type) {
       auto type = type_of<xtd::collections::generic::queue<xtd::any_object>>();
       assert::are_equal("xtd::collections::queue", type.full_name());
@@ -444,7 +444,7 @@ namespace xtd::tests {
       assert::are_equal("queue<int, std::deque<int, std::allocator<int>>>", type.name());
       assert::are_equal("xtd::collections::generic", type.namespace_());
     }
-
+    
     auto test_method_(generic_stack_with_any_object_type) {
       auto type = type_of<xtd::collections::generic::stack<xtd::any_object>>();
       assert::are_equal("xtd::collections::stack", type.full_name());
@@ -474,7 +474,7 @@ namespace xtd::tests {
       assert::are_equal("stack<int, std::deque<int, std::allocator<int>>>", type.name());
       assert::are_equal("xtd::collections::generic", type.namespace_());
     }
-
+    
     auto test_method_(collections_array_list_type) {
       auto type = type_of<xtd::collections::array_list>();
       assert::are_equal("xtd::collections::array_list", type.full_name());
@@ -489,7 +489,7 @@ namespace xtd::tests {
       assert::are_equal("array_list", type.name());
       assert::are_equal("xtd::collections", type.namespace_());
     }
-
+    
     auto test_method_(collections_comparer_type) {
       auto type = type_of<xtd::collections::comparer>();
       assert::are_equal("xtd::collections::comparer", type.full_name());
@@ -518,7 +518,7 @@ namespace xtd::tests {
       assert::are_equal("enumerator", type.name());
       assert::are_equal("xtd::collections", type.namespace_());
     }
-
+    
     auto test_method_(collections_enumerator_value) {
       auto type = type_of(xtd::collections::enumerator {});
       assert::are_equal(xtd::collections::enumerator {}.get_type(), type);
@@ -526,7 +526,7 @@ namespace xtd::tests {
       assert::are_equal("enumerator", type.name());
       assert::are_equal("xtd::collections", type.namespace_());
     }
-
+    
     auto test_method_(collections_hashtable_type) {
       auto type = type_of<xtd::collections::hashtable>();
       assert::are_equal("xtd::collections::hashtable", type.full_name());
@@ -576,7 +576,7 @@ namespace xtd::tests {
       assert::are_equal("ilist", type.name());
       assert::are_equal("xtd::collections", type.namespace_());
     }
-
+    
     auto test_method_(collections_queue_type) {
       auto type = type_of<xtd::collections::queue>();
       assert::are_equal("xtd::collections::queue", type.full_name());
@@ -591,7 +591,7 @@ namespace xtd::tests {
       assert::are_equal("queue", type.name());
       assert::are_equal("xtd::collections", type.namespace_());
     }
-
+    
     /* xtd::collections::generic::sorted_list is not yet implemented
     auto test_method_(collections_sorted_list_type) {
       auto type = type_of<xtd::collections::sorted_list>();
@@ -608,7 +608,7 @@ namespace xtd::tests {
       assert::are_equal("xtd::collections", type.namespace_());
     }
      */
-
+    
     auto test_method_(collections_stack_value) {
       auto type = type_of(xtd::collections::stack {});
       assert::are_equal(xtd::collections::stack {}.get_type(), type);
@@ -616,7 +616,7 @@ namespace xtd::tests {
       assert::are_equal("stack", type.name());
       assert::are_equal("xtd::collections", type.namespace_());
     }
-
+    
     auto test_method_(string_type) {
       auto type = type_of<string>();
       assert::are_equal("xtd::string", type.full_name());
@@ -721,7 +721,7 @@ namespace xtd::tests {
       assert::are_equal("read_only_span<int, 5ul>", type.name());
       assert::are_equal("xtd", type.namespace_());
     }
-
+    
     auto test_method_(span_type) {
       auto type = type_of<span<int>>();
       assert::are_equal("xtd::span<int, xtd::dynamic_extent>", type.full_name());
@@ -735,7 +735,7 @@ namespace xtd::tests {
       assert::are_equal("span<int, 5ul>", type.name());
       assert::are_equal("xtd", type.namespace_());
     }
-
+    
     auto test_method_(span_value) {
       auto type = type_of(span<int> {});
       assert::are_equal(span<int> {}.get_type(), type);

@@ -49,7 +49,7 @@ namespace xtd {
           void await_suspend(std::coroutine_handle<> handle) {task.continue_with([handle] {handle.resume();});}
           void await_resume() {if (task.is_faulted()) task.rethrow_exception();}
         };
-
+        
         /// @cond
         wtask() = default;
         wtask(wtask&&) = default;

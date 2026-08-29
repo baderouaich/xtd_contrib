@@ -28,12 +28,12 @@ template<typename char_t>
       str.erase(str.size() - 1, 1);
   }
   if ((styles & xtd::number_styles::allow_currency_symbol) == xtd::number_styles::allow_currency_symbol && str.find(std::use_facet<std::moneypunct<char_t>>(std::locale()).curr_symbol()) == 0) str.erase(0, std::use_facet<std::moneypunct<char_t >> (std::locale()).curr_symbol().size());
-  if ((styles & xtd::number_styles::allow_currency_symbol) == xtd::number_styles::allow_currency_symbol && str.rfind(std::use_facet<std::moneypunct<char_t>>(std::locale()).curr_symbol()) + std::use_facet<std::moneypunct<char_t>>(std::locale()).curr_symbol().size() == str.size()) str.resize(str.size() - std::use_facet<std::moneypunct<char_t >> (std::locale()).curr_symbol().size());
-  if ((styles & xtd::number_styles::allow_binary_specifier) == xtd::number_styles::allow_binary_specifier && (str.find("0b") == 0 || str.find("0B") == 0)) str.erase(0, 2);
-  if ((styles & xtd::number_styles::allow_octal_specifier) == xtd::number_styles::allow_octal_specifier && str.find('0') == 0) str.erase(0, 1);
-  if ((styles & xtd::number_styles::allow_hex_specifier) == xtd::number_styles::allow_hex_specifier && (str.find("0x") == 0 || str.find("0X") == 0)) str.erase(0, 2);
-  return str;
-}
+    if ((styles & xtd::number_styles::allow_currency_symbol) == xtd::number_styles::allow_currency_symbol && str.rfind(std::use_facet<std::moneypunct<char_t>>(std::locale()).curr_symbol()) + std::use_facet<std::moneypunct<char_t>>(std::locale()).curr_symbol().size() == str.size()) str.resize(str.size() - std::use_facet<std::moneypunct<char_t >> (std::locale()).curr_symbol().size());
+      if ((styles & xtd::number_styles::allow_binary_specifier) == xtd::number_styles::allow_binary_specifier && (str.find("0b") == 0 || str.find("0B") == 0)) str.erase(0, 2);
+        if ((styles & xtd::number_styles::allow_octal_specifier) == xtd::number_styles::allow_octal_specifier && str.find('0') == 0) str.erase(0, 1);
+          if ((styles & xtd::number_styles::allow_hex_specifier) == xtd::number_styles::allow_hex_specifier && (str.find("0x") == 0 || str.find("0X") == 0)) str.erase(0, 2);
+            return str;
+          }
 
 template<typename char_t>
 [[nodiscard]] inline auto __parse_remove_signs(std::basic_string<char_t>& str, xtd::number_styles styles) -> int {

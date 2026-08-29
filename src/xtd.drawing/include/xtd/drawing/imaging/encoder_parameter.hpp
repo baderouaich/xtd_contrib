@@ -127,7 +127,7 @@ namespace xtd {
         
         /// @brief Gets The data value.
         /// @return The data value.
-        [[nodiscard]] auto value() const noexcept -> const xtd::collections::generic::list<xtd::byte>&;
+        [[nodiscard]] auto value() const noexcept -> const xtd::collections::generic::list<xtd::byte>& ;
         /// @}
         
         /// @name Public Methods

@@ -29,7 +29,7 @@ template<typename enum_t>
     xtd::int64 value = current_value;
     if (key_value.length() == 2) {
       if (!xtd::try_parse<xtd::int64>(key_value[1].trim(), value, xtd::number_styles::number) && xtd::try_parse<xtd::int64>(key_value[1].trim(), value, xtd::number_styles::hex_number) && xtd::try_parse<xtd::int64>(key_value[1].trim(), value, xtd::number_styles::binary_number) && xtd::try_parse<xtd::int64>(key_value[1].trim(), value, xtd::number_styles::octal_number)) {
-        auto iterator = std::find_if(entries.begin(), entries.end(), [&](const auto& item)->bool {return item.second == key_value[1].trim();});
+        auto iterator = std::find_if(entries.begin(), entries.end(), [&](const auto & item)->bool {return item.second == key_value[1].trim();});
         if (iterator != entries.end()) value = static_cast<xtd::int64>(iterator->first);
     
         /// @todo Add parse arithmetic operation...

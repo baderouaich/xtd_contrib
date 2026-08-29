@@ -263,7 +263,7 @@ string uri::get_components(uri_components components, uri_format format) const {
 
 string uri::get_left_part(uri_partial part) const {
   switch (part) {
-    case uri_partial::scheme: return get_components(uri_components::scheme | uri_components::keep_delimiter, uri_format::uri_escaped);
+  case uri_partial::scheme: return get_components(uri_components::scheme | uri_components::keep_delimiter, uri_format::uri_escaped);
     case uri_partial::authority: return get_components(uri_components::scheme | uri_components::user_info | uri_components::host | uri_components::port, uri_format::uri_escaped);
     case uri_partial::path: return get_components(uri_components::scheme | uri_components::user_info | uri_components::host | uri_components::port | uri_components::path, uri_format::uri_escaped);
     case uri_partial::query: return get_components(uri_components::scheme | uri_components::user_info | uri_components::host | uri_components::port | uri_components::path_and_query, uri_format::uri_escaped);

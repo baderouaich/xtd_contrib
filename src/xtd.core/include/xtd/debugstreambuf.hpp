@@ -27,7 +27,7 @@ namespace xtd {
     auto sync() -> xtd::int32 override {
       #if DEBUG
       if (!str().empty()) {
-        if (str() == "\n") xtd::diagnostics::debug::write_line();
+      if (str() == "\n") xtd::diagnostics::debug::write_line();
         else if (xtd::string(str()).ends_with('\n')) xtd::diagnostics::debug::write_line(xtd::string(str()).trim_end('\n'));
         else xtd::diagnostics::debug::write(str());
         str("");

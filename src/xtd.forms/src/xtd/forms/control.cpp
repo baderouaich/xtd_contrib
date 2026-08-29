@@ -103,10 +103,10 @@ control::control_collection& control::control_collection::operator = (const cont
 }
 
 control::control_collection::value_type control::control_collection::operator [](const string& name) const {
-  for (auto item : items())
-    if (item.get().name() == name) return item;
-  return nullopt;
-}
+for (auto item : items())
+  if (item.get().name() == name) return item;
+    return nullopt;
+  }
 
 control::control_collection::value_type control::control_collection::operator [](const string& name) {
   for (auto item : items())
@@ -114,11 +114,11 @@ control::control_collection::value_type control::control_collection::operator []
   return nullopt;
 }
 
-control::control_collection::value_type control::control_collection::operator ()(const string& name) const {
+control::control_collection::value_type control::control_collection::operator()(const string& name) const {
   return operator [](name);
 }
 
-control::control_collection::value_type control::control_collection::operator ()(const string& name) {
+control::control_collection::value_type control::control_collection::operator()(const string& name) {
   return operator [](name);
 }
 
@@ -205,7 +205,7 @@ control::control()  {
   set_state(state::visible, true);
   set_state(state::tab_stop, true);
   set_style(control_styles::all_painting_in_wm_paint | control_styles::user_paint | control_styles::standard_click | control_styles::standard_double_click | control_styles::use_text_for_accessibility | control_styles::selectable, true);
-
+  
   data_->controls.item_added += {*data_, &control::data::on_controls_item_added};
   data_->controls.item_removed += {*data_, &control::data::on_controls_item_removed};
 }
@@ -272,8 +272,8 @@ color control::back_color() const noexcept {
   if (data_->back_color.has_value()) return data_->back_color.value();
   for (auto control = this; control; control = control->parent().has_value() && !control->get_state(state::top_level) ? &control->parent().value().get() : nullptr)
     if (control->data_->back_color.has_value() && control->data_->back_color.value() != control->default_back_color()) return control->data_->back_color.value();
-  return default_back_color();
-}
+      return default_back_color();
+    }
 
 control& control::back_color(const color& color) {
   if (data_->back_color.has_value() && data_->back_color == color) return *this;
@@ -435,8 +435,8 @@ forms::cursor control::cursor() const noexcept {
   if (data_->cursor.has_value()) return data_->cursor.value();
   for (auto control = this; control; control = control->parent().has_value() && !control->get_state(state::top_level) ? &control->parent().value().get() : nullptr)
     if (control->data_->cursor.has_value() && control->data_->cursor.value() != control->default_cursor()) return control->data_->cursor.value();
-  return default_cursor();
-}
+      return default_cursor();
+    }
 
 control& control::cursor(const forms::cursor& cursor) {
   if (data_->cursor == cursor) return *this;
@@ -507,8 +507,8 @@ drawing::font control::font() const noexcept {
   if (data_->font.has_value()) return data_->font.value();
   for (auto control = this; control; control = control->parent().has_value() && !control->get_state(state::top_level) ? &control->parent().value().get() : nullptr)
     if (control->data_->font.has_value() && control->data_->font.value() != control->default_font()) return control->data_->font.value();
-  return default_font();
-}
+      return default_font();
+    }
 
 control& control::font(const drawing::font& font) {
   if (data_->font == font) return *this;
@@ -534,8 +534,8 @@ color control::fore_color() const noexcept {
   if (data_->fore_color.has_value()) return data_->fore_color.value();
   for (auto control = this; control; control = control->parent().has_value() && !control->get_state(state::top_level) ? &control->parent().value().get() : nullptr)
     if (control->data_->fore_color.has_value() && control->data_->fore_color.value() != control->default_fore_color()) return control->data_->fore_color.value();
-  return default_fore_color();
-}
+      return default_fore_color();
+    }
 
 control& control::fore_color(const color& color) {
   if (data_->fore_color.has_value() && data_->fore_color == color) return *this;
@@ -559,7 +559,7 @@ control& control::fore_color(std::nullptr_t) {
 
 intptr control::handle() const {
   if (check_for_illegal_cross_thread_calls() && invoke_required())
-    throw_helper::throws(exception_case::invalid_operation, string::format("Cross-thread operation not valid: {}", to_string()).chars().c_str());
+  throw_helper::throws(exception_case::invalid_operation, string::format("Cross-thread operation not valid: {}", to_string()).chars().c_str());
   return data_->handle;
 }
 
@@ -751,8 +751,8 @@ xtd::forms::right_to_left control::right_to_left() const noexcept {
   if (data_->right_to_left.has_value()) return data_->right_to_left.value();
   for (auto control = this; control; control = control->parent().has_value() && !control->get_state(state::top_level) ? &control->parent().value().get() : nullptr)
     if (control->data_->right_to_left.has_value()) return control->data_->right_to_left.value();
-  return xtd::forms::right_to_left::inherit;
-}
+      return xtd::forms::right_to_left::inherit;
+    }
 
 control& control::right_to_left(xtd::forms::right_to_left value) {
   if (data_->right_to_left.has_value() && value == data_->right_to_left) return *this;
@@ -987,7 +987,7 @@ void control::destroy_control() {
 
 graphics control::create_graphics() const {
   if (!is_handle_created())
-    throw_helper::throws(exception_case::invalid_operation);
+  throw_helper::throws(exception_case::invalid_operation);
   return graphics(native::control::create_graphics(handle()));
 }
 
@@ -1707,11 +1707,11 @@ drawing::point control::point_to_screen(const xtd::drawing::point& p) const {
 
 bool control::post_message(intptr hwnd, int32 msg, intptr wparam, intptr lparam) const {
   if (check_for_illegal_cross_thread_calls() && invoke_required())
-    throw_helper::throws(exception_case::invalid_operation, string::format("Cross-thread operation not valid: {}", to_string()).chars().c_str());
+  throw_helper::throws(exception_case::invalid_operation, string::format("Cross-thread operation not valid: {}", to_string()).chars().c_str());
   if (!is_handle_created()) return false;
-  data_->post_messages.push(message::create(hwnd, msg, wparam, lparam));
-  return true;
-}
+    data_->post_messages.push(message::create(hwnd, msg, wparam, lparam));
+    return true;
+  }
 
 bool control::pre_process_message(const xtd::forms::message& message) {
   auto message_processed = false;
@@ -1739,7 +1739,7 @@ void control::refresh() const {
 
 intptr control::send_message(intptr hwnd, int32 msg, intptr wparam, intptr lparam) const {
   if (check_for_illegal_cross_thread_calls() && invoke_required())
-    throw_helper::throws(exception_case::invalid_operation, string::format("Cross-thread operation not valid: {}", to_string()).chars().c_str());
+  throw_helper::throws(exception_case::invalid_operation, string::format("Cross-thread operation not valid: {}", to_string()).chars().c_str());
   return is_handle_created() ? native::control::send_message(handle(), hwnd, msg, wparam, lparam) : static_cast < intptr > (-1);
 }
 
@@ -1778,8 +1778,8 @@ void control::suspend_layout() {
 string control::to_string() const noexcept {
   if (!xtd::string::is_empty(data_->name)) return string::format("{}, name: {}", get_type().full_name(), data_->name);
   if (!xtd::string::is_empty(data_->text)) return string::format("{}, text: {}", get_type().full_name(), data_->text);
-  return get_type().full_name();
-}
+    return get_type().full_name();
+  }
 
 void control::update() const {
   if (is_handle_created()) native::control::update(handle());
@@ -2129,7 +2129,7 @@ void control::on_parent_size_changed(object& sender, const event_args& e) {
 
 void control::post_recreate_handle() noexcept {
   if (data_->handle)
-    data_->recreate_handle_posted = true;
+  data_->recreate_handle_posted = true;
 }
 
 void control::wm_app_idle(message& message) {

@@ -28,7 +28,7 @@ auto ostream_trace_listener::flush_() -> void {
 auto ostream_trace_listener::write_(const string& message) -> void {
   if (need_indent()) write_indent();
   if (ostream_.good()) ostream_ << message;
-}
+  }
 
 auto ostream_trace_listener::write_line_(const string& message) -> void {
   write(message + "\n");

@@ -14,8 +14,8 @@ xtd::string processor::architecture_string() const noexcept {
   architecture_string_ = string::format("{}", architecture_);
   if (is_64_bit_) {
     if (architecture_ == architecture_id::x86) architecture_string_ += "_";
-    architecture_string_ += "64";
-  }
+      architecture_string_ += "64";
+    }
   return architecture_string_;
 }
 

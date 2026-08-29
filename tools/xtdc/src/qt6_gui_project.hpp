@@ -9,7 +9,7 @@ namespace xtdc_command {
     void create(const xtd::string& name, bool create_solution) const {
       xtd::io::directory::create_directory(create_solution ? xtd::io::path::combine(current_path(), name, "src") : xtd::io::path::combine(current_path(), "src"));
       if (create_solution) {
-        create_solution_cmakelists_txt(name);
+      create_solution_cmakelists_txt(name);
         create_solution_qmake_pro(name);
       }
       create_cmakelists_txt(name, create_solution ? xtd::io::path::combine(current_path(), name) : current_path());

@@ -45,7 +45,7 @@ namespace xtd {
     /// @param value The index value. It has to be greater then or equal to zero.
     /// @param from_end `true` to index from the end of the collection, or `false` to index from the beginning of the collection.
     /// @remarks If the xtd::index is constructed from the end, an index value of 1 points to the last element, and an index value of 0 points beyond the last element.
-    constexpr index(xtd::integer auto value, xtd::logical auto from_end) noexcept : __v__{static_cast<value_type>(from_end ? ~value : value)} {}
+    constexpr index(xtd::integer auto value, xtd::logical auto from_end) noexcept : __v__ {static_cast<value_type>(from_end ? ~value : value)} {}
     /// @brief Initializes a new xtd::index with a specified index position and a value that indicates if the index is from the beginning or the end of a collection.
     /// @param value The index value. It has to be greater then or equal to zero.
     /// @remarks If the xtd::index is constructed from the end, an index value of 1 points to the last element, and an index value of 0 points beyond the last element.
@@ -126,7 +126,7 @@ namespace xtd {
     ///   console::write_line("Value not found");
     /// ```
     static const index end;
-
+    
     /// @brief Represents the index of the last valid element in a collection.
     /// @remarks Unlike xtd::npos (which means "no position"), xtd::lpos points to the last accessible element of a collection. It is equivalent to `items.count() - 1`.
     /// @note This constant is provided for readability and convenience. For example, `items[xtd::lpos]` directly accesses the last element without manually subtracting one from the collection count.
@@ -144,7 +144,7 @@ namespace xtd {
     /// console::write_line(items[~2_i]); // Prints 30
     /// ```
     static const index last;
-
+    
     /// @brief Represents the index of the first valid element in a collection.
     /// @remarks Unlike xtd::npos (which means "no position"), xtd::spos points to the first accessible element of a collection. It is equivalent to `0`.
     /// @note This constant is provided for readability and convenience. For example, `items[xtd::spos]` directly accesses the fist element.
@@ -171,13 +171,13 @@ namespace xtd {
     /// @param value The index value from the end of a collection.
     /// @return The index value.
     inline static constexpr auto from_end(xtd::integer auto value) {return index {value, true};}
-
+    
     /// @brief Creates an xtd::ndex from the start of a collection at a specified index position.
     /// @param value The index value from the start of a collection.
     /// @return The index value.
     inline static constexpr auto from_start(xtd::integer auto value) {return index {value};}
     /// @}
-
+    
     /// @cond
     value_type __v__ = value_type {0};
     /// @end_cond
@@ -200,10 +200,10 @@ template<typename type_t, typename allocator_t>
 auto xtd::collections::generic::helpers::raw_array<type_t, allocator_t>::operator [](const xtd::index& index) -> reference {return operator [](index.get_offset(size()));}
 
 template<typename type_t, typename allocator_t>
-auto xtd::collections::generic::helpers::raw_array<type_t, allocator_t>::operator ()(const xtd::index& index) const -> const_reference {return operator [](index.get_offset(size()));}
+auto xtd::collections::generic::helpers::raw_array<type_t, allocator_t>::operator()(const xtd::index& index) const -> const_reference {return operator [](index.get_offset(size()));}
 
 template<typename type_t, typename allocator_t>
-auto xtd::collections::generic::helpers::raw_array<type_t, allocator_t>::operator ()(const xtd::index& index) -> reference {return operator [](index.get_offset(size()));}
+auto xtd::collections::generic::helpers::raw_array<type_t, allocator_t>::operator()(const xtd::index& index) -> reference {return operator [](index.get_offset(size()));}
 
 template<typename type_t, typename list_t>
 auto xtd::collections::generic::extensions::list_common<type_t, list_t>::operator [](const xtd::index& index) const -> const type_t& {return self().operator [](index.get_offset(self().count()));}
@@ -212,10 +212,10 @@ template<typename type_t, typename list_t>
 auto xtd::collections::generic::extensions::list_common<type_t, list_t>::operator [](const xtd::index& index) -> type_t& {return self().operator [](index.get_offset(self().count()));}
 
 template<typename type_t, typename list_t>
-auto xtd::collections::generic::extensions::list_common<type_t, list_t>::operator ()(const xtd::index& index) const -> const type_t& {return self().operator [](index);}
+auto xtd::collections::generic::extensions::list_common<type_t, list_t>::operator()(const xtd::index& index) const -> const type_t& {return self().operator [](index);}
 
 template<typename type_t, typename list_t>
-auto xtd::collections::generic::extensions::list_common<type_t, list_t>::operator ()(const xtd::index& index) -> type_t& {
+auto xtd::collections::generic::extensions::list_common<type_t, list_t>::operator()(const xtd::index& index) -> type_t& {
   return self().operator [](index);
 }
 /// @endcond

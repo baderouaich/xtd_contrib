@@ -43,7 +43,7 @@ namespace xtd {
     /// @remarks The xtd::expressions::method mzthod is used by xtd::expressions::operator ^().
     template<typename method_t, typename... args_t>
     constexpr auto method(method_t method, args_t&&... args) {
-      return method_type<method_t, decltype(as_expression(std::forward<args_t>(args)))...>{"<method>", method, std::make_tuple(as_expression(std::forward<args_t>(args))...)};
+      return method_type<method_t, decltype(as_expression(std::forward<args_t>(args)))...> {"<method>", method, std::make_tuple(as_expression(std::forward<args_t>(args))...)};
     }
     /// @brief The xtd::expressions::method is use to bind object method.
     /// @par Namespace
@@ -58,9 +58,9 @@ namespace xtd {
     /// @remarks The xtd::expressions::method mzthod is used by xtd::expressions::operator ^().
     template<typename method_t, typename... args_t>
     constexpr auto method(const char* name, method_t method, args_t&&... args) {
-      return method_type<method_t, decltype(as_expression(std::forward<args_t>(args)))...>{name, method, std::make_tuple(as_expression(std::forward<args_t>(args))...)};
+      return method_type<method_t, decltype(as_expression(std::forward<args_t>(args)))...> {name, method, std::make_tuple(as_expression(std::forward<args_t>(args))...)};
     }
-
+    
     /// @brief The xtd::expressions::as_expression method convert a type as xtd::expressions::expression or xtd::expressions::constant.
     /// @param value The value to convert.
     /// @raturn The result as xtd::expressions::expression or xtd::expressions::constant.
@@ -105,7 +105,7 @@ namespace xtd {
       constexpr decltype(auto) operator()(call_args_t&&... call_args) const {
         auto&& obj = expression(std::forward<call_args_t>(call_args)...);
         auto invoke = [&](auto&&... evaluated_args) -> decltype(auto) {
-          if constexpr (std::is_pointer_v<std::decay_t<decltype(obj)>>) return (obj->*method.method)(std::forward<decltype(evaluated_args)>(evaluated_args)...);
+          if constexpr(std::is_pointer_v<std::decay_t<decltype(obj)>>) return (obj->*method.method)(std::forward<decltype(evaluated_args)>(evaluated_args)...);
           else return (obj.*method.method)(std::forward<decltype(evaluated_args)>(evaluated_args)...);
         };
         auto eval_arg = [&](auto&& expr) -> decltype(auto) {return expr(std::forward<call_args_t>(call_args)...);};
@@ -124,12 +124,12 @@ namespace xtd {
         return os;
       }
       /// @endcond
-
+      
     private:
       [[no_unique_address]] expression_t expression;
       [[no_unique_address]] method_t method;
     };
-
+    
     /// @name Public Operators
     
     /// @{

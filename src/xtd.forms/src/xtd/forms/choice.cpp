@@ -19,25 +19,25 @@ struct choice::data {
   object_collection items;
   item selected_item;
   bool sorted = false;
-
+  
   auto on_items_item_added(xtd::usize pos, const item& item) -> void {
     if (control.is_handle_created()) native::choice::insert_item(control.handle(), pos, item.value());
     auto selected = npos;
     if (control.selected_index() != npos && control.selected_index() < items.count()) selected = control.selected_index();
-    control.selected_index(selected);
-  }
-  
-  auto on_items_item_removed(xtd::usize pos, const item& item) -> void {
+      control.selected_index(selected);
+    }
+    
+auto on_items_item_removed(xtd::usize pos, const item& item) -> void {
     if (control.is_handle_created()) native::choice::delete_item(control.handle(), pos);
     if (control.selected_index() == pos) control.selected_index(npos);
-  }
-  
-  auto on_items_item_updated(xtd::usize pos, const item& item) -> void {
+    }
+    
+auto on_items_item_updated(xtd::usize pos, const item& item) -> void {
     if (control.is_handle_created()) native::choice::update_item(control.handle(), pos, item.value());
     auto selected = npos;
     if (control.selected_index() != npos && control.selected_index() < items.count()) selected = control.selected_index();
-    control.selected_index(selected);
-  }
+      control.selected_index(selected);
+    }
 };
 
 choice::choice() {

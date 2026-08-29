@@ -58,7 +58,7 @@ namespace xtd {
     /// @remarks The value of this field is std::numeric_limits<type_t>::lowest().
     static constexpr type_t min_value = std::numeric_limits<type_t>::lowest();
     /// @}
-
+    
     /// @name Public Static Methods
     
     /// @{
@@ -189,7 +189,7 @@ namespace xtd {
     /// @return true if value is greater than or equal to min_value and less than or equal to max_value; otherwise, false.
     /// @remarks If the value is outside the valid range defined by min_value and max_value, the method returns false.
     [[nodiscard]] static auto is_valid(type_t value) noexcept -> bool {return value >= static_cast<xtd::char32>(min_value) && value <= static_cast<xtd::char32>(max_value);}
-
+    
     /// @brief Indicates whether the specified Unicode character is categorized as white space.
     /// @param c The Unicode character to evaluate.
     /// @return `true` if c is white space; otherwise, `false`.
@@ -206,7 +206,7 @@ namespace xtd {
     /// @param value A string containing a type_t to convert.
     /// @return A type_t equivalent to the number contained in value.
     static auto parse(const xtd::string& value, xtd::number_styles styles) -> type_t {return xtd::parse<type_t>(value, styles);}
-
+    
     /// @brief Converts the value of a Unicode character to its lowercase equivalent.
     /// @param c The Unicode character to convert.
     /// @return The lowercase equivalent of c, or the unchanged value of c, if c is already lowercase or not alphabetic.

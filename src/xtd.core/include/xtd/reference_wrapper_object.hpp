@@ -157,37 +157,37 @@ namespace xtd {
     [[nodiscard]] auto compare_to(const reference_wrapper_object& obj) const noexcept -> xtd::int32 override {
       if (!ref_.has_value() && !obj.ref_.has_value()) return 0;
       if (ref_.has_value() && !obj.ref_.has_value()) return 1;
-      if (!ref_.has_value() && obj.ref_.has_value()) return -1;
-      return &ref_.value().get() < &obj.ref_.value().get() ? -1 : &ref_.value().get() > &obj.ref_.value().get() ? 1 : 0;
-    }
-    
-    /// @brief Determines whether the specified object is equal to the current object.
-    /// @param obj The object to compare with the current object.
-    /// @return `true` if the specified object is equal to the current object. otherwise, `false`.
-    [[nodiscard]] auto equals(const xtd::object& value) const noexcept -> bool override {return dynamic_cast<const reference_wrapper_object*>(&value) && equals(static_cast<const reference_wrapper_object&>(value));}
+        if (!ref_.has_value() && obj.ref_.has_value()) return -1;
+          return &ref_.value().get() < &obj.ref_.value().get() ? -1 : &ref_.value().get() > &obj.ref_.value().get() ? 1 : 0;
+        }
+        
+  /// @brief Determines whether the specified object is equal to the current object.
+  /// @param obj The object to compare with the current object.
+  /// @return `true` if the specified object is equal to the current object. otherwise, `false`.
+  [[nodiscard]] auto equals(const xtd::object& value) const noexcept -> bool override {return dynamic_cast<const reference_wrapper_object*>(&value) && equals(static_cast<const reference_wrapper_object&>(value));}
     /// @brief Indicates whether the current object is equal to another object of the same type.
     /// @param obj An object to compare with this object.
     /// @return `true` if the current object is equal to the other parameter; otherwise, `false`.
     [[nodiscard]] auto equals(const reference_wrapper_object& value) const noexcept -> bool override {
       if (!ref_.has_value() && !value.ref_.has_value()) return true;
       if (ref_.has_value() && !value.ref_.has_value()) return false;
-      if (!ref_.has_value() && value.ref_.has_value()) return false;
-      return &ref_.value().get() == &value.ref_.value().get();
-    }
-    
-    /// @brief Gets the stored reference.
-    /// @return The stored reference.
-    /// @exception xtd::null_pointer_exception If xtd::reference_wrapper_object is empty.
-    /// @par Examples
-    /// The following code shows how to use xtd::reference_wrapper_object::get and xtd::reference_wrapper_object::is_empty
-    /// @code
-    /// template<typename value_t>
-    /// void print_value(const reference_wrapper_object<value_t>& value) {
-    ///   if (value.is_empty()) println("value is empty");
-    ///   else println("value = {}", value.get());
-    /// }
-    /// @endcode
-    [[nodiscard]] auto get() const -> type& {
+        if (!ref_.has_value() && value.ref_.has_value()) return false;
+          return &ref_.value().get() == &value.ref_.value().get();
+        }
+        
+  /// @brief Gets the stored reference.
+  /// @return The stored reference.
+  /// @exception xtd::null_pointer_exception If xtd::reference_wrapper_object is empty.
+  /// @par Examples
+  /// The following code shows how to use xtd::reference_wrapper_object::get and xtd::reference_wrapper_object::is_empty
+  /// @code
+  /// template<typename value_t>
+  /// void print_value(const reference_wrapper_object<value_t>& value) {
+  ///   if (value.is_empty()) println("value is empty");
+  ///   else println("value = {}", value.get());
+  /// }
+  /// @endcode
+  [[nodiscard]] auto get() const -> type& {
       if (!ref_.has_value()) xtd::helpers::throw_helper::throws(xtd::helpers::exception_case::null_pointer);
       return ref_.value();
     }
@@ -336,7 +336,7 @@ namespace xtd {
     ///   else println("value = {}", value.get());
     /// }
     /// @endcode
-    operator type&() const {return get();}
+    operator type& () const {return get();}
     
     /// @brief Checks if the stored reference is not empty.
     /// @return `true`if stored reference is not empty; otherwise `false`.
@@ -350,12 +350,12 @@ namespace xtd {
       if (!lhs.ref_.has_value()) return false;
       return &lhs.ref_.value().get() == &rhs;
     }
-    /// @brief Not equal to operator with specidied lhs ans rhs values.
-    /// @param lhs The left hand side value to compare.
-    /// @param rhs The right hand side value to compare.
-    /// @return `true` if lhs is not equal to rhs; otherwise `false`.
-    friend auto operator !=(const reference_wrapper_object& lhs, const type_t& rhs) noexcept -> bool {return !(lhs == rhs);}
-    
+  /// @brief Not equal to operator with specidied lhs ans rhs values.
+  /// @param lhs The left hand side value to compare.
+  /// @param rhs The right hand side value to compare.
+  /// @return `true` if lhs is not equal to rhs; otherwise `false`.
+  friend auto operator !=(const reference_wrapper_object& lhs, const type_t& rhs) noexcept -> bool {return !(lhs == rhs);}
+  
     /// @brief Three-way comparison operator with specidied lhs ans rhs values.
     /// @param lhs The left hand side value to compare.
     /// @param rhs The right hand side value to compare.
@@ -366,26 +366,26 @@ namespace xtd {
     friend auto operator <=>(const reference_wrapper_object& lhs, const type_t& rhs) noexcept -> std::strong_ordering {
       if (!lhs.ref_.has_value()) return std::strong_ordering::less;
       if (&lhs.ref_.value().get() < &rhs) return std::strong_ordering::less;
-      if (&lhs.ref_.value().get() > &rhs) return std::strong_ordering::greater;
-      return std::strong_ordering::equivalent;
-    }
-    /// @}
-    
-  private:
-    template<typename other_t>
-    friend class reference_wrapper_object;
-    std::optional<base_type> ref_;
-  };
-  
-  template<typename type_t>
-  inline const reference_wrapper_object<type_t> reference_wrapper_object<type_t>::empty;
+        if (&lhs.ref_.value().get() > &rhs) return std::strong_ordering::greater;
+          return std::strong_ordering::equivalent;
+        }
   /// @}
   
-  /// @cond
-  // Deduction guides for xtd::reference_wrapper_object
-  // {
-  template<typename type_t>
-  reference_wrapper_object(type_t&) -> reference_wrapper_object<type_t>;
+private:
+  template<typename other_t>
+  friend class reference_wrapper_object;
+  std::optional<base_type> ref_;
+};
+
+template<typename type_t>
+inline const reference_wrapper_object<type_t> reference_wrapper_object<type_t>::empty;
+/// @}
+
+/// @cond
+// Deduction guides for xtd::reference_wrapper_object
+// {
+template<typename type_t>
+reference_wrapper_object(type_t&) -> reference_wrapper_object<type_t>;
   // }
   /// @endcond
 }

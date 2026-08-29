@@ -23,7 +23,7 @@ namespace xtd {
           xtd::exception_services::exception_dispatch_info exception;
           sptr<xtd::threading::tasks::task<result_t>> task;
           std::coroutine_handle<promise_type> self;
-
+          
           auto final_suspend() noexcept {
             struct final_awaiter {
               promise_type& promise;
@@ -66,7 +66,7 @@ namespace xtd {
         auto operator=(const task&) -> task& = default;
         task(const std::coroutine_handle<typename task<result_t>::promise_type>& handle) { {*handle_ = handle;}}
         ~task() {if (handle_.is_unique() && *handle_) handle_->destroy();}
-
+        
         /// @endcond
         
         /// @name Public Constructors
@@ -77,7 +77,7 @@ namespace xtd {
         task(const xtd::func<result_t, const xtd::any_object&>& func, const xtd::any_object& state) : basic_task<result_t> {func, state} {}
         task(const xtd::func<result_t, const xtd::any_object&>& func, const xtd::any_object& state, const xtd::threading::cancellation_token& cancellation_token) : basic_task<result_t> {func, state, cancellation_token} {}
         /// @}
-
+        
         /// @name Public Properties
         
         /// @{
@@ -104,7 +104,7 @@ namespace xtd {
         /// @{
         auto operator co_await() noexcept {return awaiter {*this};}
         /// @}
-
+        
       private:
         xtd::ptr<std::coroutine_handle<promise_type>> handle_ = xtd::new_ptr<std::coroutine_handle<promise_type>>();
       };

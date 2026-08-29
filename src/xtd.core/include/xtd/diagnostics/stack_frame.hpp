@@ -282,7 +282,7 @@ inline constexpr int ___current_stack_frame_ = 0;
 /// @deprecated Use xtd::diagnostics::stack_frame::current() - Will be removed in version 1.2.0.
 #define current_stack_frame_ \
   (void(___current_stack_frame_), xtd::diagnostics::stack_frame::current())
-  
+
 
 /// @brief Provides information about the current stack frame.
 /// @par Library

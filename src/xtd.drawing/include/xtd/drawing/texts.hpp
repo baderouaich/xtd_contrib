@@ -210,7 +210,7 @@ namespace xtd {
       
       /// @{
       /// @brief Gets an array of texts.
-      [[nodiscard]] static auto get_texts() noexcept -> const xtd::array<xtd::string>&;
+      [[nodiscard]] static auto get_texts() noexcept -> const xtd::array<xtd::string>& ;
       /// @}
     };
   }

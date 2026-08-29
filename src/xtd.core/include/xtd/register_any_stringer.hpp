@@ -14,28 +14,28 @@ inline auto __to_any_stringer__(function_t const& func) -> std::pair<const std::
     [f = func](xtd::any const & value)->std::string {
       if constexpr(std::is_void_v<type_t>) return f();
       else return f(xtd::any_cast<const type_t&>(value));
-    }
-  };
+      }
+};
 }
 /// @endcond
 
 /// @brief The xtd namespace contains all fundamental classes to access Hardware, Os, System, and more.
 namespace xtd {
-  /// @name Static Methods
-  
-  /// @{
-  /// @brief Register an any stringer method for a specified type.
-  /// @param func Function to register any stringer for specified type.
-  /// @par Namespace
-  /// xtd
-  /// @par Library
-  /// xtd.core
-  /// @ingroup xtd_core system
-  /// @par Examples
-  /// Show how to register your own class.
-  /// @include format_any.cpp
-  template<typename type_t, typename function_t>
-  inline auto register_any_stringer(const function_t& func) -> void {
+/// @name Static Methods
+
+/// @{
+/// @brief Register an any stringer method for a specified type.
+/// @param func Function to register any stringer for specified type.
+/// @par Namespace
+/// xtd
+/// @par Library
+/// xtd.core
+/// @ingroup xtd_core system
+/// @par Examples
+/// Show how to register your own class.
+/// @include format_any.cpp
+template<typename type_t, typename function_t>
+inline auto register_any_stringer(const function_t& func) -> void {
     unregister_any_stringer<type_t>();
     __any_stringer__.insert(__to_any_stringer__<type_t>(func));
   }

@@ -36,7 +36,7 @@ namespace xtd {
         /// @brief Forces continuations added to the current task to be executed asynchronously.
         run_continuations_asynchronously = 0b1000000,
       };
-
+      
       /// @cond
       [[maybe_unused]] inline task_creation_options& operator ^=(task_creation_options& lhs, task_creation_options rhs) {lhs = static_cast<task_creation_options>(static_cast<std::underlying_type<task_creation_options>::type>(lhs) ^ static_cast<std::underlying_type<task_creation_options>::type>(rhs)); return lhs;}
       [[maybe_unused]] inline task_creation_options& operator &=(task_creation_options& lhs, task_creation_options rhs) {lhs = static_cast<task_creation_options>(static_cast<std::underlying_type<task_creation_options>::type>(lhs) & static_cast<std::underlying_type<task_creation_options>::type>(rhs)); return lhs;}

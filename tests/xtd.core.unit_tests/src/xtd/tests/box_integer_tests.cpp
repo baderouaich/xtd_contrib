@@ -30,16 +30,16 @@ namespace xtd::tests {
     auto test_method_(const_pointer) {
       assert::are_equal(typeof_<const type_t*>(), typeof_<typename box_integer<type_t>::const_pointer>());
     }
-
+    
     auto test_method_(default_constructor) {
       assert::are_equal(type_t {0}, box_integer<type_t> {}.value);
     }
-
+    
     auto test_method_(constructor_with_type) {
       assert::are_equal(type_t {0}, box_integer<type_t> {0}.value);
       assert::are_equal(type_t {42}, box_integer<type_t> {42}.value);
     }
-
+    
     auto test_method_(copy_constructor) {
       assert::are_equal(type_t {0}, box_integer<type_t> {box_integer<type_t> {0}}.value);
       assert::are_equal(type_t {42}, box_integer<type_t> {box_integer<type_t> {42}}.value);
@@ -49,7 +49,7 @@ namespace xtd::tests {
       auto o = box_integer<type_t> {42};
       assert::are_equal(type_t {42}, box_integer<type_t> {std::move(o)}.value);
     }
-
+    
     auto test_method_(copy_operator) {
       auto o1 = box_integer<type_t> {42};
       auto o2 = box_integer<type_t> {};
@@ -63,7 +63,7 @@ namespace xtd::tests {
       o2 = std::move(o1);
       assert::are_equal(type_t {42}, o2.value);
     }
-
+    
     auto test_method_(max_value) {
       assert::are_equal(std::numeric_limits<type_t>::max(), box_integer<type_t>::max_value);
     }
@@ -71,7 +71,7 @@ namespace xtd::tests {
     auto test_method_(min_value) {
       assert::are_equal(std::numeric_limits<type_t>::lowest(), box_integer<type_t>::min_value);
     }
-
+    
     auto test_method_(value_get) {
       assert::are_equal(type_t {0}, box_integer<type_t> {}.value);
       assert::are_equal(type_t {0}, box_integer<type_t> {0}.value);
@@ -86,7 +86,7 @@ namespace xtd::tests {
       o.value = 120;
       assert::are_equal(type_t {120}, o.value);
     }
-
+    
     auto test_method_(operator_value_type) {
       auto v = box_integer<type_t> {}.value;
       assert::are_equal(type_t {0}, v);
@@ -136,7 +136,7 @@ namespace xtd::tests {
       assert::are_equal("002A", box_integer<type_t> {42}.to_string("X4", globalization::culture_info {"en-US"}));
       assert::are_equal("0078", box_integer<type_t> {120}.to_string("X4", globalization::culture_info {"en-US"}));
     }
-
+    
     auto test_method_(less_operator) {
       assert::is_false(box_integer<type_t> {5} < box_integer<type_t> {5});
       assert::is_true(box_integer<type_t> {4} < box_integer<type_t> {5});
@@ -177,16 +177,16 @@ namespace xtd::tests {
       assert::are_equal(type_t {5}, box_integer<type_t>::parse("5"));
       assert::are_equal(type_t {42}, box_integer<type_t>::parse("42"));
       assert::are_equal(type_t {120}, box_integer<type_t>::parse("120"));
-      assert::throws<format_exception>([]{[[maybe_unused]] auto __ = box_integer<type_t>::parse("value");});
+      assert::throws<format_exception>([] {[[maybe_unused]] auto __ = box_integer<type_t>::parse("value");});
     }
     
     auto test_method_(parse_with_number_style) {
       assert::are_equal(type_t {5}, box_integer<type_t>::parse("0x5", number_styles::hex_number));
       assert::are_equal(type_t {42}, box_integer<type_t>::parse("0x2A", number_styles::hex_number));
       assert::are_equal(type_t {120}, box_integer<type_t>::parse("0x78", number_styles::hex_number));
-      assert::throws<format_exception>([]{[[maybe_unused]] auto __ = box_integer<type_t>::parse("value", number_styles::hex_number);});
+      assert::throws<format_exception>([] {[[maybe_unused]] auto __ = box_integer<type_t>::parse("value", number_styles::hex_number);});
     }
-
+    
     auto test_method_(try_parse) {
       auto value = type_t {};
       assert::is_true(box_integer<type_t>::try_parse("5", value));
@@ -197,7 +197,7 @@ namespace xtd::tests {
       assert::are_equal(type_t {120}, value);
       assert::is_false(box_integer<type_t>::try_parse("value", value));
     }
-
+    
     auto test_method_(try_parse_with_number_style) {
       auto value = type_t {};
       assert::is_true(box_integer<type_t>::try_parse("0x5", value, number_styles::hex_number));

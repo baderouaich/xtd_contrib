@@ -89,9 +89,9 @@ namespace xtd {
     delegate(delegate&&) = default;
     delegate(const delegate& other) {*data_ = *other.data_;}
     delegate& operator =(const delegate& other) {*data_ = *other.data_; return *this;}
-
+    
     template<typename fct_t>
-    requires (!xtd::expressions::expression_operand<fct_t>) &&
+    requires(!xtd::expressions::expression_operand<fct_t>) &&
     (!std::same_as<std::decay_t<fct_t>, delegate>) &&
     (!std::same_as<std::decay_t<fct_t>, function_t>) &&
     std::invocable<fct_t&> &&
@@ -223,8 +223,8 @@ namespace xtd {
     /// @remarks If the invocation list of value matches a contiguous set of elements in the invocation list of source, then the invocation list of value is said to occur within the invocation list of source. If the invocation list of value occurs more than once in the invocation list of source, the last occurrence is removed.
     [[nodiscard]] static auto remove(const delegate& source, const delegate& value) noexcept -> delegate {
       auto result = source;
-      std::for_each(value.data_->functions.begin(), value.data_->functions.end(), [&](const auto& function) {
-        auto iterator = std::find_if(result.data_->functions.rbegin(), result.data_->functions.rend(), [&](const auto& item) {return are_equals(item, function);});
+      std::for_each(value.data_->functions.begin(), value.data_->functions.end(), [&](const auto & function) {
+        auto iterator = std::find_if(result.data_->functions.rbegin(), result.data_->functions.rend(), [&](const auto & item) {return are_equals(item, function);});
         if (iterator != result.data_->functions.rend()) result.data_->functions.erase((iterator + 1).base());
       });
       return result;
@@ -348,22 +348,22 @@ namespace xtd {
     }
     
     auto operator -=(const delegate& other) noexcept -> delegate& {
-      std::for_each(other.data_->functions.begin(), other.data_->functions.end(), [&](const auto& function) {
-        auto iterator = std::find_if(data_->functions.rbegin(), data_->functions.rend(), [&](const auto& item) {return are_equals(item, function);});
+      std::for_each(other.data_->functions.begin(), other.data_->functions.end(), [&](const auto & function) {
+        auto iterator = std::find_if(data_->functions.rbegin(), data_->functions.rend(), [&](const auto & item) {return are_equals(item, function);});
         if (iterator != data_->functions.rend()) data_->functions.erase((iterator + 1).base());
       });
       return *this;
     }
     
     auto operator -=(const function_t& function) noexcept -> delegate& {
-      auto iterator = std::find_if(data_->functions.rbegin(), data_->functions.rend(), [&](const auto& item) {return are_equals(item, function);});
+      auto iterator = std::find_if(data_->functions.rbegin(), data_->functions.rend(), [&](const auto & item) {return are_equals(item, function);});
       if (iterator != data_->functions.rend()) data_->functions.erase((iterator + 1).base());
       return *this;
     }
     
     template<typename fn_t>
     auto operator -=(fn_t function) noexcept -> delegate& {
-      auto iterator = std::find_if(data_->functions.rbegin(), data_->functions.rend(), [&](const auto& item) {return are_equals(item, function);});
+      auto iterator = std::find_if(data_->functions.rbegin(), data_->functions.rend(), [&](const auto & item) {return are_equals(item, function);});
       if (iterator != data_->functions.rend()) data_->functions.erase((iterator + 1).base());
       return *this;
     }
@@ -372,7 +372,7 @@ namespace xtd {
   private:
     [[nodiscard]] static auto are_equals(const std::function<result_t()>& fct1, const std::function<result_t()>& fct2) noexcept -> bool {return fct1.target_type() == fct2.target_type() && (fct1.template target<result_t(*)()>() == fct2.template target<result_t(*)()>() || *fct1.template target<result_t(*)()>() == *fct2.template target<result_t(*)()>());}
     [[nodiscard]] static auto find(typename function_collection::const_iterator begin, typename function_collection::const_iterator end, const function_t& function) noexcept -> typename function_collection::const_iterator {
-      auto iterator = std::find_if(begin, end, [&](const auto& item) {return are_equals(item, function);});
+      auto iterator = std::find_if(begin, end, [&](const auto & item) {return are_equals(item, function);});
       if (iterator != end) return iterator;
       return end;
     }
@@ -458,27 +458,27 @@ namespace xtd {
     /// @cond
     template<typename object1_t, typename object2_t, typename... args_t>
     delegate(const object1_t& object, result_t(object2_t::*method)(args_t...) const) noexcept {data_->functions.push_back(function_t(std::bind_front(method, const_cast<object1_t*>(&object))));}
-
+    
     template<typename object1_t, typename object2_t, typename... args_t>
     delegate(const object1_t& object, result_t(object2_t::*method)(args_t...)) noexcept {data_->functions.push_back(function_t(std::bind_front(method, const_cast<object1_t*>(&object))));}
-
+    
     template<typename fct_t>
-    requires (!xtd::expressions::expression_operand<fct_t>) &&
+    requires(!xtd::expressions::expression_operand<fct_t>) &&
     (!std::same_as<std::decay_t<fct_t>, delegate>) &&
     (!std::same_as<std::decay_t<fct_t>, function_t>) &&
     std::invocable<fct_t&, arguments_t...>
     delegate(fct_t&& f) {data_->functions.push_back(function_t(std::forward<fct_t>(f)));}
-
+    
     template<typename fct_t>
-    requires (!xtd::expressions::expression_operand<fct_t>) &&
+    requires(!xtd::expressions::expression_operand<fct_t>) &&
     (!std::same_as<std::decay_t<fct_t>, delegate>) &&
     (!std::same_as<std::decay_t<fct_t>, function_t>) &&
     std::invocable<fct_t&>
     delegate(fct_t&& f) {data_->no_arguments_functions.push_back(no_arguments_function_t(std::forward<fct_t>(f)));}
-
+    
     template<typename expression_t>
     requires xtd::expressions::expression_operand<expression_t> &&
-    requires (expression_t e, arguments_t... args) { { e(args...) } -> std::convertible_to<result_t>;}
+    requires(expression_t e, arguments_t... args) { { e(args...) } -> std::convertible_to<result_t>;}
     delegate(expression_t&& expression) {data_->functions.push_back(function_t(std::forward<expression_t>(expression)));}
     /// @endcond
     
@@ -626,7 +626,7 @@ namespace xtd {
         result.data_->functions.push_back(std::move(function));
       return result;
     }
-
+    
     /// @brief removes the last occurrence of the invocation list of a delegate from the invocation list of another delegate.
     /// @param source The delegate from which to remove the invocation list of value.
     /// @param value The delegate that supplies the invocation list to remove from the invocation list of source.
@@ -634,13 +634,13 @@ namespace xtd {
     /// @remarks If the invocation list of value matches a contiguous set of elements in the invocation list of source, then the invocation list of value is said to occur within the invocation list of source. If the invocation list of value occurs more than once in the invocation list of source, the last occurrence is removed.
     [[nodiscard]] static auto remove(const delegate& source, const delegate& value) noexcept -> delegate {
       auto result = source;
-      std::for_each(value.data_->no_arguments_functions.begin(), value.data_->no_arguments_functions.end(), [&](const auto& no_arguments_function) {
-        auto iterator = std::find_if(result.data_->no_arguments_functions.rbegin(), result.data_->no_arguments_functions.rend(), [&](const auto& item) {return are_equals(item, no_arguments_function);});
+      std::for_each(value.data_->no_arguments_functions.begin(), value.data_->no_arguments_functions.end(), [&](const auto & no_arguments_function) {
+        auto iterator = std::find_if(result.data_->no_arguments_functions.rbegin(), result.data_->no_arguments_functions.rend(), [&](const auto & item) {return are_equals(item, no_arguments_function);});
         if (iterator != result.data_->no_arguments_functions.rend()) result.data_->no_arguments_functions.erase((iterator + 1).base());
       });
       
-      std::for_each(value.data_->functions.begin(), value.data_->functions.end(), [&](const auto& function) {
-        auto iterator = std::find_if(result.data_->functions.rbegin(), result.data_->functions.rend(), [&](const auto& item) {return are_equals(item, function);});
+      std::for_each(value.data_->functions.begin(), value.data_->functions.end(), [&](const auto & function) {
+        auto iterator = std::find_if(result.data_->functions.rbegin(), result.data_->functions.rend(), [&](const auto & item) {return are_equals(item, function);});
         if (iterator != result.data_->functions.rend()) result.data_->functions.erase((iterator + 1).base());
       });
       return result;
@@ -718,7 +718,7 @@ namespace xtd {
     
     /// @cond
     template<typename fct_t>
-    requires (!xtd::expressions::expression_operand<fct_t>) &&
+    requires(!xtd::expressions::expression_operand<fct_t>) &&
     (!std::same_as<std::decay_t<fct_t>, delegate>) &&
     (!std::same_as<std::decay_t<fct_t>, function_t>) &&
     std::invocable<fct_t&, arguments_t...>
@@ -730,7 +730,7 @@ namespace xtd {
     }
     
     template<typename fct_t>
-    requires (!xtd::expressions::expression_operand<fct_t>) &&
+    requires(!xtd::expressions::expression_operand<fct_t>) &&
     (!std::same_as<std::decay_t<fct_t>, delegate>) &&
     (!std::same_as<std::decay_t<fct_t>, function_t>) &&
     std::invocable<fct_t&>
@@ -743,7 +743,7 @@ namespace xtd {
     
     template<typename expression_t>
     requires xtd::expressions::expression_operand<expression_t> &&
-    requires (expression_t e, arguments_t... args) { { e(args...) } -> std::convertible_to<result_t>;}
+    requires(expression_t e, arguments_t... args) { { e(args...) } -> std::convertible_to<result_t>;}
     auto operator =(expression_t&& expression) noexcept -> delegate& {
       data_->no_arguments_functions.clear();
       data_->functions.clear();
@@ -771,7 +771,7 @@ namespace xtd {
     }
     
     template<typename fct_t>
-    requires (!xtd::expressions::expression_operand<fct_t>) &&
+    requires(!xtd::expressions::expression_operand<fct_t>) &&
     (!std::same_as<std::decay_t<fct_t>, delegate>) &&
     (!std::same_as<std::decay_t<fct_t>, function_t>) &&
     std::invocable<fct_t&, arguments_t...>
@@ -782,7 +782,7 @@ namespace xtd {
     }
     
     template<typename fct_t>
-    requires (!xtd::expressions::expression_operand<fct_t>) &&
+    requires(!xtd::expressions::expression_operand<fct_t>) &&
     (!std::same_as<std::decay_t<fct_t>, delegate>) &&
     (!std::same_as<std::decay_t<fct_t>, function_t>) &&
     std::invocable<fct_t&>
@@ -794,7 +794,7 @@ namespace xtd {
     
     template<typename expression_t>
     requires xtd::expressions::expression_operand<expression_t> &&
-    requires (expression_t e, arguments_t... args) { { e(args...) } -> std::convertible_to<result_t>;}
+    requires(expression_t e, arguments_t... args) { { e(args...) } -> std::convertible_to<result_t>;}
     [[nodiscard]] auto operator +(expression_t&& expression) noexcept -> delegate {
       delegate result = *this;
       result += expression;
@@ -816,14 +816,14 @@ namespace xtd {
         data_->functions.push_back(std::move(function));
       return *this;
     }
-
+    
     auto operator +=(const function_t& function) noexcept -> delegate& {
       data_->functions.push_back(function);
       return *this;
     }
     
     template<typename fct_t>
-    requires (!xtd::expressions::expression_operand<fct_t>) &&
+    requires(!xtd::expressions::expression_operand<fct_t>) &&
     (!std::same_as<std::decay_t<fct_t>, delegate>) &&
     (!std::same_as<std::decay_t<fct_t>, function_t>) &&
     std::invocable<fct_t&, arguments_t...>
@@ -833,7 +833,7 @@ namespace xtd {
     }
     
     template<typename fct_t>
-    requires (!xtd::expressions::expression_operand<fct_t>) &&
+    requires(!xtd::expressions::expression_operand<fct_t>) &&
     (!std::same_as<std::decay_t<fct_t>, delegate>) &&
     (!std::same_as<std::decay_t<fct_t>, function_t>) &&
     std::invocable<fct_t&>
@@ -844,7 +844,7 @@ namespace xtd {
     
     template<typename expression_t>
     requires xtd::expressions::expression_operand<expression_t> &&
-    requires (expression_t e, arguments_t... args) { { e(args...) } -> std::convertible_to<result_t>;}
+    requires(expression_t e, arguments_t... args) { { e(args...) } -> std::convertible_to<result_t>;}
     auto operator +=(expression_t&& expression) noexcept -> delegate& {
       *this += delegate(expression);
       return *this;
@@ -863,7 +863,7 @@ namespace xtd {
     }
     
     template<typename fct_t>
-    requires (!xtd::expressions::expression_operand<fct_t>) &&
+    requires(!xtd::expressions::expression_operand<fct_t>) &&
     (!std::same_as<std::decay_t<fct_t>, delegate>) &&
     (!std::same_as<std::decay_t<fct_t>, function_t>) &&
     std::invocable<fct_t&, arguments_t...>
@@ -874,7 +874,7 @@ namespace xtd {
     }
     
     template<typename fct_t>
-    requires (!xtd::expressions::expression_operand<fct_t>) &&
+    requires(!xtd::expressions::expression_operand<fct_t>) &&
     (!std::same_as<std::decay_t<fct_t>, delegate>) &&
     (!std::same_as<std::decay_t<fct_t>, function_t>) &&
     std::invocable<fct_t&>
@@ -886,7 +886,7 @@ namespace xtd {
     
     template<typename expression_t>
     requires xtd::expressions::expression_operand<expression_t> &&
-    requires (expression_t e, arguments_t... args) { { e(args...) } -> std::convertible_to<result_t>;}
+    requires(expression_t e, arguments_t... args) { { e(args...) } -> std::convertible_to<result_t>;}
     [[nodiscard]] auto operator -(expression_t&& expression) noexcept -> delegate {
       delegate result = *this;
       result -= expression;
@@ -894,57 +894,57 @@ namespace xtd {
     }
     
     auto operator -=(const delegate& other) noexcept -> delegate& {
-      std::for_each(other.data_->no_arguments_functions.begin(), other.data_->no_arguments_functions.end(), [&](const auto& no_arguments_function) {
-        auto iterator = std::find_if(data_->no_arguments_functions.rbegin(), data_->no_arguments_functions.rend(), [&](const auto& item) {return are_equals(item, no_arguments_function);});
+      std::for_each(other.data_->no_arguments_functions.begin(), other.data_->no_arguments_functions.end(), [&](const auto & no_arguments_function) {
+        auto iterator = std::find_if(data_->no_arguments_functions.rbegin(), data_->no_arguments_functions.rend(), [&](const auto & item) {return are_equals(item, no_arguments_function);});
         if (iterator != data_->no_arguments_functions.rend()) data_->no_arguments_functions.erase((iterator + 1).base());
       });
       
-      std::for_each(other.data_->functions.begin(), other.data_->functions.end(), [&](const auto& function) {
-        auto iterator = std::find_if(data_->functions.rbegin(), data_->functions.rend(), [&](const auto& item) {return are_equals(item, function);});
+      std::for_each(other.data_->functions.begin(), other.data_->functions.end(), [&](const auto & function) {
+        auto iterator = std::find_if(data_->functions.rbegin(), data_->functions.rend(), [&](const auto & item) {return are_equals(item, function);});
         if (iterator != data_->functions.rend()) data_->functions.erase((iterator + 1).base());
       });
       return *this;
     }
     
     auto operator -=(const function_t& function) noexcept -> delegate& {
-      auto iterator = std::find_if(data_->functions.rbegin(), data_->functions.rend(), [&](const auto& item) {return are_equals(item, function);});
+      auto iterator = std::find_if(data_->functions.rbegin(), data_->functions.rend(), [&](const auto & item) {return are_equals(item, function);});
       if (iterator != data_->functions.rend()) data_->functions.erase((iterator + 1).base());
       return *this;
     }
     
     auto operator -=(const no_arguments_function_t& no_arguments_function) noexcept -> delegate& {
-      auto iterator = std::find_if(data_->no_arguments_functions.rbegin(), data_->no_arguments_functions.rend(), [&](const auto& item) {return are_equals(item, no_arguments_function);});
+      auto iterator = std::find_if(data_->no_arguments_functions.rbegin(), data_->no_arguments_functions.rend(), [&](const auto & item) {return are_equals(item, no_arguments_function);});
       if (iterator != data_->no_arguments_functions.rend()) data_->no_arguments_functions.erase((iterator + 1).base());
       return *this;
     }
     
     template<typename fct_t>
-    requires (!xtd::expressions::expression_operand<fct_t>) &&
+    requires(!xtd::expressions::expression_operand<fct_t>) &&
     (!std::same_as<std::decay_t<fct_t>, delegate>) &&
     (!std::same_as<std::decay_t<fct_t>, function_t>) &&
     std::invocable<fct_t&, arguments_t...>
     auto operator -=(fct_t&& function) noexcept -> delegate& {
-      auto iterator = std::find_if(data_->functions.rbegin(), data_->functions.rend(), [&](const auto& item) {return are_equals(item, function);});
+      auto iterator = std::find_if(data_->functions.rbegin(), data_->functions.rend(), [&](const auto & item) {return are_equals(item, function);});
       if (iterator != data_->functions.rend()) data_->functions.erase((iterator + 1).base());
       return *this;
     }
     
     template<typename fct_t>
-    requires (!xtd::expressions::expression_operand<fct_t>) &&
+    requires(!xtd::expressions::expression_operand<fct_t>) &&
     (!std::same_as<std::decay_t<fct_t>, delegate>) &&
     (!std::same_as<std::decay_t<fct_t>, function_t>) &&
     std::invocable<fct_t&>
     auto operator -=(fct_t&& function) noexcept -> delegate& {
-      auto iterator = std::find_if(data_->functions.rbegin(), data_->functions.rend(), [&](const auto& item) {return are_equals(item, function);});
+      auto iterator = std::find_if(data_->functions.rbegin(), data_->functions.rend(), [&](const auto & item) {return are_equals(item, function);});
       if (iterator != data_->functions.rend()) data_->functions.erase((iterator + 1).base());
       return *this;
     }
     
     template<typename expression_t>
     requires xtd::expressions::expression_operand<expression_t> &&
-    requires (expression_t e, arguments_t... args) { { e(args...) } -> std::convertible_to<result_t>;}
+    requires(expression_t e, arguments_t... args) { { e(args...) } -> std::convertible_to<result_t>;}
     auto operator -=(expression_t&& expression) noexcept -> delegate& {
-      auto iterator = std::find_if(data_->functions.rbegin(), data_->functions.rend(), [&](const auto& item) {return are_equals(item, function_t {expression});});
+      auto iterator = std::find_if(data_->functions.rbegin(), data_->functions.rend(), [&](const auto & item) {return are_equals(item, function_t {expression});});
       if (iterator != data_->functions.rend()) data_->functions.erase((iterator + 1).base());
       return *this;
     }
@@ -962,20 +962,20 @@ namespace xtd {
     }
     
     [[nodiscard]] static auto find(typename no_arguments_function_collection::const_iterator begin, typename no_arguments_function_collection::const_iterator end, const no_arguments_function_t& function) noexcept -> typename no_arguments_function_collection::const_iterator {
-      auto iterator = std::find_if(begin, end, [&](const auto& item) {return are_equals(item, function);});
+      auto iterator = std::find_if(begin, end, [&](const auto & item) {return are_equals(item, function);});
       if (iterator != end) return iterator;
       return end;
     }
     
     [[nodiscard]] static auto find(typename function_collection::const_iterator begin, typename function_collection::const_iterator end, const function_t& function) noexcept -> typename function_collection::const_iterator {
-      auto iterator = std::find_if(begin, end, [&](const auto& item) {return are_equals(item, function);});
+      auto iterator = std::find_if(begin, end, [&](const auto & item) {return are_equals(item, function);});
       if (iterator != end) return iterator;
       return end;
     }
     
     xtd::sptr<data> data_ = xtd::new_sptr<data>();
   };
-
+  
   /// @cond
   // Deduction guides for xtd::delegate
   // {
@@ -986,8 +986,8 @@ namespace xtd {
   struct function_traits<result_t(args_t...)> {using signature = result_t(args_t...);};
   
   template<typename result_t, typename... args_t>
-  struct function_traits<result_t(*)(args_t...)> : function_traits<result_t(args_t...)> {};
-  
+struct function_traits<result_t(*)(args_t...)> : function_traits<result_t(args_t...)> {};
+
   template<typename class_t, typename result_t, typename... args_t>
   struct function_traits<result_t(class_t::*)(args_t...) const> : function_traits<result_t(args_t...)> {};
   

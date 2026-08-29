@@ -351,7 +351,7 @@ namespace xtd {
       
       /// @brief Gets all cursors.
       /// @return cursor array.
-      [[nodiscard]] static auto get_cursors() -> const xtd::array<cursor>&;
+      [[nodiscard]] static auto get_cursors() -> const xtd::array<cursor>& ;
       /// @}
     };
   }

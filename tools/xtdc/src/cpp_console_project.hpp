@@ -13,7 +13,7 @@ namespace xtdc_command {
       create_cpp_console_source(name, create_solution ? xtd::io::path::combine(current_path(), name) : current_path());
     }
     
-    void generate(const xtd::string& name) const {
+  void generate(const xtd::string& name) const {
       generate_cpp_console_cmakelists_txt(name, current_path());
     }
     

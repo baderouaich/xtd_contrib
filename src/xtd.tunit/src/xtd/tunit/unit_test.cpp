@@ -115,19 +115,19 @@ array<string> unit_test::succeed_test_names() const noexcept {
 int32 unit_test::run() noexcept {
   return startup::run([this] -> int {
     if (parse_arguments(arguments))
-      return settings::default_settings().exit_status();
-      
+    return settings::default_settings().exit_status();
+    
     if (settings::default_settings().count_tests()) {
       auto count = 0;
       for (const auto& test_class : test_classes())
-        count += static_cast<int32>(test_class.test()->tests().size());
+          count += static_cast<int32>(test_class.test()->tests().size());
           
-      return count_tests(count);
-    }
-    
+        return count_tests(count);
+      }
+      
     if (settings::default_settings().list_tests()) {
-      auto tests = list<string> {};
-      for (const auto& test_class : test_classes())
+    auto tests = list<string> {};
+    for (const auto& test_class : test_classes())
         for (const auto& test : test_class.test()->tests())
           tests.add(test_class.test()->name() + '.' + test.name());
           
@@ -143,7 +143,7 @@ int32 unit_test::run() noexcept {
     auto random = settings::default_settings().random_seed() ? xtd::random(settings::default_settings().random_seed()) : xtd::random();
     
     for (repeat_iteration_ = 1; repeat_iteration_ <= settings::default_settings().repeat_test() || settings::default_settings().repeat_test() < 0; ++repeat_iteration_) {
-      if (settings::default_settings().shuffle_test())
+    if (settings::default_settings().shuffle_test())
         random.shuffle(test_classes());
         
       try {
@@ -178,8 +178,8 @@ int32 unit_test::run() noexcept {
     if (settings::default_settings().output_json()) write_tests_json();
     if (settings::default_settings().output_xml()) write_tests_xml();
     
-    return settings::default_settings().exit_status();
-  });
+      return settings::default_settings().exit_status();
+    });
 }
 
 int32 unit_test::count_tests(int32 count) {

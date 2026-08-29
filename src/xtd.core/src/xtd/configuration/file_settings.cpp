@@ -201,12 +201,12 @@ auto file_settings::reset() -> void {
   section_key_values_.clear();
   if (!string::is_empty(file_path_) && file::exists(file_path_)) file::remove(file_path_);
   if (stream_) stream_writer(*stream_).write("");
-}
+  }
 
 auto file_settings::save() -> void {
   if (!string::is_empty(file_path_)) save_as(file_path_);
   if (stream_) save_as(*stream_);
-}
+  }
 
 auto file_settings::save_as(const string& file_path) -> void {
   directory::create_directory(path::get_directory_name(path::get_full_path(file_path)));

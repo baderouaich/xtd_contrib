@@ -16,21 +16,21 @@ using namespace xtd::helpers;
 namespace {
   static auto to_image_layout(picture_box_size_mode size_mode) -> image_layout {
     switch (size_mode) {
-      case picture_box_size_mode::normal: return image_layout::none;
-      case picture_box_size_mode::stretch_image: return image_layout::stretch;
-      case picture_box_size_mode::auto_size: return image_layout::none;
-      case picture_box_size_mode::center_image: return image_layout::center;
-      case picture_box_size_mode::zoom: return image_layout::zoom;
-    }
-    return image_layout::none;
+    case picture_box_size_mode::normal: return image_layout::none;
+    case picture_box_size_mode::stretch_image: return image_layout::stretch;
+    case picture_box_size_mode::auto_size: return image_layout::none;
+    case picture_box_size_mode::center_image: return image_layout::center;
+    case picture_box_size_mode::zoom: return image_layout::zoom;
   }
+  return image_layout::none;
+}
 }
 
 struct picture_box::data {
-  xtd::forms::border_sides border_sides = forms::border_sides::all;
-  std::optional<xtd::forms::border_style> border_style;
-  std::optional<xtd::drawing::image> image;
-  picture_box_size_mode size_mode = picture_box_size_mode::normal;
+xtd::forms::border_sides border_sides = forms::border_sides::all;
+std::optional<xtd::forms::border_style> border_style;
+std::optional<xtd::drawing::image> image;
+picture_box_size_mode size_mode = picture_box_size_mode::normal;
 };
 
 picture_box::picture_box() : data_(xtd::new_sptr<data>()) {
@@ -328,11 +328,11 @@ auto picture_box::on_handle_created(const event_args& e) -> void {
   control::on_handle_created(e);
   if (data_->image.has_value() && *data_->image != xtd::drawing::image::empty && control_appearance() == forms::control_appearance::system)
     native::picture_box::image(handle(), *data_->image);
-}
+  }
 
 auto picture_box::on_paint(paint_event_args& e) -> void {
   control::on_paint(e);
   if (control_appearance() != forms::control_appearance::standard) return;
-  if (image().has_value()) control_paint::draw_image(e.graphics(), image().value(), e.clip_rectangle(), to_image_layout(size_mode()));
-  control_paint::draw_border_from_back_color(*this, e.graphics(), border_style(), border_sides(), back_color(), e.clip_rectangle());
-}
+    if (image().has_value()) control_paint::draw_image(e.graphics(), image().value(), e.clip_rectangle(), to_image_layout(size_mode()));
+      control_paint::draw_border_from_back_color(*this, e.graphics(), border_style(), border_sides(), back_color(), e.clip_rectangle());
+    }

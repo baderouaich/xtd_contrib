@@ -10,5 +10,5 @@ namespace xtd {
   // Since Doxygen does not work properly with the C++ concept, the documentation for this concept is declared in xtd/enumeration_.hpp
   template<typename type_t>
   concept enumeration =
-  std::is_enum_v<xtd::raw_type<type_t>>;
+    std::is_enum_v<xtd::raw_type<type_t>>;
 }

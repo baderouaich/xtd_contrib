@@ -13,7 +13,7 @@ namespace xtd::tests {
     [[nodiscard]] static auto is_stream_insertable(value_t&& value) noexcept -> bool {return true;}
     
     template<typename value_t>
-    requires (!stream_insertable<value_t>)
+    requires(!stream_insertable<value_t>)
     [[nodiscard]] static auto is_stream_insertable(value_t&& value) noexcept -> bool {return false;}
     
     auto test_method_(with_string_literal) {
@@ -45,7 +45,7 @@ namespace xtd::tests {
       
       assert_that(is_stream_insertable(my_stringable {})).is().true_();
     }
-
+    
     auto test_method_(with_bool) {
       assert_that(is_stream_insertable(false)).is().true_();
     }
@@ -55,12 +55,12 @@ namespace xtd::tests {
       assert_that(is_stream_insertable(42_s16)).is().true_();
       assert_that(is_stream_insertable(42_s32)).is().true_();
       assert_that(is_stream_insertable(42_s64)).is().true_();
-
+      
       assert_that(is_stream_insertable(42_u8)).is().true_();
       assert_that(is_stream_insertable(42_u16)).is().true_();
       assert_that(is_stream_insertable(42_u32)).is().true_();
       assert_that(is_stream_insertable(42_u64)).is().true_();
-
+      
       assert_that(is_stream_insertable(42_z)).is().true_();
     }
     

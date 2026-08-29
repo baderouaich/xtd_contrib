@@ -13,8 +13,8 @@ const object& any_object::value() const {
 int32 any_object::compare_to(const any_object& other) const noexcept {
   if (!has_value() && other.has_value()) return -1;
   if (has_value() && !other.has_value()) return 1;
-  return xtd::collections::generic::helpers::comparer<ptr<object>> {}(value_, other.value_);
-}
+    return xtd::collections::generic::helpers::comparer<ptr<object>> {}(value_, other.value_);
+  }
 
 bool any_object::equals(const object& other) const noexcept {
   return dynamic_cast<const any_object*>(&other) && equals(static_cast<const any_object&>(other));
@@ -23,8 +23,8 @@ bool any_object::equals(const object& other) const noexcept {
 bool any_object::equals(const any_object& other) const noexcept {
   if (!has_value() && !other.has_value()) return true;
   if (has_value() != other.has_value()) return false;
-  return value_->equals(*other.value_);
-}
+    return value_->equals(*other.value_);
+  }
 
 xtd::usize any_object::get_hash_code() const noexcept {
   return has_value() ? value_->get_hash_code() : 0;
@@ -35,7 +35,8 @@ string any_object::to_string() const noexcept {
 }
 
 void any_object::reset() noexcept {
-  value_.reset();}
+  value_.reset();
+}
 
 any_object& any_object::operator =(any_object&& other) noexcept {
   value_ = std::move(other.value_);
@@ -47,7 +48,8 @@ ptr<object> any_object::boxing_ptr(const char* value) noexcept {
   return new_ptr<string>(value);
 }
 
-ptr<object> any_object::boxing_ptr(const char8* value) noexcept {return  new_ptr<string>(value);
+ptr<object> any_object::boxing_ptr(const char8* value) noexcept {
+  return  new_ptr<string>(value);
 }
 
 ptr<object> any_object::boxing_ptr(const char16* value) noexcept {

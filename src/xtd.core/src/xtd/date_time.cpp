@@ -411,13 +411,13 @@ date_time date_time::add_months(int32 months) const {
   y += q;
   m -= q * 12;
   if (y < 1 || y > 9999) throw_helper::throws(exception_case::argument_out_of_range);
-  auto days_to = is_leap_year(y) ? days_to_month_366 : days_to_month_365;
-  auto days_to_month = days_to[m - 1];
-  int days = as<int32>(days_to[m] - days_to_month);
-  if (d > days) d = days;
-  auto n = days_to_year(as<uint32>(y)) + days_to_month + as<uint32>(d) - 1;
-  return date_time(n * ticks_per_day + ticks() % ticks_per_day, kind_);
-}
+    auto days_to = is_leap_year(y) ? days_to_month_366 : days_to_month_365;
+    auto days_to_month = days_to[m - 1];
+    int days = as<int32>(days_to[m] - days_to_month);
+    if (d > days) d = days;
+      auto n = days_to_year(as<uint32>(y)) + days_to_month + as<uint32>(d) - 1;
+      return date_time(n * ticks_per_day + ticks() % ticks_per_day, kind_);
+    }
 
 date_time date_time::add_seconds(double value) const {
   return date_time {value_ + xtd::ticks(as<int64>(value * ticks_per_second)), kind_};
@@ -434,8 +434,8 @@ date_time date_time::add_years(int32 value) const {
 int32 date_time::compare_to(const date_time& value) const noexcept {
   if (value_.count() < value.value_.count()) return -1;
   if (value_.count() > value.value_.count()) return 1;
-  return 0;
-}
+    return 0;
+  }
 
 int32 date_time::days_in_month(uint32 year, month_of_year month) {
   return days_in_month(year, as<uint32>(month));
@@ -795,28 +795,28 @@ namespace {
 bool date_time::try_parse_exact(const string& text, const string& format, date_time& result, const culture_info& culture) noexcept {
   if (string::is_empty(text) || string::is_empty(format)) return false;
   auto fmt = (format.length() == 1_z && !string::is_empty(standard_format_to_custom_format(format[0], culture))) ? standard_format_to_custom_format(format[0], culture) : format;
-  auto txt = text;
-  auto valid = true;
-  
-  auto year = 1_u32, month = 1_u32, day = 1_u32, hour = 0_u32, minute = 0_u32, second = 0_u32;
-  auto ticks = 0_s64;
-  
-  auto txt_index = 0_z;
-  for (auto fmt_index = 0_z; valid && fmt_index < fmt.length(); ++fmt_index) {
+    auto txt = text;
+    auto valid = true;
+    
+    auto year = 1_u32, month = 1_u32, day = 1_u32, hour = 0_u32, minute = 0_u32, second = 0_u32;
+    auto ticks = 0_s64;
+    
+    auto txt_index = 0_z;
+    for (auto fmt_index = 0_z; valid && fmt_index < fmt.length(); ++fmt_index) {
     switch (fmt[fmt_index]) {
-      case 'y': valid = try_parse_exact_year(txt, fmt, txt_index, fmt_index, year); break;
-      case 'M': valid = try_parse_exact_month(txt, fmt, txt_index, fmt_index, month, culture); break;
-      case 'd': valid = try_parse_exact_day(txt, fmt, txt_index, fmt_index, day, culture); break;
-      case 'H': valid = try_parse_exact_hour_24(txt, fmt, txt_index, fmt_index, hour); break;
-      case 'h': valid = try_parse_exact_hour_12(txt, fmt, txt_index, fmt_index, hour); break;
-      case 'm': valid = try_parse_exact_minute(txt, fmt, txt_index, fmt_index, minute); break;
-      case 's': valid = try_parse_exact_second(txt, fmt, txt_index, fmt_index, second); break;
-      case 'f': valid = try_parse_exact_fraction(txt, fmt, txt_index, fmt_index, ticks); break;
-      case 't': valid = try_parse_exact_time_suffix(txt, fmt, txt_index, fmt_index, hour, culture); break;
-      case 'K': valid = try_parse_exact_offset_utc(txt, fmt, txt_index, fmt_index, ticks); break;
-      default: valid = fmt[fmt_index] == text[txt_index++]; break;
+        case 'y': valid = try_parse_exact_year(txt, fmt, txt_index, fmt_index, year); break;
+        case 'M': valid = try_parse_exact_month(txt, fmt, txt_index, fmt_index, month, culture); break;
+        case 'd': valid = try_parse_exact_day(txt, fmt, txt_index, fmt_index, day, culture); break;
+        case 'H': valid = try_parse_exact_hour_24(txt, fmt, txt_index, fmt_index, hour); break;
+        case 'h': valid = try_parse_exact_hour_12(txt, fmt, txt_index, fmt_index, hour); break;
+        case 'm': valid = try_parse_exact_minute(txt, fmt, txt_index, fmt_index, minute); break;
+        case 's': valid = try_parse_exact_second(txt, fmt, txt_index, fmt_index, second); break;
+        case 'f': valid = try_parse_exact_fraction(txt, fmt, txt_index, fmt_index, ticks); break;
+        case 't': valid = try_parse_exact_time_suffix(txt, fmt, txt_index, fmt_index, hour, culture); break;
+        case 'K': valid = try_parse_exact_offset_utc(txt, fmt, txt_index, fmt_index, ticks); break;
+        default: valid = fmt[fmt_index] == text[txt_index++]; break;
+      }
     }
-  }
   if (!valid) return false;
   result = {year, month, day, hour, minute, second};
   result = result.add_ticks(ticks);
@@ -829,10 +829,10 @@ bool date_time::try_parse_exact(const string& text, const array<string>& formats
 }
 
 bool date_time::try_parse_exact(const string& text, const array<string>& formats, date_time& result, const culture_info& culture) noexcept {
-  for (auto& format : formats)
-    if (try_parse_exact(text, format, result, culture)) return true;
-  return false;
-}
+for (auto& format : formats)
+  if (try_parse_exact(text, format, result, culture)) return true;
+    return false;
+  }
 
 date_time date_time::operator +=(const time_span& value) {
   return add(value);
@@ -939,7 +939,7 @@ void date_time::set_date_time(uint32 year, uint32 month, uint32 day, uint32 hour
 
 string date_time::standard_format_to_custom_format(char format, const xtd::globalization::culture_info& culture) noexcept {
   switch (format) {
-    case 'd': return culture.date_time_format().short_date_pattern();
+  case 'd': return culture.date_time_format().short_date_pattern();
     case 'D': return culture.date_time_format().long_date_pattern();
     case 'f': return culture.date_time_format().long_date_pattern() + " " + culture.date_time_format().short_time_pattern();
     case 'F': return culture.date_time_format().full_date_time_pattern();

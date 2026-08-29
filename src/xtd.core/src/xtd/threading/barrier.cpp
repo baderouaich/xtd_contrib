@@ -72,11 +72,11 @@ auto barrier::add_participants(usize participant_count) -> usize {
   if (!data_) throw_helper::throws(exception_case::object_closed);
   auto lock = threading::lock {*data_};
   if (data_->participant_count + participant_count > as<usize>(int16_object::max_value)) throw_helper::throws(exception_case::argument_out_of_range);
-  if (data_->run_post_phase_action) throw_helper::throws(exception_case::invalid_operation);
-  data_->participant_count += participant_count;
-  data_->participants_remaining += participant_count;
-  return data_->current_phase_number;
-}
+    if (data_->run_post_phase_action) throw_helper::throws(exception_case::invalid_operation);
+      data_->participant_count += participant_count;
+      data_->participants_remaining += participant_count;
+      return data_->current_phase_number;
+    }
 
 auto barrier::close() -> void {
   data_.reset();
@@ -90,11 +90,11 @@ auto barrier::remove_participants(usize participant_count) -> usize {
   if (!data_) throw_helper::throws(exception_case::object_closed);
   auto lock = threading::lock {*data_};
   if (data_->participant_count < participant_count) throw_helper::throws(exception_case::argument_out_of_range);
-  if (data_->participant_count == 0 || data_->run_post_phase_action || data_->participants_remaining < data_->participant_count - participant_count) throw_helper::throws(exception_case::invalid_operation);
-  data_->participant_count -= participant_count;
-  data_->participants_remaining -= participant_count;
-  return data_->current_phase_number;
-}
+    if (data_->participant_count == 0 || data_->run_post_phase_action || data_->participants_remaining < data_->participant_count - participant_count) throw_helper::throws(exception_case::invalid_operation);
+      data_->participant_count -= participant_count;
+      data_->participants_remaining -= participant_count;
+      return data_->current_phase_number;
+    }
 
 auto barrier::signal_and_wait() -> void {
   signal_and_wait(timeout::infinite);
@@ -103,34 +103,34 @@ auto barrier::signal_and_wait() -> void {
 auto barrier::signal_and_wait(int32 milliseconds_timeout) -> bool {
   if (milliseconds_timeout < timeout::infinite) throw_helper::throws(exception_case::argument_out_of_range);
   if (!data_) throw_helper::throws(exception_case::object_closed);
-  lock_(*data_) {
+    lock_(*data_) {
     data_->participants_remaining--;
     
     if (data_->participants_remaining == 0) {
-      data_->run_post_phase_action = true;
-      try {
-        if (!data_->post_phase_action.is_empty()) data_->post_phase_action(*this);
-      } catch (...) {
-        data_->throw_barrier_post_phase_exception = true;
+        data_->run_post_phase_action = true;
+        try {
+          if (!data_->post_phase_action.is_empty()) data_->post_phase_action(*this);
+        } catch (...) {
+          data_->throw_barrier_post_phase_exception = true;
+        }
+        data_->run_post_phase_action = false;
+        
+        ++data_->current_phase_number;
+        data_->participants_remaining.exchange(data_->participant_count);
+        
+        for (auto i = 0_z; i < data_->participant_count; i++)
+          data_->phase_semaphore.release();
       }
-      data_->run_post_phase_action = false;
-      
-      ++data_->current_phase_number;
-      data_->participants_remaining.exchange(data_->participant_count);
-      
-      for (auto i = 0_z; i < data_->participant_count; i++)
-        data_->phase_semaphore.release();
     }
-  }
-  
+    
   auto result = false;
   
   if (!data_->cancellation_token) result = data_->phase_semaphore.wait_one(milliseconds_timeout);
-  else if (milliseconds_timeout == timeout::infinite) result = wait_with_cancellation_token();
-  else result = wait_with_cancellation_token(milliseconds_timeout);
-  if (data_->throw_barrier_post_phase_exception) throw_helper::throws(exception_case::barrier_post_phase);
-  return result;
-}
+    else if (milliseconds_timeout == timeout::infinite) result = wait_with_cancellation_token();
+      else result = wait_with_cancellation_token(milliseconds_timeout);
+        if (data_->throw_barrier_post_phase_exception) throw_helper::throws(exception_case::barrier_post_phase);
+          return result;
+        }
 
 auto barrier::signal_and_wait(const cancellation_token& cancellation_token) -> bool {
   return signal_and_wait(timeout::infinite, cancellation_token);

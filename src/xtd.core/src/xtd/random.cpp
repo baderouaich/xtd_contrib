@@ -34,8 +34,8 @@ int32 random::next(int32 max_value) const {
 int32 random::next(int32 min_value, int32 max_value) const {
   if (min_value > max_value) throw_helper::throws(exception_case::argument_out_of_range);
   if (min_value == max_value) return min_value;
-  return min_value + static_cast<int32>(math::round(sample() * (max_value - 1 - min_value)));
-}
+    return min_value + static_cast<int32>(math::round(sample() * (max_value - 1 - min_value)));
+    }
 
 boolean random::next(boolean max_value) const {
   return static_cast<boolean>(next(0, static_cast<int32>(max_value) + 1));
@@ -60,20 +60,20 @@ xtd::boolean random::next(xtd::boolean min_value, xtd::boolean max_value) const 
 decimal random::next(decimal min_value, decimal max_value) const {
   if (min_value > max_value) throw_helper::throws(exception_case::argument_out_of_range);
   if (min_value == max_value) return min_value;
-  return min_value + (sample() * (max_value - min_value));
-}
+    return min_value + (sample() * (max_value - min_value));
+  }
 
 double random::next(double min_value, double max_value) const {
   if (min_value > max_value) throw_helper::throws(exception_case::argument_out_of_range);
   if (min_value == max_value) return min_value;
-  return min_value + (sample() * (max_value - min_value));
-}
+    return min_value + (sample() * (max_value - min_value));
+  }
 
 float random::next(float min_value, float max_value) const {
   if (min_value > max_value) throw_helper::throws(exception_case::argument_out_of_range);
   if (min_value == max_value) return min_value;
-  return static_cast<float>(min_value + (sample() * (max_value - min_value)));
-}
+    return static_cast<float>(min_value + (sample() * (max_value - min_value)));
+    }
 
 byte random::next_byte() const {
   return next_byte(byte_object::max_value);
@@ -112,8 +112,8 @@ int64 random::next_int64(int64 max_value) const {
 int64 random::next_int64(int64 min_value, int64 max_value) const {
   if (min_value > max_value) throw_helper::throws(exception_case::argument_out_of_range);
   if (min_value == max_value) return min_value;
-  return min_value + static_cast<int64>(math::round(sample() * (max_value - 1 - min_value)));
-}
+    return min_value + static_cast<int64>(math::round(sample() * (max_value - 1 - min_value)));
+    }
 
 single random::next_single() const {
   return as<single>(sample());

@@ -238,13 +238,13 @@ namespace xtd {
       /// @{
       [[nodiscard]] auto default_size() const noexcept -> xtd::drawing::size override;
       /// @}
-
+      
       /// @name Protected Methods
       
       /// @{
-
+      
       [[nodiscard]] auto measure_control() const noexcept -> xtd::drawing::size override;
-
+      
       auto on_back_color_changed(const xtd::event_args& e)  -> void override;
       auto on_fore_color_changed(const xtd::event_args& e) -> void override;
       auto on_handle_created(const xtd::event_args& e) -> void override;

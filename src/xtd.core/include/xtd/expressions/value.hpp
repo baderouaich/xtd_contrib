@@ -76,7 +76,7 @@ namespace xtd {
       template<typename... args_t>
       constexpr auto operator()(args_t&&...) const {return value_;}
       /// @}
-
+      
       /// @cond
       friend auto operator <<(std::ostream& os, value c) -> std::ostream& {return os << c.value_;}
       /// @endcond

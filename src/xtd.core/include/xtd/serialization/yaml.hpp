@@ -54,7 +54,7 @@ namespace xtd {
       using sequence_type = xtd::collections::array_list;
       using string_type = xtd::string;
       /// @}
-
+      
       /// @name Public Constructors
       
       /// @{
@@ -80,40 +80,40 @@ namespace xtd {
       /// @{
       template<typename type_t>
       auto as(const xtd::string& key) const -> type_t {
-        if constexpr (std::floating_point<type_t>) return xtd::as<type_t>(as_floating_point(key));
-        else if constexpr (std::integral<type_t> && !std::same_as<type_t, boolean_type>) return xtd::as<type_t>(xtd::is<integer_type>(nodes_[key]) ? xtd::as<int64>(nodes_[key]) : xtd::as<uint64>(nodes_[key]));
-        else if constexpr (std::same_as<type_t, null_type>) return nullptr;
-        else if constexpr (std::same_as<type_t, boolean_type>) return xtd::as<boolean_type>(nodes_[key]);
-        else if constexpr (std::same_as<type_t, string_type> || xtd::textual_literal<type_t>) return xtd::as<string_type>(nodes_[key]);
-        else if constexpr (std::same_as<type_t, mapping_type>) return xtd::as<mapping_type>(nodes_[key]);
-        else if constexpr (std::same_as<type_t, sequence_type>) return xtd::as<sequence_type>(nodes_[key]);
-        else xtd::helpers::throw_helper::throws(xtd::helpers::exception_case::invalid_cast);
-      }
-
-      auto as_boolean(const xtd::string& key) const -> boolean_type;
+        if constexpr(std::floating_point<type_t>) return xtd::as<type_t>(as_floating_point(key));
+        else if constexpr(std::integral<type_t> && !std::same_as<type_t, boolean_type>) return xtd::as<type_t>(xtd::is<integer_type>(nodes_[key]) ? xtd::as<int64>(nodes_[key]) : xtd::as<uint64>(nodes_[key]));
+          else if constexpr(std::same_as<type_t, null_type>) return nullptr;
+            else if constexpr(std::same_as<type_t, boolean_type>) return xtd::as<boolean_type>(nodes_[key]);
+              else if constexpr(std::same_as<type_t, string_type> || xtd::textual_literal<type_t>) return xtd::as<string_type>(nodes_[key]);
+                else if constexpr(std::same_as<type_t, mapping_type>) return xtd::as<mapping_type>(nodes_[key]);
+                  else if constexpr(std::same_as<type_t, sequence_type>) return xtd::as<sequence_type>(nodes_[key]);
+                    else xtd::helpers::throw_helper::throws(xtd::helpers::exception_case::invalid_cast);
+                    }
+                    
+    auto as_boolean(const xtd::string& key) const -> boolean_type;
       auto as_integer(const xtd::string& key) const {return xtd::is<integer_type>(nodes_[key]) ? xtd::as<integer_type>(nodes_[key]) : xtd::as<uint64>(nodes_[key]);}
       auto as_floating_point(const xtd::string& key) const -> floating_point_type;
       auto as_mapping(const xtd::string& key) const -> mapping_type;
       auto as_null(const xtd::string& key) const -> null_type;
       auto as_sequence(const xtd::string& key) const -> sequence_type;
       auto as_string(const xtd::string& key) const -> string_type;
-
+      
       auto contains_key(const xtd::string& key) const noexcept -> bool;
       
       template<typename type_t>
       auto is(const xtd::string& key) const -> bool {
         if (!contains_key(key)) return false;
-        if constexpr (std::floating_point<type_t>) return is_floating_point(key) && xtd::box_floating_point<type_t>::is_valid(as_floating_point(key));
-        else if constexpr (std::integral<type_t> && !std::same_as<type_t, boolean_type>) return is_integer(key) && xtd::box_integer<type_t>::is_valid(xtd::is<integer_type>(nodes_[key]) ? xtd::as<int64>(nodes_[key]) : xtd::as<uint64>(nodes_[key]));
-        else if constexpr (std::same_as<type_t, null_type>) return contains_key(key) && xtd::is<xtd::null_ptr>(nodes_[key]);
-        else if constexpr (std::same_as<type_t, boolean_type>) return contains_key(key) && xtd::is<boolean_type>(nodes_[key]);
-        else if constexpr (std::same_as<type_t, string_type> || xtd::textual_literal<type_t>) return contains_key(key) && xtd::is<string_type>(nodes_[key]);
-        else if constexpr (std::same_as<type_t, mapping_type>) return contains_key(key) && xtd::is<mapping_type>(nodes_[key]);
-        else if constexpr (std::same_as<type_t, sequence_type>) return contains_key(key) && xtd::is<sequence_type>(nodes_[key]);
-        else return false;
-      }
-      
-      auto is_boolean(const xtd::string& key) const noexcept -> bool;
+        if constexpr(std::floating_point<type_t>) return is_floating_point(key) && xtd::box_floating_point<type_t>::is_valid(as_floating_point(key));
+          else if constexpr(std::integral<type_t> && !std::same_as<type_t, boolean_type>) return is_integer(key) && xtd::box_integer<type_t>::is_valid(xtd::is<integer_type>(nodes_[key]) ? xtd::as<int64>(nodes_[key]) : xtd::as<uint64>(nodes_[key]));
+            else if constexpr(std::same_as<type_t, null_type>) return contains_key(key) && xtd::is<xtd::null_ptr>(nodes_[key]);
+              else if constexpr(std::same_as<type_t, boolean_type>) return contains_key(key) && xtd::is<boolean_type>(nodes_[key]);
+                else if constexpr(std::same_as<type_t, string_type> || xtd::textual_literal<type_t>) return contains_key(key) && xtd::is<string_type>(nodes_[key]);
+                  else if constexpr(std::same_as<type_t, mapping_type>) return contains_key(key) && xtd::is<mapping_type>(nodes_[key]);
+                    else if constexpr(std::same_as<type_t, sequence_type>) return contains_key(key) && xtd::is<sequence_type>(nodes_[key]);
+                      else return false;
+                      }
+                      
+    auto is_boolean(const xtd::string& key) const noexcept -> bool;
       auto is_integer(const xtd::string& key) const noexcept -> bool;
       auto is_floating_point(const xtd::string& key) const noexcept -> bool;
       auto is_mapping(const xtd::string& key) const -> bool;
@@ -128,7 +128,7 @@ namespace xtd {
       auto operator[](const xtd::string& key) const -> const xtd::any_object&;
       auto operator[](const xtd::string& key) -> xtd::any_object&;
       /// @}
-
+      
     private:
       nodes_collection nodes_;
     };

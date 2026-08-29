@@ -189,7 +189,7 @@ namespace xtd {
           [[nodiscard]] auto contains(value_t&& value, equater_t&& equater) const noexcept -> bool {
             return xtd::linq::enumerable::contains(self(), std::forward<value_t>(value), std::forward<equater_t>(equater));
           }
-
+          
           /// @brief Returns the number of elements in current sequence.
           /// @return The number of elements in the input sequence.
           /// @par Examples
@@ -281,7 +281,7 @@ namespace xtd {
           [[nodiscard]] auto distinct(equater_t&& equater) const noexcept -> xtd::collections::generic::enumerable_generator<value_t> {
             return xtd::linq::enumerable::distinct(self(), std::forward<equater_t>(equater));
           }
-
+          
           /// @brief Returns the first element of the sequence that satisfies a condition, or a specified default value if no such element is found.
           /// @param predicate A function to test each element for a condition.
           /// @param default_value The default value to return if the sequence is empty.
@@ -329,7 +329,7 @@ namespace xtd {
           [[nodiscard]] auto max(selector_t&& selector) const -> result_t {
             return xtd::linq::enumerable::max<result_t>(self(), std::forward<selector_t>(selector));
           }
-
+          
           /// @brief Returns the minimum value in a sequence of xtd::numeric values.
           /// @return A value of xtd::numeric that corresponds to the minimum value in the sequence.
           [[nodiscard]] auto min() const -> value_t requires xtd::numeric<value_t> {
@@ -350,7 +350,7 @@ namespace xtd {
           [[nodiscard]] auto min(selector_t&& selector) const -> result_t {
             return xtd::linq::enumerable::min<result_t, value_t>(self(), selector);
           }
-
+          
           /// @brief Sorts the elements of a sequence in ascending order.
           /// @return An xtd::collections::generic::ienumerable <value_t> whose elements are sorted.
           [[nodiscard]] auto order() const -> xtd::collections::generic::enumerable_generator<value_t> {
@@ -369,7 +369,7 @@ namespace xtd {
           [[nodiscard]] auto order(lesser_t&& lesser) const -> xtd::collections::generic::enumerable_generator<value_t> {
             return xtd::linq::enumerable::order(self(), lesser);
           }
-
+          
           /// @brief Sorts the elements of a sequence in ascending order according to a key.
           /// @param key_selector A function to extract a key from an element.
           /// @par Examples
@@ -428,14 +428,14 @@ namespace xtd {
           [[nodiscard]] auto select(auto&& selector) const {
             return xtd::linq::enumerable::select<result_t>(self(), selector);
           }
-
+          
           /// @brief Shuffles the order of the elements of a sequence.
           /// @return A sequence whose elements correspond to those of the input sequence in randomized order.
           /// @warning Need to include random file `#include <xtd/random>`.
           [[nodiscard]] auto shuffle() const -> xtd::collections::generic::enumerable_generator<value_t> {
             return xtd::linq::enumerable::shuffle(self());
           }
-
+          
           /// @brief Bypasses a specified number of elements in a sequence and then returns the remaining elements.
           /// @param count The number of elements to skip before returning the remaining elements.
           /// @return A sequence that contains the elements that occur after the specified index in the input sequence.

@@ -93,7 +93,7 @@ namespace xtd {
         /// }
         /// @endcode
         [[nodiscard]] virtual auto is_synchronized() const noexcept -> bool = 0;
-
+        
         /// @brief Gets an xtd::collections::generic::icollection <type_t> containing the keys of the xtd::collections::generic::idictionary <key_t, value_t>.
         /// @return An xtd::collections::generic::icollection <type_t> containing the keys of the object that implements xtd::collections::generic::idictionary <key_t, value_t>.
         /// @remarks The order of the keys in the returned xtd::collections::generic::icollection <type_t> is unspecified, but it is guaranteed to be the same order as the corresponding values in the xtd::collections::generic::icollection <type_t> returned by the xtd::collections::generic::idictionary::values property.
@@ -121,7 +121,7 @@ namespace xtd {
         /// }
         /// @endcode
         [[nodiscard]] virtual auto sync_root() const noexcept -> const xtd::object& = 0;
-
+        
         /// @brief Gets an xtd::collections::generic::icollection <type_t> containing the values of the xtd::collections::generic::idictionary <key_t, value_t>.
         /// @return An xtd::collections::generic::icollection <type_t> containing the values of the object that implements xtd::collections::generic::idictionary <key_t, value_t>.
         /// @remarks The order of the values in the returned xtd::collections::generic::icollection <type_t> is unspecified, but it is guaranteed to be the same order as the corresponding values in the xtd::collections::generic::icollection <type_t> returned by the xtd::collections::generic::idictionary::keys property.
@@ -155,7 +155,7 @@ namespace xtd {
         /// @return `true` if item is found in the xtd::collections::generic::icollection <type_t>; otherwise, `false`.
         /// @remarks Implementations can vary in how they determine equality of objects; for example, xtd::collections::generic::list <type_t> uses xtd::collections::generic::compoarer <type_t>::default_comparer, whereas xtd::collections::generic::dictionary <key_t, value_t> allows the user to specify the xtd::collections::generic::icompoarer <type_t> implementation to use for comparing keys.
         [[nodiscard]] virtual auto contains(const xtd::collections::generic::key_value_pair<key_t, value_t>& item) const noexcept -> bool = 0;
-
+        
         /// @brief Determines whether the xtd::collections::generic::idictionary <key_t, value_t> contains an element with the specified key.
         /// @param key The key to locate in the xtd::collections::generic::idictionary <key_t, value_t>.
         /// @return `true` if the xtd::collections::generic::idictionary <key_t, value_t> contains an element with the key; otherwise, `false`.
@@ -179,7 +179,7 @@ namespace xtd {
         /// @remarks Implementations can vary in how they determine equality of objects; for example, xtd::collections::generic::list <type_t> uses xtd::collections::generic::compoarer <type_t>::default_comparer, whereas, xtd::collections::generic::dictionary <key_t, value_t> allows the user to specify the xtd::collections::generic::icompoarer <type_t> implementation to use for comparing keys.
         /// @remarks In collections of contiguous elements, such as lists, the elements that follow the removed element move up to occupy the vacated spot. If the collection is indexed, the indexes of the elements that are moved are also updated. This behavior does not apply to collections where elements are conceptually grouped into buckets, such as a hash table.
         virtual auto remove(const xtd::collections::generic::key_value_pair<key_t, value_t>& item) -> bool = 0;
-
+        
         /// @brief Removes the element with the specified key from the xtd::collections::generic::idictionary <key_t, value_t>.
         /// @param key The key of the element to remove.
         /// @return `true` if the element is successfully removed; otherwise, `false`. This method also returns `false` if key was not found in the original xtd::collections::generic::idictionary <key_t, value_t>.

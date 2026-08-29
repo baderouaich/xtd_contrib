@@ -27,25 +27,25 @@ struct list_box::data {
   item selected_item;
   forms::selection_mode selection_mode = forms::selection_mode::one;
   bool sorted = false;
-
+  
   auto on_items_item_added(xtd::usize pos, const item& item) -> void {
     if (control.is_handle_created()) native::list_box::insert_item(control.handle(), pos, item.value());
     auto selected = list_box::item {};
     if (control.selected_index() != npos && control.selected_index() < items.count()) selected = items[control.selected_index()];
-    control.selected_item(selected);
-  }
-  
-  auto on_items_item_removed(xtd::usize pos, const item& item) -> void {
+      control.selected_item(selected);
+    }
+    
+auto on_items_item_removed(xtd::usize pos, const item& item) -> void {
     if (control.is_handle_created()) native::list_box::delete_item(control.handle(), pos);
     if (control.selected_index() == pos) control.selected_index(npos);
-  }
-  
-  auto on_items_item_updated(xtd::usize pos, const item& item) -> void {
+    }
+    
+auto on_items_item_updated(xtd::usize pos, const item& item) -> void {
     if (control.is_handle_created()) native::list_box::update_item(control.handle(), pos, item.value());
     auto selected = list_box::item {};
     if (control.selected_index() != npos && control.selected_index() < items.count()) selected = items[control.selected_index()];
-    control.selected_item(selected);
-  }
+      control.selected_item(selected);
+    }
 };
 
 list_box::list_box() {
@@ -53,7 +53,7 @@ list_box::list_box() {
   /// @todo Delete the next line when the standard control is developed.
   control_appearance(forms::control_appearance::system);
   set_style(control_styles::user_paint | control_styles::standard_click | control_styles::use_text_for_accessibility, false);
-
+  
   data_->items.item_added += {*data_, &list_box::data::on_items_item_added};
   data_->items.item_removed += {*data_, &list_box::data::on_items_item_removed};
   data_->items.item_updated += {*data_, &list_box::data::on_items_item_updated};

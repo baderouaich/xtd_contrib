@@ -23,7 +23,7 @@ namespace xtd {
           xtd::exception_services::exception_dispatch_info exception;
           xtd::ptr<xtd::threading::tasks::task<>> task_;
           std::coroutine_handle<promise_type> self;
-
+          
           auto final_suspend() noexcept {
             struct final_awaiter {
               promise_type& promise;

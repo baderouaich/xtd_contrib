@@ -57,7 +57,7 @@ namespace xtd {
       /// @cond
       friend inline auto operator <<(std::ostream& os, const compare_three_way_expression& e) -> std::ostream& {return os << expression_stream {e.left, e.precedence} << " <=> " << expression_stream {e.right, e.precedence};}
       /// @endcond
-
+      
     private:
       [[no_unique_address]] left_t left;
       [[no_unique_address]] right_t right;
@@ -71,12 +71,12 @@ namespace xtd {
       auto right_expression = as_expression(right);
       return compare_three_way_expression<std::decay_t<decltype(left_expression)>, std::decay_t<decltype(right_expression)>> {std::move(left_expression), std::move(right_expression)};
     }
-
+    
     template<typename left_t, typename right_t>
     requires std::is_base_of_v<expression, std::decay_t<left_t>> || std::is_base_of_v<expression, std::decay_t<right_t>>
     constexpr auto expression::spaceship(left_t left, right_t right) {return expression::compare_three_way(std::move(left), std::move(right));}
     /// @endcond
-
+    
     /// @name Public Operators
     
     /// @{

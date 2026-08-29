@@ -88,38 +88,38 @@ namespace xtd {
     /// @param value A floating-point number.
     /// @return `true` if value evaluates to not a number; otherwise, `false`.
     [[nodiscard]] static auto is_NaN(type_t value) noexcept -> bool {return std::fpclassify(value) == FP_NAN;}
-
+    
     /// @brief Returns a value indicating whether the specified number evaluates to negative infinity.
     /// @param value A floating-point number.
     /// @return `true` if value evaluates to xtd::math::negative_infinity; otherwise, `false`.
     [[nodiscard]] static auto is_negative_infinity(type_t value) noexcept -> bool {return value == negative_infinity;}
-
+    
     /// @brief Returns a value indicating whether the specified number evaluates to normal, i.e. not an infinity, subnormal, not-a-number or zero.
     /// @param value A floating-point number.
     /// @return `true` if value evaluates to normal; otherwise, `false`.
     [[nodiscard]] static auto is_normal(type_t value) noexcept -> bool {return std::fpclassify(value) == FP_NORMAL;}
-
+    
     /// @brief Returns a value indicating whether the specified number evaluates to positive infinity.
     /// @param value A floating-point number.
     /// @return `true` if value evaluates to xtd::math::positive_infinity; otherwise, `false`.
     [[nodiscard]] static auto is_positive_infinity(type_t value) noexcept -> bool {return value == positive_infinity;}
-
+    
     /// @brief Returns a value indicating whether the specified number evaluates to subnormal.
     /// @param value A floating-point number.
     /// @return `true` if value evaluates to subnormal; otherwise, `false`.
     [[nodiscard]] static auto is_subnormal(type_t value) noexcept -> bool {return std::fpclassify(value) == FP_SUBNORMAL;}
-
+    
     /// @brief Determines whether the specified value can be safely converted to type_t without overflow.
     /// @param value The floating point value to validate.
     /// @return true if value is greater than or equal to min_value and less than or equal to max_value; otherwise, false.
     /// @remarks If the value is outside the valid range defined by min_value and max_value, the method returns false.
     [[nodiscard]] static auto is_valid(type_t value) noexcept -> bool {return !is_NaN(value) && !is_infinity(value) && value >= static_cast<xtd::decimal>(min_value) && value <= static_cast<xtd::decimal>(max_value);}
-
+    
     /// @brief Returns a value indicating whether the specified number evaluates to zero.
     /// @param value A floating-point number.
     /// @return `true` if value evaluates to zero; otherwise, `false`.
     [[nodiscard]] static auto is_zero(type_t value) noexcept -> bool {return std::fpclassify(value) == FP_ZERO;}
-
+    
     using box<type_t>::parse;
     /// @brief Converts the string to its type_t equivalent.
     /// @param value A string containing a type_t to convert.

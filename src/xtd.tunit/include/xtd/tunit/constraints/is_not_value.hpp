@@ -77,39 +77,39 @@ namespace xtd {
         auto equal_to(const expected_t& expected, const xtd::diagnostics::stack_frame& stack_frame = xtd::diagnostics::stack_frame::current()) const {
           if (actual_value<actual_t>::is_assert()) xtd::tunit::assert::are_not_equal(expected, actual_value<actual_t>::actual(), stack_frame);
           else if (actual_value<actual_t>::is_valid()) xtd::tunit::valid::are_not_equal(expected, actual_value<actual_t>::actual(), stack_frame);
-          else xtd::tunit::assume::are_not_equal(expected, actual_value<actual_t>::actual(), stack_frame);
-          return operator_value<actual_t>(self_);
-        }
-        /// @brief Asserts that value is not equal to specified expected with specified user message.
-        /// @param expected the expected value.
-        /// @param message A user message to display if the assertion fails. This message can be seen in the unit test results.
-        /// @param stack_frame Contains information about current file and current line.
-        /// @exception xtd::tunit::assert_error If bad assertion.
-        /// @par Examples
-        /// ```cpp
-        /// auto value = 24;
-        /// valid_that(value).is().not_().equal_to(23 "User message..."); // test ok.
-        /// assert_that(value).is().not_().equal_to(24, "User message..."); // test throws an assert_error exception.
-        /// ```
-        template<typename expected_t>
-        auto equal_to(const expected_t& expected, const xtd::string& message, const xtd::diagnostics::stack_frame& stack_frame = xtd::diagnostics::stack_frame::current()) const {
+            else xtd::tunit::assume::are_not_equal(expected, actual_value<actual_t>::actual(), stack_frame);
+              return operator_value<actual_t>(self_);
+            }
+      /// @brief Asserts that value is not equal to specified expected with specified user message.
+      /// @param expected the expected value.
+      /// @param message A user message to display if the assertion fails. This message can be seen in the unit test results.
+      /// @param stack_frame Contains information about current file and current line.
+      /// @exception xtd::tunit::assert_error If bad assertion.
+      /// @par Examples
+      /// ```cpp
+      /// auto value = 24;
+      /// valid_that(value).is().not_().equal_to(23 "User message..."); // test ok.
+      /// assert_that(value).is().not_().equal_to(24, "User message..."); // test throws an assert_error exception.
+      /// ```
+      template<typename expected_t>
+      auto equal_to(const expected_t& expected, const xtd::string& message, const xtd::diagnostics::stack_frame& stack_frame = xtd::diagnostics::stack_frame::current()) const {
           if (actual_value<actual_t>::is_assert()) xtd::tunit::assert::are_not_equal(expected, actual_value<actual_t>::actual(), message, stack_frame);
           else if (actual_value<actual_t>::is_valid()) xtd::tunit::valid::are_not_equal(expected, actual_value<actual_t>::actual(), message, stack_frame);
-          else xtd::tunit::assume::are_not_equal(expected, actual_value<actual_t>::actual(), message, stack_frame);
-          return operator_value<actual_t>(self_);
-        }
-        
-        /// @brief Asserts that value is not false.
-        /// @param stack_frame Contains information about current file and current line.
-        /// @exception xtd::tunit::assert_error If bad assertion.
-        /// @par Examples
-        /// ```cpp
-        /// auto v1 = true;
-        /// auto v2 = false;
-        /// valid_that(v1).is().not_().false_(); // test ok.
-        /// assert_that(v2).is().not_().false_(); // test throws an assert_error exception.
-        /// ```
-        auto false_(const xtd::diagnostics::stack_frame& stack_frame = xtd::diagnostics::stack_frame::current()) {
+            else xtd::tunit::assume::are_not_equal(expected, actual_value<actual_t>::actual(), message, stack_frame);
+              return operator_value<actual_t>(self_);
+            }
+            
+      /// @brief Asserts that value is not false.
+      /// @param stack_frame Contains information about current file and current line.
+      /// @exception xtd::tunit::assert_error If bad assertion.
+      /// @par Examples
+      /// ```cpp
+      /// auto v1 = true;
+      /// auto v2 = false;
+      /// valid_that(v1).is().not_().false_(); // test ok.
+      /// assert_that(v2).is().not_().false_(); // test throws an assert_error exception.
+      /// ```
+      auto false_(const xtd::diagnostics::stack_frame& stack_frame = xtd::diagnostics::stack_frame::current()) {
           if (actual_value<actual_t>::is_assert()) xtd::tunit::assert::is_false(actual_value<actual_t>::actual(), stack_frame);
           else if (actual_value<actual_t>::is_valid()) xtd::tunit::valid::is_false(actual_value<actual_t>::actual(), stack_frame);
           else xtd::tunit::assume::is_false(actual_value<actual_t>::actual(), stack_frame);
@@ -149,41 +149,41 @@ namespace xtd {
         auto same_as(const expected_t& expected, const xtd::diagnostics::stack_frame& stack_frame = xtd::diagnostics::stack_frame::current()) const {
           if (actual_value<actual_t>::is_assert()) xtd::tunit::assert::are_not_same(expected, actual_value<actual_t>::actual(), stack_frame);
           else if (actual_value<actual_t>::is_valid()) xtd::tunit::valid::are_not_same(expected, actual_value<actual_t>::actual(), stack_frame);
-          else xtd::tunit::assume::are_not_same(expected, actual_value<actual_t>::actual(), stack_frame);
-          return operator_value<actual_t>(self_);
-        }
-        /// @brief Asserts that value is not same as specified expected with specified user message.
-        /// @param expected the expected value.
-        /// @param message A user message to display if the assertion fails. This message can be seen in the unit test results.
-        /// @param stack_frame Contains information about current file and current line.
-        /// @exception xtd::tunit::assert_error If bad assertion.
-        /// @par Examples
-        /// ```cpp
-        /// int a = 24;
-        /// int b = 24;
-        /// int& c = a;
-        /// valid_that(a).is().not_().same_as(b "User message..."); // test ok.
-        /// assert_that(a).is().not_().same_as(c, "User message..."); // test throws an assert_error exception.
-        /// ```
-        template<typename expected_t>
-        auto same_as(const expected_t& expected, const xtd::string& message, const xtd::diagnostics::stack_frame& stack_frame = xtd::diagnostics::stack_frame::current()) const {
+            else xtd::tunit::assume::are_not_same(expected, actual_value<actual_t>::actual(), stack_frame);
+              return operator_value<actual_t>(self_);
+            }
+      /// @brief Asserts that value is not same as specified expected with specified user message.
+      /// @param expected the expected value.
+      /// @param message A user message to display if the assertion fails. This message can be seen in the unit test results.
+      /// @param stack_frame Contains information about current file and current line.
+      /// @exception xtd::tunit::assert_error If bad assertion.
+      /// @par Examples
+      /// ```cpp
+      /// int a = 24;
+      /// int b = 24;
+      /// int& c = a;
+      /// valid_that(a).is().not_().same_as(b "User message..."); // test ok.
+      /// assert_that(a).is().not_().same_as(c, "User message..."); // test throws an assert_error exception.
+      /// ```
+      template<typename expected_t>
+      auto same_as(const expected_t& expected, const xtd::string& message, const xtd::diagnostics::stack_frame& stack_frame = xtd::diagnostics::stack_frame::current()) const {
           if (actual_value<actual_t>::is_assert()) xtd::tunit::assert::are_not_same(expected, actual_value<actual_t>::actual(), message, stack_frame);
           else if (actual_value<actual_t>::is_valid()) xtd::tunit::valid::are_not_same(expected, actual_value<actual_t>::actual(), message, stack_frame);
-          else xtd::tunit::assume::are_not_same(expected, actual_value<actual_t>::actual(), message, stack_frame);
-          return operator_value<actual_t>(self_);
-        }
-        
-        /// @brief Asserts that value is not true.
-        /// @param stack_frame Contains information about current file and current line.
-        /// @exception xtd::tunit::assert_error If bad assertion.
-        /// @par Examples
-        /// ```cpp
-        /// auto v1 = false;
-        /// auto v2 = true;
-        /// valid_that(v1).is().not_().true_(); // test ok.
-        /// assert_that(v2).is().not_().true_(); // test throws an assert_error exception.
-        /// ```
-        auto true_(const xtd::diagnostics::stack_frame& stack_frame = xtd::diagnostics::stack_frame::current()) {
+            else xtd::tunit::assume::are_not_same(expected, actual_value<actual_t>::actual(), message, stack_frame);
+              return operator_value<actual_t>(self_);
+            }
+            
+      /// @brief Asserts that value is not true.
+      /// @param stack_frame Contains information about current file and current line.
+      /// @exception xtd::tunit::assert_error If bad assertion.
+      /// @par Examples
+      /// ```cpp
+      /// auto v1 = false;
+      /// auto v2 = true;
+      /// valid_that(v1).is().not_().true_(); // test ok.
+      /// assert_that(v2).is().not_().true_(); // test throws an assert_error exception.
+      /// ```
+      auto true_(const xtd::diagnostics::stack_frame& stack_frame = xtd::diagnostics::stack_frame::current()) {
           if (actual_value<actual_t>::is_assert()) xtd::tunit::assert::is_true(actual_value<actual_t>::actual(), stack_frame);
           else if (actual_value<actual_t>::is_valid()) xtd::tunit::valid::is_true(actual_value<actual_t>::actual(), stack_frame);
           else xtd::tunit::assume::is_true(actual_value<actual_t>::actual(), stack_frame);

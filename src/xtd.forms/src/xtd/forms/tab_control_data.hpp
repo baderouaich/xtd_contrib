@@ -17,7 +17,7 @@ struct xtd::forms::tab_control::data {
   auto on_tab_pages_item_removed(xtd::usize index, tab_page_ref& item) -> void {
     control.controls().remove_at(index);
   }
-
+  
   auto on_tab_pages_text_added(xtd::usize index, const string& text, const string& name) -> void {
     auto item = xtd::new_sptr<tab_page>();
     item->text(text);
@@ -30,7 +30,7 @@ struct xtd::forms::tab_control::data {
       text_tab_pages.insert(index, item);
     }
   }
-
+  
   auto on_tab_pages_text_inserted(xtd::usize pos, const string& text, const string& name) -> void {
     auto item = xtd::new_sptr<tab_page>();
     item->text(text);

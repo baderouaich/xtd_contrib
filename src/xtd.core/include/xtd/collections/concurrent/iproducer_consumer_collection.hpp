@@ -51,7 +51,7 @@ namespace xtd {
         /// }
         /// ```
         [[nodiscard]] virtual auto is_synchronized() const noexcept -> bool = 0;
-
+        
         /// @brief Gets an object that can be used to synchronize access to the the xtd::collections::generic::icollection <type_t>.
         /// @return An object that can be used to synchronize access to the the xtd::collections::generic::icollection <type_t>.
         /// @remarks For collections whose underlying store is not publicly available, the expected implementation is to return the current instance. Note that the pointer to the current instance might not be sufficient for collections that wrap other collections; those should return the underlying collection's `sync_root` property.
@@ -85,11 +85,11 @@ namespace xtd {
         /// @param array_index The zero-based index in `array` at which copying begins.
         /// @exception xtd::argument_exception The number of elements in the source xtd::collections::generic::icollection <type_t> is greater than the available space from `array_index` to the end of the destination `array`.
         virtual auto copy_to(xtd::array<type_t>& array, xtd::usize array_index) const -> void = 0;
-
+        
         /// @brief Returns an enumerator that iterates through a collection.
         /// @return An xtd::collections::generic::enumerator object that can be used to iterate through the collection.
         [[nodiscard]] virtual auto get_enumerator() const -> xtd::collections::generic::enumerator<type_t> = 0;
-
+        
         /// @brief Copies the elements contained in the xtd::collections::concurrent::iproducer_consumer_collection <type_t> to a new array.
         /// @return A new array containing the elements copied from the xtd::collections::concurrent::iproducer_consumer_collection <type_t.
         /// @remarks The method provides a snapshot of the underlying collection. It is possible for other threads to add or remove items immediately after the array is made.

@@ -211,7 +211,7 @@ auto directory::exists(const string& path) -> bool {
   return native::directory::exists(path);
 }
 
-auto directory::get_creation_time(const string& path) -> date_time{
+auto directory::get_creation_time(const string& path) -> date_time {
   if (path.index_of_any(io::path::get_invalid_path_chars()) != string::npos) throw_helper::throws(exception_case::argument);
   if (string::is_empty(path) || string::is_empty(path.trim(' '))) throw_helper::throws(exception_case::argument);
   if (native::file_system::is_path_too_long(path)) throw_helper::throws(exception_case::path_too_long);
@@ -250,7 +250,7 @@ auto directory::get_directory_root(const string& path) -> string {
   return path::get_path_root(path);
 }
 
-auto directory::get_files(const string& path) -> array<string>{
+auto directory::get_files(const string& path) -> array<string> {
   return get_files(path, "*", io::search_option::top_directory_only);
 }
 
@@ -258,7 +258,7 @@ auto directory::get_files(const string& path, const string& search_pattern) -> a
   return get_files(path, search_pattern, io::search_option::top_directory_only);
 }
 
-auto directory::get_files(const string& path, const string& search_pattern, io::search_option search_option) -> array<string>{
+auto directory::get_files(const string& path, const string& search_pattern, io::search_option search_option) -> array<string> {
   if (search_option == io::search_option::top_directory_only) return {std::begin(enumerate_files(path, search_pattern)), std::end(enumerate_files(path, search_pattern))};
   auto files = list<string> {};
   for (const auto& directory : get_directories(path, search_pattern, io::search_option::all_directories))
@@ -299,7 +299,7 @@ auto directory::get_last_write_time(const string& path) -> date_time {
 auto directory::get_logical_drives() -> array<string> {
   auto logical_drives = list<string> {};
   auto drives = drive_info::get_drives();
-  std::for_each(drives.begin(), drives.end(), [&](const auto& drive) {logical_drives.add(drive.name());});
+  std::for_each(drives.begin(), drives.end(), [&](const auto & drive) {logical_drives.add(drive.name());});
   return logical_drives.to_array();
 }
 
@@ -307,7 +307,7 @@ auto directory::get_parent(const string& path) -> directory_info {
   return directory_info(path).parent();
 }
 
-auto directory::get_permissions(const string& path) -> file_permissions{
+auto directory::get_permissions(const string& path) -> file_permissions {
   if (path.index_of_any(io::path::get_invalid_path_chars()) != string::npos) throw_helper::throws(exception_case::argument);
   if (string::is_empty(path) || string::is_empty(path.trim(' '))) throw_helper::throws(exception_case::argument);
   if (native::file_system::is_path_too_long(path)) throw_helper::throws(exception_case::path_too_long);
@@ -342,7 +342,7 @@ auto directory::remove(const string& path, bool recursive) -> void {
   directory_info(path).remove(recursive);
 }
 
-auto directory::set_creation_time(const string& path, const date_time& creation_time) -> void{
+auto directory::set_creation_time(const string& path, const date_time& creation_time) -> void {
   if (path.index_of_any(io::path::get_invalid_path_chars()) != string::npos) throw_helper::throws(exception_case::argument);
   if (string::is_empty(path) || string::is_empty(path.trim(' '))) throw_helper::throws(exception_case::argument);
   if (native::file_system::is_path_too_long(path)) throw_helper::throws(exception_case::path_too_long);

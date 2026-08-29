@@ -116,7 +116,7 @@ namespace xtd {
       /// @param rect The border bounds.
       /// @param light `true` if the control is light; otherwise `false`.
       static auto draw_border(const xtd::forms::control& control, xtd::drawing::graphics& graphics, xtd::forms::border_style border, xtd::forms::border_sides sides, const xtd::drawing::color& color, const xtd::drawing::rectangle& rect, bool light) -> void;
-
+      
       /// @brief Draws border in a specified control and graohics with specified style, sides, back color and bounds.
       /// @param control The control that contains the border to draw.
       /// @param graphics The graphics used to draw the border.

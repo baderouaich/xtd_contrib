@@ -64,10 +64,10 @@ namespace xtd {
       static auto are_equal(const expected_t& expected, const actual_t& actual, const xtd::string& message, const xtd::diagnostics::stack_frame& stack_frame = xtd::diagnostics::stack_frame::current()) -> void {
         if (equals(expected, actual)) succeed(message, stack_frame);
         else fail(to_string(expected), to_string(actual), message, stack_frame);
-      }
-      
-      /// @cond
-      static auto are_equal(const char* expected, const char* actual, const xtd::string& message, const xtd::diagnostics::stack_frame& stack_frame = xtd::diagnostics::stack_frame::current()) -> void;
+        }
+        
+    /// @cond
+    static auto are_equal(const char* expected, const char* actual, const xtd::string& message, const xtd::diagnostics::stack_frame& stack_frame = xtd::diagnostics::stack_frame::current()) -> void;
       static auto are_equal(const char8* expected, const char8* actual, const xtd::string& message, const xtd::diagnostics::stack_frame& stack_frame = xtd::diagnostics::stack_frame::current()) -> void;
       static auto are_equal(const char16* expected, const char16* actual, const xtd::string& message, const xtd::diagnostics::stack_frame& stack_frame = xtd::diagnostics::stack_frame::current()) -> void;
       static auto are_equal(const char32* expected, const char32* actual, const xtd::string& message, const xtd::diagnostics::stack_frame& stack_frame = xtd::diagnostics::stack_frame::current()) -> void;
@@ -185,10 +185,10 @@ namespace xtd {
       static auto are_not_equal(const expected_t& expected, const actual_t& actual, const xtd::string& message, const xtd::diagnostics::stack_frame& stack_frame = xtd::diagnostics::stack_frame::current()) -> void {
         if (!equals(expected, actual)) succeed(message, stack_frame);
         else fail("not " + to_string(expected), to_string(actual), message, stack_frame);
-      }
-      
-      /// @cond
-      static auto are_not_equal(const char* expected, const char* actual, const xtd::string& message, const xtd::diagnostics::stack_frame& stack_frame = xtd::diagnostics::stack_frame::current()) -> void;
+        }
+        
+    /// @cond
+    static auto are_not_equal(const char* expected, const char* actual, const xtd::string& message, const xtd::diagnostics::stack_frame& stack_frame = xtd::diagnostics::stack_frame::current()) -> void;
       static auto are_not_equal(const char8* expected, const char8* actual, const xtd::string& message, const xtd::diagnostics::stack_frame& stack_frame = xtd::diagnostics::stack_frame::current()) -> void;
       static auto are_not_equal(const char16* expected, const char16* actual, const xtd::string& message, const xtd::diagnostics::stack_frame& stack_frame = xtd::diagnostics::stack_frame::current()) -> void;
       static auto are_not_equal(const char32* expected, const char32* actual, const xtd::string& message, const xtd::diagnostics::stack_frame& stack_frame = xtd::diagnostics::stack_frame::current()) -> void;
@@ -228,23 +228,23 @@ namespace xtd {
       static auto are_not_same(const expected_t& expected, const actual_t& actual, const xtd::string& message, const xtd::diagnostics::stack_frame& stack_frame = xtd::diagnostics::stack_frame::current()) -> void {
         if (!equals(&expected, &actual)) succeed(message, stack_frame);
         else fail("not same as " + to_string(expected), to_string(actual), message, stack_frame);
-      }
-      
-      /// @brief Asserts that two objects do refer to differents objects.
-      /// @param expected the expected value.
-      /// @param actual the actual value.
-      /// @param stack_frame Contains information about current file and current line.
-      /// @exception xtd::tunit::assert_error If bad assertion.
-      /// @par Examples
-      /// ```cpp
-      /// int a = 24;
-      /// int& b = a;
-      /// int c = 24;
-      /// xtd::tunit::assert::are_same(b, a); // test ok.
-      /// xtd::tunit::assert::are_same(c, a); // test throws an assert_error exception.
-      /// ```
-      template<typename expected_t, typename actual_t>
-      static auto are_same(const expected_t& expected, const actual_t& actual, const xtd::diagnostics::stack_frame& stack_frame = xtd::diagnostics::stack_frame::current()) -> void {are_same(expected, actual, xtd::string::empty_string, stack_frame);}
+        }
+        
+    /// @brief Asserts that two objects do refer to differents objects.
+    /// @param expected the expected value.
+    /// @param actual the actual value.
+    /// @param stack_frame Contains information about current file and current line.
+    /// @exception xtd::tunit::assert_error If bad assertion.
+    /// @par Examples
+    /// ```cpp
+    /// int a = 24;
+    /// int& b = a;
+    /// int c = 24;
+    /// xtd::tunit::assert::are_same(b, a); // test ok.
+    /// xtd::tunit::assert::are_same(c, a); // test throws an assert_error exception.
+    /// ```
+    template<typename expected_t, typename actual_t>
+    static auto are_same(const expected_t& expected, const actual_t& actual, const xtd::diagnostics::stack_frame& stack_frame = xtd::diagnostics::stack_frame::current()) -> void {are_same(expected, actual, xtd::string::empty_string, stack_frame);}
       /// @brief Asserts that two objects do refer to differents objects.
       /// @param expected the expected value.
       /// @param actual the actual value.
@@ -263,21 +263,21 @@ namespace xtd {
       static auto are_same(const expected_t& expected, const actual_t& actual, const xtd::string& message, const xtd::diagnostics::stack_frame& stack_frame = xtd::diagnostics::stack_frame::current()) -> void {
         if (equals(&expected, &actual)) succeed(message, stack_frame);
         else fail("same as " + to_string(expected), to_string(actual), message, stack_frame);
-      }
-      
-      /// @brief Asserts that collection contains an item.
-      /// @param item object to verify.
-      /// @param collection that contains object.
-      /// @param stack_frame Contains information about current file and current line.
-      /// @exception xtd::tunit::assert_error If bad assertion.
-      /// @par Examples
-      /// ```cpp
-      /// xtd::array<int> v1 = {0, 1, 2, 3};
-      /// xtd::tunit::assert::contains(2, v1); // test ok.
-      /// xtd::tunit::assert::contains(4, v1); // test throws an assert_error exception.
-      /// ```
-      template<typename item_t, typename collection_t>
-      static auto contains(const item_t& item, const collection_t& collection, const xtd::diagnostics::stack_frame& stack_frame = xtd::diagnostics::stack_frame::current()) -> void {contains(item, collection, xtd::string::empty_string, stack_frame);}
+        }
+        
+    /// @brief Asserts that collection contains an item.
+    /// @param item object to verify.
+    /// @param collection that contains object.
+    /// @param stack_frame Contains information about current file and current line.
+    /// @exception xtd::tunit::assert_error If bad assertion.
+    /// @par Examples
+    /// ```cpp
+    /// xtd::array<int> v1 = {0, 1, 2, 3};
+    /// xtd::tunit::assert::contains(2, v1); // test ok.
+    /// xtd::tunit::assert::contains(4, v1); // test throws an assert_error exception.
+    /// ```
+    template<typename item_t, typename collection_t>
+    static auto contains(const item_t& item, const collection_t& collection, const xtd::diagnostics::stack_frame& stack_frame = xtd::diagnostics::stack_frame::current()) -> void {contains(item, collection, xtd::string::empty_string, stack_frame);}
       /// @brief Asserts that collection contains an item.
       /// @param item object to verify.
       /// @param collection that contains object.
@@ -366,17 +366,17 @@ namespace xtd {
       static auto is_empty(const value_t& value, const xtd::string& message, const xtd::diagnostics::stack_frame& stack_frame = xtd::diagnostics::stack_frame::current()) -> void {
         if (empty(value)) succeed(message, stack_frame);
         else fail("collection <empty>", join_items(value), message, stack_frame);
-      }
-      
-      /// @cond
-      template<typename value_t>
-      static auto is_empty(const std::initializer_list<value_t>& values, const xtd::diagnostics::stack_frame& stack_frame = xtd::diagnostics::stack_frame::current()) -> void {is_empty(values, xtd::string::empty_string, stack_frame);}
+        }
+        
+    /// @cond
+    template<typename value_t>
+    static auto is_empty(const std::initializer_list<value_t>& values, const xtd::diagnostics::stack_frame& stack_frame = xtd::diagnostics::stack_frame::current()) -> void {is_empty(values, xtd::string::empty_string, stack_frame);}
       template<typename value_t>
       static auto is_empty(const std::initializer_list<value_t>& values, const xtd::string& message, const xtd::diagnostics::stack_frame& stack_frame = xtd::diagnostics::stack_frame::current()) -> void {
         if (empty(values)) succeed(message, stack_frame);
         else fail("collection <empty>", join_items(values), message, stack_frame);
-      }
-      static auto is_empty(const char* value, const xtd::string& message, const xtd::diagnostics::stack_frame& stack_frame = xtd::diagnostics::stack_frame::current()) -> void;
+        }
+    static auto is_empty(const char* value, const xtd::string& message, const xtd::diagnostics::stack_frame& stack_frame = xtd::diagnostics::stack_frame::current()) -> void;
       static auto is_empty(const char8* value, const xtd::string& message, const xtd::diagnostics::stack_frame& stack_frame = xtd::diagnostics::stack_frame::current()) -> void;
       static auto is_empty(const char16* value, const xtd::string& message, const xtd::diagnostics::stack_frame& stack_frame = xtd::diagnostics::stack_frame::current()) -> void;
       static auto is_empty(const char32* value, const xtd::string& message, const xtd::diagnostics::stack_frame& stack_frame = xtd::diagnostics::stack_frame::current()) -> void;
@@ -436,10 +436,10 @@ namespace xtd {
       static auto is_greater(const value1_t& val1, const value2_t& val2, const xtd::string& message, const xtd::diagnostics::stack_frame& stack_frame = xtd::diagnostics::stack_frame::current()) -> void {
         if (val1 > val2) succeed(message, stack_frame);
         else fail("greater than " + to_string(val2), to_string(val1), message, stack_frame);
-      }
-      
-      /// @cond
-      static auto is_greater(const char* val1, const char* val2, const xtd::string& message, const xtd::diagnostics::stack_frame& stack_frame = xtd::diagnostics::stack_frame::current()) -> void;
+        }
+        
+    /// @cond
+    static auto is_greater(const char* val1, const char* val2, const xtd::string& message, const xtd::diagnostics::stack_frame& stack_frame = xtd::diagnostics::stack_frame::current()) -> void;
       static auto is_greater(const char8* val1, const char8* val2, const xtd::string& message, const xtd::diagnostics::stack_frame& stack_frame = xtd::diagnostics::stack_frame::current()) -> void;
       static auto is_greater(const char16* val1, const char16* val2, const xtd::string& message, const xtd::diagnostics::stack_frame& stack_frame = xtd::diagnostics::stack_frame::current()) -> void;
       static auto is_greater(const char32* val1, const char32* val2, const xtd::string& message, const xtd::diagnostics::stack_frame& stack_frame = xtd::diagnostics::stack_frame::current()) -> void;
@@ -542,10 +542,10 @@ namespace xtd {
       static auto is_less(const value1_t& val1, const value2_t& val2, const xtd::string& message, const xtd::diagnostics::stack_frame& stack_frame = xtd::diagnostics::stack_frame::current()) -> void {
         if (val1 < val2) succeed(message, stack_frame);
         else fail("less than " + to_string(val2), to_string(val1), message, stack_frame);
-      }
-      
-      /// @cond
-      static auto is_less(const char* val1, const char* val2, const xtd::string& message, const xtd::diagnostics::stack_frame& stack_frame = xtd::diagnostics::stack_frame::current()) -> void;
+        }
+        
+    /// @cond
+    static auto is_less(const char* val1, const char* val2, const xtd::string& message, const xtd::diagnostics::stack_frame& stack_frame = xtd::diagnostics::stack_frame::current()) -> void;
       static auto is_less(const char8* val1, const char8* val2, const xtd::string& message, const xtd::diagnostics::stack_frame& stack_frame = xtd::diagnostics::stack_frame::current()) -> void;
       static auto is_less(const char16* val1, const char16* val2, const xtd::string& message, const xtd::diagnostics::stack_frame& stack_frame = xtd::diagnostics::stack_frame::current()) -> void;
       static auto is_less(const char32* val1, const char32* val2, const xtd::string& message, const xtd::diagnostics::stack_frame& stack_frame = xtd::diagnostics::stack_frame::current()) -> void;
@@ -696,21 +696,21 @@ namespace xtd {
       static auto is_negative(const value_t& value, const xtd::string& message, const xtd::diagnostics::stack_frame& stack_frame = xtd::diagnostics::stack_frame::current()) -> void {
         if (value < 0) succeed(message, stack_frame);
         else fail("negative", to_string(value), message, stack_frame);
-      }
-      
-      /// @brief Asserts that collection does not contain any item.
-      /// @param value The value to check is empty.
-      /// @param stack_frame Contains information about current file and current line.
-      /// @exception xtd::tunit::assert_error If bad assertion.
-      /// @par Examples
-      /// ```cpp
-      /// xtd::array<int> v1 = {0, 1, 2, 3};
-      /// xtd::array<int> v2;
-      /// xtd::tunit::assert::is_not_empty(v1); // test ok.
-      /// xtd::tunit::assert::is_not_empty(v2); // test throws an assert_error exception.
-      /// ```
-      template<typename value_t>
-      static auto is_not_empty(const value_t& value, const xtd::diagnostics::stack_frame& stack_frame = xtd::diagnostics::stack_frame::current()) -> void {is_not_empty(value, xtd::string::empty_string, stack_frame);}
+        }
+        
+    /// @brief Asserts that collection does not contain any item.
+    /// @param value The value to check is empty.
+    /// @param stack_frame Contains information about current file and current line.
+    /// @exception xtd::tunit::assert_error If bad assertion.
+    /// @par Examples
+    /// ```cpp
+    /// xtd::array<int> v1 = {0, 1, 2, 3};
+    /// xtd::array<int> v2;
+    /// xtd::tunit::assert::is_not_empty(v1); // test ok.
+    /// xtd::tunit::assert::is_not_empty(v2); // test throws an assert_error exception.
+    /// ```
+    template<typename value_t>
+    static auto is_not_empty(const value_t& value, const xtd::diagnostics::stack_frame& stack_frame = xtd::diagnostics::stack_frame::current()) -> void {is_not_empty(value, xtd::string::empty_string, stack_frame);}
       /// @brief Asserts that collection does not contain any item.
       /// @param value The value to check is empty.
       /// @param message A user message to display if the assertion fails. This message can be seen in the unit test results.
@@ -727,17 +727,17 @@ namespace xtd {
       static auto is_not_empty(const value_t& value, const xtd::string& message, const xtd::diagnostics::stack_frame& stack_frame = xtd::diagnostics::stack_frame::current()) -> void {
         if (!empty(value)) succeed(message, stack_frame);
         else fail("collection not <empty>", "<empty>", message, stack_frame);
-      }
-      
-      /// @cond
-      template<typename value_t>
-      static auto is_not_empty(const std::initializer_list<value_t>& values, const xtd::diagnostics::stack_frame& stack_frame = xtd::diagnostics::stack_frame::current()) -> void {is_not_empty(values, xtd::string::empty_string, stack_frame);}
+        }
+        
+    /// @cond
+    template<typename value_t>
+    static auto is_not_empty(const std::initializer_list<value_t>& values, const xtd::diagnostics::stack_frame& stack_frame = xtd::diagnostics::stack_frame::current()) -> void {is_not_empty(values, xtd::string::empty_string, stack_frame);}
       template<typename value_t>
       static auto is_not_empty(const std::initializer_list<value_t>& values, const xtd::string& message, const xtd::diagnostics::stack_frame& stack_frame = xtd::diagnostics::stack_frame::current()) -> void {
         if (!empty(values)) succeed(message, stack_frame);
         else fail("collection not <empty>", "<empty>", message, stack_frame);
-      }
-      static auto is_not_empty(const char* value, const xtd::string& message, const xtd::diagnostics::stack_frame& stack_frame = xtd::diagnostics::stack_frame::current()) -> void;
+        }
+    static auto is_not_empty(const char* value, const xtd::string& message, const xtd::diagnostics::stack_frame& stack_frame = xtd::diagnostics::stack_frame::current()) -> void;
       static auto is_not_empty(const char8* value, const xtd::string& message, const xtd::diagnostics::stack_frame& stack_frame = xtd::diagnostics::stack_frame::current()) -> void;
       static auto is_not_empty(const char16* value, const xtd::string& message, const xtd::diagnostics::stack_frame& stack_frame = xtd::diagnostics::stack_frame::current()) -> void;
       static auto is_not_empty(const char32* value, const xtd::string& message, const xtd::diagnostics::stack_frame& stack_frame = xtd::diagnostics::stack_frame::current()) -> void;
@@ -925,17 +925,17 @@ namespace xtd {
       static auto is_not_null(const xtd::wptr<pointer_t>& pointer, const xtd::string& message, const xtd::diagnostics::stack_frame& stack_frame = xtd::diagnostics::stack_frame::current()) -> void {
         if (pointer.owner_before(xtd::wptr<pointer_t> {}) || xtd::wptr<pointer_t> {}.owner_before(pointer)) succeed(message, stack_frame);
         else fail("not null", "null", message, stack_frame);
-      }
-      /// @brief Asserts that the pointer is not null.
-      /// @param pointer The pointer to check is null.
-      /// @param stack_frame Contains information about current file and current line.
-      /// @exception xtd::tunit::assert_error If bad assertion.
-      /// @remarks Always `false`, a std::nullptr_t is always equal to nullptr.
-      /// @par Examples
-      /// ```cpp
-      /// xtd::tunit::assert::is_not_null(nullptr); // test throws an assert_error exception.
-      /// ```
-      static auto is_not_null(std::nullptr_t pointer, const xtd::diagnostics::stack_frame& stack_frame = xtd::diagnostics::stack_frame::current()) -> void;
+        }
+    /// @brief Asserts that the pointer is not null.
+    /// @param pointer The pointer to check is null.
+    /// @param stack_frame Contains information about current file and current line.
+    /// @exception xtd::tunit::assert_error If bad assertion.
+    /// @remarks Always `false`, a std::nullptr_t is always equal to nullptr.
+    /// @par Examples
+    /// ```cpp
+    /// xtd::tunit::assert::is_not_null(nullptr); // test throws an assert_error exception.
+    /// ```
+    static auto is_not_null(std::nullptr_t pointer, const xtd::diagnostics::stack_frame& stack_frame = xtd::diagnostics::stack_frame::current()) -> void;
       /// @brief Asserts that the pointer is not null.
       /// @param pointer The pointer to check is null.
       /// @param message A user message to display if the assertion fails. This message can be seen in the unit test results.
@@ -1132,17 +1132,17 @@ namespace xtd {
       static auto is_null(const xtd::wptr<pointer_t>& pointer, const xtd::string& message, const xtd::diagnostics::stack_frame& stack_frame = xtd::diagnostics::stack_frame::current()) -> void {
         if (!pointer.owner_before(xtd::wptr<pointer_t> {}) && !xtd::wptr<pointer_t> {}.owner_before(pointer)) succeed(message, stack_frame);
         else fail("null", "not null", message, stack_frame);
-      }
-      /// @brief Asserts that the pointer is null.
-      /// @param pointer The pointer to check is null.
-      /// @param stack_frame Contains information about current file and current line.
-      /// @exception xtd::tunit::assert_error If bad assertion.
-      /// @remarks Always `false`, a std::nullptr_t is always equal to nullptr.
-      /// @par Examples
-      /// ```cpp
-      /// xtd::tunit::assert::is_null(nullptr); // test ok.
-      /// ```
-      static auto is_null(std::nullptr_t pointer, const xtd::diagnostics::stack_frame& stack_frame = xtd::diagnostics::stack_frame::current()) -> void;
+        }
+    /// @brief Asserts that the pointer is null.
+    /// @param pointer The pointer to check is null.
+    /// @param stack_frame Contains information about current file and current line.
+    /// @exception xtd::tunit::assert_error If bad assertion.
+    /// @remarks Always `false`, a std::nullptr_t is always equal to nullptr.
+    /// @par Examples
+    /// ```cpp
+    /// xtd::tunit::assert::is_null(nullptr); // test ok.
+    /// ```
+    static auto is_null(std::nullptr_t pointer, const xtd::diagnostics::stack_frame& stack_frame = xtd::diagnostics::stack_frame::current()) -> void;
       /// @brief Asserts that the pointer is null.
       /// @param pointer The pointer to check is null.
       /// @param message A user message to display if the assertion fails. This message can be seen in the unit test results.
@@ -1184,20 +1184,20 @@ namespace xtd {
       static auto is_positive(const value_t& value, const xtd::string& message, const xtd::diagnostics::stack_frame& stack_frame = xtd::diagnostics::stack_frame::current()) -> void {
         if (value > 0) succeed(message, stack_frame);
         else fail("positive", to_string(value), message, stack_frame);
-      }
-      
-      /// @brief Asserts that a condition is `true`.
-      /// @param condition The condition to check is `true`.
-      /// @param stack_frame Contains information about current file and current line.
-      /// @exception xtd::tunit::assert_error If bad assertion.
-      /// @par Examples
-      /// ```cpp
-      /// std::string s1;
-      /// std::string s2 = "Anything";
-      /// xtd::tunit::assert::is_false(std::empty(s1)); // test ok.
-      /// xtd::tunit::assert::is_false(std::empty(s2)); // test throws an assert_error exception.
-      /// ```
-      static auto is_true(bool condition, const xtd::diagnostics::stack_frame& stack_frame = xtd::diagnostics::stack_frame::current()) -> void;
+        }
+        
+    /// @brief Asserts that a condition is `true`.
+    /// @param condition The condition to check is `true`.
+    /// @param stack_frame Contains information about current file and current line.
+    /// @exception xtd::tunit::assert_error If bad assertion.
+    /// @par Examples
+    /// ```cpp
+    /// std::string s1;
+    /// std::string s2 = "Anything";
+    /// xtd::tunit::assert::is_false(std::empty(s1)); // test ok.
+    /// xtd::tunit::assert::is_false(std::empty(s2)); // test throws an assert_error exception.
+    /// ```
+    static auto is_true(bool condition, const xtd::diagnostics::stack_frame& stack_frame = xtd::diagnostics::stack_frame::current()) -> void;
       /// @brief Asserts that a condition is `true`.
       /// @param condition The condition to check is `true`.
       /// @param message A user message to display if the assertion fails. This message can be seen in the unit test results.

@@ -42,7 +42,7 @@ inline auto operator <<(std::ostream& os, const std::optional<value_t>& value) -
 }
 
 template<typename value_t>
-requires (!xtd::stream_insertable<value_t>)
+requires(!xtd::stream_insertable<value_t>)
 inline auto operator <<(std::ostream& os, const std::optional<value_t>&) -> std::ostream& {
   return os << "(unregistered)";
 }
@@ -54,7 +54,7 @@ inline auto operator <<(std::ostream& os, const std::pair<type1_t, type2_t>& val
 }
 
 template<typename type1_t, typename type2_t>
-requires (!xtd::stream_insertable<type1_t> || !xtd::stream_insertable<type2_t>)
+requires(!xtd::stream_insertable<type1_t> || !xtd::stream_insertable<type2_t>)
 inline auto operator <<(std::ostream& os, const std::pair<type1_t, type2_t>& value) -> std::ostream& {
   return os << "( ,  )";
 }
@@ -64,33 +64,31 @@ requires xtd::stream_insertable<decltype(std::get<n_t>(std::declval<type_t>()))>
 struct __xtd_console_tuple_printer {
   static auto print(std::ostream& os, const type_t& value) -> void {
     os << std::get<n_t>(value);
-    if constexpr (n_t < last_t) os << ", ";
-    if constexpr (n_t < last_t)
-      __xtd_console_tuple_printer<type_t, n_t + 1, last_t>::print(os, value);
-  }
+    if constexpr(n_t < last_t) os << ", ";
+    if constexpr(n_t < last_t)
+      __xtd_console_tuple_printer < type_t, n_t + 1, last_t >::print(os, value);
+    }
 };
 
 template<typename ...types_t>
 inline auto operator <<(std::ostream& os, const std::tuple<types_t ... >& value) -> std::ostream& {
   os << "(";
-  __xtd_console_tuple_printer<std::tuple<types_t...>, 0, sizeof...(types_t) - 1>::print(os, value);
+  __xtd_console_tuple_printer < std::tuple<types_t...>, 0, sizeof...(types_t) - 1 >::print(os, value);
   return os << ")";
 }
 
 template<typename iterator_t>
 requires xtd::stream_insertable<std::iter_value_t<iterator_t>>
 inline auto __xtd_console_print_container(std::ostream& os, const iterator_t& begin, const iterator_t& end) -> void {
-  for (auto it = begin; it != end; ++it) {
+  for (auto it = begin; it != end; ++it)
     os << (it != begin ? ", " : "") << *it;
-  }
 }
 
 template<typename iterator_t>
-requires (!xtd::stream_insertable<std::iter_value_t<iterator_t>>)
+requires(!xtd::stream_insertable<std::iter_value_t<iterator_t>>)
 inline auto __xtd_console_print_container(std::ostream& os, const iterator_t& begin, const iterator_t& end) -> void {
-  for (auto it = begin; it != end; ++it) {
+  for (auto it = begin; it != end; ++it)
     os << (it != begin ? ", " : "") << " ";
-  }
 }
 
 template<typename iterator_t>

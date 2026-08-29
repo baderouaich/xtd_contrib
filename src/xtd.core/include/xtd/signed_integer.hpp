@@ -12,8 +12,8 @@ namespace xtd {
   // Since Doxygen does not work properly with the C++ concept, the documentation for this concept is declared in xtd/signed_integer_.hpp
   template<typename type_t>
   concept signed_integer =
-  xtd::signed_integer_8<type_t> ||
-  xtd::signed_integer_16<type_t> ||
-  xtd::signed_integer_32<type_t> ||
-  xtd::signed_integer_64<type_t>;
+    xtd::signed_integer_8<type_t> ||
+    xtd::signed_integer_16<type_t> ||
+    xtd::signed_integer_32<type_t> ||
+    xtd::signed_integer_64<type_t>;
 }

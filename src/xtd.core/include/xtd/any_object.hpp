@@ -197,58 +197,58 @@ namespace xtd {
   };
   
   template<typename type_t>
-  requires (!std::is_null_pointer_v<type_t> /*&& !xtd::integer<type_t>*/)
+  requires(!std::is_null_pointer_v<type_t> /*&& !xtd::integer<type_t>*/)
   [[nodiscard]] auto is(any_object& o) -> bool {
     if (!o.has_value()) return false;
     if (is<box<type_t>>(o.value())) return true;
-    return __is_polymorphic_any_object__<type_t, typename std::is_polymorphic<type_t>::type > {}(o);
-  }
-  
-  template<typename type_t>
-  requires (!std::is_null_pointer_v<type_t> /*&& !xtd::integer<type_t>*/)
+      return __is_polymorphic_any_object__<type_t, typename std::is_polymorphic<type_t>::type > {}(o);
+    }
+    
+template<typename type_t>
+requires(!std::is_null_pointer_v<type_t> /*&& !xtd::integer<type_t>*/)
   [[nodiscard]] auto is(const any_object& o) -> bool {
     if (!o.has_value()) return false;
     if (is<box<type_t>>(o.value())) return true;
-    return __is_polymorphic_any_object__<type_t, typename std::is_polymorphic<type_t>::type > {}(o);
-  }
-  /*
-  template<typename type_t>
-  requires (!std::is_null_pointer_v<type_t> && xtd::integer<type_t>)
-  [[nodiscard]] auto is(any_object& o) -> bool {
-    if (!o.has_value()) return false;
-    if (xtd::is<xtd::box_integer<xtd::byte>>(o.value())) return xtd::box_integer<type_t>::is_valid(static_cast<const xtd::box_integer<xtd::byte>&>(o.value()).value);
-    if (xtd::is<xtd::box_integer<xtd::int16>>(o.value())) return xtd::box_integer<type_t>::is_valid(static_cast<const xtd::box_integer<xtd::int16>&>(o.value()).value);
-    if (xtd::is<xtd::box_integer<xtd::int32>>(o.value())) return xtd::box_integer<type_t>::is_valid(static_cast<const xtd::box_integer<xtd::int32>&>(o.value()).value);
-    if (xtd::is<xtd::box_integer<xtd::int64>>(o.value())) return xtd::box_integer<type_t>::is_valid(static_cast<const xtd::box_integer<xtd::int64>&>(o.value()).value);
-    if (xtd::is<xtd::box_integer<xtd::sbyte>>(o.value())) return xtd::box_integer<type_t>::is_valid(static_cast<const xtd::box_integer<xtd::sbyte>&>(o.value()).value);
-    if (xtd::is<xtd::box_integer<xtd::slong>>(o.value())) return xtd::box_integer<type_t>::is_valid(static_cast<const xtd::box_integer<xtd::slong>&>(o.value()).value);
-    if (xtd::is<xtd::box_integer<xtd::uint16>>(o.value())) return xtd::box_integer<type_t>::is_valid(static_cast<const xtd::box_integer<xtd::uint16>&>(o.value()).value);
-    if (xtd::is<xtd::box_integer<xtd::uint32>>(o.value())) return xtd::box_integer<type_t>::is_valid(static_cast<const xtd::box_integer<xtd::uint32>&>(o.value()).value);
-    if (xtd::is<xtd::box_integer<xtd::uint64>>(o.value())) return xtd::box_integer<type_t>::is_valid(static_cast<const xtd::box_integer<xtd::uint64>&>(o.value()).value);
-    if (xtd::is<xtd::box_integer<xtd::ulong>>(o.value())) return xtd::box_integer<type_t>::is_valid(static_cast<const xtd::box_integer<xtd::ulong>&>(o.value()).value);
-    return false;
-  }
-  
-  template<typename type_t>
-  requires (!std::is_null_pointer_v<type_t> && xtd::integer<type_t>)
-  [[nodiscard]] auto is(const any_object& o) -> bool {
-    if (!o.has_value()) return false;
-    if (xtd::is<xtd::box_integer<xtd::byte>>(o.value())) return xtd::box_integer<type_t>::is_valid(static_cast<const xtd::box_integer<xtd::byte>&>(o.value()).value);
-    if (xtd::is<xtd::box_integer<xtd::int16>>(o.value())) return xtd::box_integer<type_t>::is_valid(static_cast<const xtd::box_integer<xtd::int16>&>(o.value()).value);
-    if (xtd::is<xtd::box_integer<xtd::int32>>(o.value())) return xtd::box_integer<type_t>::is_valid(static_cast<const xtd::box_integer<xtd::int32>&>(o.value()).value);
-    if (xtd::is<xtd::box_integer<xtd::int64>>(o.value())) return xtd::box_integer<type_t>::is_valid(static_cast<const xtd::box_integer<xtd::int64>&>(o.value()).value);
-    if (xtd::is<xtd::box_integer<xtd::sbyte>>(o.value())) return xtd::box_integer<type_t>::is_valid(static_cast<const xtd::box_integer<xtd::sbyte>&>(o.value()).value);
-    if (xtd::is<xtd::box_integer<xtd::slong>>(o.value())) return xtd::box_integer<type_t>::is_valid(static_cast<const xtd::box_integer<xtd::slong>&>(o.value()).value);
-    if (xtd::is<xtd::box_integer<xtd::uint16>>(o.value())) return xtd::box_integer<type_t>::is_valid(static_cast<const xtd::box_integer<xtd::uint16>&>(o.value()).value);
-    if (xtd::is<xtd::box_integer<xtd::uint32>>(o.value())) return xtd::box_integer<type_t>::is_valid(static_cast<const xtd::box_integer<xtd::uint32>&>(o.value()).value);
-    if (xtd::is<xtd::box_integer<xtd::uint64>>(o.value())) return xtd::box_integer<type_t>::is_valid(static_cast<const xtd::box_integer<xtd::uint64>&>(o.value()).value);
-    if (xtd::is<xtd::box_integer<xtd::ulong>>(o.value())) return xtd::box_integer<type_t>::is_valid(static_cast<const xtd::box_integer<xtd::ulong>&>(o.value()).value);
-    return false;
-  }*/
+      return __is_polymorphic_any_object__<type_t, typename std::is_polymorphic<type_t>::type > {}(o);
+    }
+/*
+template<typename type_t>
+requires (!std::is_null_pointer_v<type_t> && xtd::integer<type_t>)
+[[nodiscard]] auto is(any_object& o) -> bool {
+  if (!o.has_value()) return false;
+  if (xtd::is<xtd::box_integer<xtd::byte>>(o.value())) return xtd::box_integer<type_t>::is_valid(static_cast<const xtd::box_integer<xtd::byte>&>(o.value()).value);
+  if (xtd::is<xtd::box_integer<xtd::int16>>(o.value())) return xtd::box_integer<type_t>::is_valid(static_cast<const xtd::box_integer<xtd::int16>&>(o.value()).value);
+  if (xtd::is<xtd::box_integer<xtd::int32>>(o.value())) return xtd::box_integer<type_t>::is_valid(static_cast<const xtd::box_integer<xtd::int32>&>(o.value()).value);
+  if (xtd::is<xtd::box_integer<xtd::int64>>(o.value())) return xtd::box_integer<type_t>::is_valid(static_cast<const xtd::box_integer<xtd::int64>&>(o.value()).value);
+  if (xtd::is<xtd::box_integer<xtd::sbyte>>(o.value())) return xtd::box_integer<type_t>::is_valid(static_cast<const xtd::box_integer<xtd::sbyte>&>(o.value()).value);
+  if (xtd::is<xtd::box_integer<xtd::slong>>(o.value())) return xtd::box_integer<type_t>::is_valid(static_cast<const xtd::box_integer<xtd::slong>&>(o.value()).value);
+  if (xtd::is<xtd::box_integer<xtd::uint16>>(o.value())) return xtd::box_integer<type_t>::is_valid(static_cast<const xtd::box_integer<xtd::uint16>&>(o.value()).value);
+  if (xtd::is<xtd::box_integer<xtd::uint32>>(o.value())) return xtd::box_integer<type_t>::is_valid(static_cast<const xtd::box_integer<xtd::uint32>&>(o.value()).value);
+  if (xtd::is<xtd::box_integer<xtd::uint64>>(o.value())) return xtd::box_integer<type_t>::is_valid(static_cast<const xtd::box_integer<xtd::uint64>&>(o.value()).value);
+  if (xtd::is<xtd::box_integer<xtd::ulong>>(o.value())) return xtd::box_integer<type_t>::is_valid(static_cast<const xtd::box_integer<xtd::ulong>&>(o.value()).value);
+  return false;
+}
 
-  template<typename type_t>
-  requires std::is_null_pointer_v<type_t>
-  [[nodiscard]] auto is(any_object& o) -> bool {
+template<typename type_t>
+requires (!std::is_null_pointer_v<type_t> && xtd::integer<type_t>)
+[[nodiscard]] auto is(const any_object& o) -> bool {
+  if (!o.has_value()) return false;
+  if (xtd::is<xtd::box_integer<xtd::byte>>(o.value())) return xtd::box_integer<type_t>::is_valid(static_cast<const xtd::box_integer<xtd::byte>&>(o.value()).value);
+  if (xtd::is<xtd::box_integer<xtd::int16>>(o.value())) return xtd::box_integer<type_t>::is_valid(static_cast<const xtd::box_integer<xtd::int16>&>(o.value()).value);
+  if (xtd::is<xtd::box_integer<xtd::int32>>(o.value())) return xtd::box_integer<type_t>::is_valid(static_cast<const xtd::box_integer<xtd::int32>&>(o.value()).value);
+  if (xtd::is<xtd::box_integer<xtd::int64>>(o.value())) return xtd::box_integer<type_t>::is_valid(static_cast<const xtd::box_integer<xtd::int64>&>(o.value()).value);
+  if (xtd::is<xtd::box_integer<xtd::sbyte>>(o.value())) return xtd::box_integer<type_t>::is_valid(static_cast<const xtd::box_integer<xtd::sbyte>&>(o.value()).value);
+  if (xtd::is<xtd::box_integer<xtd::slong>>(o.value())) return xtd::box_integer<type_t>::is_valid(static_cast<const xtd::box_integer<xtd::slong>&>(o.value()).value);
+  if (xtd::is<xtd::box_integer<xtd::uint16>>(o.value())) return xtd::box_integer<type_t>::is_valid(static_cast<const xtd::box_integer<xtd::uint16>&>(o.value()).value);
+  if (xtd::is<xtd::box_integer<xtd::uint32>>(o.value())) return xtd::box_integer<type_t>::is_valid(static_cast<const xtd::box_integer<xtd::uint32>&>(o.value()).value);
+  if (xtd::is<xtd::box_integer<xtd::uint64>>(o.value())) return xtd::box_integer<type_t>::is_valid(static_cast<const xtd::box_integer<xtd::uint64>&>(o.value()).value);
+  if (xtd::is<xtd::box_integer<xtd::ulong>>(o.value())) return xtd::box_integer<type_t>::is_valid(static_cast<const xtd::box_integer<xtd::ulong>&>(o.value()).value);
+  return false;
+}*/
+
+template<typename type_t>
+requires std::is_null_pointer_v<type_t>
+[[nodiscard]] auto is(any_object& o) -> bool {
     return !o.has_value();
   }
   
@@ -257,17 +257,17 @@ namespace xtd {
   [[nodiscard]] auto is(const any_object& o) -> bool {
     return !o.has_value();
   }
-
+  
   template<typename type_t>
   [[nodiscard]] auto is(any_object* o) -> bool {
     if (is<box<type_t>>(o->value())) return true;
     return __is_polymorphic_any_object__<type_t, typename std::is_polymorphic<type_t>::type > {}(*o);
   }
   
-  template<typename type_t>
-  [[nodiscard]] auto is(const any_object* o) -> bool {
+template<typename type_t>
+[[nodiscard]] auto is(const any_object* o) -> bool {
     if (is<box<type_t>>(o->value())) return true;
     return __is_polymorphic_any_object__<type_t, typename std::is_polymorphic<type_t>::type > {}(*o);
   }
-  /// @endcond
+/// @endcond
 }

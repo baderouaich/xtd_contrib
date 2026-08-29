@@ -11,5 +11,5 @@ namespace xtd {
   // Since Doxygen does not work properly with the C++ concept, the documentation for this concept is declared in xtd/real_double_.hpp
   template<typename type_t>
   concept real_double =
-  std::same_as<xtd::raw_type<type_t>, xtd::double_>;
+    std::same_as<xtd::raw_type<type_t>, xtd::double_>;
 }

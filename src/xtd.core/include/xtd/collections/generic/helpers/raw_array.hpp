@@ -319,21 +319,21 @@ namespace xtd {
           friend auto operator !=(const std::vector<type_t>& a, const raw_array<type_t>& b) -> bool {
             return a != b.items();
           }
-
+          
           auto operator [](size_type index) const -> const_reference {return at(index);}
           auto operator [](size_type index) -> reference {return at(index);}
           auto operator [](const xtd::index& index) const -> const_reference;
           auto operator [](const xtd::index& index) -> reference;
           auto operator [](const xtd::range& range) const -> xtd::read_only_span<type_t>;
           auto operator [](const xtd::range& range) -> xtd::span<type_t>;
-
-          auto operator ()(size_type index) const -> const_reference {return at(index);}
-          auto operator ()(size_type index) -> reference {return at(index);}
-          auto operator ()(const xtd::index& index) const -> const_reference;
-          auto operator ()(const xtd::index& index) -> reference;
-          auto operator ()(const xtd::range& range) const -> xtd::read_only_span<type_t>;
-          auto operator ()(const xtd::range& range) -> xtd::span<type_t>;
-
+          
+          auto operator()(size_type index) const -> const_reference {return at(index);}
+          auto operator()(size_type index) -> reference {return at(index);}
+          auto operator()(const xtd::index& index) const -> const_reference;
+          auto operator()(const xtd::index& index) -> reference;
+          auto operator()(const xtd::range& range) const -> xtd::read_only_span<type_t>;
+          auto operator()(const xtd::range& range) -> xtd::span<type_t>;
+          
           operator const base_type& () const noexcept {return items_;}
           operator base_type& () noexcept {return items_;}
           /// @}

@@ -65,14 +65,14 @@ auto trace_listener::thread_safe(bool thread_safe) noexcept -> void {
 auto trace_listener::write_event_cache(const trace_event_cache& event_cache) -> void {
   if (enum_object {trace_output_options_}.has_flag(trace_options::process_id))
     write_line(string::format("{0}process_id={1}", string(' ', indent_size_), event_cache.process_id()));
-  if (enum_object {trace_output_options_}.has_flag(trace_options::logical_operation_stack))
-    write_line(string::format("{0}logical_operation_stack={1}", string(' ', indent_size_), string::join(", ", event_cache.logical_operation_stack())));
-  if (enum_object {trace_output_options_}.has_flag(trace_options::thread_id))
-    write_line(string::format("{0}thread_id={1}", string(' ', indent_size_), event_cache.thread_id()));
-  if (enum_object {trace_output_options_}.has_flag(trace_options::date_time))
-    write_line(string::format("{0}date_time={1:s}", string(' ', indent_size_), event_cache.date_time()));
-  if (enum_object {trace_output_options_}.has_flag(trace_options::timestamp))
-    write_line(string::format("{0}timestamp={1}", string(' ', indent_size_), event_cache.timestamp()));
-  if (enum_object {trace_output_options_}.has_flag(trace_options::callstack))
-    write_line(string::format("{0}callstack={1}", string(' ', indent_size_), event_cache.call_stack()));
-}
+    if (enum_object {trace_output_options_}.has_flag(trace_options::logical_operation_stack))
+      write_line(string::format("{0}logical_operation_stack={1}", string(' ', indent_size_), string::join(", ", event_cache.logical_operation_stack())));
+      if (enum_object {trace_output_options_}.has_flag(trace_options::thread_id))
+        write_line(string::format("{0}thread_id={1}", string(' ', indent_size_), event_cache.thread_id()));
+        if (enum_object {trace_output_options_}.has_flag(trace_options::date_time))
+          write_line(string::format("{0}date_time={1:s}", string(' ', indent_size_), event_cache.date_time()));
+          if (enum_object {trace_output_options_}.has_flag(trace_options::timestamp))
+            write_line(string::format("{0}timestamp={1}", string(' ', indent_size_), event_cache.timestamp()));
+            if (enum_object {trace_output_options_}.has_flag(trace_options::callstack))
+              write_line(string::format("{0}callstack={1}", string(' ', indent_size_), event_cache.call_stack()));
+            }

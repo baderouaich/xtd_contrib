@@ -111,7 +111,7 @@ namespace xtd {
               if (pos_ == npos()) return;
               try {
                 enumerator_.reset();
-              } catch(...) {
+              } catch (...) {
                 if (pos_ != 0 && pos_ != npos()) throw;
                 if (enumerator_.move_next() == false) pos_ = npos();
                 return;

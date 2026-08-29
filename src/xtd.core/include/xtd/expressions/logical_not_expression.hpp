@@ -73,7 +73,7 @@ namespace xtd {
       /// @cond
       friend inline auto operator <<(std::ostream& os, const logical_not_expression& e) -> std::ostream& {return os << "!" << expression_stream {e.value, e.precedence};}
       /// @endcond
-
+      
     private:
       [[no_unique_address]] value_t value;
     };
@@ -86,7 +86,7 @@ namespace xtd {
       return logical_not_expression<std::decay_t<decltype(expression)>> {std::move(expression)};
     }
     /// @endcond
-
+    
     /// @name Public Operators
     
     /// @{

@@ -36,8 +36,8 @@ auto binary_reader::end_of_stream() const -> bool {
 auto binary_reader::close() -> void {
   if (stream_ && dynamic_cast<std::ifstream*>(stream_)) static_cast<std::ifstream*>(stream_)->close();
   if (delete_when_destroy_) delete stream_;
-  stream_ = nullptr;
-}
+    stream_ = nullptr;
+  }
 
 auto binary_reader::peek_char() const -> int32 {
   if (!stream_) return EOF;
@@ -47,7 +47,7 @@ auto binary_reader::peek_char() const -> int32 {
 
 auto binary_reader::pop() -> std::streampos {
   if (!pos_stack_.empty()) {
-    stream_->seekg(pos_stack_.top(), std::ios_base::beg);
+  stream_->seekg(pos_stack_.top(), std::ios_base::beg);
     pos_stack_.pop();
   }
   return stream_->tellg();
@@ -67,9 +67,9 @@ auto binary_reader::read(array<xtd::byte>& buffer, usize index, usize count) -> 
   if (index + count > buffer.length()) throw_helper::throws(exception_case::argument);
   for (auto i = 0_z; i < count; i++) {
     auto current = read();
-    if (current == EOF) return i;
-    buffer[index + i] = static_cast<xtd::byte>(current);
-  }
+      if (current == EOF) return i;
+      buffer[index + i] = static_cast<xtd::byte>(current);
+    }
   return count;
 }
 
@@ -77,9 +77,9 @@ auto binary_reader::read(array<char>& buffer, usize index, usize count) -> usize
   if (index + count > buffer.length()) throw_helper::throws(exception_case::argument);
   for (auto i = 0_z; i < count; i++) {
     auto current = read();
-    if (current == EOF) return i;
-    buffer[index + i] = static_cast<char>(current);
-  }
+      if (current == EOF) return i;
+      buffer[index + i] = static_cast<char>(current);
+    }
   return count;
 }
 
@@ -155,7 +155,7 @@ auto binary_reader::read_uint64() -> uint64 {
   return bit_converter::to_uint64(read_bytes(sizeof(uint64)), 0);
 }
 
-auto binary_reader::rewind() -> void{
+auto binary_reader::rewind() -> void {
   stream_->seekg(0, std::ios_base::beg);
 }
 

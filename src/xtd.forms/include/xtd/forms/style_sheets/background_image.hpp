@@ -121,7 +121,7 @@ namespace xtd {
         /// @brief Gets the colors specifies what colors to display.
         /// @return The colors specifies what colors to display.
         /// @remarks For xtd::forms::style_sheets::image_type::color, only the first color is used.
-        [[nodiscard]] auto colors() const noexcept -> const xtd::array<xtd::drawing::color>&;
+        [[nodiscard]] auto colors() const noexcept -> const xtd::array<xtd::drawing::color>& ;
         /// @brief Sets the colors that specifies what colors to display.
         /// @param value The colors specifies what colors to display.
         /// @remarks For xtd::forms::style_sheets::image_type::color, only the first color is used.

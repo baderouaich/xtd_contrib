@@ -34,26 +34,26 @@ namespace assert_unit_tests {
         xtd::exception::enable_stack_trace(false);
         xtd::tunit::test::__internal_tunit_unit_tests_mode__ = reinterpret_cast<xtd::intptr>("internal_tests");
         if (xtd::environment::get_command_line_args().contains("--verbose")) std::cout << "Run tests:" << std::endl;
-        else std::cout << "Run tests..." << std::endl;
-        for (auto& assert_unit_test : assert_unit_tests::register_assert_unit_test::assert_unit_tests) {
-          try {
-            assert_unit_test.method(assert_unit_test.name);
-          } catch (...) {
-            ++error_test_count;
-          }
-        }
-        
+          else std::cout << "Run tests..." << std::endl;
+for (auto& assert_unit_test : assert_unit_tests::register_assert_unit_test::assert_unit_tests) {
+            try {
+              assert_unit_test.method(assert_unit_test.name);
+              } catch (...) {
+                ++error_test_count;
+              }
+            }
+            
         std::cout << std::endl << "Test results:" << std::endl;
         std::cout << xtd::foreground_color(xtd::console_color::dark_green) << "  SUCCEED " << xtd::reset_color() << assert_unit_tests::register_assert_unit_test::assert_unit_tests.size() - error_test_count - ignore_test_count << " tests." << std::endl;
         if (error_test_count) std::cout << xtd::foreground_color(xtd::console_color::dark_green) << "   FAILED " << xtd::reset_color() << error_test_count << " tests." << std::endl;
         if (ignore_test_count) std::cout << std::endl << "  You have " << ignore_test_count << " ignored test" << (ignore_test_count < 2 ? "" : "s") << std::endl;
-        std::cout << "End" << std::endl;
-        std::cout << std::endl;
-        return error_test_count ? 1 : 0;
-      }));
-    }
-    
-    std::function<void(const std::string&)> method;
+          std::cout << "End" << std::endl;
+          std::cout << std::endl;
+          return error_test_count ? 1 : 0;
+        }));
+  }
+  
+  std::function<void(const std::string&)> method;
     std::string name;
     
     static std::vector<register_assert_unit_test> assert_unit_tests;

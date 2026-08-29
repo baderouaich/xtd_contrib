@@ -84,8 +84,8 @@ auto network_stream::read(array<byte>& buffer, usize offset, usize count) -> usi
   if (is_closed()) throw_helper::throws(exception_case::object_closed);
   if (!can_read()) throw_helper::throws(exception_case::not_supported);
   
-  return data_->socket.receive(buffer, offset, count, socket_flags::none);
-}
+    return data_->socket.receive(buffer, offset, count, socket_flags::none);
+  }
 
 auto network_stream::set_length(usize value) -> void {
   throw_helper::throws(exception_case::not_supported);
@@ -95,5 +95,5 @@ auto network_stream::write(const array<byte>& buffer, usize offset, usize count)
   if (is_closed()) throw_helper::throws(exception_case::object_closed);
   if (!can_write()) throw_helper::throws(exception_case::not_supported);
   
-  data_->socket.send(buffer, offset, count, socket_flags::none);
-}
+    data_->socket.send(buffer, offset, count, socket_flags::none);
+  }

@@ -62,20 +62,20 @@ namespace {
 
 auto throw_helper::throws(enum exception_case exception_case, const source_location& location) -> void {
   switch (exception_case) {
-    case exception_case::abandoned_mutex: throw abandoned_mutex_exception {to_stack_frame(location)};
-    case exception_case::access_violation: throw access_violation_exception {to_stack_frame(location)};
-    case exception_case::argument: throw argument_exception {to_stack_frame(location)};
-    case exception_case::argument_null: throw argument_null_exception {to_stack_frame(location)};
-    case exception_case::argument_out_of_range: throw argument_out_of_range_exception {to_stack_frame(location)};
-    case exception_case::arithmetic: throw arithmetic_exception {to_stack_frame(location)};
-    case exception_case::barrier_post_phase: throw barrier_post_phase_exception {to_stack_frame(location)};
-    case exception_case::culture_not_found: throw culture_not_found_exception {to_stack_frame(location)};
-    case exception_case::directory_not_found: throw directory_not_found_exception {to_stack_frame(location)};
-    case exception_case::divided_by_zero: throw divided_by_zero_exception {to_stack_frame(location)};
-    case exception_case::end_of_stream: throw end_of_stream_exception {to_stack_frame(location)};
-    case exception_case::file_not_found: throw file_not_found_exception {to_stack_frame(location)};
-    case exception_case::format: throw format_exception {to_stack_frame(location)};
-    case exception_case::format_closing_bracket_without_open_bracket: throw format_exception("Invalid format expression : closing bracket '{' without open bracket '}'", to_stack_frame(location));
+  case exception_case::abandoned_mutex: throw abandoned_mutex_exception {to_stack_frame(location)};
+  case exception_case::access_violation: throw access_violation_exception {to_stack_frame(location)};
+  case exception_case::argument: throw argument_exception {to_stack_frame(location)};
+  case exception_case::argument_null: throw argument_null_exception {to_stack_frame(location)};
+  case exception_case::argument_out_of_range: throw argument_out_of_range_exception {to_stack_frame(location)};
+  case exception_case::arithmetic: throw arithmetic_exception {to_stack_frame(location)};
+  case exception_case::barrier_post_phase: throw barrier_post_phase_exception {to_stack_frame(location)};
+  case exception_case::culture_not_found: throw culture_not_found_exception {to_stack_frame(location)};
+  case exception_case::directory_not_found: throw directory_not_found_exception {to_stack_frame(location)};
+  case exception_case::divided_by_zero: throw divided_by_zero_exception {to_stack_frame(location)};
+  case exception_case::end_of_stream: throw end_of_stream_exception {to_stack_frame(location)};
+  case exception_case::file_not_found: throw file_not_found_exception {to_stack_frame(location)};
+  case exception_case::format: throw format_exception {to_stack_frame(location)};
+  case exception_case::format_closing_bracket_without_open_bracket: throw format_exception("Invalid format expression : closing bracket '{' without open bracket '}'", to_stack_frame(location));
     case exception_case::format_opened_bracket_without_end_bracket: throw format_exception("Invalid format expression : open bracket '}' without end bracket '{'", to_stack_frame(location));
     case exception_case::format_no_start_colon: throw format_exception("Invalid format expression : format argument must be start by ':'", to_stack_frame(location));
     case exception_case::format_not_iformatable: throw format_exception(to_stack_frame(location));

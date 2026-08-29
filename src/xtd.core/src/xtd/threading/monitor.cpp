@@ -112,11 +112,11 @@ bool monitor::try_enter_ptr(object_ptr obj, int32 milliseconds_timeout, bool& lo
   if (!is_entered_ptr(obj)) {
     auto i = item {};
     if (obj.second) {
-      auto str = reinterpret_cast<const string*>(obj.first);
-      i.name = *str;
+        auto str = reinterpret_cast<const string*>(obj.first);
+        i.name = *str;
+      }
+      get_static_data().monitor_items.add({obj.first, i});
     }
-    get_static_data().monitor_items.add({obj.first, i});
-  }
   item* monitor_data = &get_static_data().monitor_items[obj.first];
   ++(*monitor_data->used_count);
   get_static_data().monitor_items_critical_section.leave();

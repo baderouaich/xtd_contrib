@@ -74,7 +74,7 @@ namespace xtd {
       /// @param value An array of abbreviated month names.
       /// @exception xtd::argument_exception The property is being set to an array that has a length that is not exactly 13.
       auto abreviated_month_genitive_names(const xtd::array<xtd::string>& value) -> xtd::globalization::date_time_format_info&;
-
+      
       /// @brief Gets or a one-dimensional string array that contains the culture-specific abbreviated names of the months.
       /// @return A one-dimensional string array with 13 elements that contains the culture-specific abbreviated names of the months. For 12-month calendars, the 13th element of the array is an empty string. The array for InvariantInfo contains "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec", and "".
       [[nodiscard]] auto abreviated_month_names() const noexcept -> const xtd::array<xtd::string>& ;
@@ -160,7 +160,7 @@ namespace xtd {
       /// @return A read-only xtd::globalization::date_time_format_info object based on the xtd::globalization::culture_info object for the current thread.
       /// @remarks The xtd::globalization::date_time_format_info object returned by the xtd::globalization::date_time_format_info::current_info property reflects user overrides.
       [[nodiscard]] static auto current_info() noexcept -> const xtd::globalization::date_time_format_info&;
-
+      
       /// @brief Gets the default read-only xtd::globalization::date_time_format_info object that is culture-independent (invariant).
       /// @return A read-only object that is culture-independent (invariant).
       /// @remarks This property does not change, regardless of the current culture. Because of this, the invariant culture's xtd::globalization::date_time_format_info object can be used to produce consistent, culture-independent results in parsing and formatting operations on data that is multi-cultural. For example, if date and time data from multiple cultures is to be persisted in string form, it can be formatted by using the xtd::globalization::date_time_format_info object of the invariant culture and saved. It can then be parsed by using the invariant culture's xtd::globalization::date_time_format_info object.

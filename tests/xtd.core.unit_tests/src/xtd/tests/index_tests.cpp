@@ -61,7 +61,7 @@ namespace xtd::tests {
       assert::is_true(xtd::index::end.is_from_end());
       assert::are_equal(10_z, xtd::index::end.get_offset(10));
     }
-
+    
     auto test_method_(last) {
       assert::are_equal(18446744073709551614_z, xtd::index::last.to_usize());
       assert::are_equal(1_z, xtd::index::last.value());
@@ -75,7 +75,7 @@ namespace xtd::tests {
       assert::is_false(xtd::index::start.is_from_end());
       assert::is_zero(xtd::index::start.get_offset(10));
     }
-
+    
     auto test_method_(access_array_item_with_last) {
       auto items = array {1, 2, 3, 4};
       assert::are_equal(4, items[xtd::index::last]);
@@ -89,7 +89,7 @@ namespace xtd::tests {
       assert::are_equal(1, items[xtd::index::end + 1]);
       assert::are_equal(4, items[xtd::index::end - 1]);
     }
-
+    
     auto test_method_(access_array_item_with_start) {
       auto items = array {1, 2, 3, 4};
       assert::are_equal(1, items[xtd::index::start]);

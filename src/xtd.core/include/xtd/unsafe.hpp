@@ -19,7 +19,7 @@ namespace xtd {
   class unsafe static_ {
   public:
     template<typename to_type, typename from_type>
-    requires (!xtd::is_value_type_v<to_type>)
+    requires(!xtd::is_value_type_v<to_type>)
     [[nodiscard]] static constexpr auto as(from_type&& value) -> to_type {return static_cast<to_type>(std::forward<from_type>(value));}
     
     template<typename to_type, typename from_type>

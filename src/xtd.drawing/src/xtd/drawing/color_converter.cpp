@@ -106,7 +106,7 @@ color color_converter::grayscale(const drawing::color& color, double percent) no
 color color_converter::hue_rotate(const drawing::color& color, int angle) noexcept {
   angle = math::clamp(angle, 0, 360);
   auto [hue, saturation, lightness] = color.to_hsl();
-
+  
   auto h = static_cast<int>(hue);
   h = (h + angle) % 360;
   if (h < 0) h += 360;

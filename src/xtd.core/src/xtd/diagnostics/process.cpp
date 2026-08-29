@@ -154,7 +154,7 @@ process::~process() {
 auto process::base_priority() const -> int32 {
   if (!data_->handle.has_value()) throw_helper::throws(exception_case::invalid_operation);
   static auto base_priorities = std::map<process_priority_class, int32> {{process_priority_class::idle, 4}, {process_priority_class::below_normal, 6}, {process_priority_class::normal, 8}, {process_priority_class::above_normal, 10}, {process_priority_class::high, 13}, {process_priority_class::real_time, 24}};
-  return base_priorities[priority_class()];
+return base_priorities[priority_class()];
 }
 
 auto process::enable_raising_events() const -> bool {
@@ -256,8 +256,8 @@ auto process::close() -> void {
   if (!data_->handle.has_value()) throw_helper::throws(exception_case::invalid_operation);
   if (data_.use_count() == 1 && data_->thread.joinable()) {
     data_->thread.detach();
-    data_->handle.reset();
-  }
+      data_->handle.reset();
+    }
 }
 
 auto process::kill() -> void {
@@ -307,11 +307,11 @@ auto process::start() -> bool {
   data_->thread.start(*this);
   while (!data_->allow_to_continue) xtd::threading::thread::sleep(100);
   if (!data_->exception_pointer) return true;
-  if (data_->start_info.use_shell_execute() && data_->start_info.error_dialog())  message_box_message_(data_->start_info.file_name());
-  auto exception_pointer = data_->exception_pointer;
-  data_->exception_pointer = nullptr;
-  rethrow_exception(exception_pointer);
-}
+    if (data_->start_info.use_shell_execute() && data_->start_info.error_dialog())  message_box_message_(data_->start_info.file_name());
+      auto exception_pointer = data_->exception_pointer;
+      data_->exception_pointer = nullptr;
+      rethrow_exception(exception_pointer);
+    }
 
 auto process::start(const process_start_info& start_info) -> process {
   auto process = diagnostics::process {};
@@ -366,5 +366,5 @@ auto process::on_exited() -> void {
   if (!data_->enable_raising_events) return;
   auto safe_exit_callback = data_->exit_callback;
   if (safe_exit_callback.is_empty()) return;
-  safe_exit_callback(self_, event_args::empty);
-}
+    safe_exit_callback(self_, event_args::empty);
+  }

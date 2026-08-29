@@ -67,9 +67,9 @@ auto file_info::append_text() const -> stream_writer {
 auto file_info::copy_to(const xtd::string& dest_file_name) const -> file_info {
   if (!exists()) throw_helper::throws(exception_case::file_not_found);
   if (file::exists(dest_file_name)) throw_helper::throws(exception_case::io);
-  if (native::file::copy(full_path_, path::get_full_path(dest_file_name)) != 0) throw_helper::throws(exception_case::io);
-  return file_info {dest_file_name};
-}
+    if (native::file::copy(full_path_, path::get_full_path(dest_file_name)) != 0) throw_helper::throws(exception_case::io);
+      return file_info {dest_file_name};
+    }
 
 auto file_info::copy_to(const xtd::string& dest_file_name, bool overwrite) const -> file_info {
   if (overwrite && file::exists(dest_file_name)) file::remove(dest_file_name);
@@ -87,11 +87,11 @@ auto file_info::create_text() const -> stream_writer {
 auto file_info::move_to(const xtd::string& dest_file_name) -> void {
   if (!exists()) throw_helper::throws(exception_case::file_not_found);
   if ((attributes() & file_attributes::directory) == file_attributes::directory) throw_helper::throws(exception_case::argument);
-  if (native::file::move(full_path_, path::get_full_path(dest_file_name)) != 0)  throw_helper::throws(exception_case::io);
-  
-  original_path_ = dest_file_name;
-  refresh();
-}
+    if (native::file::move(full_path_, path::get_full_path(dest_file_name)) != 0)  throw_helper::throws(exception_case::io);
+    
+      original_path_ = dest_file_name;
+      refresh();
+    }
 
 auto file_info::move_to(const xtd::string& dest_file_name, bool overwrite) -> void {
   if (overwrite && file::exists(dest_file_name)) file::remove(dest_file_name);

@@ -11,5 +11,5 @@ namespace xtd {
   // Since Doxygen does not work properly with the C++ concept, the documentation for this concept is declared in xtd/unsigned_integer_32_.hpp
   template<typename type_t>
   concept unsigned_integer_32 =
-  std::same_as<xtd::raw_type<type_t>, xtd::uint32>;
+    std::same_as<xtd::raw_type<type_t>, xtd::uint32>;
 }

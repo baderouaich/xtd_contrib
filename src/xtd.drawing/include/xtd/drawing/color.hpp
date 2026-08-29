@@ -702,7 +702,7 @@ namespace xtd {
       /// @brief Gets the xtd::drawing::cmyk value of this xtd::drawing::color class.
       /// @return The xtd::drawing::cmyk value of this xtd::drawing::color.
       [[nodiscard]] auto to_cmyk() const noexcept -> xtd::drawing::cmyk;
-
+      
       /// @brief Gets the xtd::drawing::known_color value of this xtd::drawing::color class.
       /// @return xtd::drawing::known_color An element of the xtd::drawing::known_color enumeration, if the xtd::drawing::color is created from a predefined color by using either the xtd::drawing::color::from_name method or the xtd::drawing::color::from_known_color method; otherwise, 0.
       /// @remarks A predefined color is also called a known color and is represented by an element of the xtd::drawing::known_color enumeration. When the xtd::drawing::color::to_known_color method is applied to a xtd::drawing::color structure that is created by using the FromArgb method, xtd::drawing::color::to_known_color returns 0, even if the ARGB value matches the ARGB value of a predefined color. xtd::drawing::color::to_known_color also returns 0 when it is applied to a xtd::drawing::color structure that is created by using the xtd::drawing::color::from_name method with a string name that is not valid.
@@ -719,7 +719,7 @@ namespace xtd {
       /// @brief Gets the xtd::drawing::hsv value of this xtd::drawing::color class.
       /// @return The xtd::drawing::hsv value of this xtd::drawing::color.
       [[nodiscard]] auto to_hsv() const noexcept -> xtd::drawing::hsv;
-
+      
       /// @brief Creates a human-readable string that represents this color class.
       /// @return string A string that represents this Size.
       /// @par Examples
@@ -780,7 +780,7 @@ namespace xtd {
       /// @return The xtd::drawing::yuv value of this xtd::drawing::color.
       [[nodiscard]] auto to_yuv() const noexcept -> xtd::drawing::yuv;
       /// @}
-
+      
       /// @name Public Operators
       
       /// @{
@@ -806,7 +806,7 @@ namespace xtd {
       /// @return The 32-bit ARGB value of this xtd::drawing::color.
       [[nodiscard]] operator xtd::uint32() const noexcept;
       /// @}
-
+      
       /// @name Public Static Methods
       
       /// @{
@@ -849,7 +849,7 @@ namespace xtd {
       ///   g.fill_ellipse(trns_blue_brush, x1 + tri_base, y1, 2 * tri_height, 2 * tri_height);
       /// }
       /// ```
-     
+      
       [[nodiscard]] static auto from_argb(uint32 argb) noexcept -> xtd::drawing::color;
       /// @brief Creates a xtd::drawing::color class from the specified xtd::drawing::color structure, but with the new specified alpha value. Although this method allows a 32-bit value to be passed for the alpha value, the value is limited to 8 bits.
       /// @param alpha The alpha value for the new xtd::drawing::color. Valid values are 0 through 255.
@@ -1019,7 +1019,7 @@ namespace xtd {
       /// @param argb The xtd::drawing::argb value for the new xtd::drawing::color.
       /// @return xtd::drawing::color The xtd::drawing::color structure that this method creates.
       [[nodiscard]] static auto from_argb(const xtd::drawing::argb& argb) noexcept -> xtd::drawing::color;
-
+      
       /// @brief Creates a xtd::drawing::color class from the four CMYK component (cyan, magenta, yellow, and black) values.
       /// @param cyan The cyan component.
       /// @param magenta The magenta component.
@@ -1031,7 +1031,7 @@ namespace xtd {
       /// @param hsv The xtd::drawing::hsv cmyk.
       /// @return xtd::drawing::color The xtd::drawing::color structure that this method creates.
       [[nodiscard]] static auto from_cmyk(const xtd::drawing::cmyk& cmyk) noexcept -> xtd::drawing::color;
-
+      
       /// @brief Creates a xtd::drawing::color class from native handle.
       /// @param handle the handle for the new xtd::drawing::color.
       /// @return xtd::drawing::color The xtd::drawing::color structure that this method creates.
@@ -1048,7 +1048,7 @@ namespace xtd {
       /// @param hsb The xtd::drawing::hsb value.
       /// @return xtd::drawing::color The xtd::drawing::color structure that this method creates.
       [[nodiscard]] static auto from_hsb(const xtd::drawing::hsb& hsb) noexcept -> xtd::drawing::color;
-
+      
       /// @brief Creates a xtd::drawing::color class from the three HSL component (hue, saturation, and lightness) values.
       /// @param hue The xtd::drawing::color saturation. The saturation ranges from 0.0 through 1.0, where 0.0 is grayscale and 1.0 is the most saturated.
       /// @param saturation The xtd::drawing::color saturation. The saturation ranges from 0.0 through 1.0, where 0.0 is grayscale and 1.0 is the most saturated.
@@ -1059,7 +1059,7 @@ namespace xtd {
       /// @param hsb The xtd::drawing::hsl value.
       /// @return xtd::drawing::color The xtd::drawing::color structure that this method creates.
       [[nodiscard]] static auto from_hsl(const xtd::drawing::hsl& hsl) noexcept -> xtd::drawing::color;
-
+      
       /// @brief Creates a xtd::drawing::color class from the three HSV component (hue, saturation, and value) values.
       /// @param hue The xtd::drawing::color saturation. The saturation ranges from 0.0 through 1.0, where 0.0 is grayscale and 1.0 is the most saturated.
       /// @param saturation The xtd::drawing::color saturation. The saturation ranges from 0.0 through 1.0, where 0.0 is grayscale and 1.0 is the most saturated.
@@ -1070,7 +1070,7 @@ namespace xtd {
       /// @param hsv The xtd::drawing::hsv value.
       /// @return xtd::drawing::color The xtd::drawing::color structure that this method creates.
       [[nodiscard]] static auto from_hsv(const xtd::drawing::hsv& hsv) noexcept -> xtd::drawing::color;
-
+      
       /// @brief Creates a xtd::drawing::color class from the four ARGB component (alpha, red, green, and blue) values. Although this method allows a 32-bit value to be passed for each component, the value of each component is limited to 8 bits.
       /// @param alpha The alpha value for the new xtd::drawing::color. Valid values are 0 through 255.
       /// @param red The red component. Valid values are 0 through 255.
@@ -1152,7 +1152,7 @@ namespace xtd {
       /// @return The xtd::drawing::color structure that this method creates.
       /// @remarks The byte-ordering of the 32-bit ARGB value is AARRGGBB. The most significant byte (MSB), represented by AA, is the alpha component value. The second, third, and fourth bytes, represented by RR, GG, and BB, respectively, are the color components red, green, and blue, respectively.
       [[nodiscard]] static auto from_uint32(xtd::uint32 argb) noexcept -> xtd::drawing::color;
-
+      
       /// @brief Creates a xtd::drawing::color class from the three YUV components (luma and choma) values.
       /// @param y The Y'UV `Y` value of this xtd::drawing::color. The y ranges from 0.0 through 1.0, where 0.0 represents black and 1.0 represents white.
       /// @param u The Y'UV `U` value of this xtd::drawing::color. The y ranges from -0.5 through0.5. When `U` and `V` are both 0, the color is neutral (gray). Positive `U` values represent the red-green axis, and positive `V` values represent the blue-yellow axis
@@ -1163,7 +1163,7 @@ namespace xtd {
       /// @param yuv The xtd::drawing::yuv value for the new xtd::drawing::color.
       /// @return xtd::drawing::color The xtd::drawing::color structure that this method creates.
       [[nodiscard]] static auto from_yuv(const xtd::drawing::yuv& yuv) noexcept -> xtd::drawing::color;
-
+      
       /// @brief Creates a xtd::drawing::color class from the specified name.
       /// @param color A string that is the name of a predefined color. Valid names are the same as the names of the elements of the xtd::drawing::known_color enumeration or hexadecimal value that represents argb value, or four decimal values separated by a comma representing respectively a, r, g, b, values.
       /// @return xtd::drawing::color The xtd::drawing::color structure that this method creates.
@@ -1178,7 +1178,7 @@ namespace xtd {
       /// @deprecated Replaced by Replaced by xtd::drawing::color::to_hsl - Will be removed in version 1.2.0.
       [[deprecated("Replaced by xtd::drawing::color::to_hsl - Will be removed in version 1.2.0.")]]
       [[nodiscard]] auto get_lightness() const noexcept -> float;
-
+      
       /// @brief Gets the Y'UV color model `U` (chroma) value for this xtd::drawing::color structure.
       /// @return The Y'UV `U` value of this xtd::drawing::color. The y ranges from -0.5 through0.5. When `U` and `V` are both 0, the color is neutral (gray). Positive `U` values represent the red-green axis, and positive `V` values represent the blue-yellow axis
       /// @deprecated Replaced by Replaced by xtd::drawing::color::to_yuv - Will be removed in version 1.2.0.
@@ -1190,7 +1190,7 @@ namespace xtd {
       /// @deprecated Replaced by Replaced by xtd::drawing::color::to_hsv - Will be removed in version 1.2.0.
       [[deprecated("Replaced by xtd::drawing::color::to_hsv - Will be removed in version 1.2.0.")]]
       [[nodiscard]] auto get_value() const noexcept -> float;
-
+      
       /// @brief Gets the Y'UV color model `V` (chroma) value for this xtd::drawing::color structure.
       /// @return The Y'UV `V` value of this xtd::drawing::color. The y ranges from -0.5 through0.5. When `U` and `V` are both 0, the color is neutral (gray). Positive `U` values represent the red-green axis, and positive `V` values represent the blue-yellow axis
       /// @deprecated Replaced by Replaced by xtd::drawing::color::to_yuv - Will be removed in version 1.2.0.
@@ -1203,7 +1203,7 @@ namespace xtd {
       [[deprecated("Replaced by xtd::drawing::color::to_yuv - Will be removed in version 1.2.0.")]]
       [[nodiscard]] auto get_y() const noexcept -> float;
       /// @}
-
+      
       /// @name Public Deprecated Static Methods
       
       /// @{

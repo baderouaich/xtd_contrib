@@ -31,7 +31,7 @@ namespace __enumeration_introspection {
     std::string_view view(str, str_size - 1);
     
     for (auto i = xtd::usize {0}; i < count; i++) {
-      auto new_pos = view.find(',');
+    auto new_pos = view.find(',');
       func(trim(view.substr(0, new_pos)));
       if (new_pos != std::string_view::npos) view = view.substr(new_pos + 1);
       else break;

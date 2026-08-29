@@ -82,7 +82,7 @@ namespace xtd {
 }
 
 /// @cond
-auto __assembly_guid_attribute__() -> xtd::sptr<xtd::reflection::assembly_guid_attribute>&;
+auto __assembly_guid_attribute__() -> xtd::sptr<xtd::reflection::assembly_guid_attribute>& ;
 /// @endcond
 
 /// @brief Creates the assembly guid information. Must be called once in your application.

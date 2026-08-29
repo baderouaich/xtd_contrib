@@ -302,13 +302,13 @@ namespace xtd {
         /// @exception xtd::argument_exception The number of elements in the source xtd::collections::generic::icollection <type_t> is greater than the available space from `array_index` to the end of the destination `array`.
         auto copy_to(xtd::array<value_type>& array, xtd::usize array_index) const -> void override {
           if (array_index + count() > array.length()) xtd::helpers::throw_helper::throws(xtd::helpers::exception_case::argument);
-          for (const auto& item : self_)
+for (const auto& item : self_)
             array[array_index++] = item;
-        }
-        
-        /// @brief Returns an enumerator that iterates through the xtd::collections::generic::ordered_dictionary <key_t, value_t>.
-        /// @return A xtd::collections::enumerator structure for the xtd::collections::generic::ordered_dictionary <key_t, value_t>.
-        [[nodiscard]] xtd::collections::generic::enumerator<value_type> get_enumerator() const noexcept override {
+          }
+          
+      /// @brief Returns an enumerator that iterates through the xtd::collections::generic::ordered_dictionary <key_t, value_t>.
+      /// @return A xtd::collections::enumerator structure for the xtd::collections::generic::ordered_dictionary <key_t, value_t>.
+      [[nodiscard]] xtd::collections::generic::enumerator<value_type> get_enumerator() const noexcept override {
           struct ordered_dictionary_enumerator : public ienumerator<value_type> {
             explicit ordered_dictionary_enumerator(const ordered_dictionary & items, xtd::usize version) : items_(items), version_(version) {}
             
@@ -354,7 +354,7 @@ namespace xtd {
         auto insert(xtd::usize index, const key_t & key, const value_t& value) -> void {
           if (contains_key(key)) return xtd::helpers::throw_helper::throws(xtd::helpers::exception_case::argument);
           lock_(data_->sync_op) {
-            data_->items.add(key, value);
+          data_->items.add(key, value);
             data_->keys.insert(index, key);
           }
           ++data_->version;
@@ -367,7 +367,7 @@ namespace xtd {
         auto remove(const key_t & key) noexcept -> bool override {
           if (!contains_key(key)) return false;
           lock_(data_->sync_op) {
-            remove_at(get_index(key));
+          remove_at(get_index(key));
           }
           ++data_->version;
           return true;
@@ -538,7 +538,7 @@ namespace xtd {
       
       template<xtd::iterable iterable_t>
       ordered_dictionary(iterable_t&&) -> ordered_dictionary<std::remove_const_t<std::tuple_element_t<0, xtd::iterable_value_type<iterable_t>>>, std::remove_const_t<std::tuple_element_t<1, xtd::iterable_value_type<iterable_t>>>>;
-
+      
       template < class key_t, typename value_t >
       ordered_dictionary(std::initializer_list < key_value_pair < key_t, value_t>>) -> ordered_dictionary < key_t, value_t >;
       

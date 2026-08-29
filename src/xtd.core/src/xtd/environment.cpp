@@ -128,9 +128,9 @@ private:
     environment::on_cancel_signal(e);
     // If you try to cancel an xtd::signal::segmentation_violation, the system may enter an infinite loop. This is why xtd ignores the cancellation requested by the user.
     //if (!e.cancel()) {
-      last_signal_ = signal;
-      console::__internal_rstc__(); // reset terminal mode
-      throw_helper::throws(exception_case::access_violation); //exit(128 + signal);
+    last_signal_ = signal;
+    console::__internal_rstc__(); // reset terminal mode
+    throw_helper::throws(exception_case::access_violation); //exit(128 + signal);
     //}
   }
   
@@ -350,8 +350,8 @@ const xtd::argument_collection& environment::get_command_line_args() {
     if (args_.length()) return;
     auto args = native::environment::get_command_line_args();
     set_command_line_args({args.begin(), args.end()});
-  };
-  return args_;
+};
+return args_;
 }
 
 xtd::string environment::get_environment_variable(const xtd::string& variable) {

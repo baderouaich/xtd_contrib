@@ -601,7 +601,7 @@ namespace xtd {
       /// @{
       /// @brief Gets an array of pens with specified width.
       /// @param width The pen width. By default is  1.
-      [[nodiscard]] static auto get_pens(float width = 1) -> const xtd::array<xtd::drawing::pen>&;
+      [[nodiscard]] static auto get_pens(float width = 1) -> const xtd::array<xtd::drawing::pen>& ;
       /// @}
     };
   }

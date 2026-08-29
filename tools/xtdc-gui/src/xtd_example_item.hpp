@@ -73,7 +73,7 @@ namespace xtdc_gui {
           }
         }
       }
-      std::sort(examples.items().begin(), examples.items().end(), [](const auto& a, const auto& b)->bool {return a.name() < b.name();});
+      std::sort(examples.items().begin(), examples.items().end(), [](const auto & a, const auto & b)->bool {return a.name() < b.name();});
       return examples.to_array();
     }
     

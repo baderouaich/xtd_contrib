@@ -75,7 +75,7 @@ namespace xtd {
       [[nodiscard]] static auto from_argb(const argb& value) noexcept -> xtd::drawing::argb {
         return value;
       }
-
+      
       /// @brief Creates a xtd::argb struct from the specified unsigned integer value.
       /// @param value The unsigned integer value.
       /// @return an xtd::drawing::argb value that contains decomposed unsigned integer value.

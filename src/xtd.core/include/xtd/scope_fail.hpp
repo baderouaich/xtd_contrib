@@ -68,7 +68,7 @@ namespace xtd {
   struct __xtd_scope_fail_object__ {
     __xtd_scope_fail_object__(function_t&& f) : function(std::forward<function_t>(f)) {}
     ~__xtd_scope_fail_object__() noexcept {if (std::uncaught_exceptions() > exceptions_on_enter) function();}
-    int exceptions_on_enter = std::uncaught_exceptions();
+  int exceptions_on_enter = std::uncaught_exceptions();
     function_t function;
   };
   

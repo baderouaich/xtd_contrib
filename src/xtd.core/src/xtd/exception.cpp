@@ -107,25 +107,25 @@ const xtd::diagnostics::stack_frame& exception::get_last_stack_frame() const noe
 string exception::to_string() const noexcept {
   if (xtd::string::is_empty(message()) && xtd::string::is_empty(stack_trace())) return get_name();
   if (xtd::string::is_empty(message())) return xtd::string::format("{}\n{}", get_name(), stack_trace());
-  if (xtd::string::is_empty(stack_trace())) return xtd::string::format("{} : {}", get_name(), message());
-  return xtd::string::format("{} : {}\n{}", get_name(), message(), stack_trace());
-}
+    if (xtd::string::is_empty(stack_trace())) return xtd::string::format("{} : {}", get_name(), message());
+      return xtd::string::format("{} : {}\n{}", get_name(), message(), stack_trace());
+    }
 
 const char* exception::what() const noexcept {
   return xtd::string::is_empty(message()) ? get_name().chars().c_str() : message().chars().c_str();
 }
 
 auto exception::show_exception_(const std::exception& e) -> int32 {
-  if (thread::current_thread().is_main_thread() && show_exception_gui_with_exception) (*reinterpret_cast<delegate<void(const std::exception& e)>*>(show_exception_gui_with_exception))(e);
+  if (thread::current_thread().is_main_thread() && show_exception_gui_with_exception)(*reinterpret_cast<delegate<void(const std::exception& e)>*>(show_exception_gui_with_exception))(e);
   else xtd::console::write_line("{}Unhandled exception: {}", environment::new_line(), dynamic_cast<const xtd::exception*>(&e) ? static_cast<const xtd::exception&>(e).to_string() : e.what());
-  return EXIT_FAILURE;
-}
+    return EXIT_FAILURE;
+  }
 
 auto exception::show_exception_() -> int32 {
-  if (thread::current_thread().is_main_thread() && show_exception_gui) (*reinterpret_cast<delegate<void()>*>(show_exception_gui))();
+  if (thread::current_thread().is_main_thread() && show_exception_gui)(*reinterpret_cast<delegate<void()>*>(show_exception_gui))();
   else xtd::console::write_line("{}Unhandled exception: Unknown exception occurred", environment::new_line());
-  return EXIT_FAILURE;
-}
+    return EXIT_FAILURE;
+  }
 
 string exception::stack_trace_to_string() const noexcept {
   if (!data_->stack_trace) return data_->stack_frame.to_string();
@@ -133,11 +133,11 @@ string exception::stack_trace_to_string() const noexcept {
   auto skip_frames = data_->stack_trace->frame_count();
   for (auto index = 0_z; index < data_->stack_trace->frame_count(); ++index)
     if (data_->stack_trace->get_frame(index).get_method().starts_with(get_name()))
-      skip_frames = index;
-  auto stack_trace_string = data_->stack_trace->to_string(skip_frames);
-  if (stack_trace_string[stack_trace_string.length() - 1] == '\n') stack_trace_string = stack_trace_string.remove(stack_trace_string.length() - 1);
-  return stack_trace_string;
-}
+        skip_frames = index;
+        auto stack_trace_string = data_->stack_trace->to_string(skip_frames);
+        if (stack_trace_string[stack_trace_string.length() - 1] == '\n') stack_trace_string = stack_trace_string.remove(stack_trace_string.length() - 1);
+          return stack_trace_string;
+        }
 
 const xtd::string& exception::get_name() const noexcept {
   return (data_->name = get_type().full_name());

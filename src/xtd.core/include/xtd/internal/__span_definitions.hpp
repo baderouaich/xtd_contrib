@@ -38,7 +38,7 @@ namespace xtd {
   /// ```
   template<typename type_t, xtd::usize extent = xtd::dynamic_extent>
   class read_only_span;
-
+  
   /// @brief Represents a non-owning view over a contiguous sequence of objects.
   /// @par Definition
   /// ```cpp

@@ -44,7 +44,7 @@ usize length::get_hash_code() const noexcept {
 
 int32 length::get_pixels(const xtd::drawing::rectangle& rect) const noexcept {
   switch (unit()) {
-    case length_unit::centimeters: return as<int32>(value() / 2.54 * 96.0);
+  case length_unit::centimeters: return as<int32>(value() / 2.54 * 96.0);
     case length_unit::millimeters: return as<int32>(value() / 2.54 * 96.0 * 1000.0);
     case length_unit::inches: return as<int32>(value() * 96.0);
     case length_unit::pixels: return as<int32>(value());

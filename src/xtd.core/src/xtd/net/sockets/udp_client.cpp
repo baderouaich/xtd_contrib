@@ -111,7 +111,7 @@ auto udp_client::ttl(xtd::byte value) -> udp_client& {
 auto udp_client::allow_nat_traversal(bool allowed) -> void {
   if (allowed) data_->client_socket.set_ip_protection_level(ip_protection_level::unrestricted);
   else data_->client_socket.set_ip_protection_level(ip_protection_level::edge_restricted);
-}
+  }
 
 auto udp_client::begin_receive(async_callback callback, const any_object& state) -> sptr<iasync_result> {
   auto ar = new_sptr<async_result_receive>(state);

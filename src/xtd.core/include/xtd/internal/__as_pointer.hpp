@@ -49,7 +49,7 @@ namespace xtd {
   /// ```
   /// @exception xtd::invalid_cast_exception the parameters is bad cast.
   template<typename new_type, typename current_type>
-  requires (!std::is_null_pointer_v<new_type>)
+  requires(!std::is_null_pointer_v<new_type>)
   [[nodiscard]] auto as(current_type& value) -> new_type& {
     thread_local static __as_enum__<new_type, current_type, typename std::is_enum<current_type>::type> e;
     return e.convert(value);
@@ -63,7 +63,7 @@ namespace xtd {
     return value;
   }
   /// @endcond
-
+  
   /// @brief Casts a type into another type.
   /// @par Header
   /// ```cpp

@@ -105,7 +105,7 @@ namespace xtd {
     /// @param end The position of the last element up to which the Range object will be created.
     /// @return A range that starts from the first element to end.
     [[nodiscard]] static auto end_at(xtd::integer auto end) noexcept -> xtd::range {return range {xtd::index::start, xtd::index {end}};}
-
+    
     /// @brief Creates a new xtd::range object starting from a specified start index to the end of the collection.
     /// @param start The position of the first element from which the Range will be created.
     /// @return A range from start to the end of the collection.
@@ -115,7 +115,7 @@ namespace xtd {
     /// @return A range from start to the end of the collection.
     [[nodiscard]] static auto start_at(xtd::integer auto start) noexcept -> xtd::range {return range {xtd::index {start}, xtd::index::end};}
     /// @}
-  
+    
   private:
     index_type start_ = index_type {0};
     index_type end_ = index_type {0};
@@ -133,7 +133,7 @@ auto xtd::basic_string<char_t, traits_t, allocator_t>::operator [](const xtd::ra
 }
 
 template<typename char_t, typename traits_t, typename allocator_t>
-auto xtd::basic_string<char_t, traits_t, allocator_t>::operator ()(const xtd::range& range) const -> xtd::basic_read_only_string_view<char_t> {
+auto xtd::basic_string<char_t, traits_t, allocator_t>::operator()(const xtd::range& range) const -> xtd::basic_read_only_string_view<char_t> {
   return operator [](range);
 }
 
@@ -145,7 +145,7 @@ auto xtd::linq::enumerable::take(source_t&& source, const xtd::range& range) -> 
 }
 
 template<typename source_t>
-requires(!requires (const xtd::raw_type<source_t>& source) {{source.size()} -> std::convertible_to<std::size_t>;})
+requires(!requires(const xtd::raw_type<source_t>& source) {{source.size()} -> std::convertible_to<std::size_t>;})
 auto xtd::linq::enumerable::invoke_take_with_range(source_t&& source, const xtd::range& range) -> xtd::collections::generic::enumerable_generator<xtd::iterable_value_type<source_t>> {
   //auto source_holder = enumerable_holder<source_t> {std::forward<source_t>(source)};
   //auto result = list<xtd::iterable_value_type<source_t>> {source_holder.get()};
@@ -154,7 +154,7 @@ auto xtd::linq::enumerable::invoke_take_with_range(source_t&& source, const xtd:
 }
 
 template<typename source_t>
-requires(requires (const xtd::raw_type<source_t>& source) {{source.size()} -> std::convertible_to<std::size_t>;})
+requires(requires(const xtd::raw_type<source_t>& source) {{source.size()} -> std::convertible_to<std::size_t>;})
 auto xtd::linq::enumerable::invoke_take_with_range(source_t&& source, const xtd::range& range) -> xtd::collections::generic::enumerable_generator<xtd::iterable_value_type<source_t>> {
   auto index = xtd::usize {0};
   auto skip = range.start().value();

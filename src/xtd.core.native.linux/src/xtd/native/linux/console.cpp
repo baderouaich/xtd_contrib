@@ -46,17 +46,17 @@ namespace {
       ::signal(signal, console_intercept_signals::signal_handler);
       if (treat_control_c_as_input) signal_couter_.push_back(signal_keys_[signal]);
       else if (user_cancel_callback && user_cancel_callback(signal_keys_[signal]) == false) exit(EXIT_FAILURE);
-    }
-    
-    // The SIGINT signal catcher conflicts with with xtd::environment::cancel_interrupt signal...
-    inline static map<int32_t, int32_t> signal_keys_ {{SIGQUIT, CONSOLE_SPECIAL_KEY_CTRL_BS}, {SIGTSTP, CONSOLE_SPECIAL_KEY_CTRL_Z}/*, {SIGINT, CONSOLE_SPECIAL_KEY_CTRL_C}*/};
-    static console_intercept_signals console_intercept_signals_;
-  };
-  
-  console_intercept_signals console_intercept_signals::console_intercept_signals_;
-  
-  struct terminal_mode {
-    terminal_mode() {
+      }
+      
+  // The SIGINT signal catcher conflicts with with xtd::environment::cancel_interrupt signal...
+  inline static map<int32_t, int32_t> signal_keys_ {{SIGQUIT, CONSOLE_SPECIAL_KEY_CTRL_BS}, {SIGTSTP, CONSOLE_SPECIAL_KEY_CTRL_Z}/*, {SIGINT, CONSOLE_SPECIAL_KEY_CTRL_C}*/};
+  static console_intercept_signals console_intercept_signals_;
+};
+
+console_intercept_signals console_intercept_signals::console_intercept_signals_;
+
+struct terminal_mode {
+  terminal_mode() {
       tcgetattr(0, &status_backup_);
       auto status = termios {};
       tcgetattr(0, &status);
@@ -121,7 +121,7 @@ namespace {
     inline static std::shared_ptr<terminal_mode> terminal_mode_;
     inline static std::queue<std::int8_t> peek_characters_;
   };
-
+  
   class key_info {
   public:
     class input_list {
@@ -204,7 +204,7 @@ namespace {
     
     static auto read() -> key_info {
       if (!signal_couter_.empty()) {
-        auto k = signal_couter_[0];
+      auto k = signal_couter_[0];
         signal_couter_.erase(signal_couter_.begin());
         switch (k) {
           case CONSOLE_SPECIAL_KEY_CTRL_C: return key_info('C', '\x03', false, true, false);
@@ -216,22 +216,22 @@ namespace {
       
       do
         inputs.add(terminal::getch());
-      while (terminal::key_available());
-      
-      auto it = key_info::keys.find(inputs.to_string());
-      if (it != key_info::keys.end()) {
-        inputs.clear();
-        return key_info(it->second.key, it->second.key_char, false, false, it->second.shift);
-      }
-      
+        while (terminal::key_available());
+        
+          auto it = key_info::keys.find(inputs.to_string());
+          if (it != key_info::keys.end()) {
+            inputs.clear();
+              return key_info(it->second.key, it->second.key_char, false, false, it->second.shift);
+            }
+            
       if (inputs.count() == 1) return to_key_info(inputs.pop());
       if (inputs.count() > 1 && *inputs.begin() != 27) return to_key_info(to_key(inputs));
       
-      inputs.pop();
-      return to_key_info(inputs.pop(), true);
-    }
-    
-    auto key() const -> char32_t {return key_;}
+        inputs.pop();
+        return to_key_info(inputs.pop(), true);
+      }
+      
+  auto key() const -> char32_t {return key_;}
     auto key_char() const -> char32_t {return key_char_;}
     auto has_alt_modifier() const -> bool {return has_alt_modifier_;}
     auto has_control_modifier() const -> bool {return has_control_modifier_;}
@@ -606,8 +606,8 @@ namespace {
       if (snd_pcm_open(&pcm_handle, "default", SND_PCM_STREAM_PLAYBACK, 0)) return;
       if (snd_pcm_set_params(pcm_handle, SND_PCM_FORMAT_U8, SND_PCM_ACCESS_RW_INTERLEAVED, 1, sample_rate, 1, 20000) < 0) {
         snd_pcm_close(pcm_handle);
-        pcm_handle = nullptr;
-      }
+          pcm_handle = nullptr;
+        }
       #endif
     }
     
@@ -617,7 +617,7 @@ namespace {
       #endif
     }
     
-    static auto get_instance() -> audio& {
+  static auto get_instance() -> audio& {
       static audio instance;
       return instance;
     }
@@ -674,12 +674,12 @@ auto console::cursor_left() -> int32_t {
   terminal::getch();
   terminal::getch();
   for (char c = terminal::getch(); c != ';'; c = terminal::getch());
-  string left;
-  for (char c = terminal::getch(); c != 'R'; c = terminal::getch())
-    left.push_back(c);
-  ::cursor_left = atoi(left.c_str()) - 1;
-  return ::cursor_left;
-}
+    string left;
+    for (char c = terminal::getch(); c != 'R'; c = terminal::getch())
+      left.push_back(c);
+      ::cursor_left = atoi(left.c_str()) - 1;
+      return ::cursor_left;
+    }
 
 auto console::cursor_size() -> int32_t {
   return ::cursor_size;
@@ -701,10 +701,10 @@ auto console::cursor_top() -> int32_t {
   string top;
   for (char c = terminal::getch(); c != ';'; c = terminal::getch())
     top.push_back(c);
-  for (char c = terminal::getch(); c != 'R'; c = terminal::getch());
-  ::cursor_top = atoi(top.c_str()) - 1;
-  return ::cursor_top;
-}
+    for (char c = terminal::getch(); c != 'R'; c = terminal::getch());
+      ::cursor_top = atoi(top.c_str()) - 1;
+      return ::cursor_top;
+    }
 
 auto console::cursor_visible() -> bool {
   return ::cursor_visible;

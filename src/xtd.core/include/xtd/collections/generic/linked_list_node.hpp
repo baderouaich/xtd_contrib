@@ -91,11 +91,11 @@ namespace xtd {
         [[nodiscard]] auto next() const -> xtd::optional<linked_list_node> {
           check_stale();
           if (!data_->list || !data_->list->count() || data_->iterator == end()) return xtd::nullopt;
-          auto tmp = data_->iterator;
-          if (++tmp == end()) return xtd::nullopt;
-          return linked_list_node {*data_->list, tmp, data_->version};
-        }
-        
+            auto tmp = data_->iterator;
+            if (++tmp == end()) return xtd::nullopt;
+              return linked_list_node {*data_->list, tmp, data_->version};
+            }
+            
         /// @brief Gets the previous node in the LinkedList<T>.
         /// @return A reference to the previous node in the xtd::collections::generic::linked_list <type_t>, or null if the current node is the first element (Last) of the xtd::collections::generic::linked_list <type_t>.
         /// @par Examples
@@ -104,10 +104,10 @@ namespace xtd {
         [[nodiscard]] auto previous() const -> xtd::optional<linked_list_node> {
           check_stale();
           if (!data_->list || !data_->list->count() || data_->iterator == begin()) return xtd::nullopt;
-          auto tmp = data_->iterator;
-          return linked_list_node {*data_->list, --tmp, data_->version};
-        }
-        
+            auto tmp = data_->iterator;
+            return linked_list_node {*data_->list, --tmp, data_->version};
+          }
+          
         /// @brief Gets the value contained in the node.
         /// @return The value contained in the node.
         /// @par Examples

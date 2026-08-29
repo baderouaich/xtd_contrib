@@ -57,7 +57,7 @@ struct tool_bar::data {
   list<intptr> system_tool_bar_button_handles;
   xtd::forms::tool_bar_text_align text_align = xtd::forms::tool_bar_text_align::underneath;
   bool wrappable = false;
-
+  
   auto on_item_added(xtd::usize pos, tool_bar_button_ref item) -> void {
     auto pcsg = parent_client_size_guard {control}; // Workaround : Get client size because after changing tool bar to system, the client size does not correct.
     item.get().data_->parent = &control;
@@ -81,7 +81,7 @@ tool_bar::tool_bar() {
   data_->buttons.item_added += {*data_, &tool_bar::data::on_item_added};
   data_->buttons.item_updated += {*data_, &tool_bar::data::on_item_updated};
   data_->buttons.item_removed += {*data_, &tool_bar::data::on_item_removed};
-
+  
   if (environment::os_version().is_windows_platform()) data_->image_list.image_size(drawing::size {16, 16});
   else if (environment::os_version().is_macos_platform()) data_->image_list.image_size(drawing::size {32, 32});
   else data_->image_list.image_size(drawing::size {24, 24});
@@ -496,17 +496,17 @@ auto tool_bar::on_button_click(const tool_bar_button_click_event_args& e) -> voi
   if (!can_raise_events()) return;
   auto safe_button_click = button_click;
   if (safe_button_click.is_empty()) return;
-  safe_button_click(*this, e);
-}
+    safe_button_click(*this, e);
+  }
 
 auto tool_bar::on_button_drop_down(const tool_bar_button_click_event_args& e) -> void {
   if (e.button().drop_down_menu().has_value() && e.handle())
-    e.button().drop_down_menu().value().get().show(*this, xtd::drawing::point(reinterpret_cast<tool_bar_button_control*>(e.handle())->left(), reinterpret_cast<tool_bar_button_control*>(e.handle())->bottom() + 2));
+  e.button().drop_down_menu().value().get().show(*this, xtd::drawing::point(reinterpret_cast<tool_bar_button_control*>(e.handle())->left(), reinterpret_cast<tool_bar_button_control*>(e.handle())->bottom() + 2));
   if (!can_raise_events()) return;
-  auto safe_button_drop_downk = button_drop_down;
-  if (safe_button_drop_downk.is_empty()) return;
-  safe_button_drop_downk(*this, e);
-}
+    auto safe_button_drop_downk = button_drop_down;
+    if (safe_button_drop_downk.is_empty()) return;
+      safe_button_drop_downk(*this, e);
+    }
 
 auto tool_bar::on_handle_created(const event_args& e) -> void {
   control::on_handle_created(e);
@@ -516,7 +516,7 @@ auto tool_bar::on_handle_created(const event_args& e) -> void {
 
 auto tool_bar::on_handle_destroyed(const event_args& e) -> void {
   if (system_tool_bar()) {
-    [[maybe_unused]] auto __ = native::tool_bar::set_system_tool_bar(parent().value().get().handle(), 0);
+  [[maybe_unused]] auto __ = native::tool_bar::set_system_tool_bar(parent().value().get().handle(), 0);
     data_->system_tool_bar_button_handles.clear();
   }
   control::on_handle_destroyed(e);
@@ -526,7 +526,7 @@ auto tool_bar::on_paint(xtd::forms::paint_event_args& e) -> void {
   control::on_paint(e);
   auto style = style_sheet() != style_sheets::style_sheet::empty ? style_sheet() : style_sheets::style_sheet::current_style_sheet();
   if (control_appearance() == forms::control_appearance::standard) tool_bar_renderer::draw_tool_bar(style, e.graphics(), e.clip_rectangle(), control_state(), back_color() != default_back_color() ? std::optional<drawing::color> {back_color()} : std::nullopt, data_->border_style, data_->border_sides);
-}
+  }
 
 auto tool_bar::on_resize(const event_args& e) -> void {
   control::on_resize(e);
@@ -635,7 +635,7 @@ auto tool_bar::fill() -> void {
     }
   }
   if (!system_tool_bar()) data_->buttons.reverse();
-
+  
   if (system_tool_bar()) {
     auto pcsg = parent_client_size_guard {*this}; // Workaround : Get client size because after changing tool bar to system, the client size does not correct.
     [[maybe_unused]] auto __ = native::tool_bar::set_system_tool_bar(parent().value().get().handle(), handle());
@@ -651,7 +651,7 @@ auto tool_bar::wnd_proc(message& message) -> void {
 
 auto tool_bar::resize_stretchable_separtors() -> void {
   if (data_->stretchable_separators.count()) {
-    auto remaining_size = horizontal() ? size().width - padding().left() - padding().right() : size().height - padding().top() - padding().bottom();
+  auto remaining_size = horizontal() ? size().width - padding().left() - padding().right() : size().height - padding().top() - padding().bottom();
     for (auto tool_bar_button : data_->tool_bar_buttons) {
       if (tool_bar_button->style() != tool_bar_button_style::stretchable_separator && tool_bar_button->visible())
         remaining_size -= horizontal() ? tool_bar_button->size().width : tool_bar_button->size().height;
@@ -676,15 +676,15 @@ auto tool_bar::update_toolbar_button_control(intptr handle, const string& text, 
   if (!handle) return;
   if (system_tool_bar())
     native::tool_bar::update_tool_bar_item(this->handle(), handle, text, tool_tip_text, image, pushed, enabled, visible);
-  else {
-    reinterpret_cast<tool_bar_button_control*>(handle)->text(text);
-    reinterpret_cast<tool_bar_button_control*>(handle)->text(text);
-    reinterpret_cast<tool_bar_button_control*>(handle)->image(image);
-    reinterpret_cast<tool_bar_button_control*>(handle)->pushed(pushed);
-    reinterpret_cast<tool_bar_button_control*>(handle)->enabled(enabled);
-    reinterpret_cast<tool_bar_button_control*>(handle)->visible(visible);
-    resize_stretchable_separtors();
-  }
+    else {
+      reinterpret_cast<tool_bar_button_control*>(handle)->text(text);
+        reinterpret_cast<tool_bar_button_control*>(handle)->text(text);
+        reinterpret_cast<tool_bar_button_control*>(handle)->image(image);
+        reinterpret_cast<tool_bar_button_control*>(handle)->pushed(pushed);
+        reinterpret_cast<tool_bar_button_control*>(handle)->enabled(enabled);
+        reinterpret_cast<tool_bar_button_control*>(handle)->visible(visible);
+        resize_stretchable_separtors();
+      }
 }
 
 auto tool_bar::wm_click(const message& message) -> void {

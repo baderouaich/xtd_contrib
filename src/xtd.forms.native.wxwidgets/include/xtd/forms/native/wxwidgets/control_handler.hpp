@@ -38,22 +38,22 @@ namespace xtd {
           return control_->GetClientRect();
         }
         
-        virtual wxSize GetClientSize() const {
+      virtual wxSize GetClientSize() const {
           if (!control_) return {};
           return control_->GetClientSize();
         }
         
-        virtual wxPoint GetPosition() const {
+      virtual wxPoint GetPosition() const {
           if (!control_) return {};
           return control_->GetPosition();
         }
         
-        virtual wxSize GetSize() const {
+      virtual wxSize GetSize() const {
           if (!control_) return {};
           return control_->GetSize();
         }
         
-        virtual void SetBackgroundColour(const wxColour& colour) {
+      virtual void SetBackgroundColour(const wxColour& colour) {
           if (!control_) return;
           control_->SetBackgroundColour(colour);
         }
@@ -107,7 +107,7 @@ namespace xtd {
         void IncrementLayoutSuspended() noexcept {++suspended_count_;}
         void DecrementLayoutSuspended() noexcept {if (suspended_count_ > 0) --suspended_count_;}
         
-        static long common_window_style_to_wx_style(xtd::usize style, xtd::usize ex_style) {
+      static long common_window_style_to_wx_style(xtd::usize style, xtd::usize ex_style) {
           long wx_style = 0;
           
           if ((style & WS_BORDER) == WS_BORDER) wx_style |= wxBORDER_SIMPLE;

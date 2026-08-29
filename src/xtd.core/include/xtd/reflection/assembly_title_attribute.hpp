@@ -82,7 +82,7 @@ namespace xtd {
 }
 
 /// @cond
-auto __assembly_title_attribute__() -> xtd::sptr<xtd::reflection::assembly_title_attribute>&;
+auto __assembly_title_attribute__() -> xtd::sptr<xtd::reflection::assembly_title_attribute>& ;
 /// @endcond
 
 /// @brief Creates the assembly title information. Must be called once in your application.

@@ -514,11 +514,11 @@ namespace xtd {
         /// @brief Gets the value of the property item.
         /// @return A byte array that represents the value of the property item.
         /// @remarks The byte array returned by the Value property contains data in one of several different primitive types. To use the data, determine the data type using the type property and convert the byte array accordingly.
-        [[nodiscard]] auto value() const noexcept -> const xtd::array<xtd::byte>&;
+        [[nodiscard]] auto value() const noexcept -> const xtd::array<xtd::byte>& ;
         /// @brief Gets the value of the property item.
         /// @return A byte array that represents the value of the property item.
         /// @remarks The byte array returned by the Value property contains data in one of several different primitive types. To use the data, determine the data type using the type property and convert the byte array accordingly.
-        [[nodiscard]] auto value() noexcept -> xtd::array<xtd::byte>&;
+        [[nodiscard]] auto value() noexcept -> xtd::array<xtd::byte>& ;
         /// @brief Sets the value of the property item.
         /// @param value A byte array that represents the value of the property item.
         /// @remarks The byte array returned by the Value property contains data in one of several different primitive types. To use the data, determine the data type using the type property and convert the byte array accordingly.

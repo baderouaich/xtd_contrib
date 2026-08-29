@@ -33,7 +33,7 @@ public:
   void draw() override {
     this->Fl_Progress::draw();
     if (this->marquee_) {
-      draw_box(FL_DOWN_BOX, this->x(), this->y(), this->w(), this->h(), this->color());
+    draw_box(FL_DOWN_BOX, this->x(), this->y(), this->w(), this->h(), this->color());
       draw_box(FL_FLAT_BOX, this->x() + Fl::box_dw(this->box()) / 2 + marquee_pos_ - 1, this->y() + Fl::box_dh(this->box()) / 2 - 1, this->marquee_width_ - Fl::box_dw(this->box()) + 2, this->h() - Fl::box_dh(this->box()) + 2, this->selection_color());
     }
   }

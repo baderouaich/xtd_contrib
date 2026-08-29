@@ -76,8 +76,8 @@ auto countdown_event::add_count() -> void {
 auto countdown_event::add_count(usize count) -> void {
   if (!data_) throw_helper::throws(exception_case::object_closed);
   if (data_->current_count == 0) throw_helper::throws(exception_case::invalid_operation);
-  lock_(*data_) data_->current_count += count;
-}
+    lock_(*data_) data_->current_count += count;
+  }
 
 auto countdown_event::reset() -> void {
   if (!data_) throw_helper::throws(exception_case::object_closed);
@@ -87,11 +87,11 @@ auto countdown_event::reset() -> void {
 auto countdown_event::reset(usize count) -> void {
   if (!data_) throw_helper::throws(exception_case::object_closed);
   if (count < 0_z) throw_helper::throws(exception_case::argument_out_of_range);
-  lock_(*data_) {
+    lock_(*data_) {
     data_->event.reset();
-    data_->initial_count = count;
-    data_->current_count = count;
-  }
+      data_->initial_count = count;
+      data_->current_count = count;
+    }
 }
 
 auto countdown_event::signal() -> bool {
@@ -101,12 +101,12 @@ auto countdown_event::signal() -> bool {
 auto countdown_event::signal(usize signal_count) -> bool {
   if (!data_) throw_helper::throws(exception_case::object_closed);
   if (data_->current_count == 0) throw_helper::throws(exception_case::invalid_operation);
-  if (signal_count > data_->current_count) throw_helper::throws(exception_case::argument_out_of_range);
-  auto lock = threading::lock {*data_};
-  data_->current_count -= signal_count;
-  if (data_->current_count == 0) data_->event.set();
-  return data_->current_count == 0;
-}
+    if (signal_count > data_->current_count) throw_helper::throws(exception_case::argument_out_of_range);
+      auto lock = threading::lock {*data_};
+      data_->current_count -= signal_count;
+      if (data_->current_count == 0) data_->event.set();
+        return data_->current_count == 0;
+      }
 
 auto countdown_event::try_add_count() noexcept -> bool {
   return try_add_count(1);
@@ -125,10 +125,10 @@ auto countdown_event::wait() -> void {
 auto countdown_event::wait(int32 milliseconds_timeout) -> bool {
   if (!data_) throw_helper::throws(exception_case::object_closed);
   if (milliseconds_timeout < timeout::infinite) throw_helper::throws(exception_case::argument_out_of_range);
-  if (!data_->cancellation_token) return data_->event.wait_one(milliseconds_timeout);
-  if (milliseconds_timeout == timeout::infinite) return wait_with_cancellation_token();
-  return wait_with_cancellation_token(milliseconds_timeout);
-}
+    if (!data_->cancellation_token) return data_->event.wait_one(milliseconds_timeout);
+      if (milliseconds_timeout == timeout::infinite) return wait_with_cancellation_token();
+        return wait_with_cancellation_token(milliseconds_timeout);
+      }
 
 auto countdown_event::wait(const cancellation_token& cancellation_token) -> void {
   wait(timeout::infinite, cancellation_token);

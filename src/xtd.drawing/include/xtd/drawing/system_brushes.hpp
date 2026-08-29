@@ -154,7 +154,7 @@ namespace xtd {
       
       /// @{
       /// @brief Gets an array of system colors.
-      static auto get_brushes() -> const xtd::array<xtd::drawing::solid_brush>&;
+      static auto get_brushes() -> const xtd::array<xtd::drawing::solid_brush>& ;
       /// @}
     };
   }

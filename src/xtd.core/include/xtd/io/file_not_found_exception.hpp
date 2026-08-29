@@ -73,7 +73,7 @@ namespace xtd {
       /// @brief Gets the name of the file that cannot be found.
       /// @return The name of the file, or `empty` if no file name was passed to the constructor for this instance.
       /// @remrks This property is read-only.
-      [[nodiscard]] virtual auto file_name() const noexcept -> const xtd::optional<xtd::string>&;
+      [[nodiscard]] virtual auto file_name() const noexcept -> const xtd::optional<xtd::string>& ;
       /// @brief Gets message associate to the exception
       /// @return A string represent a massage associate to the exception
       [[nodiscard]] auto message() const noexcept -> const xtd::string& override;

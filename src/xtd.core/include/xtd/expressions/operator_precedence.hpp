@@ -97,7 +97,7 @@ namespace xtd {
       /// @brief Represnets the less or equal operator precedence (`a <= b`).
       less_or_equal = 9,
       /// @brief Represnets the greater operator precedence (`a > b`).
-      greater = 9 ,
+      greater = 9,
       /// @brief Represnets the greater or equal operator precedence (`a >= b`).
       greater_or_equal = 9,
       /// @brief Represnets the equality operator precedence (`a == b` // `a != b`).

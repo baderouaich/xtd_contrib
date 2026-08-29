@@ -120,16 +120,16 @@ namespace xtd {
         if (!data_->track_all_values) xtd::helpers::throw_helper::throws(xtd::helpers::exception_case::invalid_operation);
         lock_guard_mutex lock {data_->mutex};
         auto values = xtd::array<value_t> {};
-        for (const auto& entry : data_->values)
+for (const auto& entry : data_->values)
           values.resize(values.length() + 1, entry.second);
-        return values;
-      }
-      /// @}
-      
-      /// @name Public Methods
-      
-      /// @{
-      [[nodiscard]] auto to_string() const noexcept -> string override {
+          return values;
+        }
+    /// @}
+    
+    /// @name Public Methods
+    
+    /// @{
+    [[nodiscard]] auto to_string() const noexcept -> string override {
         return string::format("{}", value());
       }
       /// @}

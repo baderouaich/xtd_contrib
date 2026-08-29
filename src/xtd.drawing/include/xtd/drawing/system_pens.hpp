@@ -191,7 +191,7 @@ namespace xtd {
       
       /// @{
       /// @brief Gets an array of system colors.
-      [[nodiscard]] static auto get_pens() -> const xtd::array<xtd::drawing::pen>&;
+      [[nodiscard]] static auto get_pens() -> const xtd::array<xtd::drawing::pen>& ;
       /// @}
     };
   }

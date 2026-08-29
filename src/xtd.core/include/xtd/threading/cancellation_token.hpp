@@ -110,7 +110,7 @@ namespace xtd {
       friend class cancellation_token_source;
       explicit cancellation_token(const cancellation_token_source& token_source);
       auto cancel() -> void;
-
+      
       xtd::sptr<data> data_;
       
     };

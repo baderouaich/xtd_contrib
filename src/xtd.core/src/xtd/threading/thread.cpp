@@ -596,9 +596,9 @@ void thread::thread_proc() {
     data_->end_thread_event.set();
     
     if (!is_background()) return;
-    auto lock = std::lock_guard<std::recursive_mutex> {get_static_data().threads_mutex};
-    auto index = get_static_data().threads.find_index(xtd::predicate<const sptr<thread>&> {[&](const auto & value) {return value->data_ ? value->data_->managed_thread_id == data_->managed_thread_id : false;}});
-    if (index == get_static_data().threads.npos) return;
+      auto lock = std::lock_guard<std::recursive_mutex> {get_static_data().threads_mutex};
+  auto index = get_static_data().threads.find_index(xtd::predicate<const sptr<thread>&> {[&](const auto & value) {return value->data_ ? value->data_->managed_thread_id == data_->managed_thread_id : false;}});
+  if (index == get_static_data().threads.npos) return;
     get_static_data().threads[index]->data_.reset();
     get_static_data().threads.remove_at(index);
   };

@@ -59,7 +59,7 @@ namespace xtd {
       /// @}
       
       /// @name Public Static Methods
-
+      
       /// @{
       /// @brief Creates the assembly company information. Must be called once in your application.
       /// @remarks Use this keyword if you create create assembly informations manually.
@@ -82,7 +82,7 @@ namespace xtd {
 }
 
 /// @cond
-auto __assembly_company_attribute__() -> xtd::sptr<xtd::reflection::assembly_company_attribute>&;
+auto __assembly_company_attribute__() -> xtd::sptr<xtd::reflection::assembly_company_attribute>& ;
 /// @endcond
 
 /// @brief Creates the assembly company information. Must be called once in your application.

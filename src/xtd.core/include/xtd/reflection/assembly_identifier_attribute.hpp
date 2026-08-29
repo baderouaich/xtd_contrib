@@ -82,7 +82,7 @@ namespace xtd {
 }
 
 /// @cond
-auto __assembly_identifier_attribute__() -> xtd::sptr<xtd::reflection::assembly_identifier_attribute>&;
+auto __assembly_identifier_attribute__() -> xtd::sptr<xtd::reflection::assembly_identifier_attribute>& ;
 /// @endcond
 
 /// @brief Creates the assembly identifier information. Must be called once in your application.

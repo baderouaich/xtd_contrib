@@ -45,16 +45,16 @@ namespace xtd {
           /// @brief Gets the element at the specified index.
           /// @param index The zero-based index of the element to get.
           /// @remarks This operator provides the ability to access a specific element in the collection by using the following syntax: `my_collection[index]`.
-          [[nodiscard]] virtual auto operator ()(xtd::usize index) const -> const type_t& {
+          [[nodiscard]] virtual auto operator()(xtd::usize index) const -> const type_t& {
             return self().operator [](index);
           }
           /// @brief Sets the element at the specified index.
           /// @param index The zero-based index of the element to set.
           /// @remarks This operator provides the ability to access a specific element in the collection by using the following syntax: `my_collection[index]`.
-          [[nodiscard]] virtual auto operator ()(xtd::usize index) -> type_t& {
+          [[nodiscard]] virtual auto operator()(xtd::usize index) -> type_t& {
             return self().operator [](index);
           }
-
+          
           /// @brief Gets the element at the specified index.
           /// @param index The zero-based index of the element to get.
           /// @remarks This operator provides the ability to access a specific element in the collection by using the following syntax: `my_collection[index]`.
@@ -63,16 +63,16 @@ namespace xtd {
           /// @param index The zero-based index of the element to set.
           /// @remarks This operator provides the ability to access a specific element in the collection by using the following syntax: `my_collection[index]`.
           [[nodiscard]] auto operator [](const xtd::index& index) -> type_t&;
-
+          
           /// @brief Gets the element at the specified index.
           /// @param index The zero-based index of the element to get.
           /// @remarks This operator provides the ability to access a specific element in the collection by using the following syntax: `my_collection[index]`.
-          [[nodiscard]] auto operator ()(const xtd::index& index) const -> const type_t&;
+          [[nodiscard]] auto operator()(const xtd::index& index) const -> const type_t&;
           /// @brief Sets the element at the specified index.
           /// @param index The zero-based index of the element to set.
           /// @remarks This operator provides the ability to access a specific element in the collection by using the following syntax: `my_collection[index]`.
-          [[nodiscard]] auto operator ()(const xtd::index& index) -> type_t&;
-
+          [[nodiscard]] auto operator()(const xtd::index& index) -> type_t&;
+          
           /// @brief Gets the elements at the specified range.
           /// @param range The range of the elements to get.
           /// @remarks This operator provides the ability to access a specific element in the collection by using the following syntax: `my_collection[index]`.
@@ -81,15 +81,15 @@ namespace xtd {
           /// @param range The range of the elements to set.
           /// @remarks This operator provides the ability to access a specific element in the collection by using the following syntax: `my_collection[index]`.
           [[nodiscard]] auto operator [](const xtd::range& range) -> xtd::span<type_t>;
-
+          
           /// @brief Gets the elements at the specified range.
           /// @param range The range of the elements to get.
           /// @remarks This operator provides the ability to access a specific element in the collection by using the following syntax: `my_collection[index]`.
-          [[nodiscard]] auto operator ()(const xtd::range& range) const -> xtd::read_only_span<type_t>;
+          [[nodiscard]] auto operator()(const xtd::range& range) const -> xtd::read_only_span<type_t>;
           /// @brief Gets the elements at the specified range.
           /// @param range The range of the elements to set.
           /// @remarks This operator provides the ability to access a specific element in the collection by using the following syntax: `my_collection[index]`.
-          [[nodiscard]] auto operator ()(const xtd::range& range) -> xtd::span<type_t>;
+          [[nodiscard]] auto operator()(const xtd::range& range) -> xtd::span<type_t>;
           /// @}
           
         private:

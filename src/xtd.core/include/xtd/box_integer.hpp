@@ -76,27 +76,27 @@ namespace xtd {
     
     /// @name Public Static Methods
     
-    /// @{    
+    /// @{
     /// @brief Determines whether the specified signed integral value is within the range of type_t.
     /// @param value The signed integral value to validate.
     /// @return true if value is greater than or equal to min_value and less than or equal to max_value; otherwise, false.
     /// @remarks This method checks whether a signed integral value can be safely represented by type_t without overflow.
     /// @remarks If the value is outside the valid range defined by min_value and max_value, the method returns false.
     [[nodiscard]] static auto is_valid(type_t value) noexcept -> bool {return internal_is_valid(value);}
-
+    
     using box<type_t>::parse;
     /// @brief Converts the string to its type_t equivalent.
     /// @param value A string containing a type_t to convert.
     /// @return A type_t equivalent to the number contained in value.
     [[nodiscard]] static auto parse(const xtd::string& value, xtd::number_styles styles) -> type_t {return xtd::parse<type_t>(value, styles);}
-
+    
     using box<type_t>::try_parse;
     /// @brief Converts the string to its type_t equivalent.
     /// @param value A string containing a type_t to convert.
     /// @return A type_t equivalent to the number contained in value.
     [[nodiscard]] static auto try_parse(const xtd::string& value, type_t& result, xtd::number_styles styles) -> bool {return xtd::try_parse<type_t>(value, result, styles);}
     /// @}
-
+    
   private:
     [[nodiscard]] static auto internal_is_valid(xtd::signed_integer auto value) noexcept -> bool {
       if (std::unsigned_integral<type_t>) return value > 0 && static_cast<xtd::uint64>(value) <= static_cast<xtd::uint64>(max_value);
@@ -110,6 +110,6 @@ namespace xtd {
     [[nodiscard]] static auto internal_is_valid(xtd::unsigned_integer auto value) noexcept -> auto {
       return value <= static_cast<xtd::uint64>(max_value);
     }
-
+    
   };
 }

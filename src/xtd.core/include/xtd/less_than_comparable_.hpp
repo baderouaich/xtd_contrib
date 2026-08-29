@@ -23,5 +23,5 @@ namespace xtd {
   /// @ingroup xtd_core helpers concepts
   template<typename type_t>
   struct less_than_comparable;
-  };
+};
 }

@@ -19,7 +19,7 @@ struct timer::data {
   any_object state{object()};
   wait_callback timer_proc = wait_callback {[self = this] {
       while (!self->closed) {
-        if (self->restart_requested) {
+      if (self->restart_requested) {
           self->restart_requested = false;
           self->sleep.wait_one(self->due_time);
           if (self->closed) break;

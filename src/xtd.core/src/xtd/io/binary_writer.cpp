@@ -40,8 +40,8 @@ auto binary_writer::close() -> void {
   flush();
   if (stream_ && dynamic_cast<std::ofstream*>(stream_)) static_cast<std::ofstream*>(stream_)->close();
   if (delete_when_destroy_) delete stream_;
-  stream_ = nullptr;
-}
+    stream_ = nullptr;
+  }
 
 auto binary_writer::flush() -> void {
   if (stream_) stream_->flush();
@@ -73,28 +73,28 @@ auto binary_writer::write(char value) -> void {
 }
 
 auto binary_writer::write(const read_only_span<xtd::byte>& buffer) -> void {
-  for (const auto& b : buffer)
-    write(b);
+for (const auto& b : buffer)
+  write(b);
 }
 
 auto binary_writer::write(const array<xtd::byte>& buffer, usize index, usize count) -> void {
   if (!stream_) throw_helper::throws(exception_case::io);
   if (index + count > buffer.length()) throw_helper::throws(exception_case::argument);
-  for (auto i = index; i < (index + count); ++i)
-    write(buffer[i]);
-}
+    for (auto i = index; i < (index + count); ++i)
+      write(buffer[i]);
+    }
 
 auto binary_writer::write(const read_only_span<char>& buffer) -> void {
-  for (const auto& b : buffer)
-    write(b);
+for (const auto& b : buffer)
+  write(b);
 }
 
 auto binary_writer::write(const array<char>& buffer, usize index, usize count) -> void {
   if (!stream_) throw_helper::throws(exception_case::io);
   if (index + count > buffer.length()) throw_helper::throws(exception_case::argument);
-  for (auto i = index; i < (index + count); ++i)
-    write(buffer[i]);
-}
+    for (auto i = index; i < (index + count); ++i)
+      write(buffer[i]);
+    }
 
 auto binary_writer::write(double value) -> void {
   write(read_only_span<byte> {bit_converter::get_bytes(value)});
@@ -123,8 +123,8 @@ auto binary_writer::write(float value) -> void {
 
 auto binary_writer::write(const string& value) -> void {
   write_7bit_encoded_int(static_cast<int32>(value.length()));
-  for (auto c : value)
-    write(c);
+for (auto c : value)
+  write(c);
 }
 
 auto binary_writer::write(const std::string& value) -> void {

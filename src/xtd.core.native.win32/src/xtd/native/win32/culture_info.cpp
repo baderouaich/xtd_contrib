@@ -61,8 +61,7 @@ std::vector<std::string> culture_info::system_locale_names() {
   auto callback = [](LPWSTR locale_name, DWORD, LPARAM lparam) -> BOOL {
     try {
       reinterpret_cast<std::vector<std::string>*>(lparam)->push_back(std::locale {to_locale_name(win32::strings::to_string(locale_name))}.name());
-    }
-    catch (...) {
+    } catch (...) {
     }
     return TRUE;
   };

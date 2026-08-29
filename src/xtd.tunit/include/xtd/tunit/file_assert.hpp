@@ -78,14 +78,14 @@ namespace xtd {
         xtd::usize size_expected = static_cast<xtd::usize>(if_expected.tellg());
         xtd::usize size_actual = static_cast<xtd::usize>(if_actual.tellg());
         if (size_expected != size_actual) {
-          fail("istream length " + to_string(size_expected), to_string(size_actual), message, stack_frame);
+        fail("istream length " + to_string(size_expected), to_string(size_actual), message, stack_frame);
           return;
         }
         
         if_expected.seekg(0, std::ios::beg);
         if_actual.seekg(0, std::ios::beg);
         for (xtd::usize offset = 0; offset < size_actual; ++offset) {
-          char_t value_expected = static_cast<char_t>(if_expected.get());
+        char_t value_expected = static_cast<char_t>(if_expected.get());
           char_t value_actual = static_cast<char_t>(if_actual.get());
           if (value_expected != value_actual) {
             fail("istream at offset " + to_string(offset) + " value " + to_string(value_expected), to_string(value_actual), message, stack_frame);
@@ -200,14 +200,14 @@ namespace xtd {
         xtd::usize size_expected = static_cast<xtd::usize>(if_expected.tellg());
         xtd::usize size_actual = static_cast<xtd::usize>(if_actual.tellg());
         if (size_expected != size_actual) {
-          assert::succeed(message, stack_frame);
+        assert::succeed(message, stack_frame);
           return;
         }
         
         if_expected.seekg(0, std::ios::beg);
         if_actual.seekg(0, std::ios::beg);
         for (xtd::usize offset = 0; offset < size_actual; ++offset) {
-          char_t value_expected = static_cast<char_t>(if_expected.get());
+        char_t value_expected = static_cast<char_t>(if_expected.get());
           char_t value_actual = static_cast<char_t>(if_actual.get());
           if (value_expected != value_actual) {
             assert::succeed(message, stack_frame);

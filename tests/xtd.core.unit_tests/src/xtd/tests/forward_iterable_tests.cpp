@@ -10,7 +10,7 @@ namespace xtd::tests {
     [[nodiscard]] static auto is_forward_iterable(value_t&& value) noexcept -> bool {return true;}
     
     template<typename value_t>
-    requires (!forward_iterable<value_t>)
+    requires(!forward_iterable<value_t>)
     [[nodiscard]] static auto is_forward_iterable(value_t&& value) noexcept -> bool {return false;}
     
     auto test_method_(with_string_literal) {
@@ -28,7 +28,7 @@ namespace xtd::tests {
     auto test_method_(with_version) {
       assert_that(is_forward_iterable("1.2.3"_vers)).is().false_();
     }
-
+    
     auto test_method_(with_std_vector) {
       assert_that(is_forward_iterable(std::vector<int> {})).is().true_();
     }

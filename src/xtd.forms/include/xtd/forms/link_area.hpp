@@ -35,7 +35,7 @@ namespace xtd {
       /// @param length The number of characters, after the starting character, to include in the link area.
       link_area(xtd::usize start, xtd::usize length) noexcept;
       /// @}
-
+      
       /// @name Public Properties
       
       /// @{

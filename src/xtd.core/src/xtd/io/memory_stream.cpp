@@ -37,7 +37,7 @@ auto memory_stream::capacity() const -> usize {
 auto memory_stream::capacity(usize value) -> void {
   if (data_->static_buffer) throw_helper::throws(exception_case::not_supported);
   if (value != data_->dynamic_buffer.capacity()) data_->dynamic_buffer.capacity(value);
-}
+  }
 
 auto memory_stream::length() const -> usize {
   if (data_->static_buffer) return data_->static_buffer->size();
@@ -60,24 +60,24 @@ auto memory_stream::read(array<byte>& buffer, usize offset, usize count) -> usiz
   if (is_closed()) throw_helper::throws(exception_case::object_closed);
   if (!can_read()) throw_helper::throws(exception_case::not_supported);
   
-  if (count == 0_z) return 0_z;
-  if (offset >= buffer.length() || offset + count > buffer.length()) throw_helper::throws(exception_case::argument_out_of_range);
-  if (data_->static_buffer && (data_->position + count > capacity())) throw_helper::throws(exception_case::not_supported);
-  
-  auto read_count = math::min(length() - data_->position, count);
-  if (!read_count) return 0_z;
-  for (auto index = read_count; index > 0; --index)
-    buffer[offset++] = abstract_read_byte_unchecked();
-  return read_count;
-}
+    if (count == 0_z) return 0_z;
+      if (offset >= buffer.length() || offset + count > buffer.length()) throw_helper::throws(exception_case::argument_out_of_range);
+        if (data_->static_buffer && (data_->position + count > capacity())) throw_helper::throws(exception_case::not_supported);
+        
+          auto read_count = math::min(length() - data_->position, count);
+          if (!read_count) return 0_z;
+            for (auto index = read_count; index > 0; --index)
+              buffer[offset++] = abstract_read_byte_unchecked();
+              return read_count;
+            }
 
 auto memory_stream::seek(std::streamoff offset, seek_origin loc) -> usize {
   if (!enum_object<>::is_defined(loc)) throw_helper::throws(exception_case::argument);
-  switch(loc) {
+  switch (loc) {
     case seek_origin::begin: data_->position = offset; break;
     case seek_origin::current: data_->position += offset; break;
     case seek_origin::end: data_->position = length() + offset; break;
-  }
+    }
   if (data_->position > length()) throw_helper::throws(exception_case::argument_out_of_range);
   return position();
 }
@@ -95,30 +95,30 @@ auto memory_stream::write(const array<byte>& buffer, usize offset, usize count) 
   if (is_closed()) throw_helper::throws(exception_case::object_closed);
   if (!can_write()) throw_helper::throws(exception_case::not_supported);
   
-  if (count == 0_z) return;
-  if (offset >= buffer.length() || offset + count > buffer.length()) throw_helper::throws(exception_case::argument_out_of_range);
-  if (data_->static_buffer && data_->position + count > capacity()) throw_helper::throws(exception_case::not_supported);
-  
-  if (length() < position()) {
-    auto fill_count = position() - length();
-    data_->position = 0;
-    for (auto index = 0_z; index < fill_count; ++index)
-      abstract_write_byte_unchecked({});
-  }
-  
+    if (count == 0_z) return;
+      if (offset >= buffer.length() || offset + count > buffer.length()) throw_helper::throws(exception_case::argument_out_of_range);
+        if (data_->static_buffer && data_->position + count > capacity()) throw_helper::throws(exception_case::not_supported);
+        
+          if (length() < position()) {
+            auto fill_count = position() - length();
+              data_->position = 0;
+              for (auto index = 0_z; index < fill_count; ++index)
+                abstract_write_byte_unchecked({});
+            }
+            
   for (auto index = count; index > 0; --index)
-    abstract_write_byte_unchecked(buffer[offset++]);
+  abstract_write_byte_unchecked(buffer[offset++]);
 }
 
 auto memory_stream::write_to(std::ostream& stream) -> void {
   if (is_closed()) throw_helper::throws(exception_case::object_closed);
   if (!can_read()) throw_helper::throws(exception_case::not_supported);
   
-  auto current_postion = position();
-  position(0_z);
-  copy_to(stream);
-  position(current_postion);
-}
+    auto current_postion = position();
+    position(0_z);
+    copy_to(stream);
+    position(current_postion);
+  }
 
 auto memory_stream::abstract_read_byte_unchecked() -> xtd::byte {
   if (data_->static_buffer) return (*data_->static_buffer)[data_->position++];

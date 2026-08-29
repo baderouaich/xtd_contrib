@@ -68,7 +68,7 @@ namespace xtd {
         items_[index++] = item;
     }
     /// @}
-
+    
     /// @cond
     fixed_array(fixed_array&&) = default;
     fixed_array& operator =(fixed_array&&) = default;
@@ -123,11 +123,11 @@ namespace xtd {
     /// @brief Determines whether an element is in the array.
     /// @param value The object to be added to the end of the array.
     [[nodiscard]] auto contains(const value_type& value) const noexcept -> bool {
-      for (const auto& item : items_)
-        if (xtd::collections::generic::helpers::equator<type_t> {}(reinterpret_cast<const value_type&>(item), value)) return true;
-      return false;
-    }
-    
+for (const auto& item : items_)
+      if (xtd::collections::generic::helpers::equator<type_t> {}(reinterpret_cast<const value_type&>(item), value)) return true;
+          return false;
+        }
+        
     /// @brief Copies the entire xtd::array <type_t> to a compatible one-dimensional array.
     /// @param array The one-dimensional xtd::array that is the destination of the elements copied from ICollection. The xtd::array must have zero-based indexing.
     /// @exception xtd::argument_exception  The number of elements in the source xtd::array <type_t> is greater than the number of elements that the destination array can contain.
@@ -177,17 +177,17 @@ namespace xtd {
         if (!xtd::collections::generic::helpers::equator<type_t> {}(items_[i], rhs.items_[i])) return false;
       return true;
     }
-
+    
     /// @brief Fills the elements of this span with a specified value.
     /// @param value The value to assign to each element of the span.
     auto fill(const value_type& value) -> void {
-      for (auto& item : *this)
-        item = value;
+for (auto& item : *this)
+      item = value;
     }
     
-    /// @brief Returns an enumerator that iterates through a collection.
-    /// @return An xtd::collections::generic::enumerator object that can be used to iterate through the collection.
-    [[nodiscard]] auto get_enumerator() const -> xtd::collections::generic::enumerator<value_type> override {
+  /// @brief Returns an enumerator that iterates through a collection.
+  /// @return An xtd::collections::generic::enumerator object that can be used to iterate through the collection.
+  [[nodiscard]] auto get_enumerator() const -> xtd::collections::generic::enumerator<value_type> override {
       struct fixed_array_enumerator : public xtd::collections::generic::ienumerator < value_type > {
         explicit fixed_array_enumerator(const fixed_array & items) : items_(items) {}
         
@@ -225,20 +225,20 @@ namespace xtd {
       if (index > length() || index + count > length()) xtd::helpers::throw_helper::throws(xtd::helpers::exception_case::argument_out_of_range);
       for (auto increment = index; increment < (index + count); ++increment)
         if (xtd::collections::generic::helpers::equator<type_t> {}(items_[increment], value)) return increment;
-      return xtd::npos;
-    }
-    
-    /// @brief Sorts the elements in the entire xtd::fixed_array <type_t> using the default comparer.
-    /// @exception xtd::invalid_operation_exception The default comparer xtd::collections::generic::comparer::default_comparer cannot find an implementation of the xtd::icomparable <type_t> generic interface.
-    /// @par Examples
-    /// The xtd::fixed_array::binary_search method overload is then used to search for two strings that are not in the list, and the xtd::fixed_array::insert method is used to insert them. The return value of the xtd::fixed_array::binary_search method is gretaer than xtd::fixed_array::count in each case, because the strings are not in the list. Taking the bitwise complement of this negative number produces the index of the first element in the list that is larger than the search string, and inserting at this location preserves the sort order. The second search string is larger than any element in the list, so the insertion position is at the end of the list.
-    /// @include generic_list_binary_search.cpp
-    /// @remarks This method uses the default comparer xtd::collections::generic::comparer::default_comparer for type `type_t` to determine the order of list elements. The xtd::collections::generic::comparer::default_comparer property checks whether type `type_t` implements the xtd::icomparable <type_t> generic interface and uses that implementation, if available. If not, xtd::collections::generic::comparer::default_comparer checks whether type T implements the xtd::icomparable interface. If type `type_t` does not implement either interface, xtd::collections::generic::comparer::default_comparer throws an xtd::invalid_operation_exception.
-    /// @remarks This method uses xtd::array::sort, which uses the QuickSort algorithm. This implementation performs an unstable sort; that is, if two elements are equal, their order might not be preserved. In contrast, a stable sort preserves the order of elements that are equal.
-    /// @remarks On average, this method is an O(n log n) operation, where n is xtd::fixed_array::count; in the worst case it is an O(n ^ 2) operation.
-    /// @remarks The following code example demonstrates the xtd::fixed_array::sort method overload and the xtd::fixed_array::binary_search method overload. A xtd::fixed_array <type_t> of strings is created and populated with four strings, in no particular order. The list is displayed, sorted, and displayed again.
-    auto sort() -> fixed_array& {return sort(dynamic_cast<const xtd::collections::generic::icomparer<type_t>&>(xtd::collections::generic::comparer<type_t>::default_comparer));}
-    
+          return xtd::npos;
+        }
+        
+  /// @brief Sorts the elements in the entire xtd::fixed_array <type_t> using the default comparer.
+  /// @exception xtd::invalid_operation_exception The default comparer xtd::collections::generic::comparer::default_comparer cannot find an implementation of the xtd::icomparable <type_t> generic interface.
+  /// @par Examples
+  /// The xtd::fixed_array::binary_search method overload is then used to search for two strings that are not in the list, and the xtd::fixed_array::insert method is used to insert them. The return value of the xtd::fixed_array::binary_search method is gretaer than xtd::fixed_array::count in each case, because the strings are not in the list. Taking the bitwise complement of this negative number produces the index of the first element in the list that is larger than the search string, and inserting at this location preserves the sort order. The second search string is larger than any element in the list, so the insertion position is at the end of the list.
+  /// @include generic_list_binary_search.cpp
+  /// @remarks This method uses the default comparer xtd::collections::generic::comparer::default_comparer for type `type_t` to determine the order of list elements. The xtd::collections::generic::comparer::default_comparer property checks whether type `type_t` implements the xtd::icomparable <type_t> generic interface and uses that implementation, if available. If not, xtd::collections::generic::comparer::default_comparer checks whether type T implements the xtd::icomparable interface. If type `type_t` does not implement either interface, xtd::collections::generic::comparer::default_comparer throws an xtd::invalid_operation_exception.
+  /// @remarks This method uses xtd::array::sort, which uses the QuickSort algorithm. This implementation performs an unstable sort; that is, if two elements are equal, their order might not be preserved. In contrast, a stable sort preserves the order of elements that are equal.
+  /// @remarks On average, this method is an O(n log n) operation, where n is xtd::fixed_array::count; in the worst case it is an O(n ^ 2) operation.
+  /// @remarks The following code example demonstrates the xtd::fixed_array::sort method overload and the xtd::fixed_array::binary_search method overload. A xtd::fixed_array <type_t> of strings is created and populated with four strings, in no particular order. The list is displayed, sorted, and displayed again.
+  auto sort() -> fixed_array& {return sort(dynamic_cast<const xtd::collections::generic::icomparer<type_t>&>(xtd::collections::generic::comparer<type_t>::default_comparer));}
+  
     /// @brief Sorts the elements in the entire xtd::fixed_array <type_t> using the specified xtd::comparison <type_t>.
     /// @exception xtd::argument_exception The implementation of comparison caused an error during the sort. For example, comparison might not return 0 when comparing an item with itself.
     /// @remarks If comparison is provided, the elements of the xtd::fixed_array <type_t> are sorted using the method represented by the delegate.
@@ -273,7 +273,7 @@ namespace xtd {
       std::sort(items_, items_ + length(), xtd::collections::generic::helpers::lesser<type_t> {comparer});
       return self_;
     }
-
+    
     /// @brief Copies the elements of the xtd::fixed_array <type_t> to a new array.
     /// @return An array containing copies of the elements of the xtd::fixed_array <type_t, xtd::usize>.
     [[nodiscard]] auto to_array() const noexcept -> xtd::array<value_type> requires std::copy_constructible<value_type> {return size() ? xtd::array<value_type>(items_, items_ + len) : xtd::array<value_type> {};}
@@ -326,43 +326,43 @@ namespace xtd {
     auto operator [](const xtd::range& range) -> xtd::span<value_type> {
       return xtd::span<value_type> {*this, range};
     }
-
+    
     /// @brief Returns a reference to the element at specified location index.
     /// @param index The position of the element to return.
     /// @return Reference to the requested element.
     /// @exception std::out_of_range If `index` is not within the range of the container.
-    auto operator ()(size_type index) const -> const_reference {
+    auto operator()(size_type index) const -> const_reference {
       return operator[](index);
     }
     /// @brief Returns a reference to the element at specified location index.
     /// @param index The position of the element to return.
     /// @return Reference to the requested element.
-    auto operator ()(size_type index) -> reference {
+    auto operator()(size_type index) -> reference {
       return operator[](index);
     }
     /// @brief Returns a reference to the element at specified location index.
     /// @param index The position of the element to return.
     /// @return Reference to the requested element.
     /// @exception std::out_of_range If `index` is not within the range of the container.
-    auto operator ()(const xtd::index& index) const -> const_reference {
+    auto operator()(const xtd::index& index) const -> const_reference {
       return operator[](index);
     }
     /// @brief Returns a reference to the element at specified location index.
     /// @param index The position of the element to return.
     /// @return Reference to the requested element.
-    auto operator ()(const xtd::index& index) -> reference {
+    auto operator()(const xtd::index& index) -> reference {
       return operator[](index);
     }
     /// @brief Gets the elements at the specified range.
     /// @param range The range of the elements to set.
     /// @remarks This operator provides the ability to access a specific element in the collection by using the following syntax: `my_collection[index]`.
-    auto operator ()(const xtd::range& range) const -> xtd::read_only_span<value_type> {
+    auto operator()(const xtd::range& range) const -> xtd::read_only_span<value_type> {
       return operator[](range);
     }
     /// @brief Gets the elements at the specified range.
     /// @param range The range of the elements to set.
     /// @remarks This operator provides the ability to access a specific element in the collection by using the following syntax: `my_collection[index]`.
-    auto operator ()(const xtd::range& range) -> xtd::span<value_type> {
+    auto operator()(const xtd::range& range) -> xtd::span<value_type> {
       return operator[](range);
     }
     /// @}
@@ -370,12 +370,12 @@ namespace xtd {
   private:
     type_t items_[len];
   };
-
+  
   /// @cond
   // Deduction guides for xtd::fixed_array
   // {
   template<typename type_t, typename... args_t>
-  fixed_array(type_t, args_t...) -> fixed_array <type_t, 1 + sizeof...(args_t)>;
+  fixed_array(type_t, args_t...) -> fixed_array < type_t, 1 + sizeof...(args_t) >;
   // }
   /// @endcond
 }

@@ -30,11 +30,11 @@ auto path::combine(const string& path1, const string& path2) -> string {
   if (string::is_empty(path2)) return path1;
   if (string::is_empty(path1) || is_path_rooted(path2)) return path2;
   
-  auto result = path1;
-  if (!result.ends_with(directory_separator_char())) result += directory_separator_char();
-  result += path2;
-  return result;
-}
+    auto result = path1;
+    if (!result.ends_with(directory_separator_char())) result += directory_separator_char();
+      result += path2;
+      return result;
+    }
 
 auto path::combine(const std::initializer_list<string>& paths) noexcept -> string {
   auto result = string::empty_string;
@@ -146,7 +146,7 @@ auto path::__get_index_path_rooted(const string& path) -> int32 {
 }
 
 auto path::__is_drive(const string& path) noexcept -> bool {
-  for (const auto& drive : drive_info::get_drives())
-    if (drive.name() == path) return true;
-  return false;
-}
+for (const auto& drive : drive_info::get_drives())
+  if (drive.name() == path) return true;
+    return false;
+  }

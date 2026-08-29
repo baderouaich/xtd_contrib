@@ -58,7 +58,7 @@ namespace xtd {
       /// @brief All reports.
       all = stack_trace | libraries | processor | operating_system | compiler | language | locale | toolkit | environment_variables | special_folders | system_colors | generic_font_families | system_fonts | screens | system_informations,
       /// @brief UI report.
-      ui = system_colors | system_fonts | generic_font_families | screens,      
+      ui = system_colors | system_fonts | generic_font_families | screens,
       /// @brief Minimal report.
       /// @remarks Typically used for rapid logging.
       minimal = operating_system | processor | compiler | language,

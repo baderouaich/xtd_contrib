@@ -56,7 +56,7 @@ namespace xtd {
           [[nodiscard]] auto index_of(const list_type_t& item) const noexcept -> xtd::usize override {return npos;}
           
           using xtd::collections::generic::ilist<type_t>::operator [];
-          using xtd::collections::generic::ilist<type_t>::operator ();
+          using xtd::collections::generic::ilist<type_t>::operator();
           const list_type_t& operator [](xtd::usize index) const override {xtd::helpers::throw_helper::throws(xtd::helpers::exception_case::argument_out_of_range);}
           list_type_t& operator [](xtd::usize index) override {xtd::helpers::throw_helper::throws(xtd::helpers::exception_case::argument_out_of_range);}
           
@@ -127,12 +127,12 @@ namespace xtd {
         /// @include read_only_collection.cpp
         /// @remarks Retrieving the value of this property is an O(1) operation.
         [[nodiscard]] auto count() const noexcept -> xtd::usize override {return items_.count();}
-
+        
         /// @brief Returns pointer to the underlying array serving as element storage.
         /// @return Pointer to the underlying element storage. For non-empty containers, the returned pointer compares equal to the address of the first element.
         /// @remarks The pointer is such that range [xtd::collections::generic::list::data(), xtd::collections::generic::list::data() + xtd::collections::generic::list::count()) is always a valid range, even if the container is empty (xtd::collections::generic::list::data() is not dereferenceable in that case).
         auto data() const noexcept -> const_pointer override {return items_.data();}
-
+        
         /// @brief Gets an empty xtd::collections::object_model::read_only_collection <type_t>.
         /// @return An empty xtd::collections::object_model::read_only_collection <type_t>.
         /// @remarks The returned instance is immutable and will always be empty.
@@ -222,7 +222,7 @@ namespace xtd {
         
         /// @{
         using xtd::collections::generic::ilist<type_t>::operator [];
-        using xtd::collections::generic::ilist<type_t>::operator ();
+        using xtd::collections::generic::ilist<type_t>::operator();
         /// @brief Returns a reference to the element at specified location pos.
         /// @param index The position of the element to return.
         /// @return Reference to the requested element.
@@ -273,7 +273,7 @@ namespace xtd {
         auto remove_at(xtd::usize index) -> void override {}
         base_type items_;
       };
-
+      
       /// @cond
       // Deduction guides for xtd::collections::object_model::list
       // {

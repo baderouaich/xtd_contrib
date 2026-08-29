@@ -123,7 +123,7 @@ namespace xtd {
       /// @brief Appends text to the current text of a text box.
       /// @param text The text to append to the current contents of the text box.
       virtual auto append_text(const xtd::string& text) -> void;
-
+      
       /// @brief Clears all text from the text box control.
       /// @remarks You can use this method to clear the contents of the control instead of assigning the text property an empty string.
       auto clear() -> void;

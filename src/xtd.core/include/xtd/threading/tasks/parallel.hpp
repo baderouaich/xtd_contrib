@@ -60,7 +60,7 @@ namespace xtd {
         /// @include parallel_invoke.cpp
         template<typename ...args_t>
         static auto invoke(args_t&&... args) -> void {invoke(xtd::array<xtd::action<>> {xtd::action<> {std::forward<args_t>(args)}...});}
-
+        
         static auto invoke_async(xtd::array<xtd::action<>>&& actions) -> xtd::array<xtd::threading::tasks::task<>> {
           xtd::collections::generic::list<xtd::threading::tasks::task<>> tasks;
           for (const auto& action : actions)

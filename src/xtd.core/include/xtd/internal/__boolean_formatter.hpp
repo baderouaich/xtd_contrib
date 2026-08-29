@@ -25,9 +25,9 @@ template<typename char_t>
     case 'O':
     case 'x':
     case 'X': return __numeric_formatter(fmt, value ? 1 : 0, loc);
-    case 'g':
-    case 'G': return value ? std::basic_string<char_t> {'t', 'r', 'u', 'e'} : std::basic_string<char_t> {'f', 'a', 'l', 's', 'e'};
-    default: xtd::helpers::throw_helper::throws(xtd::helpers::exception_case::format, "Invalid format expression");
-  }
+      case 'g':
+      case 'G': return value ? std::basic_string<char_t> {'t', 'r', 'u', 'e'} : std::basic_string<char_t> {'f', 'a', 'l', 's', 'e'};
+      default: xtd::helpers::throw_helper::throws(xtd::helpers::exception_case::format, "Invalid format expression");
+    }
 }
 /// @endcond

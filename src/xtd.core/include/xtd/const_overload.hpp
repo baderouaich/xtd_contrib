@@ -32,9 +32,9 @@ namespace xtd {
     static constexpr auto of(result_t (type_t::*method)(args_t...) const) noexcept -> decltype(method) {return method;}
     /// @}
   };
-
+  
   /// @name Public Variables
-
+  
   /// @{
   template<typename ...args_t>
   inline constexpr const_overload_type<args_t...> const_overload;

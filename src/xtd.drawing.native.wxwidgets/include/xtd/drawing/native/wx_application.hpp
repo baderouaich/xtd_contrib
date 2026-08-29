@@ -31,12 +31,12 @@ namespace xtd {
         
         bool OnExceptionInMainLoop() override {
           if (!thread_exception.is_empty())
-            return thread_exception();
+          return thread_exception();
           exceptionStored = std::current_exception();
           return false;
         }
         
-        int32 MainLoop() override {
+      int32 MainLoop() override {
           class PreProcessFilter : public wxEventFilter {
           public:
             PreProcessFilter() {wxEvtHandler::AddFilter(this);}
@@ -63,15 +63,15 @@ namespace xtd {
           if (exceptionStored) return wxApp::ProcessEvent(event);
           if (event.GetEventType() == wxEVT_ACTIVATE_APP) {
             wxActivateEvent& activate_event = static_cast<wxActivateEvent&>(event);
-            send_message(0, WM_ACTIVATEAPP, activate_event.GetActive(), 0, reinterpret_cast<intptr>(&event));
-          } else if (event.GetEventType() == wxEVT_IDLE)
+              send_message(0, WM_ACTIVATEAPP, activate_event.GetActive(), 0, reinterpret_cast<intptr>(&event));
+            } else if (event.GetEventType() == wxEVT_IDLE)
             send_message(0, WM_APPIDLE, 0, 0, reinterpret_cast<intptr>(&event));
-          //else if (event.GetEventType() == wxEVT_END_SESSION)
-          //  send_message(0, WM_QUIT, 0, 0, reinterpret_cast<intptr>(&event));
-          return wxApp::ProcessEvent(event);
-        }
-        
-        bool ProcessIdle() override {
+            //else if (event.GetEventType() == wxEVT_END_SESSION)
+            //  send_message(0, WM_QUIT, 0, 0, reinterpret_cast<intptr>(&event));
+            return wxApp::ProcessEvent(event);
+          }
+          
+      bool ProcessIdle() override {
           processIdle();
           return wxApp::wxAppBase::ProcessIdle();
         }

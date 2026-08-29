@@ -26,7 +26,7 @@ namespace xtd {
       /// @brief The parent operator precedence. That contains one of xtd::expressions::operator_precedence values.
       operator_precedence parent_precedence;
     };
-
+    
     /// @cond
     template<typename expression_t>
     auto operator<<(std::ostream& os, const expression_stream<expression_t>& ps) -> std::ostream& {

@@ -80,11 +80,11 @@ namespace xtd {
       /// @param value Auto repeat delay in milliseconds. Default is 300 ms.
       /// @return This button.
       virtual auto auto_repeat_delay(xtd::int32 value) -> button&;
-
+      
       /// @brief Gets the auto repeat delay.
       /// @return Auto repeat delay in milliseconds. Default is 300 ms.
       [[nodiscard]] virtual auto auto_repeat_delay_milliseconds() const noexcept -> xtd::int32;
-
+      
       /// @brief Gets the auto repeat interval.
       /// @return Auto repeat interval. Default is 100 ms.
       [[nodiscard]] virtual auto auto_repeat_interval() const noexcept -> xtd::time_span;
@@ -96,11 +96,11 @@ namespace xtd {
       /// @param value Auto repeat interval in milliseconds. Default is 100 ms.
       /// @return This button.
       virtual auto auto_repeat_interval(xtd::int32 value) -> button&;
-
+      
       /// @brief Gets the auto repeat interval.
       /// @return Auto repeat interval in milliseconds. Default is 100 ms.
       [[nodiscard]] virtual auto auto_repeat_interval_milliseconds() const noexcept -> xtd::int32;
-
+      
       /// @brief Gets the mode by which the button automatically resizes itself.
       /// @return One of the AutoSizeMode values. The default value is grow_only.
       [[nodiscard]] virtual auto auto_size_mode() const noexcept -> xtd::forms::auto_size_mode;

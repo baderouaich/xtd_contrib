@@ -212,7 +212,7 @@ namespace xtd::io::tests {
       std::ofstream existing_file(test_file_name);
       existing_file << "Text";
       existing_file.close();
-      stream_reader file = file::open_text(test_file_name);      
+      stream_reader file = file::open_text(test_file_name);
       assert::are_equal("Text", file.read_to_end());
     }
     

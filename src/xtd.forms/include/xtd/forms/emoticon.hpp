@@ -167,13 +167,13 @@ namespace xtd {
     private:
       auto create_data() -> void;
       auto name_(const xtd::string& name) -> void;
-      [[nodiscard]] auto codepoints_() -> xtd::collections::generic::list<xtd::char32>&;
+      [[nodiscard]] auto codepoints_() -> xtd::collections::generic::list<xtd::char32>& ;
       auto codepoints_(xtd::array<xtd::char32>&& codepoints) -> void;
       
       xtd::sptr<data> data_;
     };
   }
-
+  
   /// @cond
   inline auto operator +(const xtd::forms::emoticon& value_a, const xtd::forms::emoticon& value_b) -> xtd::string {
     return value_a.to_string() + value_b.to_string();

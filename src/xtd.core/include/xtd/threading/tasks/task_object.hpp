@@ -30,9 +30,9 @@ namespace xtd {
       protected:
         inline static thread_local xtd::usize current_id_ = 0;
         inline static std::atomic<xtd::usize> last_id_ = 0;
-
+        
         task_object() = default;
-
+        
         static auto generate_id() noexcept -> xtd::usize {return last_id_++;}
         /// @endcond
       };

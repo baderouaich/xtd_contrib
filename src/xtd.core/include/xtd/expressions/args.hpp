@@ -43,7 +43,7 @@ namespace xtd {
     constexpr auto args() {
       return xtd::expressions::placeholders<count> {};
     }
-
+    
     /// @name Public Variables
     
     /// @{
@@ -64,7 +64,7 @@ namespace xtd {
     /// println("expr result => {}", expr(10); // expr result => 20
     /// ```
     inline constexpr auto _ = xtd::expressions::arg<1>;
-
+    
     /// @brief The xtd::expressions::_1 placeholder instance is first argument used by expression.
     /// @par Namespace
     /// xtd::expressions

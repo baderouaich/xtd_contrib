@@ -168,7 +168,7 @@ namespace xtd {
       /// @{
       /// @brief Gets an array of images.
       /// @return The array of images.
-      [[nodiscard]] static auto get_images() noexcept -> const xtd::array<xtd::drawing::image>&;
+      [[nodiscard]] static auto get_images() noexcept -> const xtd::array<xtd::drawing::image>& ;
       /// @brief Gets an array of images with specified size.
       /// @param size The images size in pixels.
       /// @return The array of images.
@@ -176,7 +176,7 @@ namespace xtd {
       
       /// @brief Gets an array of image names.
       /// @return The array of image names.
-      [[nodiscard]] static auto get_image_names() noexcept -> const xtd::array<xtd::string>&;
+      [[nodiscard]] static auto get_image_names() noexcept -> const xtd::array<xtd::string>& ;
       /// @}
     };
   }

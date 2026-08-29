@@ -205,7 +205,7 @@ namespace xtd {
       /// @exception xtd::threading::thread_state_exception The thread has reached a final state, such as Aborted.
       /// @remarks If the array is empty, no affinity is defined.
       /// @remarks Works only on Windows and Linux operating syetms, no effect on others.
-      [[nodiscard]] auto processor_affinity() const noexcept -> const xtd::array<xtd::usize>&;
+      [[nodiscard]] auto processor_affinity() const noexcept -> const xtd::array<xtd::usize>& ;
       /// @brief Sets the processors on which the associated thread can run.
       /// @param value An xtd::array<xtd::usize> that represents an array of processor numbers on which the thread can run.
       /// @exception xtd::threading::thread_state_exception The thread has reached a final state, such as Aborted.

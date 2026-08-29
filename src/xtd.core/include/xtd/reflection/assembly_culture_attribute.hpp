@@ -82,7 +82,7 @@ namespace xtd {
 }
 
 /// @cond
-auto __assembly_culture_attribute__() -> xtd::sptr<xtd::reflection::assembly_culture_attribute>&;
+auto __assembly_culture_attribute__() -> xtd::sptr<xtd::reflection::assembly_culture_attribute>& ;
 /// @endcond
 
 /// @brief Creates the assembly culture information. Must be called once in your application.

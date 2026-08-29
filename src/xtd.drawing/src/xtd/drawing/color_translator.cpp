@@ -335,15 +335,15 @@ bool color_translator::try_parse_hsva_color(const string& text, color& result) n
 bool color_translator::try_parse_html_color(const string& text, color& result) noexcept {
   if (text.starts_with("#") && try_parse_hex_color(text, result)) return true;
   if (text.starts_with("rgb(") && text.ends_with(")") && try_parse_rgb_color(text, result)) return true;
-  if (text.starts_with("rgba(") && text.ends_with(")") && try_parse_rgba_color(text, result)) return true;
-  if (text.starts_with("hsv(") && text.ends_with(")") && try_parse_hsv_color(text, result)) return true;
-  if (text.starts_with("hsva(") && text.ends_with(")") && try_parse_hsva_color(text, result)) return true;
-  if (text.starts_with("hsl(") && text.ends_with(")") && try_parse_hsl_color(text, result)) return true;
-  if (text.starts_with("hsla(") && text.ends_with(")") && try_parse_hsla_color(text, result)) return true;
-  //if (text.starts_with("system-color(") && text.ends_with(")") && try_parse_system_color(text, result)) return true;
-  if (try_parse_named_color(text, result)) return true;
-  return false;
-}
+    if (text.starts_with("rgba(") && text.ends_with(")") && try_parse_rgba_color(text, result)) return true;
+      if (text.starts_with("hsv(") && text.ends_with(")") && try_parse_hsv_color(text, result)) return true;
+        if (text.starts_with("hsva(") && text.ends_with(")") && try_parse_hsva_color(text, result)) return true;
+          if (text.starts_with("hsl(") && text.ends_with(")") && try_parse_hsl_color(text, result)) return true;
+            if (text.starts_with("hsla(") && text.ends_with(")") && try_parse_hsla_color(text, result)) return true;
+              //if (text.starts_with("system-color(") && text.ends_with(")") && try_parse_system_color(text, result)) return true;
+              if (try_parse_named_color(text, result)) return true;
+                return false;
+              }
 
 bool color_translator::try_parse_named_color(const string& text, color& result) noexcept {
   if (text.trim().chars().find(' ') != string::npos) return false;

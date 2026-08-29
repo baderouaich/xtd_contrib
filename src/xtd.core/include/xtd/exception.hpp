@@ -151,7 +151,7 @@ namespace xtd {
       return show_exception_();
     }
     /// @}
-
+    
   private:
     friend struct ::__xtd_exception_gui__;
     exception(const xtd::optional<xtd::string>& message, xtd::uptr<xtd::exception>&& inner_exception, const xtd::diagnostics::stack_frame& stack_frame, bool);
@@ -159,13 +159,13 @@ namespace xtd {
     
     [[nodiscard]] auto get_name() const noexcept -> const xtd::string&;
     static auto load_exception_gui() -> void {
-#if __XTD_CURRENT_TARGET_ID__ == __XTD_TARGET_ID_GUI_APPLICATION__ || __XTD_CURRENT_TARGET_ID__ == __XTD_TARGET_ID_UNKNOWN__
+      #if __XTD_CURRENT_TARGET_ID__ == __XTD_TARGET_ID_GUI_APPLICATION__ || __XTD_CURRENT_TARGET_ID__ == __XTD_TARGET_ID_UNKNOWN__
       __xtd_load_exception_gui__();
-#endif
+      #endif
     }
     static auto show_exception_(const std::exception& e) -> xtd::int32;
     static auto show_exception_() -> xtd::int32;
-
+    
     struct data;
     xtd::ptr<data> data_;
     static bool enable_stack_trace_;

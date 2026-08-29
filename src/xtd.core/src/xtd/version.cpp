@@ -52,14 +52,14 @@ int32 version::revision() const noexcept {
 int32 version::compare_to(const version& value) const noexcept {
   if (major_ < value.major_) return -1;
   if (major_ > value.major_) return 1;
-  if (minor_ < value.minor_) return -1;
-  if (minor_ > value.minor_) return 1;
-  if (build_ < value.build_) return -1;
-  if (build_ > value.build_) return 1;
-  if (revision_ < value.revision_) return -1;
-  if (revision_ > value.revision_) return 1;
-  return 0;
-}
+    if (minor_ < value.minor_) return -1;
+      if (minor_ > value.minor_) return 1;
+        if (build_ < value.build_) return -1;
+          if (build_ > value.build_) return 1;
+            if (revision_ < value.revision_) return -1;
+              if (revision_ > value.revision_) return 1;
+                return 0;
+              }
 
 bool version::equals(const object& obj) const noexcept {
   return is<version>(obj) && equals(static_cast<const version&>(obj));

@@ -45,7 +45,7 @@ namespace xtd {
       friend xtd::environment;
       friend xtd::native::translator;
       friend xtd::reflection::assembly;
-
+      
     protected:
       /// @name Protected Static Methods
       

@@ -20,15 +20,15 @@ template<typename value_t>
 [[nodiscard]] inline auto xtd::to_string(const value_t& value, const xtd::string& fmt, const std::locale& loc) -> xtd::string {
   if constexpr(std::is_polymorphic_v<value_t>) return __to_string_polymorphic(value, fmt, loc);
   else if constexpr(std::is_enum_v<value_t>) return __enum_formatter<char>(fmt, value, loc);
-  else if constexpr(requires(const xtd::raw_type<value_t>& valuee, const xtd::string& _fmt) {{value.to_string(_fmt)} -> xtd::textual;}) return value.to_string(fmt);
-  else if constexpr(requires(const xtd::raw_type<value_t>& value) {{value.to_string()} -> xtd::textual;}) return value.to_string();
-  else if constexpr(xtd::iterable<value_t> && !std::is_same_v<value_t, xtd::string>) return __xtd_iterable_to_string(value, fmt, loc);
-  else if constexpr(xtd::stream_insertable<value_t>) {
-    auto ss = std::stringstream {};
-    ss << value;
-    return ss.str();
-  } else xtd::helpers::throw_helper::throws(xtd::helpers::exception_case::format);
-}
+    else if constexpr(requires(const xtd::raw_type<value_t>& valuee, const xtd::string & _fmt) {{value.to_string(_fmt)} -> xtd::textual;}) return value.to_string(fmt);
+      else if constexpr(requires(const xtd::raw_type<value_t>& value) {{value.to_string()} -> xtd::textual;}) return value.to_string();
+      else if constexpr(xtd::iterable<value_t> && !std::is_same_v<value_t, xtd::string>) return __xtd_iterable_to_string(value, fmt, loc);
+      else if constexpr(xtd::stream_insertable<value_t>) {
+        auto ss = std::stringstream {};
+        ss << value;
+        return ss.str();
+        } else xtd::helpers::throw_helper::throws(xtd::helpers::exception_case::format);
+        }
 
 /*
 template<typename value_t>
@@ -402,7 +402,7 @@ template<typename key_t, typename compare_t, typename allocator_t>
 template<typename ...args_t>
 [[nodiscard]] inline auto xtd::to_string(const std::variant<args_t...>& value, const xtd::string& fmt, const std::locale& loc) -> xtd::string {
   if (value.valueless_by_exception()) return "(valueless_by_exception)";
-  return std::visit([&](auto && t){return xtd::to_string(t, fmt, loc);}, value);
+  return std::visit([&](auto && t) {return xtd::to_string(t, fmt, loc);}, value);
 }
 
 template<typename type_t>

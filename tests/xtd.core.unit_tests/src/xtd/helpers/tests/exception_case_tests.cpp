@@ -247,7 +247,7 @@ namespace xtd::helpers::tests {
       assert_that(enum_object<>::to_string(exception_case::thread_abort)).is().equal_to("thread_abort");
       assert_that(enum_object<>::parse<exception_case>("thread_abort")).is().equal_to(exception_case::thread_abort);
     }
-
+    
     auto test_method_(thread_interrupted) {
       assert_that(enum_object<>::to_int32(exception_case::thread_interrupted)).is().equal_to(40);
       assert_that(enum_object<>::to_string(exception_case::thread_interrupted)).is().equal_to("thread_interrupted");

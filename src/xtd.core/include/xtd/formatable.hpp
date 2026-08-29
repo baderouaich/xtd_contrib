@@ -19,7 +19,7 @@ namespace xtd {
   // Since Doxygen does not work properly with the C++ concept, the documentation for this concept is declared in xtd/formatable_.hpp
   template<typename value_t>
   concept formatable =
-  std::derived_from<xtd::raw_type<value_t>, xtd::iformatable> ||
+    std::derived_from<xtd::raw_type<value_t>, xtd::iformatable> ||
   requires(const xtd::raw_type<value_t>& value, xtd::string_view format, xtd::globalization::culture_info culture) {{value.to_string(format, culture)} -> xtd::textual;} ||
   xtd::stream_insertable<xtd::raw_type<value_t>>;
 }

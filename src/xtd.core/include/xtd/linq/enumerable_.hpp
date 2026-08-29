@@ -169,7 +169,7 @@ namespace xtd {
       /// @include enumerable_all.cpp
       template<xtd::iterable source_t, xtd::predicate_callable<xtd::iterable_value_type<source_t>> predicate_t>
       [[nodiscard]] static auto any(source_t&& source, predicate_t&& predicate) -> bool;
-
+      
       /// @brief Appends a value to the end of the sequence.
       /// @tparam source_t The type of the elements of source.
       /// @param source A sequence of values.
@@ -258,7 +258,7 @@ namespace xtd {
       /// @include enumerable_as_enumerable.cpp
       template<typename value_t, xtd::usize length>
       [[nodiscard]] static auto as_enumerable(value_t (&array)[length]) noexcept -> xtd::collections::generic::enumerable_generator<value_t>;
-
+      
       /// @cond
       template<xtd::usize size_>
       [[nodiscard]] static auto as_enumerable(const std::bitset<size_>& source) noexcept -> xtd::collections::generic::enumerable_generator<bool>; // defined in xtd/collections/bit_array.hpp
@@ -313,7 +313,7 @@ namespace xtd {
       template<xtd::iterable source_t>
       requires xtd::signed_integer_64<xtd::iterable_value_type<source_t>>
       [[nodiscard]] static auto average(source_t&& source) -> double;
-
+      
       /// @brief Computes the average of a sequence of optional xtd::decimal values.
       /// @param source A sequence of optional xtd::decimal values to calculate the average of.
       /// @return The average of the sequence of values, or xtd::nullopt if the source sequence is empty or contains only values that are xtd::nullopt.
@@ -344,7 +344,7 @@ namespace xtd {
       template<xtd::iterable source_t>
       requires std::same_as<xtd::iterable_value_type<source_t>, xtd::optional<xtd::int64>>
       [[nodiscard]] static auto average(source_t&& source) -> xtd::optional<double>;
-
+      
       /// @brief Casts the elements of an xtd::collections::generic::ienumerable to the specified type.
       /// @tparam result_t The type of the resulting value.
       /// @tparam source_t The type of the elements of source.
@@ -370,7 +370,7 @@ namespace xtd {
       /// @param first The first sequence to concatenate.
       /// @param second The sequence to concatenate to the first sequence.
       /// @return An xtd::collections::generic::ienumerable <type_t> that contains the concatenated elements of the two input sequences.
-      template<xtd::iterable first_t,xtd::iterable second_t>
+      template<xtd::iterable first_t, xtd::iterable second_t>
       [[nodiscard]] static auto concat(first_t&& first, second_t&& second) noexcept -> xtd::collections::generic::enumerable_generator<xtd::iterable_value_type<first_t>>;
       
       /// @brief Determines whether a sequence contains a specified element by using the default equality comparer.
@@ -396,7 +396,7 @@ namespace xtd {
       /// @return `true` if the source sequence contains an element that has the specified value; otherwise, `false`.
       template<xtd::iterable source_t, xtd::func_callable<bool, xtd::iterable_value_type<source_t>, xtd::iterable_value_type<source_t>> equater_t>
       [[nodiscard]] static auto contains(source_t&& source, const xtd::iterable_value_type<source_t>& value, equater_t&& equater) noexcept -> bool;
-
+      
       /// @brief Returns the number of elements in a sequence.
       /// @tparam source_t The type of the elements of source.
       /// @param source A sequence that contains elements to be counted.
@@ -460,7 +460,7 @@ namespace xtd {
       /// @note Need to include list file `#include <xtd/collections/generic/list>`.
       template<typename key_t, xtd::iterable source_t, xtd::callable<key_t, xtd::iterable_value_type<source_t>> key_selector_t, xtd::callable<bool, key_t, key_t> key_equater_t>
       [[nodiscard]] static auto count_by(source_t&& source, key_selector_t&& key_selector, key_equater_t&& key_equater) noexcept -> xtd::collections::generic::enumerable_generator<xtd::collections::generic::key_value_pair<key_t, xtd::usize>>; // Defined in include/xtd/collections/generic/list.hpp
-
+      
       /// @brief Returns the elements of the specified sequence or the type parameter's default value in a singleton collection if the sequence is empty.
       /// @tparam source_t The type of the elements of source.
       /// @param source The sequence to return a default value for if it is empty.
@@ -500,7 +500,7 @@ namespace xtd {
       /// @note Need to include list file `#include <xtd/collections/generic/list>`.
       template<xtd::iterable source_t, xtd::func_callable<bool, xtd::iterable_value_type<source_t>, xtd::iterable_value_type<source_t>> equater_t>
       [[nodiscard]] static auto distinct(source_t&& source, equater_t&& equater) noexcept  -> xtd::collections::generic::enumerable_generator<xtd::iterable_value_type<source_t>>; // Defined in include/xtd/collections/generic/list.hpp
-
+      
       /// @brief Returns the first element of the sequence that satisfies a condition, or a specified default value if no such element is found.
       /// @tparam source_t The type of the elements of source.
       /// @param source A sequence of values to return an element from.
@@ -636,7 +636,7 @@ namespace xtd {
       template<typename value_t, typename container_t>
       [[nodiscard]] static auto from(std::stack<value_t, container_t>& source) noexcept -> xtd::collections::generic::enumerable_generator<value_t>;
       /// @endcond
-
+      
       /// @brief Returns the maximum value in a sequence of xtd::numeric values.
       /// @param sources A sequence of xtd::numeric values to determine the maximum value of.
       /// @return A value of xtd::numeric that corresponds to the maximum value in the sequence.
@@ -678,7 +678,7 @@ namespace xtd {
       template<typename result_t, xtd::iterable source_t, xtd::callable<result_t, xtd::iterable_value_type<source_t>> selector_t>
       requires xtd::numeric<xtd::iterable_value_type<source_t>>
       [[nodiscard]] static auto min(source_t&& source, selector_t&& selector) -> result_t;
-
+      
       /// @brief Sorts the elements of a sequence in ascending order.
       /// @param source A sequence of values to order.
       /// @return An xtd::collections::generic::ienumerable <source_t> whose elements are sorted.
@@ -697,7 +697,7 @@ namespace xtd {
       /// @note Need to include list file `#include <xtd/collections/generic/list>`.
       template<xtd::iterable source_t, xtd::func_callable<bool, xtd::iterable_value_type<source_t>, xtd::iterable_value_type<source_t>> lesser_t>
       [[nodiscard]] static auto order(source_t&& source, lesser_t&& lesser) -> xtd::collections::generic::enumerable_generator<xtd::iterable_value_type<source_t>>; // Defined in include/xtd/collections/generic/list.hpp
-
+      
       /// @brief Sorts the elements of a sequence in ascending order according to a key.
       /// @param source A sequence of values to order.
       /// @param key_selector A function to extract a key from an element.
@@ -795,7 +795,7 @@ namespace xtd {
       /// @note Need to include random file `#include <xtd/random>`.
       template<xtd::forward_iterable source_t>
       [[nodiscard]] static auto shuffle(source_t&& source) -> xtd::collections::generic::enumerable_generator<xtd::iterable_value_type<source_t>>; // Defined in include/xtd/random.hpp
-
+      
       /// @brief Bypasses a specified number of elements in a sequence and then returns the remaining elements.
       /// @param source A sequznce of values to return elements from.
       /// @param count The number of elements to skip before returning the remaining elements.
@@ -812,7 +812,7 @@ namespace xtd {
       /// @include enumerable_skip_while.cpp
       template<xtd::iterable source_t>
       [[nodiscard]] static auto skip_while(source_t&& source, auto&& predicate) -> xtd::collections::generic::enumerable_generator<xtd::iterable_value_type<source_t>>;
-
+      
       /// @brief Returns a specified number of contiguous elements from the start of a sequence.
       /// @param source A sequence of values to return elements from.
       /// @param count The number of elements to return.
@@ -826,7 +826,7 @@ namespace xtd {
       /// @note Need to include list file `#include <xtd/range>`.
       template<xtd::iterable source_t>
       [[nodiscard]] static auto take(source_t&& source, const xtd::range& range) -> xtd::collections::generic::enumerable_generator<xtd::iterable_value_type<source_t>>; // Defined in include/xtd/range.hpp
-
+      
       /// @brief Returns elements from a sequence as long as a specified condition is true, and then skips the remaining elements.
       /// @param source A sequence to return elements from.
       /// @param predicate A function to test each element for a condition.
@@ -836,7 +836,7 @@ namespace xtd {
       /// @include enumerable_take_while.cpp
       template<xtd::iterable source_t>
       [[nodiscard]] static auto take_while(source_t&& source, auto&& predicate) -> xtd::collections::generic::enumerable_generator<xtd::iterable_value_type<source_t>>;
-
+      
       /// @brief Creates a xtd::array <type_t> from an xtd::collections::generic::ienumerable <type_t>.
       /// @tparam source_t The type of the elements of source.
       /// @param source The xtd::collections::generic::ienumerable <type_t> to create a xtd::collections::generic::list <type_t> from.
@@ -876,33 +876,33 @@ namespace xtd {
       [[nodiscard]] static auto where(source_t&& source, auto&& predicate) -> xtd::collections::generic::enumerable_generator<xtd::iterable_value_type<source_t>>;
       /// @}
       
-    private:      
+    private:
       template<typename type_t>
       struct enumerable_holder {
         enumerable_holder(const type_t& value);
         //enumerable_holder(type_t& value);
         enumerable_holder(type_t&& value) requires std::movable<type_t>;
         
-        auto get() const -> const xtd::raw_type<type_t>&;
+        auto get() const -> const xtd::raw_type<type_t>& ;
         
       private:
         std::optional<type_t> value_;
         const xtd::raw_type<type_t>* ptr_;
       };
-
+      
       template<typename...>
       static inline constexpr bool always_false_v = false;
       
       template<typename source_t>
-      requires(requires (const xtd::raw_type<source_t>& source) {{source.size()} -> std::convertible_to<std::size_t>;})
+      requires(requires(const xtd::raw_type<source_t>& source) {{source.size()} -> std::convertible_to<std::size_t>;})
       [[nodiscard]] static auto invoke_take_with_range(source_t&& source, const xtd::range& range) -> xtd::collections::generic::enumerable_generator<xtd::iterable_value_type<source_t>>;
       template<typename source_t>
-      requires(!requires (const xtd::raw_type<source_t>& source) {{source.size()} -> std::convertible_to<std::size_t>;})
+      requires(!requires(const xtd::raw_type<source_t>& source) {{source.size()} -> std::convertible_to<std::size_t>;})
       [[nodiscard]] static auto invoke_take_with_range(source_t&& source, const xtd::range& range) -> xtd::collections::generic::enumerable_generator<xtd::iterable_value_type<source_t>>;
-
+      
       template<typename predicate_t, typename value_t>
       [[nodiscard]] static constexpr auto invoke_predicate_with_optional_index(predicate_t&& predicate, value_t&& value, xtd::usize index) -> bool;
-
+      
       template<typename result_t, typename selector_t, typename value_t>
       [[nodiscard]] static auto invoke_selector_with_optional_index(selector_t&& selector, value_t&& value, xtd::usize index) -> result_t;
     };

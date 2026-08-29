@@ -73,14 +73,14 @@ namespace xtd {
         trace_form_base::write(debug);
       }
       
-      auto write_line(const xtd::string& debug) -> void override {
+    auto write_line(const xtd::string& debug) -> void override {
         if (!defined) return;
         trace_form_base::write_line(debug);
       }
-      /// @}
-      
-    private:
-      xtd::sptr<xtd::diagnostics::trace_listener> listener_ = xtd::forms::control_trace_listener::create(*this);
+    /// @}
+    
+  private:
+    xtd::sptr<xtd::diagnostics::trace_listener> listener_ = xtd::forms::control_trace_listener::create(*this);
       bool defined = false;
     };
   }

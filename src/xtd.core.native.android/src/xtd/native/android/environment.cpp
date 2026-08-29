@@ -130,11 +130,11 @@ string environment::get_distribution_version_string() {
 }
 
 auto environment::get_executable_path() -> string {
-   char executable_path[PATH_MAX];
-   auto len = readlink("/proc/self/exe", executable_path, sizeof(executable_path) - 1);
-   if (len == -1) return get_command_line_args()[0];
-   executable_path[len] = '\0';
-   return executable_path;
+  char executable_path[PATH_MAX];
+  auto len = readlink("/proc/self/exe", executable_path, sizeof(executable_path) - 1);
+  if (len == -1) return get_command_line_args()[0];
+  executable_path[len] = '\0';
+  return executable_path;
 }
 
 string environment::get_environment_variable(const string& variable, int32_t target) {

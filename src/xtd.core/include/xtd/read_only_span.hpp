@@ -186,7 +186,7 @@ namespace xtd {
     auto operator =(read_only_span&& items) -> read_only_span& = default;
     auto operator =(const read_only_span& items) -> read_only_span& = default;
     /// @endcond
-        
+    
     /// @name Public Fields
     
     /// @{
@@ -194,7 +194,7 @@ namespace xtd {
     /// @return An empty xtd::read_only_span <type_t> object.
     static const read_only_span empty_read_only_span;
     /// @
-
+    
     /// @name Public Properties
     
     /// @{
@@ -208,7 +208,7 @@ namespace xtd {
     /// @brief Returns an iterator to the end.
     /// @return The iterator to the element following the last element.
     [[nodiscard]] auto cend() const -> const_iterator {return const_iterator {data_ + length_};}
-
+    
     /// @brief Gets direct access to the underlying contiguous storage
     /// @return A pointer to the beginning of the sequence.
     [[nodiscard]] constexpr auto data() const noexcept -> const_pointer {return data_;}
@@ -247,13 +247,13 @@ namespace xtd {
     template<xtd::usize length>
     auto copy_to(span<type_t, length>& destination) const -> void {
       if (!try_copy_to(destination))
-        xtd::helpers::throw_helper::throws(xtd::helpers::exception_case::argument);
+      xtd::helpers::throw_helper::throws(xtd::helpers::exception_case::argument);
     }
     
-    /// @brief Determines whether the specified object is equal to the current object.
-    /// @param obj The object to compare with the current object.
-    /// @return `true` if the specified object is equal to the current object. otherwise, `false`.
-    [[nodiscard]] auto equals(const object& obj) const noexcept -> bool override {return is<read_only_span<value_type>>(obj) && equals(static_cast<const read_only_span<value_type>& > (obj));}
+  /// @brief Determines whether the specified object is equal to the current object.
+  /// @param obj The object to compare with the current object.
+  /// @return `true` if the specified object is equal to the current object. otherwise, `false`.
+  [[nodiscard]] auto equals(const object& obj) const noexcept -> bool override {return is<read_only_span<value_type>>(obj) && equals(static_cast<const read_only_span<value_type>& > (obj));}
     /// @brief Indicates whether the current object is equal to another object of the same type.
     /// @param obj An object to compare with this object.
     /// @return `true` if the current object is equal to the other parameter; otherwise, `false`.
@@ -267,17 +267,17 @@ namespace xtd {
       if (count > length_) xtd::helpers::throw_helper::throws(xtd::helpers::exception_case::argument_out_of_range);
       return read_only_span<type_t, count> {data_, count};
     }
-    /// @brief Obtains a subspan consisting of the first `count` elements of the sequence.
-    /// @param count The count elements.
-    /// @return A read_only_span `r` that is a view over the first `count` elements of `*this`, such that `r.data() == this->data() && r.size() == count`.
-    [[nodiscard]] auto first(xtd::usize count) const -> read_only_span<type_t> {
+  /// @brief Obtains a subspan consisting of the first `count` elements of the sequence.
+  /// @param count The count elements.
+  /// @return A read_only_span `r` that is a view over the first `count` elements of `*this`, such that `r.data() == this->data() && r.size() == count`.
+  [[nodiscard]] auto first(xtd::usize count) const -> read_only_span<type_t> {
       if (count > length_) xtd::helpers::throw_helper::throws(xtd::helpers::exception_case::argument_out_of_range);
       return read_only_span<type_t> {data_, count};
     }
     
-    /// @brief Serves as a hash function for a particular type.
-    /// @return A hash code for the current object.
-    [[nodiscard]] auto get_hash_code() const noexcept -> xtd::usize override {
+  /// @brief Serves as a hash function for a particular type.
+  /// @return A hash code for the current object.
+  [[nodiscard]] auto get_hash_code() const noexcept -> xtd::usize override {
       auto result = hash_code {};
       for (const auto& item : *this)
         result.add(item);
@@ -292,21 +292,21 @@ namespace xtd {
       if (count > length_) xtd::helpers::throw_helper::throws(xtd::helpers::exception_case::argument_out_of_range);
       return read_only_span<type_t, count> {data_ + length_ - count, count};
     }
-    /// @brief Obtains a subspan consisting of the last N elements of the sequence
-    /// @param count The count elements.
-    /// @return A read_only_span `r` that is a view over the last `count` elements of `*this`, such that `r.data() == this->data() + (this->size() - count) && r.size() == count`.
-    [[nodiscard]] auto last(xtd::usize count) const -> read_only_span<type_t> {
+  /// @brief Obtains a subspan consisting of the last N elements of the sequence
+  /// @param count The count elements.
+  /// @return A read_only_span `r` that is a view over the last `count` elements of `*this`, such that `r.data() == this->data() + (this->size() - count) && r.size() == count`.
+  [[nodiscard]] auto last(xtd::usize count) const -> read_only_span<type_t> {
       if (count > length_) xtd::helpers::throw_helper::throws(xtd::helpers::exception_case::argument_out_of_range);
       return read_only_span<type_t> {data_ + length_ - count, count};
     }
     
-    /// @brief Forms a slice out of the current read_only_span starting at a specified index for a specified length.
-    /// @param start The zero-based index at which to begin this slice.
-    /// @param length The desired length for the slice.
-    /// @return A read_only_span that consists of length elements from the current read_only_span starting at start.
-    /// @exception xtd::argument_out_of_range_exception `start` or `start + length` is less than zero or greater than xtd::read_only_span::length.
-    template<xtd::usize start, size_type lenght = xtd::dynamic_extent>
-    [[nodiscard]] auto slice() const -> read_only_span<type_t> {
+  /// @brief Forms a slice out of the current read_only_span starting at a specified index for a specified length.
+  /// @param start The zero-based index at which to begin this slice.
+  /// @param length The desired length for the slice.
+  /// @return A read_only_span that consists of length elements from the current read_only_span starting at start.
+  /// @exception xtd::argument_out_of_range_exception `start` or `start + length` is less than zero or greater than xtd::read_only_span::length.
+  template<xtd::usize start, size_type lenght = xtd::dynamic_extent>
+  [[nodiscard]] auto slice() const -> read_only_span<type_t> {
       return lenght == xtd::dynamic_extent ? slice(start) : slice(start, lenght);
     }
     
@@ -328,13 +328,13 @@ namespace xtd {
       return read_only_span<type_t> {data_ + start, length};
     }
     
-    /// @brief Forms a subspan of the current read_only_span starting at a specified index for a specified length.
-    /// @param offset The zero-based index at which to begin this slice.
-    /// @param count The desired length for the slice.
-    /// @return A read_only_span that consists of length elements from the current read_only_span starting at start.
-    /// @exception xtd::argument_out_of_range_exception `offset` or `offset + count` is less than zero or greater than xtd::read_only_span::length.
-    template<xtd::usize offset, size_type count = xtd::dynamic_extent>
-    [[nodiscard]] auto subspan() const -> read_only_span<type_t> {
+  /// @brief Forms a subspan of the current read_only_span starting at a specified index for a specified length.
+  /// @param offset The zero-based index at which to begin this slice.
+  /// @param count The desired length for the slice.
+  /// @return A read_only_span that consists of length elements from the current read_only_span starting at start.
+  /// @exception xtd::argument_out_of_range_exception `offset` or `offset + count` is less than zero or greater than xtd::read_only_span::length.
+  template<xtd::usize offset, size_type count = xtd::dynamic_extent>
+  [[nodiscard]] auto subspan() const -> read_only_span<type_t> {
       return count == xtd::dynamic_extent ? slice(offset) : slice(offset, count);
     }
     
@@ -370,18 +370,18 @@ namespace xtd {
       if (destination.length() < this->length()) return false;
       for (auto index = xtd::usize {}; index < length_; ++index)
         destination[index] = operator [](index);
-      return true;
-    }
-    /// @}
-    
-    /// @name Public Operators
-    
-    /// @{
-    /// @brief Gets the element at the specified zero-based index.
-    /// @param index The zero-based index of the element.
-    /// @return The element at the specified index.
-    /// @exception xtd::index_out_of_range_exception `index` is less than zero or greater than or equal to xtd::read_only_span::length.
-    auto operator[](size_type index) const -> const_reference {
+        return true;
+      }
+  /// @}
+  
+  /// @name Public Operators
+  
+  /// @{
+  /// @brief Gets the element at the specified zero-based index.
+  /// @param index The zero-based index of the element.
+  /// @return The element at the specified index.
+  /// @exception xtd::index_out_of_range_exception `index` is less than zero or greater than or equal to xtd::read_only_span::length.
+  auto operator[](size_type index) const -> const_reference {
       if (index >= length_) xtd::helpers::throw_helper::throws(xtd::helpers::exception_case::index_out_of_range);
       return *(data_ + index);
     }
@@ -398,25 +398,25 @@ namespace xtd {
     auto operator [](const xtd::range& range) const -> read_only_span {
       return read_only_span {*this, range};
     }
-
+    
     /// @brief Gets the element at the specified zero-based index.
     /// @param index The zero-based index of the element.
     /// @return The element at the specified index.
     /// @exception xtd::index_out_of_range_exception `index` is less than zero or greater than or equal to xtd::span::length.
-    auto operator ()(size_type index) const -> const_reference {
+    auto operator()(size_type index) const -> const_reference {
       return operator[](index);
     }
     /// @brief Gets the element at the specified zero-based index.
     /// @param index The zero-based index of the element.
     /// @return The element at the specified index.
     /// @exception xtd::index_out_of_range_exception `index` is less than zero or greater than or equal to xtd::span::length.
-    auto operator ()(const xtd::index& index) const -> const_reference {
+    auto operator()(const xtd::index& index) const -> const_reference {
       return operator[](index);
     }
     /// @brief Gets the elements at the specified range.
     /// @param range The range of the elements to set.
     /// @remarks This operator provides the ability to access a specific element in the collection by using the following syntax: `my_collection[index]`.
-    auto operator ()(const xtd::range& range) const -> read_only_span {
+    auto operator()(const xtd::range& range) const -> read_only_span {
       return operator[](range);
     }
     /// @}
@@ -455,7 +455,7 @@ namespace xtd {
   
   template<typename collection_t>
   read_only_span(const collection_t&, const xtd::range&) -> read_only_span<const typename collection_t::value_type>;
-
+  
   template<typename type_t>
   read_only_span(const type_t* data, xtd::usize size) -> read_only_span<type_t>;
   // }
@@ -469,7 +469,7 @@ auto xtd::collections::generic::extensions::list_common<type_t, list_t>::operato
 }
 
 template<typename type_t, typename list_t>
-auto xtd::collections::generic::extensions::list_common<type_t, list_t>::operator ()(const xtd::range& range) const -> xtd::read_only_span<type_t> {
+auto xtd::collections::generic::extensions::list_common<type_t, list_t>::operator()(const xtd::range& range) const -> xtd::read_only_span<type_t> {
   return xtd::read_only_span<type_t>(self(), range);
 }
 
@@ -479,7 +479,7 @@ auto xtd::collections::generic::helpers::raw_array<type_t, allocator_t>::operato
 }
 
 template<typename type_t, typename allocator_t>
-auto xtd::collections::generic::helpers::raw_array<type_t, allocator_t>::operator ()(const xtd::range& range) const -> xtd::read_only_span<type_t> {
+auto xtd::collections::generic::helpers::raw_array<type_t, allocator_t>::operator()(const xtd::range& range) const -> xtd::read_only_span<type_t> {
   return xtd::read_only_span<type_t>(*this, range);
 }
 
@@ -489,7 +489,7 @@ auto xtd::span<type_t, extent>::operator [](const xtd::range& range) const -> xt
 }
 
 template<typename type_t, xtd::usize extent>
-auto xtd::span<type_t, extent>::operator ()(const xtd::range& range) const -> xtd::read_only_span<type_t> {
+auto xtd::span<type_t, extent>::operator()(const xtd::range& range) const -> xtd::read_only_span<type_t> {
   return operator[](range);
 }
 /// @endcond

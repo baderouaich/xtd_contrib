@@ -44,23 +44,23 @@
 #define FK_YAML_NAMESPACE_VERSION_CONCAT(major, minor, patch) FK_YAML_NAMESPACE_VERSION_CONCAT_IMPL(major, minor, patch)
 
 #define FK_YAML_NAMESPACE_VERSION                                                                                      \
-    FK_YAML_NAMESPACE_VERSION_CONCAT(FK_YAML_MAJOR_VERSION, FK_YAML_MINOR_VERSION, FK_YAML_PATCH_VERSION)
+  FK_YAML_NAMESPACE_VERSION_CONCAT(FK_YAML_MAJOR_VERSION, FK_YAML_MINOR_VERSION, FK_YAML_PATCH_VERSION)
 
 #define FK_YAML_NAMESPACE_BEGIN                                                                                        \
-    namespace fkyaml {                                                                                                 \
+  namespace fkyaml {                                                                                                 \
     inline namespace FK_YAML_NAMESPACE_VERSION {
 
 #define FK_YAML_NAMESPACE_END                                                                                          \
-    } /* inline namespace FK_YAML_NAMESPACE_VERSION */                                                                 \
-    } // namespace fkyaml
+  } /* inline namespace FK_YAML_NAMESPACE_VERSION */                                                                 \
+  } // namespace fkyaml
 
 #define FK_YAML_DETAIL_NAMESPACE_BEGIN                                                                                 \
-    FK_YAML_NAMESPACE_BEGIN                                                                                            \
-    namespace detail {
+  FK_YAML_NAMESPACE_BEGIN                                                                                            \
+  namespace detail {
 
 #define FK_YAML_DETAIL_NAMESPACE_END                                                                                   \
-    } /* namespace detail */                                                                                           \
-    FK_YAML_NAMESPACE_END
+  } /* namespace detail */                                                                                           \
+  FK_YAML_NAMESPACE_END
 
 #endif // !defined(FK_YAML_VERCHECK_SUCCEEDED)
 
@@ -76,10 +76,10 @@ class node_value_converter;
 /// @brief A class to store value of YAML nodes.
 /// @sa https://fktn-k.github.io/fkYAML/api/basic_node/
 template <
-    template<typename, typename...> class SequenceType = std::vector,
-    template<typename, typename, typename...> class MappingType = std::map, typename BooleanType = bool,
-    typename IntegerType = std::int64_t, typename FloatNumberType = double, typename StringType = std::string,
-    template<typename, typename = void> class ConverterType = node_value_converter>
+  template<typename, typename...> class SequenceType = std::vector,
+  template<typename, typename, typename...> class MappingType = std::map, typename BooleanType = bool,
+  typename IntegerType = std::int64_t, typename FloatNumberType = double, typename StringType = std::string,
+  template<typename, typename = void> class ConverterType = node_value_converter >
 class basic_node;
 
 /// @brief default YAML node value container.

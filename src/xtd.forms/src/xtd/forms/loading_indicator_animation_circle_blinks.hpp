@@ -12,8 +12,8 @@ namespace xtd::forms {
       auto height = static_cast<float>(xtd::math::min(clip_rectangle.width, clip_rectangle.height)) / radius_factor_;
       auto width = static_cast<float>(xtd::math::min(clip_rectangle.width, clip_rectangle.height)) / radius_factor_;
       for (auto n = 0; n < intervals_; n++) {
-        auto opacity_index = enabled ? n + 1 : 2;
-        auto opacity = opacity_index * (255 + 1) / intervals_ - 1;
+      auto opacity_index = enabled ? n + 1 : 2;
+      auto opacity = opacity_index * (255 + 1) / intervals_ - 1;
         graphics.fill_ellipse(xtd::drawing::solid_brush {xtd::drawing::color::from_argb(static_cast<xtd::byte>(opacity), color)}, -(radius_factor_ / 2.f - 1.f) * width + width / radius_factor_ * 2.f, -(radius_factor_ / 2.f - 1.f) * height + height / radius_factor_ * 2.f, 2.f * width, 2.f * height);
         graphics.rotate_transform(angle);
       }

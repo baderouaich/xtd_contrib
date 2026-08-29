@@ -98,10 +98,10 @@ namespace xtd {
     /// @param destination The elements to fill.
     template<typename value_t>
     auto get_items(const xtd::read_only_span<value_t>& choices, xtd::span<value_t>& destination) -> void {
-      for (auto& item : destination)
-        item = choices[next(choices.length())];
-    }
-    
+for (auto& item : destination)
+      item = choices[next(choices.length())];
+      }
+      
     /// @brief Returns a nonnegative random number.
     /// @return A 32-bit signed integer greater than or equal to zero and less than std::numeric_limits<int32>::max())
     [[nodiscard]] virtual auto next() const -> xtd::int32;
@@ -147,9 +147,9 @@ namespace xtd {
     [[nodiscard]] auto next(value_t min_value, value_t max_value) const -> value_t {
       if (min_value > max_value) xtd::helpers::throw_helper::throws(xtd::helpers::exception_case::argument_out_of_range);
       if (min_value == max_value) return min_value;
-      return min_value + static_cast<value_t>(math::round(sample() * (max_value - 1 - min_value)));
-    }
-    
+        return min_value + static_cast<value_t>(math::round(sample() * (max_value - 1 - min_value)));
+        }
+        
     /// @cond
     template<xtd::boolean>
     [[nodiscard]] auto next() const -> xtd::boolean {return static_cast<xtd::boolean>(next(0, 2));}
@@ -181,7 +181,7 @@ namespace xtd {
     /// @remarks The next(int32, int32) overload returns random integers that range from min_value to max_value – 1. However, if max_value equals min_value, the method returns min_value.
     /// @remarks Unlike the other overloads of the next method, which return only non-negative values, this method can return a negative random integer.
     [[nodiscard]] virtual auto next_byte(xtd::byte min_value, xtd::byte max_value) const -> xtd::byte;
-
+    
     /// @brief Fills the elements of a specified array of bytes with random numbers.
     /// @param buffer An array of bytes to contain random numbers.
     /// @remarks Each element of the array of bytes is set to a random number greater than or equal to zero, and less than or equal to std::numeric_limits<xtd::byte>::max().

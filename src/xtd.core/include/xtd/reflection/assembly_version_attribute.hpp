@@ -87,7 +87,7 @@ namespace xtd {
 }
 
 /// @cond
-auto __assembly_version_attribute__() -> xtd::sptr<xtd::reflection::assembly_version_attribute>&;
+auto __assembly_version_attribute__() -> xtd::sptr<xtd::reflection::assembly_version_attribute>& ;
 /// @endcond
 
 /// @brief Creates the assembly version information. Must be called once in your application.

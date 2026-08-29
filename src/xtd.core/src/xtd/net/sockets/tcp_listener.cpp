@@ -130,7 +130,7 @@ auto tcp_listener::start() -> void {
 
 auto tcp_listener::start(xtd::usize backlog) -> void {
   if (!active()) {
-    data_->server_socket.bind(data_->local_end_point);
+  data_->server_socket.bind(data_->local_end_point);
     try {
       data_->server_socket.listen(backlog);
     } catch (const socket_exception& e) {

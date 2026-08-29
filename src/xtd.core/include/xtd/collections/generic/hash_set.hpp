@@ -84,16 +84,16 @@ namespace xtd {
         /// @remarks If `collection` contains duplicates, the set will contain one of each unique element. No exception will be thrown. Therefore, the size of the resulting set is not identical to the size of `collection`.
         /// @remarks This constructor is an O(`n`) operation, where `n` is the number of elements in the `collection` parameter.
         hash_set(const ienumerable<value_type>& collection) noexcept {
-          for (const auto& item : collection)
-            add(item);
+for (const auto& item : collection)
+          add(item);
         }
-        /// @brief Initializes a new instance of the xtd::collections::generic::hash_set <type_t> class that uses the specified equality comparer for the set type, contains elements copied from the specified collection, and has sufficient capacity to accommodate the number of elements copied.
-        /// @param collection The collection whose elements are copied to the new set.
-        /// @param comparer The xtd::collections::generic::iequality_comparer <type_t> implementation to use when comparing values in the set.
-        /// @par Examples
-        /// The following example uses a supplied xtd::collections::generic::iequality_comparer <type_t> to allow case-insensitive comparisons on the elements of a xtd::collections::generic::hash_set <type_t> collection of vehicle types.
-        /// @include generic_hash_set2.cpp
-        hash_set(const ienumerable < value_type >& collection, const xtd::collections::generic::iequality_comparer<key_type>& comparer) noexcept : data_(xtd::new_ptr<hash_set_data>(comparer)) {
+      /// @brief Initializes a new instance of the xtd::collections::generic::hash_set <type_t> class that uses the specified equality comparer for the set type, contains elements copied from the specified collection, and has sufficient capacity to accommodate the number of elements copied.
+      /// @param collection The collection whose elements are copied to the new set.
+      /// @param comparer The xtd::collections::generic::iequality_comparer <type_t> implementation to use when comparing values in the set.
+      /// @par Examples
+      /// The following example uses a supplied xtd::collections::generic::iequality_comparer <type_t> to allow case-insensitive comparisons on the elements of a xtd::collections::generic::hash_set <type_t> collection of vehicle types.
+      /// @include generic_hash_set2.cpp
+      hash_set(const ienumerable < value_type >& collection, const xtd::collections::generic::iequality_comparer<key_type>& comparer) noexcept : data_(xtd::new_ptr<hash_set_data>(comparer)) {
           for (const auto& item : collection)
             add(item);
           ensure_capacity(count());
@@ -179,9 +179,9 @@ namespace xtd {
           return true;
         }
         
-        /// @brief Removes all keys and values from the xtd::collections::generic::dictionary <key_t, value_t>.
-        /// @remarks The xtd::collections::generic::dictionary::count property is set to 0, and references to other objects from elements of the collection are also released. The capacity remains unchanged.
-        auto clear() noexcept -> void override {
+      /// @brief Removes all keys and values from the xtd::collections::generic::dictionary <key_t, value_t>.
+      /// @remarks The xtd::collections::generic::dictionary::count property is set to 0, and references to other objects from elements of the collection are also released. The capacity remains unchanged.
+      auto clear() noexcept -> void override {
           items().clear();
           ++data_->version;
         }
@@ -218,10 +218,10 @@ namespace xtd {
         auto copy_to(size_type index, xtd::array<type_t>& array, size_type array_index, size_type count) const -> void {
           if (index + count > self_.count() || array_index + count > array.length()) xtd::helpers::throw_helper::throws(xtd::helpers::exception_case::argument);
           auto increment = size_type {};
-          for (const auto& item : self_) {
+for (const auto& item : self_) {
             if (increment >= index + count) return;
-            if (increment++ >= index) array[array_index++] = item;
-          }
+              if (increment++ >= index) array[array_index++] = item;
+            }
         }
         
         /// @brief Ensures that the dictionary can hold up to a specified number of entries without any further expansion of its backing storage.
@@ -373,32 +373,32 @@ namespace xtd {
         /// @param other The collection to compare to the current set.
         /// @remarks Any duplicate elements in `other` are ignored.
         auto symetric_excep_with(const xtd::collections::generic::ienumerable<type_t>& other) noexcept -> void override {
-          for (const auto& item : other)
-            if (contains(item)) remove(item);
+for (const auto& item : other)
+          if (contains(item)) remove(item);
             else add(item);
-        }
-        
-        /// @brief Gets a string that represents the current object.
-        /// @return A string that represents the current object.
-        [[nodiscard]] auto to_string() const noexcept -> xtd::string override {return xtd::string::format("{{{}}}", xtd::string::join(", ", self_));}
-        
+            }
+            
+      /// @brief Gets a string that represents the current object.
+      /// @return A string that represents the current object.
+      [[nodiscard]] auto to_string() const noexcept -> xtd::string override {return xtd::string::format("{{{}}}", xtd::string::join(", ", self_));}
+      
         /// @brief Modifies the current set so that it contains all elements that are present in the current set, in the specified collection, or in both.
         /// @param other The collection to compare to the current set.
         /// @remarks Any duplicate elements in `other` are ignored.
         auto union_with(const xtd::collections::generic::ienumerable<type_t>& other) noexcept -> void override {
-          for (const auto& item : other)
-            if (!contains(item)) add(item);
-        }
-        
-        /// @}
-        
-        /// @name Public Operators
-        
-        /// @{
-        /// @}
-        
-      private:
-        auto is_read_only() const noexcept -> bool override {return false;}
+for (const auto& item : other)
+          if (!contains(item)) add(item);
+          }
+          
+      /// @}
+      
+      /// @name Public Operators
+      
+      /// @{
+      /// @}
+      
+    private:
+      auto is_read_only() const noexcept -> bool override {return false;}
         auto is_synchronized() const noexcept -> bool override {return false;}
         const xtd::object& sync_root() const noexcept override {return data_->sync_root;}
         auto sub_set(const hash_set& set) const noexcept -> bool {

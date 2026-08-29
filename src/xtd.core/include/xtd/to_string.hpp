@@ -42,7 +42,7 @@ namespace xtd {
   template<typename value_t>
   requires (requires (const xtd::raw_type<value_t>& value, const xtd::string& fmt) {{value.to_string(fmt)} -> xtd::textual;})
   inline auto to_string(const value_t& value, const xtd::string& fmt, const std::locale& loc) -> xtd::string;
-
+  
   /// @brief Convert a specified value into a string with specified format and locale.
   /// @par Namespace
   /// xtd
@@ -437,7 +437,7 @@ namespace xtd {
   
   template<typename char_t, typename traits_t>
   inline auto to_string(const std::basic_string_view<char_t, traits_t>& chars, const xtd::string& fmt, const std::locale& loc) -> xtd::string;
-
+  
   template<typename type_t, xtd::usize size>
   inline auto to_string(const std::array<type_t, size>& values, const xtd::string& fmt, const std::locale& loc) -> xtd::string;
   
@@ -497,7 +497,7 @@ namespace xtd {
   
   template<typename ...args_t>
   inline auto to_string(const std::variant<args_t...>& value, const xtd::string& fmt, const std::locale& loc) -> xtd::string;
-
+  
   template<typename type_t>
   inline auto to_string(type_t value, const std::initializer_list<std::pair<type_t, xtd::string>>& il) -> xtd::string;
   
@@ -505,7 +505,7 @@ namespace xtd {
   
   template<>
   inline auto to_string(const std::filesystem::path& value, const xtd::string& fmt, const std::locale& loc) -> xtd::string;
-
+  
   template<typename type_t>
   inline auto to_string(const xtd::collections::generic::ienumerable<type_t>& values, const xtd::string& fmt, const std::locale& loc) -> xtd::string;
   

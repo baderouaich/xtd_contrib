@@ -65,12 +65,12 @@ namespace xtd {
       [[nodiscard]] static auto capture() -> exception_dispatch_info {
         return exception_dispatch_info {std::current_exception()};
       }
-
+      
       /// @brief Rethrows the exception that's represented by the current xtd::exception_services::exception_dispatch_info object, after restoring the state that was saved when the exception was captured.
       auto rethrow() -> void {if (captured()) std::rethrow_exception(exception_ptr_);}
-      /// @brief Rehrows the source exception, maintaining the original stack trace information.
-      template<typename exception_t>
-      static auto rethrow(const exception_t& source) -> void {exception_dispatch_info {source}.rethrow();}
+    /// @brief Rehrows the source exception, maintaining the original stack trace information.
+    template<typename exception_t>
+    static auto rethrow(const exception_t& source) -> void {exception_dispatch_info {source}.rethrow();}
       /// @}
       
       /// @name Public Operators
@@ -80,14 +80,14 @@ namespace xtd {
       /// @return `true` if exception is captured; otherwise `false`.
       explicit operator bool () const noexcept {return captured();}
       operator const std::exception_ptr& () const noexcept {return exception_ptr_;}
-      operator std::exception_ptr () noexcept {return exception_ptr_;}
+      operator std::exception_ptr() noexcept {return exception_ptr_;}
       /// @}
       
     private:
       template<typename exception_t>
       explicit exception_dispatch_info(const exception_t& source) : source_ {xtd::new_ptr<exception_t>(source)}, exception_ptr_ {std::make_exception_ptr(source)} {}
       explicit exception_dispatch_info(const std::exception_ptr& exception_ptr) : exception_ptr_ {exception_ptr} {}
-
+      
       xtd::ptr<std::exception> source_;
       std::exception_ptr exception_ptr_;
     };

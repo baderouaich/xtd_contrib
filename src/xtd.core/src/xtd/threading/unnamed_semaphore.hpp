@@ -37,7 +37,7 @@ public:
     handle_.reset();
   }
   
-  bool open(const string& name) override {
+bool open(const string& name) override {
     xtd::helpers::throw_helper::throws(xtd::helpers::exception_case::invalid_operation);
   }
   
@@ -49,7 +49,7 @@ public:
     return true;
   }
   
-  uint32 wait(int32 milliseconds_timeout) override {
+uint32 wait(int32 milliseconds_timeout) override {
     if (milliseconds_timeout == timeout::infinite) handle_->semaphore.acquire();
     else if (handle_->semaphore.try_acquire_for(std::chrono::milliseconds {milliseconds_timeout}) == false) return 0x00000102;
     

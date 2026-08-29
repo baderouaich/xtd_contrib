@@ -394,9 +394,9 @@ auto form::center_to_screen() -> void {
   if (!data_->previous_screen) start_position(form_start_position::center_screen);
   else {
     screen screen = screen::from_control(*this);
-    left((screen.working_area().width - width()) / 2);
-    top((screen.working_area().height - height()) / 2);
-  }
+      left((screen.working_area().width - width()) / 2);
+      top((screen.working_area().height - height()) / 2);
+    }
 }
 
 auto form::close() -> void {
@@ -647,26 +647,26 @@ auto form::on_activated(const event_args& e) -> void {
   if (!can_raise_events()) return;
   auto safe_activated = activated;
   if (safe_activated.is_empty()) return;
-  safe_activated(*this, e);
-}
+    safe_activated(*this, e);
+  }
 
 auto form::on_deactivate(const event_args& e) -> void {
   if (!can_raise_events()) return;
   auto safe_deactivate = deactivate;
   if (safe_deactivate.is_empty()) return;
-  safe_deactivate(*this, e);
-}
+    safe_deactivate(*this, e);
+  }
 
 auto form::on_handle_created(const event_args& e) -> void {
   control::top_level_controls_.add(self_);
   container_control::on_handle_created(e);
   if (data_->show_icon && data_->icon != xtd::drawing::icon::empty) native::form::icon(handle(), data_->icon);
   if (data_->accept_button.has_value()) data_->accept_button.value().get().notify_default(true);
-  if (data_->opacity != 1.0) native::form::opacity(handle(), data_->opacity);
-  if (!region().is_empty() && !region().is_infinite()) native::form::set_region(handle(), region().handle());
-  
-  if (data_->menu.has_value()) create_system_menu();
-}
+    if (data_->opacity != 1.0) native::form::opacity(handle(), data_->opacity);
+      if (!region().is_empty() && !region().is_infinite()) native::form::set_region(handle(), region().handle());
+      
+        if (data_->menu.has_value()) create_system_menu();
+        }
 
 auto form::on_handle_destroyed(const event_args& e) -> void {
   control::top_level_controls_.remove(self_);
@@ -689,8 +689,8 @@ auto form::on_form_closing(form_closing_event_args& e) -> void {
   if (!can_raise_events()) return;
   auto safe_form_closing = form_closing;
   if (safe_form_closing.is_empty()) return;
-  safe_form_closing(*this, e);
-}
+    safe_form_closing(*this, e);
+  }
 
 auto form::on_layout(const event_args& e) -> void {
   scrollable_control::on_layout(e);
@@ -715,7 +715,7 @@ auto form::on_region_changed(const event_args& e) -> void {
 
 auto form::on_resize(const event_args& e) -> void {
   if (is_handle_created()) {
-    if (native::form::minimize(handle()))
+  if (native::form::minimize(handle()))
       data_->window_state = forms::form_window_state::minimized;
     else if (native::form::maximize(handle()))
       data_->window_state = forms::form_window_state::maximized;
@@ -729,7 +729,7 @@ auto form::on_resize(const event_args& e) -> void {
 
 auto form::wnd_proc(message& message) -> void {
   switch (message.msg) {
-    case WM_ACTIVATE: wm_activate(message); break;
+  case WM_ACTIVATE: wm_activate(message); break;
     case WM_CLOSE: wm_close(message); break;
     case WM_MENUCOMMAND: if (data_->menu.has_value()) data_->menu.value().get().wm_click(message); break;
     case WM_SYSCOLORCHANGE: wm_syscolor_change(message); break;
@@ -744,16 +744,16 @@ auto form::closed_() const noexcept -> bool {
 
 auto form::internal_set_window_state() -> void {
   if (!data_->previous_screen)
-    post_recreate_handle();
+  post_recreate_handle();
   else if (is_handle_created()) {
     switch (data_->window_state) {
-      case form_window_state::normal: native::form::restore(handle()); break;
-      case form_window_state::maximized: native::form::maximize(handle(), true); break;
-      case form_window_state::minimized: native::form::minimize(handle(), true); break;
-      case form_window_state::full_screen: native::form::full_screen(handle(), true); break;
-      default: break;
+        case form_window_state::normal: native::form::restore(handle()); break;
+        case form_window_state::maximized: native::form::maximize(handle(), true); break;
+        case form_window_state::minimized: native::form::minimize(handle(), true); break;
+        case form_window_state::full_screen: native::form::full_screen(handle(), true); break;
+        default: break;
+      }
     }
-  }
 }
 
 auto form::create_system_menu() -> void {
@@ -776,14 +776,14 @@ auto form::destroy_system_menu() -> void {
   
   native::form::menu(handle(), 0);
   
-  // Workaround : Force the client size with the previously saved client size.
-  client_size(prev_client_size);
-}
+    // Workaround : Force the client size with the previously saved client size.
+    client_size(prev_client_size);
+  }
 
 auto form::fill_in_create_params_border_styles(xtd::forms::create_params& create_params) const -> void {
   switch (data_->form_border_style) {
-    case xtd::forms::form_border_style::none: break;
-    case xtd::forms::form_border_style::fixed_single: create_params.style(create_params.style() | WS_BORDER); break;
+  case xtd::forms::form_border_style::none: break;
+  case xtd::forms::form_border_style::fixed_single: create_params.style(create_params.style() | WS_BORDER); break;
     case xtd::forms::form_border_style::sizable: create_params.style(create_params.style() | WS_BORDER | WS_THICKFRAME); break;
     case xtd::forms::form_border_style::fixed_3d:
       create_params.style(create_params.style() | WS_BORDER);
@@ -809,19 +809,19 @@ auto form::fill_in_create_params_border_icons(xtd::forms::create_params& create_
     create_params.class_style(create_params.class_style() | CS_NOCLOSE);
   else {
     if (!xtd::string::is_empty(text())) create_params.style(create_params.style() | WS_CAPTION);
-      
+    
     if (data_->control_box) create_params.style(create_params.style() | WS_SYSMENU | WS_CAPTION);
     else create_params.style(create_params.style() & ~WS_SYSMENU);
-      
+    
     if (!data_->close_box) create_params.class_style(create_params.class_style() | CS_NOCLOSE);
     else create_params.class_style(create_params.class_style() & ~CS_NOCLOSE);
-      
+    
     if (data_->maximize_box) create_params.style(create_params.style() | WS_MAXIMIZEBOX);
     else create_params.style(create_params.style() & ~WS_MAXIMIZEBOX);
-      
+    
     if (data_->minimize_box) create_params.style(create_params.style() | WS_MINIMIZEBOX);
     else create_params.style(create_params.style() & ~WS_MINIMIZEBOX);
-      
+    
     if (data_->help_button && !data_->maximize_box && !data_->minimize_box && data_->control_box) create_params.ex_style(create_params.ex_style() | WS_EX_CONTEXTHELP);
     else create_params.ex_style(create_params.ex_style() & ~WS_EX_CONTEXTHELP);
   }
@@ -864,7 +864,7 @@ auto form::fill_in_create_params_start_position(xtd::forms::create_params& creat
 
 auto form::fill_in_create_params_window_state(xtd::forms::create_params& create_params) const -> void {
   switch (data_->window_state) {
-    case form_window_state::maximized: create_params.style(create_params.style() | WS_MAXIMIZE); break;
+  case form_window_state::maximized: create_params.style(create_params.style() | WS_MAXIMIZE); break;
     case form_window_state::minimized: create_params.style(create_params.style() | WS_MINIMIZE); break;
     default: break;
   }
@@ -886,19 +886,19 @@ auto form::wm_close(message& message) -> void {
   on_form_closing(event_args);
   message.result = event_args.cancel();
   if (event_args.cancel() != true) {
-    control::top_level_controls_.remove(self_);
-    data_->closed = true;
-    if (!get_state(state::modal))
-      hide();
-    else {
-      if (data_->dialog_result == forms::dialog_result::none) data_->dialog_result = forms::dialog_result::cancel;
-      native::form::end_dialog(handle(), static_cast<int32>(data_->dialog_result));
-      set_parent(data_->parent_before_show_dialog);
-      set_state(state::modal, false);
-      post_recreate_handle();
+      control::top_level_controls_.remove(self_);
+      data_->closed = true;
+      if (!get_state(state::modal))
+        hide();
+      else {
+        if (data_->dialog_result == forms::dialog_result::none) data_->dialog_result = forms::dialog_result::cancel;
+        native::form::end_dialog(handle(), static_cast<int32>(data_->dialog_result));
+        set_parent(data_->parent_before_show_dialog);
+        set_state(state::modal, false);
+        post_recreate_handle();
+      }
+      on_form_closed(form_closed_event_args());
     }
-    on_form_closed(form_closed_event_args());
-  }
 }
 
 auto form::wm_recreate(message& message) -> void {
@@ -910,5 +910,5 @@ auto form::wm_recreate(message& message) -> void {
 auto form::wm_syscolor_change(message& message) -> void {
   def_wnd_proc(message);
   if (&application::open_forms()[0].get() == this) style_sheets::style_sheet::on_system_colors_changed(event_args::empty);
-  on_system_colors_changed(event_args::empty);
-}
+    on_system_colors_changed(event_args::empty);
+  }

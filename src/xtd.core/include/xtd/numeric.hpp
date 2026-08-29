@@ -10,6 +10,6 @@ namespace xtd {
   // Since Doxygen does not work properly with the C++ concept, the documentation for this concept is declared in xtd/numeric_.hpp
   template<typename type_t>
   concept numeric =
-  xtd::integer<type_t> ||
-  xtd::real<type_t>;
+    xtd::integer<type_t> ||
+    xtd::real<type_t>;
 }

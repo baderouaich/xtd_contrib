@@ -121,25 +121,25 @@ namespace xtd {
       
       if (position != array.array.end() && !comparer->Compare(value, *position))
         return (int32)std::distance(array.array.begin(), position);
-      return (int32)~std::distance(array.array.begin(), position);
-    }
-    /// @brief Searches an entire one-dimensional sorted array for a specific element, using the xtd::icomparable interface implemented by each element of the array and by the specified object.
-    /// @param array The sorted one-dimensional array to search.
-    /// @param value The object to search for.
-    /// @return int32 The index of the specified value in the specified array, if value is found; otherwise, a negative number. If value is not found and value is less than one or more elements in array, the negative number returned is the bitwise complement of the index of the first element that is larger than value. If value is not found and value is greater than all elements in array, the negative number returned is the bitwise complement of (the index of the last element plus 1). If this method is called with a non-sorted array, the return value can be incorrect and a negative number could be returned, even if value is present in array.
-    /// @exception xtd::rank_exception array is multidimensional.
-    /// @exception xtd::argument_exception value is of a type that is not compatible with the elements of array.
-    /// @exception xtd::invalid_operation_exception value does not implement the xtd::icomparable interface, and the search encounters an element that does not implement the xtd::icomparable interface.
-    /// @remarks This method does not support searching arrays that contain negative indexes. array must be sorted before calling this method.
-    /// @remarks If the array does not contain the specified value, the method returns a negative integer. You can apply the bitwise complement operator ~ to the negative result to produce an index. If this index is one greater than the upper bound of the array, there are no elements larger than value in the array. Otherwise, it is the index of the first element that is larger than value.
-    /// @remarks Either value or every element of array must implement the xtd::icomparable interface, which is used for comparisons. The elements of array must already be sorted in increasing value according to the sort order defined by the xtd::icomparable implementation; otherwise, the result might be incorrect.
-    /// @note Ifvalue does not implement the xtd::icomparable interface, the elements of array are not tested for xtd::icomparable before the search begins. An exception is thrown if the search encounters an element that does not implement xtd::icomparable.
-    /// @remarks Duplicate elements are allowed. If the array contains more than one element equal to value, the method returns the index of only one of the occurrences, and not necessarily the first one.
-    /// @remarks null can always be compared with any other reference type; therefore, comparisons with null do not generate an exception.
-    /// @note For every element tested, value is passed to the appropriate xtd::icomparable implementation, even if value is null. That is, the xtd::icomparable implementation determines how a given element compares to null.
-    /// @remarks This method is an O(log n) operation, where n is the Length of array.
-    template<typename type_t, typename allocator_t>
-    [[nodiscard]] static auto binary_search(const array<type_t, 1, allocator_t>& array, const type_t& value) -> xtd::usize {return binary_search(array, 0, array.Length, value, xtd::collections::generic::comparer<type_t>::default_comparer.release());}
+        return (int32)~std::distance(array.array.begin(), position);
+      }
+  /// @brief Searches an entire one-dimensional sorted array for a specific element, using the xtd::icomparable interface implemented by each element of the array and by the specified object.
+  /// @param array The sorted one-dimensional array to search.
+  /// @param value The object to search for.
+  /// @return int32 The index of the specified value in the specified array, if value is found; otherwise, a negative number. If value is not found and value is less than one or more elements in array, the negative number returned is the bitwise complement of the index of the first element that is larger than value. If value is not found and value is greater than all elements in array, the negative number returned is the bitwise complement of (the index of the last element plus 1). If this method is called with a non-sorted array, the return value can be incorrect and a negative number could be returned, even if value is present in array.
+  /// @exception xtd::rank_exception array is multidimensional.
+  /// @exception xtd::argument_exception value is of a type that is not compatible with the elements of array.
+  /// @exception xtd::invalid_operation_exception value does not implement the xtd::icomparable interface, and the search encounters an element that does not implement the xtd::icomparable interface.
+  /// @remarks This method does not support searching arrays that contain negative indexes. array must be sorted before calling this method.
+  /// @remarks If the array does not contain the specified value, the method returns a negative integer. You can apply the bitwise complement operator ~ to the negative result to produce an index. If this index is one greater than the upper bound of the array, there are no elements larger than value in the array. Otherwise, it is the index of the first element that is larger than value.
+  /// @remarks Either value or every element of array must implement the xtd::icomparable interface, which is used for comparisons. The elements of array must already be sorted in increasing value according to the sort order defined by the xtd::icomparable implementation; otherwise, the result might be incorrect.
+  /// @note Ifvalue does not implement the xtd::icomparable interface, the elements of array are not tested for xtd::icomparable before the search begins. An exception is thrown if the search encounters an element that does not implement xtd::icomparable.
+  /// @remarks Duplicate elements are allowed. If the array contains more than one element equal to value, the method returns the index of only one of the occurrences, and not necessarily the first one.
+  /// @remarks null can always be compared with any other reference type; therefore, comparisons with null do not generate an exception.
+  /// @note For every element tested, value is passed to the appropriate xtd::icomparable implementation, even if value is null. That is, the xtd::icomparable implementation determines how a given element compares to null.
+  /// @remarks This method is an O(log n) operation, where n is the Length of array.
+  template<typename type_t, typename allocator_t>
+  [[nodiscard]] static auto binary_search(const array<type_t, 1, allocator_t>& array, const type_t& value) -> xtd::usize {return binary_search(array, 0, array.Length, value, xtd::collections::generic::comparer<type_t>::default_comparer.release());}
     /// @brief Searches a range of elements in a one-dimensional sorted array for a value, using the specified xtd::icomparer interface.
     /// @param array The sorted one-dimensional array to search.
     /// @param value The object to search for.
@@ -179,19 +179,19 @@ namespace xtd {
       if (index + length > array.data_->items.size()) helpers::throw_helper::throws(xtd::helpers::exception_case::index_out_of_range);
       for (auto increment = xtd::usize {}; increment < length; ++increment)
         array.data_->items[index + increment] = type_t {};
-    }
-    
-    /// @brief Copies a range of elements from an xtd::array starting at the specified source index and pastes them to another xtd::array starting at the specified destination index. Guarantees that all changes are undone if the copy does not succeed completely.
-    /// @param source_array The xtd::array that contains the data to copy.
-    /// @param source_indexes An array of xtd::usize that represents the index in `source_array` at which copying begins.
-    /// @param destination_array The xtd::array that receives the data.
-    /// @param destination_indexes An array of xtd::usize that represents the index in `destination_array` at which storing begins.
-    /// @param length An xtd::usize that represents the number of elements to copy.
-    /// @exception xtd::rank_exception `source_array` and `destination_array` have different ranks.
-    /// @exception xtd::argument_out_of_range_excpetion `source_index` is less than the lower bound of the first dimension of `source_array`. <br>-or-<br> `destination_index` is less than the lower bound of the first dimension of `destination_array`.
-    /// @exception xtd::argument_exception `length` is greater than the number of elements from `source_index` to the end of `source_array`. <br>-or-<br> `length` is greater than the number of elements from `destination_index` to the end of `destination_array`.
-    template<typename source_type_t, xtd::usize source_rank, typename source_allocator_t, typename destination_type_t, xtd::usize destination_rank, typename destination_allocator_t>
-    static auto constrained_copy(const array<source_type_t, source_rank, source_allocator_t>& source_array, const xtd::array<xtd::usize>& source_indexes, array<destination_type_t, destination_rank, destination_allocator_t>& destination_array, const xtd::array<xtd::usize>& destination_indexes, xtd::usize length) -> void {constrained_copy(source_array, xtd::basic_array<source_type_t, source_allocator_t>::compute_index(source_indexes), destination_array, xtd::basic_array<destination_type_t, destination_allocator_t>::compute_index(destination_indexes), length);}
+      }
+      
+  /// @brief Copies a range of elements from an xtd::array starting at the specified source index and pastes them to another xtd::array starting at the specified destination index. Guarantees that all changes are undone if the copy does not succeed completely.
+  /// @param source_array The xtd::array that contains the data to copy.
+  /// @param source_indexes An array of xtd::usize that represents the index in `source_array` at which copying begins.
+  /// @param destination_array The xtd::array that receives the data.
+  /// @param destination_indexes An array of xtd::usize that represents the index in `destination_array` at which storing begins.
+  /// @param length An xtd::usize that represents the number of elements to copy.
+  /// @exception xtd::rank_exception `source_array` and `destination_array` have different ranks.
+  /// @exception xtd::argument_out_of_range_excpetion `source_index` is less than the lower bound of the first dimension of `source_array`. <br>-or-<br> `destination_index` is less than the lower bound of the first dimension of `destination_array`.
+  /// @exception xtd::argument_exception `length` is greater than the number of elements from `source_index` to the end of `source_array`. <br>-or-<br> `length` is greater than the number of elements from `destination_index` to the end of `destination_array`.
+  template<typename source_type_t, xtd::usize source_rank, typename source_allocator_t, typename destination_type_t, xtd::usize destination_rank, typename destination_allocator_t>
+  static auto constrained_copy(const array<source_type_t, source_rank, source_allocator_t>& source_array, const xtd::array<xtd::usize>& source_indexes, array<destination_type_t, destination_rank, destination_allocator_t>& destination_array, const xtd::array<xtd::usize>& destination_indexes, xtd::usize length) -> void {constrained_copy(source_array, xtd::basic_array<source_type_t, source_allocator_t>::compute_index(source_indexes), destination_array, xtd::basic_array<destination_type_t, destination_allocator_t>::compute_index(destination_indexes), length);}
     /// @brief Copies a range of elements from an xtd::array starting at the specified source index and pastes them to another xtd::array starting at the specified destination index. Guarantees that all changes are undone if the copy does not succeed completely.
     /// @param source_array The xtd::array that contains the data to copy.
     /// @param source_index An xtd::usize that represents the index in `source_array` at which copying begins.
@@ -330,20 +330,20 @@ namespace xtd {
     /// @remarks This method is an O(n) operation, where n is Count.
     template<typename type_t, xtd::usize rank, typename allocator_t, typename predicate_t>
     [[nodiscard]] static auto exists(const xtd::array<type_t, rank, allocator_t>& array, predicate_t match) -> bool {
-      for (const type_t& elem : array)
-        if (match(elem)) return true;
-      return false;
-    }
-    
-    /// @brief Determines the index of a specific item in the array specified.
-    /// @param array The object to locate in the array.
-    /// @param value The object to locate in the array.
-    /// @return The index of value if found in the array; otherwise, -1.
-    /// @par Examples
-    /// The following code example shows how to determine the index of the first occurrence of a specified element.
-    /// @include array_index_of.cpp
-    template<typename type_t, xtd::usize rank, typename allocator_t = xtd::collections::generic::helpers::allocator<type_t>>
-    [[nodiscard]] static auto index_of(const xtd::array<type_t, rank, allocator_t>& array, const type_t& value) noexcept -> xtd::usize {return array.index_of(value);}
+for (const type_t& elem : array)
+      if (match(elem)) return true;
+        return false;
+      }
+      
+  /// @brief Determines the index of a specific item in the array specified.
+  /// @param array The object to locate in the array.
+  /// @param value The object to locate in the array.
+  /// @return The index of value if found in the array; otherwise, -1.
+  /// @par Examples
+  /// The following code example shows how to determine the index of the first occurrence of a specified element.
+  /// @include array_index_of.cpp
+  template<typename type_t, xtd::usize rank, typename allocator_t = xtd::collections::generic::helpers::allocator<type_t>>
+  [[nodiscard]] static auto index_of(const xtd::array<type_t, rank, allocator_t>& array, const type_t& value) noexcept -> xtd::usize {return array.index_of(value);}
     /// @brief Determines the index of a specific item in the array specified.
     /// @param array The object to locate in the array.
     /// @param value The object to locate in the array.

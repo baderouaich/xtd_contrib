@@ -31,7 +31,7 @@ struct button::data {
   auto on_auto_repeat_timer_tick(object& sender, const event_args& e) -> void {
     auto_repeat_timer.enabled(false);
     if (control.enabled()) {
-      control.auto_repeat_perform_click();
+    control.auto_repeat_perform_click();
       auto_repeat_timer.interval_milliseconds(auto_repeat_interval);
       auto_repeat_timer.enabled(auto_repeat);
     }

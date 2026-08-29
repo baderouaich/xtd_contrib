@@ -72,7 +72,7 @@ namespace xtd {
       /// @param text A string that represent the caption text oof the debug form.
       explicit trace_form_base(const xtd::string& text);
       /// @}
- 
+      
       /// @name Protected Prperties
       
       /// @{
@@ -86,7 +86,7 @@ namespace xtd {
       /// @return Current trace_form_base.
       virtual auto need_header(bool value) -> trace_form_base&;
       /// @}
-
+      
       /// @name Protected Methods
       
       /// @{

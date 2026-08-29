@@ -106,7 +106,7 @@ namespace xtd {
         xtd::date_time time_;
       };
       /// @}
-
+      
       /// @name Public Constructors
       /// @{
       

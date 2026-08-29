@@ -322,7 +322,7 @@ namespace xtd {
       /// ```
       template <auto constant_value>
       static constexpr auto constant();
-
+      
       /// @brief Divide the specified left and right operands.
       /// @param left The left operand.
       /// @param right The right operand.
@@ -357,7 +357,7 @@ namespace xtd {
       template<typename left_t, typename right_t>
       requires std::is_base_of_v<expression, std::decay_t<left_t>> || std::is_base_of_v<expression, std::decay_t<right_t>>
       static constexpr auto divide(left_t left, right_t right);
-     
+      
       /// @brief Equal the specified left and right operands.
       /// @param left The left operand.
       /// @param right The right operand.
@@ -462,7 +462,7 @@ namespace xtd {
       template<typename left_t, typename right_t>
       requires std::is_base_of_v<expression, std::decay_t<left_t>> || std::is_base_of_v<expression, std::decay_t<right_t>>
       static constexpr auto greater_than_or_equal(left_t left, right_t right);
-
+      
       /// @brief Left shift the specified left and right operands.
       /// @param left The left operand.
       /// @param right The right operand.
@@ -567,7 +567,7 @@ namespace xtd {
       template<typename left_t, typename right_t>
       requires std::is_base_of_v<expression, std::decay_t<left_t>> || std::is_base_of_v<expression, std::decay_t<right_t>>
       static constexpr auto less_than_or_equal(left_t left, right_t right);
-
+      
       /// @brief Logical and the specified left and right operands.
       /// @param left The left operand.
       /// @param right The right operand.
@@ -631,7 +631,7 @@ namespace xtd {
       template<typename value_t>
       requires std::is_base_of_v<expression, std::decay_t<value_t>>
       static constexpr auto logical_not(value_t value);
-
+      
       /// @brief Logical or the specified left and right operands.
       /// @param left The left operand.
       /// @param right The right operand.
@@ -668,7 +668,7 @@ namespace xtd {
       template<typename left_t, typename right_t>
       requires std::is_base_of_v<expression, std::decay_t<left_t>> || std::is_base_of_v<expression, std::decay_t<right_t>>
       static constexpr auto logical_or(left_t left, right_t right);
-
+      
       /// @brief Modulo the specified left and right operands.
       /// @param left The left operand.
       /// @param right The right operand.
@@ -703,7 +703,7 @@ namespace xtd {
       template<typename left_t, typename right_t>
       requires std::is_base_of_v<expression, std::decay_t<left_t>> || std::is_base_of_v<expression, std::decay_t<right_t>>
       static constexpr auto modulo(left_t left, right_t right);
-
+      
       /// @brief Multiply the specified left and right operands.
       /// @param left The left operand.
       /// @param right The right operand.
@@ -862,7 +862,7 @@ namespace xtd {
       template<typename left_t, typename right_t>
       requires std::is_base_of_v<expression, std::decay_t<left_t>> || std::is_base_of_v<expression, std::decay_t<right_t>>
       static constexpr auto or_(left_t left, right_t right);
-
+      
       /// @brief Logical or the specified left and right operands.
       /// @param left The left operand.
       /// @param right The right operand.
@@ -899,7 +899,7 @@ namespace xtd {
       template<typename left_t, typename right_t>
       requires std::is_base_of_v<expression, std::decay_t<left_t>> || std::is_base_of_v<expression, std::decay_t<right_t>>
       static constexpr auto or_else(left_t left, right_t right);
-
+      
       /// @brief Gets the `index` placeholder used by expression.
       /// @remarks The index start from 1 to N.
       /// @remarks Prefer the xtd::expressions::expression::arg <N> or xtd::expressions::_, xtd::expressions::_1 ... xtd::expressions::_10 instead xtd::expressions::expression::placeholder.
@@ -935,7 +935,7 @@ namespace xtd {
       /// ```
       template <size_t index>
       static constexpr auto placeholder();
-
+      
       /// @brief Right shift the specified left and right operands.
       /// @param left The left operand.
       /// @param right The right operand.
@@ -970,7 +970,7 @@ namespace xtd {
       template<typename left_t, typename right_t>
       requires std::is_base_of_v<expression, std::decay_t<left_t>> || std::is_base_of_v<expression, std::decay_t<right_t>>
       static constexpr auto right_shift(left_t left, right_t right);
-
+      
       /// @brief Compare three way the specified left and right operands.
       /// @param left The left operand.
       /// @param right The right operand.
@@ -1094,7 +1094,7 @@ namespace xtd {
       template<typename value_t>
       requires std::is_base_of_v<expression, std::decay_t<value_t>>
       static constexpr auto unary_plus(value_t value);
-
+      
       /// @brief Gets the value value.
       /// @param value The value value.
       /// @return The value value expression.
@@ -1168,7 +1168,7 @@ namespace xtd {
       requires std::is_base_of_v<expression, std::decay_t<left_t>> || std::is_base_of_v<expression, std::decay_t<right_t>>
       static constexpr auto xor_(left_t left, right_t right);
       /// @}
-
+      
     protected:
       /// @name Protected Constructors
       

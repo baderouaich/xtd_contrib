@@ -14,11 +14,11 @@ namespace xtd::collections::generic::tests {
   class test_class_(enumerable_generator_tests) {
     inline static constexpr auto numbers = {10, 3, 6, 2, 9, 1, 8, 4, 7, 5};
     auto numbers_generator() -> enumerable_generator<int> {
-      for (auto number : numbers)
-        co_yield number;
+for (auto number : numbers)
+      co_yield number;
     }
-
-    auto test_method_(enumerator) {
+    
+  auto test_method_(enumerator) {
       auto enumerable = numbers_generator();
       auto enumerator = enumerable.get_enumerator();
       assert::throws<not_supported_exception>([&] {enumerator.reset();});
@@ -117,7 +117,7 @@ namespace xtd::collections::generic::tests {
       assert::are_equal(enumerable.end(), ++iterator);
       assert::are_equal(5, *iterator);
     }
-
+    
     auto test_method_(to_array) {
       collection_assert::are_equal(numbers, numbers_generator().to_array());
     }

@@ -60,7 +60,7 @@ namespace xtd {
       
       /// @brief Gets the information texts.
       /// @return The information texts.
-      [[nodiscard]] auto informations() const noexcept -> const xtd::array<xtd::string>&;
+      [[nodiscard]] auto informations() const noexcept -> const xtd::array<xtd::string>& ;
       /// @brief Sets the information texts.
       /// @param value The information texts.
       /// @return Current progress_dialog instance.

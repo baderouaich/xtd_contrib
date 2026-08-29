@@ -66,19 +66,19 @@ namespace xtd {
         [[nodiscard]] auto compare(const first_argument_type& x, const second_argument_type& y) const -> result_type override {
           if constexpr(xtd::comparable<first_argument_type> || std::derived_from<first_argument_type, xtd::icomparable<first_argument_type>>) return helpers::comparer<type_t> {}(x, y);
           else xtd::helpers::throw_helper::throws(xtd::helpers::exception_case::invalid_operation, "Failed to compare two elements in the array.");
-        }
-        
-        //static ptr<comparer<type_t>> create (xtd::comparison<type_t> comparison) {
-        //  return {};
-        //}
-        /// @}
-        
-      protected:
-        /// @name Protected Constructors
-        
-        /// @{
-        /// @brief Initializes a new instance of the xtd::collections::generic::comparer <type_t> class.
-        comparer() = default;
+          }
+          
+      //static ptr<comparer<type_t>> create (xtd::comparison<type_t> comparison) {
+      //  return {};
+      //}
+      /// @}
+      
+    protected:
+      /// @name Protected Constructors
+      
+      /// @{
+      /// @brief Initializes a new instance of the xtd::collections::generic::comparer <type_t> class.
+      comparer() = default;
         /// @}
       };
       

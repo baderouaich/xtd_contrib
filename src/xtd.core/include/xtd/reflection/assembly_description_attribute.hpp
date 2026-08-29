@@ -34,7 +34,7 @@ namespace xtd {
       /// @param description The description information.
       explicit assembly_description_attribute(const string& description);
       /// @}
-            
+      
       /// @name Public Properties
       
       /// @name Public Properties
@@ -86,7 +86,7 @@ namespace xtd {
 }
 
 /// @cond
-auto __assembly_description_attribute__() -> xtd::sptr<xtd::reflection::assembly_description_attribute>&;
+auto __assembly_description_attribute__() -> xtd::sptr<xtd::reflection::assembly_description_attribute>& ;
 /// @endcond
 
 /// @brief Creates the assembly description information. Must be called once in your application.

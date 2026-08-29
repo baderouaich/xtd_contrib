@@ -38,7 +38,7 @@ namespace xtd {
       /// @return The xtd::drawing::color structure that represents the translated CMYKA color or xtd::drawing::color::empty if text is empty ("").
       /// @exception xtd:format_exception text is not a valid CMYKA color name.
       [[nodiscard]] static auto from_cmyka(const xtd::string& text) -> xtd::drawing::color;
-
+      
       /// @brief Translates an HEX color representation to a GDI+ xtd::drawing::color structure.
       /// @param text The string representation of the HTMLS color to translate.
       /// @return The xtd::drawing::color structure that represents the translated HEX color or xtd::drawing::color::empty if text is empty ("").
@@ -116,7 +116,7 @@ namespace xtd {
       /// @return The string that represents the HSL color.
       /// @remarks This method translates an xtd::drawing::color structure into a string representation of a HSLA color (e.g. "cmyka(100%, 90%, 30%, 64%, 0.6)").
       [[nodiscard]] static auto to_cmyka(const xtd::drawing::color& value) noexcept -> xtd::string;
-
+      
       /// @brief Translates the specified xtd::drawing::color structure to an HEX string color representation.
       /// @param value The xtd::drawing::color structure to translate.
       /// @return The string that represents the HEX color.

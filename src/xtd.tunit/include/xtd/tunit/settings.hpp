@@ -113,7 +113,7 @@ namespace xtd {
       
       /// @brief Gets filter tests.
       /// @return filter tests. The value by default is `{"*.*"}`.
-      [[nodiscard]] auto filter_tests() const noexcept -> const xtd::array<xtd::string>&;
+      [[nodiscard]] auto filter_tests() const noexcept -> const xtd::array<xtd::string>& ;
       /// @brief Sets filter tests.
       /// @param value filter tests. The value by default is `{"*.*"}`.
       auto filter_tests(const xtd::array<xtd::string>& value) noexcept -> settings&;

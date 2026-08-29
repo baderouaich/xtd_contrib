@@ -67,35 +67,35 @@ namespace xtd {
         #endif
       }
       
-      using xtd::diagnostics::trace_listener::write;
-      /// @brief Writes the message to the listener you create when you implement the trace_listener class.
-      /// @param message A string you want to write.
-      auto write(const xtd::string& message) -> void override {
+    using xtd::diagnostics::trace_listener::write;
+    /// @brief Writes the message to the listener you create when you implement the trace_listener class.
+    /// @param message A string you want to write.
+    auto write(const xtd::string& message) -> void override {
         #if DEBUG || TRACE
         if (need_indent()) write_indent();
         if (control_trace_) control_trace_->write(message);
         #endif
-      }
-      
-      using xtd::diagnostics::trace_listener::write_line;
-      /// @brief Writes the message to the listener you create when you implement the trace_listener class.
-      /// @param message A string you want to write.
-      auto write_line(const xtd::string& message) -> void override {
+        }
+        
+    using xtd::diagnostics::trace_listener::write_line;
+    /// @brief Writes the message to the listener you create when you implement the trace_listener class.
+    /// @param message A string you want to write.
+    auto write_line(const xtd::string& message) -> void override {
         #if DEBUG || TRACE
         //write(message + "\n");
         if (need_indent()) write_indent();
         if (control_trace_) control_trace_->write_line(message);
-        need_indent(true);
+          need_indent(true);
         #endif
-      }
-      /// @}
-      
-      /// @name Public Static Methods
-      
-      /// @{
-      /// @brief Create new control_trace_listener.
-      /// @return New created trace listener.
-      [[nodiscard]] static auto create(xtd::forms::icontrol_trace& control_trace) -> xtd::sptr<xtd::diagnostics::trace_listener> {return xtd::new_sptr<control_trace_listener>(control_trace);}
+        }
+    /// @}
+    
+    /// @name Public Static Methods
+    
+    /// @{
+    /// @brief Create new control_trace_listener.
+    /// @return New created trace listener.
+    [[nodiscard]] static auto create(xtd::forms::icontrol_trace& control_trace) -> xtd::sptr<xtd::diagnostics::trace_listener> {return xtd::new_sptr<control_trace_listener>(control_trace);}
       /// @}
       
     private:

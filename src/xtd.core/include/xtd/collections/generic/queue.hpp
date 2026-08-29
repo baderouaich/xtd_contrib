@@ -164,28 +164,28 @@ namespace xtd {
         /// @param item The object to locate in the xtd::collections::generic::queue <type_t>.
         /// @return `true` if `item` is found in the xtd::collections::generic::queue <type_t>; otherwise, `false`.
         [[nodiscard]] auto contains(const_reference value) const noexcept -> bool override {
-          for (const auto& item : data_->items)
-            if (xtd::collections::generic::helpers::equator<type_t> {}(item, value)) return true;
-          return false;
-        }
-        
-        /// @brief Copies the entire xtd::colllections::generic::linked_list <type_t> to a compatible one-dimensional array, starting at the specified index of the target array.
-        /// @param array The one-dimensional Array that is the destination of the elements copied from xtd::colllections::generic::linked_list <type_t>. The Array must have zero-based indexing.
-        /// @param array_index The zero-based index in array at which copying begins.
-        /// @exception xtd::argument_out_of_range_exception The number of elements in the source xtd::colllections::generic::linked_list <type_t> is greater than the available space from arrayIndex to the end of the destination array.
-        /// @remarks This method uses xtd::array::copy to copy the elements.
-        /// @remarks The elements are copied to the xtd::array in the same order in which the enumerator iterates through the xtd::colllections::generic::linked_list <type_t>.
-        /// @remarks This method is an O(n) operation, where n is xtd::colllections::generic::linked_list::count.
-        auto copy_to(xtd::array<type_t>& array, size_type array_index) const -> void override {
+for (const auto& item : data_->items)
+          if (xtd::collections::generic::helpers::equator<type_t> {}(item, value)) return true;
+            return false;
+          }
+          
+      /// @brief Copies the entire xtd::colllections::generic::linked_list <type_t> to a compatible one-dimensional array, starting at the specified index of the target array.
+      /// @param array The one-dimensional Array that is the destination of the elements copied from xtd::colllections::generic::linked_list <type_t>. The Array must have zero-based indexing.
+      /// @param array_index The zero-based index in array at which copying begins.
+      /// @exception xtd::argument_out_of_range_exception The number of elements in the source xtd::colllections::generic::linked_list <type_t> is greater than the available space from arrayIndex to the end of the destination array.
+      /// @remarks This method uses xtd::array::copy to copy the elements.
+      /// @remarks The elements are copied to the xtd::array in the same order in which the enumerator iterates through the xtd::colllections::generic::linked_list <type_t>.
+      /// @remarks This method is an O(n) operation, where n is xtd::colllections::generic::linked_list::count.
+      auto copy_to(xtd::array<type_t>& array, size_type array_index) const -> void override {
           if (array_index + count() > array.length()) xtd::helpers::throw_helper::throws(xtd::helpers::exception_case::argument_out_of_range);
-          for (const auto& item : data_->items)
+for (const auto& item : data_->items)
             array[array_index++] = item;
-        }
-        
-        /// @brief Removes and returns the object at the beginning of the xtd::collections::generic::queue <type_t>.
-        /// @return The object that is removed from the beginning of the xtd::collections::generic::queue <type_t>.
-        /// @exception xtd::invalid_operation_exception The xtd::collections::generic::queue <type_t> is empty.
-        auto dequeue() -> value_type {
+          }
+          
+      /// @brief Removes and returns the object at the beginning of the xtd::collections::generic::queue <type_t>.
+      /// @return The object that is removed from the beginning of the xtd::collections::generic::queue <type_t>.
+      /// @exception xtd::invalid_operation_exception The xtd::collections::generic::queue <type_t> is empty.
+      auto dequeue() -> value_type {
           auto result = value_type {};
           if (!try_dequeue(result)) xtd::helpers::throw_helper::throws(xtd::helpers::exception_case::invalid_operation);
           return result;
@@ -215,9 +215,9 @@ namespace xtd {
           return data_->items.capacity();
         }
         
-        /// @brief Returns an enumerator that iterates through the xtd::collections::generic::queue <type_t>.
-        /// @return A xtd::collections::generic::.enumerator for the xtd::collections::generic::queue <type_t>.
-        [[nodiscard]] enumerator<value_type> get_enumerator() const noexcept override {
+      /// @brief Returns an enumerator that iterates through the xtd::collections::generic::queue <type_t>.
+      /// @return A xtd::collections::generic::.enumerator for the xtd::collections::generic::queue <type_t>.
+      [[nodiscard]] enumerator<value_type> get_enumerator() const noexcept override {
           struct queue_enumerator : public ienumerator < value_type > {
             explicit queue_enumerator(const queue & items, xtd::usize version) : items_(items), version_(version) {}
             
@@ -279,33 +279,33 @@ namespace xtd {
           if (count() < static_cast<xtd::usize>(capacity() * 0.9)) trim_excess(count());
         }
         
-        /// @brief Sets the capacity of a xtd::collections::generic::queue <type_t> object to the specified number of entries.
-        /// @param capacity The new capacity.
-        /// @exception xtd::argument_out_of_range_exception Passed capacity is lower than entries count.
-        auto trim_excess(size_type capacity) -> void {
+      /// @brief Sets the capacity of a xtd::collections::generic::queue <type_t> object to the specified number of entries.
+      /// @param capacity The new capacity.
+      /// @exception xtd::argument_out_of_range_exception Passed capacity is lower than entries count.
+      auto trim_excess(size_type capacity) -> void {
           if (capacity < count()) xtd::helpers::throw_helper::throws(xtd::helpers::exception_case::argument_out_of_range);
           auto temp = base_type {};
           temp.reserve(capacity);
-          for (auto& i : data_->items)
+for (auto& i : data_->items)
             temp.push(i);
-          data_->items = std::move(temp);
-          ++data_->version;
-        }
-        
-        /// @brief Removes the object at the beginning of the xtd::collections::generic::queue <type_t>, and copies it to the result parameter.
-        /// @param The removed object.
-        /// @return `true` if the object is successfully removed; `false` if the xtd::collections::generic::queue <type_t> is empty.
-        [[nodiscard]] auto try_dequeue(value_type& result) noexcept -> bool {
+            data_->items = std::move(temp);
+            ++data_->version;
+          }
+          
+      /// @brief Removes the object at the beginning of the xtd::collections::generic::queue <type_t>, and copies it to the result parameter.
+      /// @param The removed object.
+      /// @return `true` if the object is successfully removed; `false` if the xtd::collections::generic::queue <type_t> is empty.
+      [[nodiscard]] auto try_dequeue(value_type& result) noexcept -> bool {
           if (!try_peek(result)) return false;
           data_->items.pop();
           ++data_->version;
           return true;
         }
         
-        /// @brief Returns a value that indicates whether there is an object at the beginning of the xtd::collections::generic::queue <type_t>, and if one is present, copies it to the result parameter. The object is not removed from the xtd::collections::generic::queue <type_t>.
-        /// @param If present, the object at the beginning of the xtd::collections::generic::queue <type_t>; otherwise, the default value of `type_t`.
-        /// @return `true` if there is an object at the beginning of the xtd::collections::generic::queue <type_t>; `false` if the xtd::collections::generic::queue <type_t> is empty.
-        [[nodiscard]] auto try_peek(value_type& result) const noexcept -> bool {
+      /// @brief Returns a value that indicates whether there is an object at the beginning of the xtd::collections::generic::queue <type_t>, and if one is present, copies it to the result parameter. The object is not removed from the xtd::collections::generic::queue <type_t>.
+      /// @param If present, the object at the beginning of the xtd::collections::generic::queue <type_t>; otherwise, the default value of `type_t`.
+      /// @return `true` if there is an object at the beginning of the xtd::collections::generic::queue <type_t>; `false` if the xtd::collections::generic::queue <type_t> is empty.
+      [[nodiscard]] auto try_peek(value_type& result) const noexcept -> bool {
           result = count() ? data_->items.front() : type_t {};
           return count();
         }
@@ -373,7 +373,7 @@ namespace xtd {
       
       template <xtd::iterable iterable_t>
       queue(iterable_t&&) -> queue<xtd::iterable_value_type<iterable_t>>;
-
+      
       template < class type_t>
       queue(std::initializer_list<type_t>) -> queue<type_t>;
       

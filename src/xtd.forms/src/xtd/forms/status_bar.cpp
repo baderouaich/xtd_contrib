@@ -51,7 +51,7 @@ struct status_bar::data {
   list<sptr<status_bar::status_bar_panel_control>> spring_panels;
   list<sptr<status_bar::status_bar_panel_control>> status_bar_panels;
   list<intptr> system_status_bar_panel_handles;
-
+  
   auto on_item_added(xtd::usize pos, status_bar_panel_ref item) -> void {
     auto pcsg = parent_client_size_guard {control}; // Workaround : Get client size because after changing tool bar to system, the client size does not correct.
     item.get().data_->parent = &control;
@@ -68,7 +68,7 @@ struct status_bar::data {
     item.get().data_->parent = nullptr;
     control.post_recreate_handle();
   }
-
+  
   auto on_main_panel_paint(object& sender, xtd::forms::paint_event_args& e) -> void {
     auto style = control.style_sheet() != style_sheets::style_sheet::empty ? control.style_sheet() : style_sheets::style_sheet::current_style_sheet();
     if (control.control_appearance() == forms::control_appearance::standard && !show_panels)

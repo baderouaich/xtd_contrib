@@ -87,7 +87,7 @@ namespace {
       for (auto directory : splitter(path_directories, {':'}, numeric_limits<size_t>::max(), false))
         try {
           if (exists(path(directory) / file_name_with_extension)) return (path(directory) / file_name_with_extension).string();
-        }catch (...) {
+        } catch (...) {
         }
     }
     return file_name;
@@ -97,11 +97,11 @@ namespace {
     auto full_file_name_with_extension = get_full_file_name_with_extension(splitter, command_line, working_directory);
     try {
       return exists(full_file_name_with_extension);
-    }catch (...) {
+    } catch (...) {
       return false;
     }
   }
-
+  
   bool is_valid_uri(const string& command_line) {
     static vector<string> schemes = {"file", "ftp", "gopher", "http", "https", "mailto", "net.pipe", "net.tcp", "news", "nntp"};
     auto iterator = find_if(schemes.begin(), schemes.end(), [&](auto scheme) {return command_line.find(scheme + ":") == 0;});

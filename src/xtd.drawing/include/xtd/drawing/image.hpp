@@ -145,12 +145,12 @@ namespace xtd {
       /// @brief Gets IDs of the property items stored in this image.
       /// @return An array of the property IDs, one for each property item stored in this image.
       /// @remarks If the image has no property items or if the image format does not support property items, the property_id_list property returns an empty array (that is, an array of length zero).
-      [[nodiscard]] auto property_id_list() const noexcept -> const xtd::array<xtd::int32>&;
+      [[nodiscard]] auto property_id_list() const noexcept -> const xtd::array<xtd::int32>& ;
       
       /// @brief Gets all the property items (pieces of metadata) stored in this image.
       /// @return An array of xtd::drawing::imaging::property_item objects, one for each property item stored in the image.
       /// @remarks IIf the image has no property items or if the image format does not support property items, property_items returns an empty array (that is, an array of length zero).
-      [[nodiscard]] auto property_items() const noexcept -> const xtd::array<xtd::drawing::imaging::property_item>&;
+      [[nodiscard]] auto property_items() const noexcept -> const xtd::array<xtd::drawing::imaging::property_item>& ;
       
       /// @brief Gets the file format of this image.
       /// @return The image_format that represents the file format of this image.
